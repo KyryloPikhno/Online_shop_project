@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32a70fd-1981-49bc-94cd-a4b62286b684" name="Changes" comment="added route">
-      <change afterPath="$PROJECT_DIR$/server/router/auth.router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/router/cart.router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/router/order.router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/router/product.router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dataBase/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dataBase/Cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dataBase/Order.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dataBase/Order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dataBase/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dataBase/Product.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,22 +30,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql",
-      "mongo"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;,
+      &quot;mongo&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -63,7 +55,8 @@
       <option name="presentableId" value="Default" />
       <updated>1672435946533</updated>
       <workItem from="1672435949073" duration="1461000" />
-      <workItem from="1672437422877" duration="9978000" />
+      <workItem from="1672437422877" duration="10001000" />
+      <workItem from="1672610638542" duration="795000" />
     </task>
     <task id="LOCAL-00001" summary="added route">
       <created>1672446779510</created>
@@ -86,7 +79,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672446858742</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added route">
+      <created>1672448797716</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672448797716</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
