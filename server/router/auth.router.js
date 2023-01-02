@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const CryptoJS = require("crypto-js");
+const jwt = require("jsonwebtoken");
 
 const User = require("../dataBase/User");
 require('dotenv').config();
@@ -26,11 +27,18 @@ try {
 
     const hashPassword = CryptoJS.AES.decrypt(user.password, process.env.PASSWORD_SECRET_WORD);
 
-    const password = hashPassword.toString(CryptoJS.enc.Utf8);
+    let originalPassword = hashPassword.toString(CryptoJS.enc.Utf8);
 
-    password !== req.body.password && res.status((401).json('Wrong credentials'))
+    originalPassword !== req.body.password && res.status((401).json('Wrong credentials'))
 
-    res.status(200).json(user)
+    const accessToken = jwt.sign({
+        id: user._id,
+        isAdmin: user.isAdmin,
+    }, process.env.JWT_SECTET,{expiresIn:'3d'});
+
+    const {password, ...others} = user._doc;
+
+    res.status(200).json({...others, accessToken})
 }catch (e){
     res.status(500).json(e)
 }

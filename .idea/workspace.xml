@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32a70fd-1981-49bc-94cd-a4b62286b684" name="Changes" comment="added route">
+      <change afterPath="$PROJECT_DIR$/server/middleware/auth.middleware.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controller/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/user.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/router/auth.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/auth.router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/user.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/user.router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +61,7 @@
       <workItem from="1672435949073" duration="1461000" />
       <workItem from="1672437422877" duration="10001000" />
       <workItem from="1672610638542" duration="1264000" />
-      <workItem from="1672621126909" duration="1905000" />
+      <workItem from="1672621126909" duration="5394000" />
     </task>
     <task id="LOCAL-00001" summary="added route">
       <created>1672446779510</created>
@@ -102,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672622559607</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added route">
+      <created>1672623325272</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1672623325272</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
