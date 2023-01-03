@@ -1,10 +1,14 @@
 const router = require("express").Router();
 
 const controller = require("../controller/user.controller");
-const authMdlwr = require("../middleware/auth.middleware");
+const mdlwr = require("../middleware/user.middleware");
 
+router.get('/', controller.getAllUsers);
 
-router.put('/:id',authMdlwr.verifyTokenAndAuth, controller.getAllUsers);
+router.put('/:userId',mdlwr.isUserIdValid,
+    mdlwr.isEditUserValid,
+    mdlwr.getUserDynamically('userId', 'params', '_id'),
+    controller.updateUser, controller.update);
 
 
 module.exports = router;

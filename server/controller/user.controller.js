@@ -2,6 +2,18 @@ const User = require("../dataBase/User");
 
 
 module.exports = {
+    update: async (req, res, next)=>{
+        try {
+            // if(req.user.id === req.params.id || req.user.isAdmin){
+            //
+            // };
+            //
+            // res.json(users);
+        } catch (e) {
+            next(e);
+        }
+    },
+
     getAllUsers: async (req, res, next) => {
         try {
             const users = await User.find({});
