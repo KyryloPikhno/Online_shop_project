@@ -5,7 +5,7 @@ module.exports = {
     verifyToken: (req, res, next) => {
         const authHeader = req.headers.token;
 
-        if (authHeader) {
+        if (authHeader)  {
             jwt.verify(token, process.env.JWT_SECTET, (err, user) => {
                 if (err) res.status(401).json('Token is not valid');
                 req.user = user;
