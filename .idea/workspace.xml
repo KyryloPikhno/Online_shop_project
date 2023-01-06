@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f32a70fd-1981-49bc-94cd-a4b62286b684" name="Changes" comment="added route">
-      <change afterPath="$PROJECT_DIR$/server/condig/regexp.enum.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/validator/user.validator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controller/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controller/user.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/middleware/auth.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/user.middleware.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/router/auth.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/auth.router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/router/user.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/user.router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +60,7 @@
       <workItem from="1672610638542" duration="1264000" />
       <workItem from="1672621126909" duration="5439000" />
       <workItem from="1672627967215" duration="2000" />
-      <workItem from="1672749922775" duration="2935000" />
+      <workItem from="1672749922775" duration="3111000" />
     </task>
     <task id="LOCAL-00001" summary="added route">
       <created>1672446779510</created>
@@ -132,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672749945321</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added route">
+      <created>1672752892207</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1672752892207</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
