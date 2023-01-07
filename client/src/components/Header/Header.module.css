@@ -1,6 +1,28 @@
 .header{
+    background: var(--dark);
     width: 100%;
     border: 2px solid red;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    height: 70px;
+}
+
+.header a{
+    text-decoration: none;
+    color: var(--light);
+    font-size: 25px;
+}
+
+.header a[class = 'active']{
+    color: var(--light-alt);
+
+}
+
+.header div{
+    height: 100%;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

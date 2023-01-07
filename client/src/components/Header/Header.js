@@ -9,11 +9,11 @@ const Header = () => {
 
     return (
         <div className={css.header}>
-            <NavLink to={'/home'}>
-                <div>Logo</div>
-            </NavLink>
+            <NavLink to={'/home'}><h1>Logo</h1></NavLink>
             <NavLink to={'/cards'}>
-                <div><ShoppingCartIcon/></div>
+                <div>
+                    <ShoppingCartIcon fontSize={'medium'}/>
+                </div>
             </NavLink>
         </div>
     );

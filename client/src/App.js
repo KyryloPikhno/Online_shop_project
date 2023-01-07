@@ -1,7 +1,7 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 
 import {MainLayout} from "./layouts";
-import {CardsPage, HomePage} from "./pages";
+import {CardsPage, HomePage, NotFoundPage} from "./pages";
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
             <Route path={'/home'} element={<HomePage/>}/>
             <Route path={'/cards'} element={<CardsPage/>}/>
         </Route>
-        {/*<Route path={'*'} element={<NotFoundPage/>}/>*/}
+        <Route path={'*'} element={<NotFoundPage/>}/>
       </Routes>
   );
 }
