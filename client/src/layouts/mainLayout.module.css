@@ -1,0 +1,23 @@
+:root {
+    --primary: #D81E5B;
+    --secondary: #8A4EFC;
+    --light: #EEE;
+    --light-alt: #61759b;
+    --dark: #131A26;
+    --dark-alt: black;
+}
+
+*{
+    font-family: 'Fira Sans',sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
