@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const {ApiError} = require("../errors");
 const {ACCESS_SECRET, REFRESH_SECRET, CONFIRM_ACCOUNT_ACTION_TOKEN_SECRET, FORGOT_PASSWORD_ACTION_TOKEN_SECRET} = require("../configs/config");
 const {CONFIRM_ACCOUNT, FORGOT_PASSWORD} = require("../configs/tokenActionEnum");
+const {tokenTypeEnum} = require("../enum");
 
 
 module.exports = {
@@ -40,5 +41,21 @@ module.exports = {
         }
 
         return jwt.sign(dataToSign, secretWord, {expiresIn: '7d'});
-    }
+    },
+
+    checkToken: (token = '', tokenType = tokenTypeEnum.accessToken) => {
+        try {
+            let secret = ''
+
+            if (tokenType === tokenTypeEnum.refreshToken) {
+                secret = ACCESS_SECRET
+            } else if (tokenType === tokenTypeEnum.refreshToken) {
+                secret = REFRESH_SECRET
+            }
+
+            return jwt.verify(token, secret)
+        } catch (e) {
+            throw new ApiError('Token not valid', 401)
+        }
+    },
 };

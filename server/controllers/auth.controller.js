@@ -25,9 +25,25 @@ module.exports = {
 
             await Auth.create({...tokenPair, _user_id: user._id})
 
-            res.json({user, ...tokenPair})
+            res.status(200).json({user, ...tokenPair})
         } catch (e) {
             next(e);
         }
-    }
+    },
+
+    refresh: async (req, res, next) => {
+        try {
+            const {refreshToken, _user_id} = req.tokenInfo
+
+            await Auth.deleteOne({refreshToken})
+
+            const tokenPair = authService.generateAccessTokenPair({id: _user_id});
+
+            await Auth.create({...tokenPair, _user_id})
+
+            res.status(201).json(tokenPair);
+        } catch (e) {
+            next(e);
+        }
+    },
 };
