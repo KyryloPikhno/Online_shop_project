@@ -3,9 +3,9 @@ const { ObjectId } = Schema;
 
 
 const orderSchema = new Schema({
-    user: { type: ObjectId, ref: "User" },
+    _user: { type: ObjectId, ref: "User" },
     orderDate: {type: String, required: true, default: ''},
-    listDevise:{type: Array, ref: "Devise" },
+    _listDevise:{type: Array, ref: "Devise" },
     amount:{type: Number },
     totalCost: {type: String, required: true, trim: true, lowercase: true, unique: true},
     address: {type: String, required: true},
