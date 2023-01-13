@@ -3,12 +3,12 @@ const { ObjectId } = Schema;
 
 
 const orderSchema = new Schema({
-    _user: { type: ObjectId, ref: "User" },
-    orderDate: {type: String, required: true, default: ''},
+    _user_id: { type: ObjectId, ref: "User" },
+    orderDate: {type: String, default: ''},
     _listDevise:{type: Array, ref: "Devise" },
     amount:{type: Number },
-    totalCost: {type: String, required: true, trim: true, lowercase: true, unique: true},
-    address: {type: String, required: true},
+    totalCost: {type: String, trim: true, lowercase: true, unique: true},
+    address: {type: String},
     orderStatus: { type: Boolean, default: 'false' }
 }, {
     timestamps: true

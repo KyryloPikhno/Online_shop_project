@@ -1,12 +1,18 @@
 const router = require('express').Router();
 
-const{authController} = require('../controllers')
-const {userMiddlemare} = require("../middlewares");
+const {authController} = require('../controllers');
+const {userMiddleware} = require('../middlewares');
 
 
 router.post(
+    '/registration',
+    userMiddleware.checkForUniqueness('email'),
+    authController.registration
+);
+
+router.post(
     '/login',
-    userMiddlemare.getUserDynamically,
+    userMiddleware.getUserDynamically('email'),
     authController.login
 );
 
