@@ -9,12 +9,16 @@ const Header = () => {
 
     return (
         <div className={css.header}>
-            <NavLink to={'/home'}><h1>Logo</h1></NavLink>
-            <NavLink to={'/cards'}>
+            <NavLink to={'/devices'}><h1>Logo</h1></NavLink>
+            <NavLink to={'/order'}>
                 <div>
                     <ShoppingCartIcon fontSize={'medium'}/>
                 </div>
             </NavLink>
+            <div className={css.button}>
+                <NavLink to={'/login'}>Login</NavLink>
+                <NavLink to={'/register'}>Register</NavLink>
+            </div>
         </div>
     );
 };

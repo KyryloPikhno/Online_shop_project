@@ -1,5 +1,5 @@
 const {authService, userService, orderService} = require("../services");
-const {Auth} = require("../models");
+const {Auth, Order, User} = require("../models");
 
 
 module.exports = {
@@ -9,7 +9,13 @@ module.exports = {
 
             const user = await userService.create({...req.body, password: hashPassword})
 
-            res.status(201).json(user)
+            const order = await Order.create({_user_id: user._id});
+
+            const tokenPair = authService.generateAccessTokenPair({id: user._id});
+
+            await Auth.create({...tokenPair, _user_id: user._id});
+
+            res.status(201).json({user, order, ...tokenPair});
         } catch (e) {
             next(e)
         }
@@ -19,13 +25,15 @@ module.exports = {
         try {
             const {user, body} = req;
 
+            const order = await Order.findOne({_user_id: user._id}).exec()
+
             await authService.comparePasswords(user.password, body.password);
 
             const tokenPair = authService.generateAccessTokenPair({id: user._id});
 
             await Auth.create({...tokenPair, _user_id: user._id})
 
-            res.status(200).json({user, ...tokenPair})
+            res.status(200).json({user, order, ...tokenPair})
         } catch (e) {
             next(e);
         }

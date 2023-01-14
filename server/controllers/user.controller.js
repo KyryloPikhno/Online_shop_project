@@ -1,4 +1,5 @@
 const {userService, authService} = require("../services");
+const {User, Order} = require("../models");
 
 
 module.exports = {
@@ -45,5 +46,5 @@ module.exports = {
         } catch (e) {
             next(e);
         }
-    }
+    },
 };

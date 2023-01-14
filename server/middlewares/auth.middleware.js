@@ -1,5 +1,7 @@
 const {ApiError} = require("../errors");
 const {authService} = require("../services");
+const {tokenTypeEnum} = require("../enum");
+const {Auth} = require("../models");
 
 
 module.exports = {
@@ -13,13 +15,14 @@ module.exports = {
 
             authService.checkToken(refreshToken, tokenTypeEnum.refreshToken)
 
-            const tokenInfo = await OAuth.findOne({refreshToken})
+            const tokenInfo = await Auth.findOne({refreshToken})
 
             if (!tokenInfo) {
                 throw new ApiError('token is not valid', 401);
             }
 
             req.tokenInfo = tokenInfo
+
             next();
         } catch (e) {
             next(e);

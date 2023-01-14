@@ -19,8 +19,8 @@ module.exports = {
     },
 
     generateAccessTokenPair: (dataToSign = {}) => {
-        const accessToken = jwt.sign(dataToSign, ACCESS_SECRET, {expiresIn: '2d'});
-        const refreshToken = jwt.sign(dataToSign, REFRESH_SECRET, {expiresIn: '30d'});
+        const accessToken = jwt.sign(dataToSign, ACCESS_SECRET, {expiresIn: '1m'});
+        const refreshToken = jwt.sign(dataToSign, REFRESH_SECRET, {expiresIn: '2m'});
 
         return {
             accessToken,

@@ -1,11 +1,11 @@
-const Cards = () => {
+const Order = () => {
 
 
     return (
         <div>
-            Cards
+            Order
         </div>
     );
 };
 
-export {Cards};
+export {Order};

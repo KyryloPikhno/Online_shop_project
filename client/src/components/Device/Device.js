@@ -1,4 +1,4 @@
-const Card = () => {
+const Device = () => {
 
 
     return (
@@ -8,4 +8,4 @@ const Card = () => {
     );
 };
 
-export {Card};
+export {Device};
