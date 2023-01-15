@@ -1,6 +1,7 @@
-import {useForm} from "react-hook-form";
-import {authService} from "../../services";
 import {useNavigate, useSearchParams} from "react-router-dom";
+import {useForm} from "react-hook-form";
+
+import {authService} from "../../services";
 
 
 const LoginPage = () => {
@@ -9,8 +10,6 @@ const LoginPage = () => {
     let navigate = useNavigate()
 
     let [query] = useSearchParams()
-
-    console.log(query.get('expSession'));
 
     let submit = async (user) => {
         try {

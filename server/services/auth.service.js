@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const {ApiError} = require("../errors");
 const {ACCESS_SECRET, REFRESH_SECRET, CONFIRM_ACCOUNT_ACTION_TOKEN_SECRET, FORGOT_PASSWORD_ACTION_TOKEN_SECRET} = require("../configs/config");
 const {CONFIRM_ACCOUNT, FORGOT_PASSWORD} = require("../configs/tokenActionEnum");
 const {tokenTypeEnum} = require("../enum");
+const {ApiError} = require("../errors");
 
 
 module.exports = {
@@ -20,12 +20,9 @@ module.exports = {
 
     generateAccessTokenPair: (dataToSign = {}) => {
         const accessToken = jwt.sign(dataToSign, ACCESS_SECRET, {expiresIn: '1m'});
-        const refreshToken = jwt.sign(dataToSign, REFRESH_SECRET, {expiresIn: '2m'});
+        const refreshToken = jwt.sign(dataToSign, REFRESH_SECRET, {expiresIn: '10m'});
 
-        return {
-            accessToken,
-            refreshToken
-        }
+        return {accessToken, refreshToken}
     },
 
     generateActionToken: (actionType, dataToSign = {}) => {

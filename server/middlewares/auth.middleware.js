@@ -7,7 +7,9 @@ const {Auth} = require("../models");
 module.exports = {
     checkRefreshToken: async (req, res, next) => {
         try {
-            const refreshToken = req.get('Authorization')
+            const refreshTokenBearer = req.get('Authorization')
+
+            const refreshToken = refreshTokenBearer.replace('Bearer ', '')
 
             if (!refreshToken) {
                 throw new ApiError('No refreshToken', 401);
@@ -16,6 +18,8 @@ module.exports = {
             authService.checkToken(refreshToken, tokenTypeEnum.refreshToken)
 
             const tokenInfo = await Auth.findOne({refreshToken})
+
+            console.log(tokenInfo);
 
             if (!tokenInfo) {
                 throw new ApiError('token is not valid', 401);
