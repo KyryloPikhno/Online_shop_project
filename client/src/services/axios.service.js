@@ -9,47 +9,43 @@ let history = createBrowserHistory();
 
 const axiosService = axios.create({baseURL});
 
-let isRefreshing = false
+let isRefreshing = false;
 
 axiosService.interceptors.request.use((config) => {
-    let access = authService.getAccessToken()
+    let access = authService.getAccessToken();
 
     if (access) {
-        config.headers.Authorization = access
+        config.headers.Authorization = access;
 
-        config.headers.Authorization = `Bearer ${access}`
+        config.headers.Authorization = `Bearer ${access}`;
     }
-    return config
+    return config;
 });
 
 axiosService.interceptors.response.use((config) => {
-        return config
+        return config;
     },
     async (error) => {
-
-        console.log(error);
-        let refresh = authService.getRefreshToken()
+        let refresh = authService.getRefreshToken();
 
         if (error.response?.status === 401 && refresh && !isRefreshing) {
-            console.log(error.response);
-
-            isRefreshing = true
+            isRefreshing = true;
             try {
-                let {data} = await authService.refresh(refresh)
+                let {data} = await authService.refresh(refresh);
 
-                authService.setTokens(data)
+                authService.setTokens(data);
             } catch (e) {
-                authService.deleteTokens()
+                authService.deleteTokens();
 
-                history.replace('/login?expSession=true')
+                history.replace('/login?expSession=true');
             }
 
             isRefreshing = false
-            return axiosService(error.config)
+            return axiosService(error.config);
         }
 
-        return Promise.reject(error)
+        return Promise.reject(error);
     }
 );
 
-export {axiosService, history}
+export {axiosService, history};

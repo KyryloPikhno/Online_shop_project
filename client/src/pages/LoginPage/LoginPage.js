@@ -17,8 +17,6 @@ const LoginPage = () => {
 
             authService.setTokens(data)
 
-            console.log(data);
-
             navigate('/devices')
         } catch (e) {
             console.log(e.message)
