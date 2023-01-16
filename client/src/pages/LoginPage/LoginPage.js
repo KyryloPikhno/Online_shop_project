@@ -14,10 +14,14 @@ const LoginPage = () => {
     let submit = async (user) => {
         try {
             let {data} = await authService.login(user)
+
             authService.setTokens(data)
+
+            console.log(data);
+
             navigate('/devices')
         } catch (e) {
-            console.log(e)
+            console.log(e.message)
         }
     }
 

@@ -36,4 +36,40 @@ module.exports = {
             next(e);
         }
     },
+
+    checkIsEmailUnique: async (req, res, next) => {
+        try {
+            const { email } = req.body;
+
+            if (!email) {
+                throw new ApiError('Email not present', 400);
+            }
+
+            const user = await User.findOne({ email });
+
+            if (user) {
+                res.status(409).json('User with this email already exists')
+            }
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    // isNewUserValid: async (req, res, next) => {
+    //     try {
+    //         let validate = userValidator.newUserValidator.validate(req.body);
+    //
+    //         if (validate.error) {
+    //             throw new ApiError(validate.error.message, 400);
+    //         }
+    //
+    //         req.body = validate.value;
+    //
+    //         next()
+    //     } catch (e) {
+    //         next(e);
+    //     }
+    // },
 }

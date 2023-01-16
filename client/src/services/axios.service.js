@@ -1,8 +1,8 @@
+import {createBrowserHistory} from 'history';
 import axios from "axios";
 
-import {baseURL} from "../configs";
 import {authService} from "./auth.service";
-import {createBrowserHistory} from 'history';
+import {baseURL} from "../configs";
 
 
 let history = createBrowserHistory();
@@ -15,6 +15,8 @@ axiosService.interceptors.request.use((config) => {
     let access = authService.getAccessToken()
 
     if (access) {
+        config.headers.Authorization = access
+
         config.headers.Authorization = `Bearer ${access}`
     }
     return config
@@ -24,18 +26,21 @@ axiosService.interceptors.response.use((config) => {
         return config
     },
     async (error) => {
+
+        console.log(error);
         let refresh = authService.getRefreshToken()
 
         if (error.response?.status === 401 && refresh && !isRefreshing) {
+            console.log(error.response);
+
             isRefreshing = true
             try {
                 let {data} = await authService.refresh(refresh)
 
-                console.log(data);
-
                 authService.setTokens(data)
             } catch (e) {
                 authService.deleteTokens()
+
                 history.replace('/login?expSession=true')
             }
 

@@ -10,7 +10,7 @@ const authService = {
 
     login: (user) => axiosService.post(urls.auth.login, user),
 
-    refresh: (token) => axiosService.post(urls.auth.refresh, {refreshToken: token}),
+    refresh: (token) => axiosService.post(urls.auth.refresh, {refresh: token}),
 
     setTokens: ({accessToken, refreshToken}) => {
         localStorage.setItem(_accessTokenKey, accessToken)
@@ -24,7 +24,7 @@ const authService = {
 
     getAccessToken: () => localStorage.getItem(_accessTokenKey),
 
-    getRefreshToken: () => localStorage.getItem(_refreshTokenKey)
+    getRefreshToken: () => localStorage.getItem(_refreshTokenKey),
 };
 
 

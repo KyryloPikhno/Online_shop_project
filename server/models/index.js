@@ -3,7 +3,7 @@ module.exports = {
     Auth: require('./Auth'),
     Brand: require('./Brand'),
     Category: require('./Category'),
-    Devise: require('./Devise'),
+    Device: require('./Deviсe'),
     Order: require('./Order'),
     User: require('./User')
 };

@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const {userRouter, authRouter} = require("./routes");
+const {userRouter, authRouter, deviceRouter} = require("./routes");
 const{config} = require("./configs")
 
 const app = express();
@@ -19,6 +19,8 @@ app.use((req, res, next) => {
 app.use('/auth', authRouter);
 
 app.use('/users', userRouter);
+
+app.use('/devices', deviceRouter);
 
 app.get('/', (req, res) => {
     res.json('WELCOME')

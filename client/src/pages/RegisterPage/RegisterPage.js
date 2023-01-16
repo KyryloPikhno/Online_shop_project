@@ -15,9 +15,10 @@ const RegisterPage = () => {
     let submit = async (user) => {
         try {
             await authService.register(user)
+
             navigate('/login')
         } catch (e) {
-            setError(e.response.data?.name)
+            setError(e.response?.data)
         }
     }
 
@@ -28,7 +29,7 @@ const RegisterPage = () => {
             <input type='text' placeholder={'email'} {...register('email')}/>
             <input type='text' placeholder={'password'} {...register('password')}/>
             <button>Register</button>
-            {error && <h3>{error}</h3>}
+            {error && <p>{error}</p>}
         </form>
     );
 };

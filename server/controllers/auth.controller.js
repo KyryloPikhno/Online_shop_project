@@ -1,5 +1,5 @@
 const {authService, userService, orderService} = require("../services");
-const {Auth, Order, User} = require("../models");
+const {Auth, Order} = require("../models");
 
 
 module.exports = {
@@ -11,11 +11,7 @@ module.exports = {
 
             const order = await Order.create({_user_id: user._id});
 
-            const tokenPair = authService.generateAccessTokenPair({id: user._id});
-
-            await Auth.create({...tokenPair, _user_id: user._id});
-
-            res.status(201).json({user, order, ...tokenPair});
+            res.status(201).json({user, order});
         } catch (e) {
             next(e)
         }

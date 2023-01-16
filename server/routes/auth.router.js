@@ -6,8 +6,11 @@ const {userMiddleware, authMiddleware} = require('../middlewares');
 
 router.post(
     '/registration',
-    userMiddleware.checkForUniqueness('email'),
+    // userMiddleware.checkForUniqueness('email'),
+    userMiddleware.checkIsEmailUnique,
+    // userMiddleware.isNewUserValid,
     authController.registration
+
 );
 
 router.post(
