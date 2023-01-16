@@ -21,15 +21,13 @@ module.exports = {
         try {
             const {user, body} = req;
 
-            const order = await Order.findOne({_user_id: user._id}).exec()
-
             await authService.comparePasswords(user.password, body.password);
 
             const tokenPair = authService.generateAccessTokenPair({id: user._id});
 
             await Auth.create({...tokenPair, _user_id: user._id})
 
-            res.status(200).json({user, order, ...tokenPair})
+            res.status(200).json({user, ...tokenPair})
         } catch (e) {
             next(e);
         }

@@ -55,13 +55,4 @@ module.exports = {
             throw new ApiError('Token not valid', 401)
         }
     },
-
-    // decryptionAccessToken: (token) => {
-    //     try {
-    //         return  jwt.verify(token, tokenTypeEnum.accessToken)
-    //
-    //     } catch (e) {
-    //         throw new ApiError('Token not valid', 401)
-    //     }
-    // },
 };

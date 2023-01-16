@@ -4,3 +4,4 @@ export * from './Home/Home';
 export * from './Order/Order';
 export * from './Login/Login';
 export * from './Register/Register';
+export * from './Account/Account';

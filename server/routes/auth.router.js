@@ -22,7 +22,7 @@ router.post(
     authController.refresh
 );
 
-router.post(
+router.get(
     '/account',
     authMiddleware.decryptionAccessToken,
     authController.account
