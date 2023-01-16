@@ -27,7 +27,7 @@ const deviceSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.devices = action.payload.results
+                state.devices = action.payload
                 state.error = null
                 state.loading = false
             })

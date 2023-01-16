@@ -7,7 +7,6 @@ const {authMiddleware} = require("../middlewares");
 router.get(
     '/',
     authMiddleware.checkAssessToken,
-    // authMiddleware.checkRefreshToken,
     deviceController.getAll
 );
 

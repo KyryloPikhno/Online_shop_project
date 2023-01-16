@@ -1,5 +1,4 @@
 const {userService, authService} = require("../services");
-const {User, Order} = require("../models");
 
 
 module.exports = {
@@ -8,6 +7,16 @@ module.exports = {
             const users = await userService.findByParams({});
 
             res.status(200).json(users);
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    getById: async (req, res, next) => {
+        try {
+            const user = await userService.findOneByParams({_id: req.params.userId});
+
+            res.status(200).json(user);
         } catch (e) {
             next(e);
         }

@@ -1,22 +1,23 @@
 .header{
     background: var(--dark);
     width: 100%;
-    border: 2px solid red;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    height: 70px;
+    justify-content: space-between;
+    height: 53px;
+    margin-bottom: 15px;
 }
 
 .header a{
     text-decoration: none;
     color: var(--light);
-    font-size: 25px;
+    font-size: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .header a[class = 'active']{
     color: var(--light-alt);
-
 }
 
 .header div{
@@ -27,8 +28,7 @@
     justify-content: center;
 }
 
-.button{
+.button {
     display: flex;
-    gap:10px;
-    margin-right: 30px;
+    margin-right: 90px;
 }

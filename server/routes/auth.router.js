@@ -6,11 +6,8 @@ const {userMiddleware, authMiddleware} = require('../middlewares');
 
 router.post(
     '/registration',
-    // userMiddleware.checkForUniqueness('email'),
     userMiddleware.checkIsEmailUnique,
-    // userMiddleware.isNewUserValid,
     authController.registration
-
 );
 
 router.post(
@@ -23,6 +20,12 @@ router.post(
     '/refresh',
     authMiddleware.checkRefreshToken,
     authController.refresh
+);
+
+router.post(
+    '/account',
+    authMiddleware.decryptionAccessToken,
+    authController.account
 );
 
 module.exports = router;

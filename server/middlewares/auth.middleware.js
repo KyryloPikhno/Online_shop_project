@@ -13,8 +13,6 @@ module.exports = {
 
             if (!accessToken) {
                 res.status(401).json('No accessToken')
-
-                // throw new ApiError('No accessToken', 401);
             }
 
             authService.checkToken(accessToken)
@@ -23,7 +21,6 @@ module.exports = {
 
             if (!tokenInfo) {
                 res.status(401).json('Token is not valid')
-                // throw new ApiError('token is not valid', 401);
             }
 
             req.tokenInfo = tokenInfo
@@ -50,6 +47,26 @@ module.exports = {
             }
 
             req.tokenInfo = tokenInfo
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    decryptionAccessToken: async (req, res, next) => {
+        try {
+            const accessTokenBearer = req.get('Authorization')
+
+            const accessToken = accessTokenBearer.replace('Bearer ', '')
+
+            console.log(accessToken);
+
+            if (!accessToken) {
+                res.status(401).json('No accessToken')
+            }
+
+            req.userInfo = authService.checkToken(accessToken)
 
             next();
         } catch (e) {

@@ -3,6 +3,7 @@ import {useEffect} from "react";
 
 import {deviceActions} from "../../redux/slices/device.slice";
 import {Device} from "../Device/Device";
+import css from './Devices.module.css';
 
 
 const Devices = () => {
@@ -11,11 +12,12 @@ const Devices = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log(devices);
         dispatch(deviceActions.getAll())
     }, [])
 
     return (
-        <div>
+        <div className={css.container}>
             {devices && devices.map(device => <Device key={device._id}/>)}
         </div>
     );
