@@ -1,6 +1,6 @@
 .header{
     background: var(--dark);
-    width: 100%;
+    width: 65vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,14 +10,14 @@
 
 .header a{
     text-decoration: none;
-    color: var(--light);
-    font-size: 20px;
+    color: var(--light-alt);
+    font-size: 15px;
     margin-left: 30px;
     margin-right: 30px;
 }
 
 .header a[class = 'active']{
-    color: var(--light-alt);
+    color: var(--light);
 }
 
 .header div{

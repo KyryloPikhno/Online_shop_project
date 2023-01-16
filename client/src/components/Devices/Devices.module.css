@@ -1,7 +1,8 @@
 .container{
+    width: 70vw;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 25px;
     justify-content: center;
     align-items: center;
 }

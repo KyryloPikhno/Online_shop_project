@@ -14,8 +14,8 @@
     margin: 0;
 }
 
-body{
-    width: 100%;
+html body{
+    width: 100vw;
 }
 
 .container {
@@ -26,5 +26,4 @@ body{
 }
 
 .block{
-    width: 70vw;
 }
