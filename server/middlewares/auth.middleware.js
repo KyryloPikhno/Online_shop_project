@@ -66,7 +66,13 @@ module.exports = {
                 res.status(401).json('No accessToken')
             }
 
-            req.userInfo = authService.checkToken(accessToken)
+            const userInfo = authService.checkToken(accessToken)
+
+            if(!userInfo){
+                res.status(40).json('No user')
+            }
+
+            req.userInfo = userInfo
 
             next();
         } catch (e) {

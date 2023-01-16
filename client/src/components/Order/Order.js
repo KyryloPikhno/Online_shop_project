@@ -17,7 +17,7 @@ const Order = () => {
 
     return (
         <div className={css.container}>
-            <div>{}</div>
+            <div>{account.name}</div>
         </div>
     );
 };
