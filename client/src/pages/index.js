@@ -4,3 +4,4 @@ export * from './NotFoundPage/NotFoundPage';
 export * from './LoginPage/LoginPage';
 export * from './OrderPage/OrderPage';
 export * from './AccountPage/AccountPage';
+export * from './AdminPage/AdminPage';

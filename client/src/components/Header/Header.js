@@ -11,10 +11,9 @@ const Header = () => {
             {
                 localStorage.getItem('access') ?
                     <div className={css.button}>
+                        <NavLink to={'/admin'}>Admin</NavLink>
                         <NavLink to={'/account'}>Account</NavLink>
-                        <NavLink to={'/order'}>
-                            Order
-                        </NavLink>
+                        <NavLink to={'/order'}>Order</NavLink>
                     </div>
                     :
                     <div className={css.button}>

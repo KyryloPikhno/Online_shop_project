@@ -1,5 +1,4 @@
 const {deviceService} = require("../services");
-const {Device} = require("../models");
 
 
 module.exports = {
@@ -15,7 +14,12 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            const device = await deviceService.create(req.body)
+
+            console.log(req.file.path);
+            // if(req.file){
+            //     res.json(req.file)
+            // }
+            const device = await deviceService.create({img:req.file.path})
 
             res.status(201).json(device)
         } catch (e) {

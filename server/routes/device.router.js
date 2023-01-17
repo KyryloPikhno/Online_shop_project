@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const {deviceController} = require("../controllers");
-const {authMiddleware} = require("../middlewares");
+const {authMiddleware, fileMiddleware} = require("../middlewares");
 
 
 router.get(
@@ -10,7 +10,7 @@ router.get(
     deviceController.getAll
 );
 
-router.post('/',  deviceController.create);
+router.post('/', fileMiddleware.single('deviceIMG'), deviceController.create);
 
 router.put('/:deviceId', deviceController.update);
 
