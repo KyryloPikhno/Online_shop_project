@@ -14,14 +14,26 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
+            const file = req.file;
 
-            console.log(req.file.path);
-            // if(req.file){
-            //     res.json(req.file)
-            // }
-            const device = await deviceService.create({img:req.file.path})
+            if(!file) return res.status(400).send('No image in the request')
 
-            res.status(201).json(device)
+            const fileName = file.filename
+
+            const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
+
+            let product = await deviceService.create({
+                name: req.body.name,
+                img: `${basePath}${fileName}`,
+                brand: req.body.brand,
+                price: req.body.price,
+                category: req.body.category,
+            })
+
+            if(!product)
+                return res.status(500).send('The product cannot be created')
+
+            res.status(201).json(product)
         } catch (e) {
             next(e);
         }

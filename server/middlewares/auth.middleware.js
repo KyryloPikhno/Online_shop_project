@@ -24,6 +24,7 @@ module.exports = {
             }
 
             req.tokenInfo = tokenInfo
+
             next();
         } catch (e) {
             next(e);

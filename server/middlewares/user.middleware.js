@@ -1,5 +1,6 @@
 const {ApiError} = require("../errors");
 const {User} = require("../models");
+const {userService} = require("../services");
 
 
 module.exports = {
@@ -32,6 +33,20 @@ module.exports = {
             }
 
             next()
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    isAdmin: async (req, res, next) => {
+        try {
+            const user = await  userService.findOneByParams({_id: req.userInfo.id});
+
+            if(!user.isAdmin){
+                throw new ApiError('User is not admin', 400);
+            }
+
+            next();
         } catch (e) {
             next(e);
         }

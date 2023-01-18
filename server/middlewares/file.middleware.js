@@ -1,25 +1,30 @@
-const multer = require('multer');
-const moment = require('moment')
+const multer = require('multer')
 
+
+const FILE_TYPE_MAP = {
+    'image/png': 'png',
+    'image/jpeg': 'jpeg',
+    'image/jpg': 'jpg'
+}
 
 const storage = multer.diskStorage({
-    description(req, file, cb) {
-        cb(null, '../images')
+    destination: function (req, file, cb) {
+        const isValid = FILE_TYPE_MAP[file.mimetype];
+
+        let uploadError = new Error('invalid image type');
+
+        if(isValid) {
+            uploadError = null
+        }
+        cb(uploadError, 'public/uploads')
     },
-    filename(req, file, cb) {
-        const data = moment().format('DDMMYYYY-HHmmss_SSS')
-        cb(null, `${data}-${file.originalname}`);
+    filename: function (req, file, cb) {
+
+        const fileName = file.originalname.split(' ').join('-');
+        const extension = FILE_TYPE_MAP[file.mimetype];
+        cb(null, `${fileName}-${Date.now()}.${extension}`)
     }
-});
+})
 
-const types = ['image/png', 'image/jpeg', 'image/jpg'];
+module.exports= multer({ storage: storage })
 
-const fileFilter = (req, file, cb) => {
-    if (types.includes(file.mimetype)) {
-        cb(null, true)
-    } else {
-        cb(null, false)
-    }
-};
-
-module.exports=multer({storage, fileFilter})

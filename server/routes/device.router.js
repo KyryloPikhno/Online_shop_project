@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const {deviceController} = require("../controllers");
-const {authMiddleware, fileMiddleware} = require("../middlewares");
+const {authMiddleware, userMiddleware, fileMiddleware} = require("../middlewares");
 
 
 router.get(
@@ -10,10 +10,27 @@ router.get(
     deviceController.getAll
 );
 
-router.post('/', fileMiddleware.single('deviceIMG'), deviceController.create);
+router.post(
+    '/',
+    authMiddleware.checkAssessToken,
+    authMiddleware.decryptionAccessToken,
+    userMiddleware.isAdmin,
+    fileMiddleware.single('image'),
+    deviceController.create
+);
 
-router.put('/:deviceId', deviceController.update);
+router.put(
+    '/:deviceId',
+    authMiddleware.checkAssessToken,
+    deviceController.update
+);
 
-router.delete('/:deviceId', deviceController.delete);
+router.delete(
+    '/:deviceId',
+    authMiddleware.checkAssessToken,
+    authMiddleware.decryptionAccessToken,
+    userMiddleware.isAdmin,
+    deviceController.delete
+);
 
 module.exports = router;
