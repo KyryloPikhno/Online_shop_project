@@ -19,6 +19,7 @@ html body{
 }
 
 .container {
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,4 +27,5 @@ html body{
 }
 
 .block{
+    width: 80vw;
 }

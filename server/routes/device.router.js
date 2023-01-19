@@ -15,8 +15,24 @@ router.post(
     authMiddleware.checkAssessToken,
     authMiddleware.decryptionAccessToken,
     userMiddleware.isAdmin,
-    fileMiddleware.single('image'),
     deviceController.create
+);
+
+router.put(
+    '/uploadImage/:deviceId',
+    authMiddleware.checkAssessToken,
+    authMiddleware.decryptionAccessToken,
+    userMiddleware.isAdmin,
+    fileMiddleware.array('image', 3),
+    deviceController.uploadImages
+);
+
+router.put(
+    "/removeImage/:deviceId",
+    authMiddleware.checkAssessToken,
+    authMiddleware.decryptionAccessToken,
+    userMiddleware.isAdmin,
+    deviceController.removeImage
 );
 
 router.put(

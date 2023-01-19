@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     border: 2px solid black;
-    width: 100%;
+    flex-direction: column;
+    width: 70vw;
     height: 60vh;
-    position: relative;
 }

@@ -1,6 +1,5 @@
 .header{
     background: var(--dark);
-    width: 65vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,4 +33,9 @@
     display: flex;
     gap: 12px;
     margin-right: 55px;
+}
+
+.nav{
+    display: flex;
+    gap: 8px;
 }

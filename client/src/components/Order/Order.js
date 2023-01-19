@@ -17,6 +17,7 @@ const Order = () => {
 
     return (
         <div className={css.container}>
+            <h1>Order</h1>
             <div>{account.name}</div>
         </div>
     );

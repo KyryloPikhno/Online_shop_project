@@ -18,6 +18,7 @@ const Account = () => {
     return (<div>
             {account &&
                 <div className={css.container}>
+                    <h1>Account</h1>
                     <div>{account.email}</div>
                     <div>{account.name}</div>
                     <div>{account.isAdmin}</div>

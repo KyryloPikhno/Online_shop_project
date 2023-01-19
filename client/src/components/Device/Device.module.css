@@ -3,9 +3,23 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 15px;
+    gap: 4px;
     width: 220px;
-    height: 300px;
-    border: 2px solid black;
+    height: 360px;
+    border: 1px solid black;
     border-radius: 8px;
+    font-size: 13px;
+}
+
+.imageBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 219px;
+    height: 300px;
+    overflow-block: hidden;
+}
+
+.img{
+    width: 100%;
 }

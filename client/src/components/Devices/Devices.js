@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 
-import {deviceActions} from "../../redux/slices/device.slice";
+import {deviceActions} from "../../redux/slices";
 import {Device} from "../Device/Device";
 import css from './Devices.module.css';
 
@@ -12,13 +12,12 @@ const Devices = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log(devices);
         dispatch(deviceActions.getAll())
-    }, [])
+    }, [dispatch])
 
     return (
         <div className={css.container}>
-            {devices && devices.map(device => <Device key={device._id}/>)}
+            {devices && devices.map(device => <Device key={device._id} device={device}/>)}
         </div>
     );
 };

@@ -1,4 +1,5 @@
 const {deviceService} = require("../services");
+const fs = require("fs");
 
 
 module.exports = {
@@ -14,28 +15,48 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            const file = req.file;
 
-            if(!file) return res.status(400).send('No image in the request')
+            console.log(req.body);
 
-            const fileName = file.filename
+            const device = await deviceService.create(req.body)
 
-            const basePath = `${req.protocol}://${req.get('host')}/public/uploads/`;
+            if (!device)
+                return res.status(500).send('The device cannot be created')
 
-            let product = await deviceService.create({
-                name: req.body.name,
-                img: `${basePath}${fileName}`,
-                brand: req.body.brand,
-                price: req.body.price,
-                category: req.body.category,
-            })
-
-            if(!product)
-                return res.status(500).send('The product cannot be created')
-
-            res.status(201).json(product)
+            res.status(201).json(device)
         } catch (e) {
             next(e);
+        }
+    },
+
+    uploadImages: async (req, res, next) => {
+        try {
+            const images = [];
+
+            await  req.files.map((file) => {
+                images.push(file.filename);
+            });
+
+            const device = await deviceService.addImages(req.params.deviceId, images)
+
+            res.status(200).json(device)
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    removeImage: async (req, res, next) => {
+        try {
+            const device = await deviceService.deleteImage(req.params.deviceId, req.body.fileName)
+
+            if(device){
+                const path = "./uploads/" + req.body.fileName;
+                fs.unlinkSync(path);
+            }
+
+            res.status(200).json(device)
+        } catch (e) {
+            next(e)
         }
     },
 

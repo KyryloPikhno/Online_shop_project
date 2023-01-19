@@ -6,15 +6,15 @@ import css from './Login.module.css';
 
 
 const Login = () => {
-    let {register, handleSubmit} = useForm()
+    const {register, handleSubmit} = useForm()
 
-    let navigate = useNavigate()
+    const navigate = useNavigate()
 
-    let [query] = useSearchParams()
+    const [query] = useSearchParams()
 
     let submit = async (user) => {
         try {
-            let {data} = await authService.login(user)
+            const {data} = await authService.login(user)
 
             console.log(data.user);
 
