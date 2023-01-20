@@ -1,5 +1,7 @@
-const {deviceService} = require("../services");
 const fs = require("fs");
+
+const {deviceService} = require("../services");
+const {Device} = require("../models");
 
 
 module.exports = {
@@ -15,9 +17,6 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-
-            console.log(req.body);
-
             const device = await deviceService.create(req.body)
 
             if (!device)
@@ -33,7 +32,7 @@ module.exports = {
         try {
             const images = [];
 
-            await  req.files.map((file) => {
+            req.files.map((file) => {
                 images.push(file.filename);
             });
 
@@ -49,9 +48,8 @@ module.exports = {
         try {
             const device = await deviceService.deleteImage(req.params.deviceId, req.body.fileName)
 
-            if(device){
-                const path = "./uploads/" + req.body.fileName;
-                fs.unlinkSync(path);
+            if (device) {
+                fs.unlinkSync(`./uploads/${req.body.fileName}`);
             }
 
             res.status(200).json(device)
@@ -75,9 +73,17 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const device = await deviceService.deleteOne(req.params.deviceId)
+            const device = await Device.findById({_id: req.params.deviceId})
 
-            res.status(204).send(device)
+            if (device && device.images.length !== 0) {
+                device.images.map((file) => {
+                    fs.unlinkSync(`./uploads/${file}`);
+                });
+            }
+
+            await deviceService.deleteOne(req.params.deviceId)
+
+            res.status(204).send('Device removed')
         } catch (e) {
             next(e);
         }

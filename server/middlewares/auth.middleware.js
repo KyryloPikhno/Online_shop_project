@@ -61,8 +61,6 @@ module.exports = {
 
             const accessToken = accessTokenBearer.replace('Bearer ', '')
 
-            console.log(accessToken);
-
             if (!accessToken) {
                 res.status(401).json('No accessToken')
             }
