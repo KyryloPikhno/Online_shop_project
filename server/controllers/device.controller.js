@@ -1,7 +1,6 @@
 const fs = require("fs");
 
 const {deviceService} = require("../services");
-const {Device} = require("../models");
 
 
 module.exports = {
@@ -73,9 +72,9 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const device = await Device.findById({_id: req.params.deviceId})
+             const device = await deviceService.findOneByParams({_id: req.params.deviceId})
 
-            if (device && device.images.length !== 0) {
+             if (device && device.images.length !== 0) {
                 device.images.map((file) => {
                     fs.unlinkSync(`./uploads/${file}`);
                 });
