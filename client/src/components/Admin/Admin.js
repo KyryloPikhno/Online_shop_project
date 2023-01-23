@@ -35,7 +35,7 @@ const Admin = () => {
 
     const handleClose = () => setOpen(false);
 
-    let submit = async (device) => {
+    const submit = async (device) => {
         try {
             await dispatch(deviceActions.create({device}))
 
@@ -48,7 +48,7 @@ const Admin = () => {
         try {
             const formData = new FormData();
 
-            await files.map((file, index) => {
+            await files.map((file) => {
                 formData.append("image", file);
             });
 

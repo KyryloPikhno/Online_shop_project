@@ -2,30 +2,38 @@ import {useNavigate} from "react-router-dom";
 
 import {baseURL} from "../../configs";
 import css from './Device.module.css';
+import {useSelector} from "react-redux";
 
 
-const Device = ({device}) => {
+const Device = ({device, deleter}) => {
     const navigate = useNavigate()
 
-    const {name, price, category, brand, description, images, _id} = device;
+    const {account} = useSelector(state => state.accountReducer)
 
-    const deleter =()=>{
-
-    }
+    const {name, price, images, _id} = device;
+    console.log(account);
 
     return (
-        <div className={css.card} onClick={()=>navigate(_id)}>
-           <div className={css.imageBox}>
-            <img className={css.img}
-                 src={`${baseURL}/${images[0]}`}
-                 alt={images[0]}/>
-           </div>
+        <div className={css.card}>
+            <div className={css.imageBox} onClick={() => navigate(_id)}>
+                <img className={css.img}
+                     src={`${baseURL}/${images[0]}`}
+                     alt={images[0]}/>
+            </div>
             <div>Name: {name}</div>
-            <div>Price: {price}</div>
-            {/*<div>Category: {category}</div>*/}
-            {/*<div>Brand: {brand}</div>*/}
-            {/*<div>Description: {description}</div>*/}
-            <button onClick={()=>deleter}>Delete</button>
+            <div>
+                <span>
+               $ {price}
+                </span>
+            </div>
+            <div className={css.button}>
+
+            <button>Add to cart</button>
+            {
+                account.isAdmin &&
+                <button onClick={() => deleter(_id)}>Delete</button>
+            }
+            </div>
         </div>
     );
 };

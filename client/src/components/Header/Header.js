@@ -1,38 +1,49 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
-import css from './Header.module.css'
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
 import {accountActions} from "../../redux/slices";
+import {authService} from "../../services";
+import css from './Header.module.css'
 
 
 const Header = () => {
+    const navigate = useNavigate()
 
-    const {account} = useSelector(state => state.accountReducer);
+    const {account, login} = useSelector(state => state.accountReducer);
 
     const dispatch = useDispatch()
+    console.log(account);
+    console.log(login);
 
-    useEffect(() => {
-        dispatch(accountActions.getByAccess())
-    }, [dispatch]);
+    const logoutAll = (_id) => {
+        dispatch(accountActions.logoutAll({_id}))
+
+        authService.deleteTokens()
+
+        navigate('/login')
+    };
 
     return (
         <div className={css.header}>
-            <NavLink to={'/devices'}><h1>Logo</h1></NavLink>
+
+
+            <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
             {
-                account ?
+                login ?
                     <div className={css.button}>
                         {
-                            (account && account.isAdmin) ?
+                            (account.isAdmin) ?
                                 <div className={css.nav}>
                                     <NavLink to={'/admin'}>Admin</NavLink>
                                     <NavLink to={'/account'}>Account</NavLink>
                                     <NavLink to={'/order'}>Order</NavLink>
+                                    <button onClick={() => logoutAll(account._id)}>Logout</button>
                                 </div>
                                 :
                                 <div className={css.nav}>
                                     <NavLink to={'/account'}>Account</NavLink>
                                     <NavLink to={'/order'}>Order</NavLink>
+                                    <button onClick={() => logoutAll(account._id)}>Logout</button>
                                 </div>
                         }
                     </div>

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const {deviceController} = require("../controllers");
+const {deviceController, categoryController} = require("../controllers");
 const {authMiddleware, userMiddleware, fileMiddleware} = require("../middlewares");
 
 
@@ -8,6 +8,12 @@ router.get(
     '/',
     authMiddleware.checkAssessToken,
     deviceController.getAll
+);
+
+router.get(
+    '/:deviceId',
+    authMiddleware.checkAssessToken,
+    deviceController.getById
 );
 
 router.post(

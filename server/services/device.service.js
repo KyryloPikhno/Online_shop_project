@@ -4,11 +4,11 @@ const fs = require("fs");
 
 module.exports = {
     findByParams: async (filter = {}) => {
-        return Device.find(filter)
+        return Device.find(filter).populate('category');
     },
 
     findOneByParams: async (filter = {}) => {
-        return Device.findOne(filter)
+        return Device.findOne(filter).populate('category');
     },
 
     create: async (deviceInfo) => {

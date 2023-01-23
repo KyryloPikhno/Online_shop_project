@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 
-const {userRouter, authRouter, deviceRouter} = require("./routes");
+const {userRouter, authRouter, deviceRouter, categoryRouter} = require("./routes");
 const{config} = require("./configs")
 
 
@@ -29,6 +29,8 @@ mongoose.set("strictPopulate", false);
 app.use('/auth', authRouter);
 
 app.use('/users', userRouter);
+
+app.use('/category', categoryRouter);
 
 app.use('/devices', deviceRouter);
 

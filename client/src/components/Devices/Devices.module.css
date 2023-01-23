@@ -1,7 +1,55 @@
 .container{
+display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.block{
+    height: 450px;
+    display: flex;
+    gap: 50px;
+}
+
+.img{
+    width: 20vw;
+}
+
+.devices{
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
-    border: 1px solid black;
     align-items: center;
+    width: 100%;
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 47vw;
+    height: 300px;
+}
+
+.box h1{
+    margin-top: 100px;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    font-size: 40px;
+}
+
+.box h1 span {
+    color: var(--light-alt);
+}
+
+.info{
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    font-size: 18px;
+}
+
+.info div{
+    width: 120px;
 }

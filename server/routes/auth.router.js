@@ -11,21 +11,27 @@ router.post(
 );
 
 router.post(
-    '/login',
-    userMiddleware.getUserDynamically('email'),
-    authController.login
-);
-
-router.post(
     '/refresh',
     authMiddleware.checkRefreshToken,
     authController.refresh
+);
+
+router.post(
+    '/login',
+    userMiddleware.getUserDynamically('email'),
+    authController.login
 );
 
 router.get(
     '/account',
     authMiddleware.decryptionAccessToken,
     authController.account
+);
+
+router.post(
+    '/logoutAll',
+    authMiddleware.checkAssessToken,
+    authController.logoutAll
 );
 
 module.exports = router;

@@ -1,14 +1,14 @@
 .header{
-    background: var(--dark);
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 53px;
     margin-bottom: 15px;
 }
 
 .header a h1{
     margin-left: 12px;
+    color: var(--light-alt);
 }
 
 .header a{
@@ -32,7 +32,15 @@
 .button {
     display: flex;
     gap: 12px;
-    margin-right: 55px;
+    margin-right: 75px;
+}
+
+.button button{
+    border:none;
+    background: none;
+    color: var(--light-alt);
+    font-size: 15px;
+    cursor: pointer;
 }
 
 .nav{

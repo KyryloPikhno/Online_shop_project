@@ -11,9 +11,8 @@ const Order = () => {
     const  dispatch = useDispatch()
 
     useEffect(()=>{
-        console.log(account);
         dispatch(accountActions.getByAccess())
-    },[])
+    },[account])
 
     return (
         <div className={css.container}>

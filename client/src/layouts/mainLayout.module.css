@@ -2,7 +2,7 @@
     --primary: #D81E5B;
     --secondary: #8A4EFC;
     --light: #EEE;
-    --light-alt: #61759b;
+    --light-alt: rgba(14,150,19,0.62);
     --dark: #131A26;
     --dark-alt: black;
 }
@@ -27,5 +27,5 @@ html body{
 }
 
 .block{
-    width: 80vw;
+    width: 70vw;
 }

@@ -6,7 +6,7 @@ const deviceSchema = new Schema({
     _user: {type: ObjectId, ref: "User"},
     name: {type: String, required: true, default: 'Devise', trim: true},
     price: {type: Number, required: true, trim: true, maxlength: 32},
-    category: {type: String},
+    category: {type: ObjectId, ref: "Category"},
     brand: {type: String},
     description: {type: String},
     images: [{type: String}],

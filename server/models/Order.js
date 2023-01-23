@@ -5,7 +5,7 @@ const { ObjectId } = Schema;
 const orderSchema = new Schema({
     _user_id: { type: ObjectId, ref: "User"},
     orderDate: {type: String, default: ''},
-    _listDevise: [
+    listDevise: [
     {
         name: {
             type: String,
@@ -30,7 +30,6 @@ const orderSchema = new Schema({
         },
     }],
     amount:{type: Number },
-    // totalCost: {type: String, trim: true, lowercase: true, unique: true},
     address: {type: String},
     orderStatus: { type: Boolean, default: 'false' }
 }, {

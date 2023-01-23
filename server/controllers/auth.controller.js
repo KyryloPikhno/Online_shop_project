@@ -1,4 +1,4 @@
-const {authService, userService, orderService} = require("../services");
+const {authService, userService} = require("../services");
 const {Auth, Order} = require("../models");
 
 
@@ -9,7 +9,7 @@ module.exports = {
 
             const user = await userService.create({...req.body, password: hashPassword})
 
-            const order = await Order.create({_user_id: user._id});
+            // const order = await Order.create({_user_id: user._id});
 
             res.status(201).json({user, order});
         } catch (e) {
@@ -51,9 +51,21 @@ module.exports = {
 
     account: async (req, res, next) => {
         try {
-            const user = await userService.findOneByParams({_id: req.userInfo.id})
+            const user = await userService.findOneByParams({_id: req.userInfo.id});
 
             res.status(200).json(user)
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    logoutAll: async (req, res, next) => {
+        try {
+            const {_user_id} = req.tokenInfo
+
+            await Auth.deleteMany({_user_id})
+
+            res.sendStatus(204);
         } catch (e) {
             next(e);
         }

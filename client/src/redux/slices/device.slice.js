@@ -45,6 +45,17 @@ const uploadImage = createAsyncThunk(
     }
 );
 
+const deleteDevice = createAsyncThunk(
+    'deviceSlice/delete',
+    async ({_id}, {rejectWithValue}) => {
+        try {
+            await deviceService.delete(_id)
+        } catch (e) {
+            return rejectWithValue(e.response.data)
+        }
+    }
+);
+
 const deviceSlice = createSlice({
     name: 'deviceSlice',
     initialState,
@@ -90,6 +101,19 @@ const deviceSlice = createSlice({
                 state.loading = true
                 state.error = null
             })
+            .addCase(deleteDevice.fulfilled, (state, action) => {
+                // state.device = action.payload
+                state.error = null
+                state.loading = false
+            })
+            .addCase(deleteDevice.rejected, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
+            .addCase(deleteDevice.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
 });
 
 const {reducer: deviceReducer} = deviceSlice;
@@ -97,7 +121,8 @@ const {reducer: deviceReducer} = deviceSlice;
 const deviceActions = {
     getAll,
     create,
-    uploadImage
+    uploadImage,
+    deleteDevice
 };
 
 export {deviceReducer, deviceActions};

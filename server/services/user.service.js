@@ -3,11 +3,11 @@ const {User} = require("../models");
 
 module.exports = {
     findByParams: async (filter = {}) => {
-        return User.find(filter)
+        return User.find(filter).populate('order')
     },
 
     findOneByParams: async (filter = {}) => {
-        return User.findOne(filter)
+        return User.findOne(filter).populate('order')
     },
 
     create: async (userInfo) => {

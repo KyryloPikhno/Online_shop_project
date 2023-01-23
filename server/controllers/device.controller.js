@@ -14,6 +14,16 @@ module.exports = {
         }
     },
 
+    getById: async (req, res, next) => {
+        try {
+            const device = await deviceService.findOneByParams({_id:req.params.deviceId});
+
+            res.status(200).json(device);
+        } catch (e) {
+            next(e);
+        }
+    },
+
     create: async (req, res, next) => {
         try {
             const device = await deviceService.create(req.body)

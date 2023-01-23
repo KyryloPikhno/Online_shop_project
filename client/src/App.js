@@ -13,10 +13,6 @@ import {
 import {MainLayout} from "./layouts";
 
 
-function DevicesDetailPage() {
-    return null;
-}
-
 function App() {
 
     return (
