@@ -3,7 +3,7 @@ const { ObjectId } = Schema;
 
 
 const userSchema = new Schema({
-        name: {type: String, required: true, default: '', trim: true, maxlength: 32},
+        name: {type: String, required: true, trim: true, maxlength: 32},
         email: {type: String, required: true, trim: true, lowercase: true, unique: true},
         password: {type: String, required: true},
         isAdmin: {type:Boolean, default: false},

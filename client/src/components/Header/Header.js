@@ -12,8 +12,6 @@ const Header = () => {
     const {account, login} = useSelector(state => state.accountReducer);
 
     const dispatch = useDispatch()
-    console.log(account);
-    console.log(login);
 
     const logoutAll = (_id) => {
         dispatch(accountActions.logoutAll({_id}))

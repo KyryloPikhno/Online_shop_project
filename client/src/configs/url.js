@@ -5,6 +5,7 @@ const urls = {
     users: '/users',
     uploadImage: '/uploadImage',
     removeImage: 'removeImage',
+    category: '/category',
     auth: {
         registration: '/auth/registration',
         login: '/auth/login',

@@ -3,35 +3,16 @@ const { ObjectId } = Schema;
 
 
 const orderSchema = new Schema({
-    _user_id: { type: ObjectId, ref: "User"},
-    orderDate: {type: String, default: ''},
-    listDevise: [
-    {
-        name: {
-            type: String,
-            required: true,
-        },
-        price: {
-            type: Number,
-            required: true,
-        },
-        quantity: {
-            type: Number,
-            required: true,
-        },
-        image: {
-            type: String,
-            required: true,
-        },
-        Devise: {
-            type: ObjectId,
-            ref: "Devise",
-            required: true,
-        },
-    }],
-    amount:{type: Number },
+    user: {type: ObjectId, ref: "User"},
+    dateOrdered: {type: Date, default: Date.now},
+    totalPrice: {type: Number},
+    deviceList: [{type: ObjectId, ref: 'DeviceList', require: true}],
+    phone: {type: String, required: true},
     address: {type: String},
-    orderStatus: { type: Boolean, default: 'false' }
+    city: {type: String, required: true,},
+    zip: {type: String, required: true,},
+    country: {type: String, required: true,},
+    orderStatus: {type: Boolean, required: true, default: 'false'}
 }, {
     timestamps: true
 });

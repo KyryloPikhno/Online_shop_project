@@ -11,7 +11,6 @@ const Device = ({device, deleter}) => {
     const {account} = useSelector(state => state.accountReducer)
 
     const {name, price, images, _id} = device;
-    console.log(account);
 
     return (
         <div className={css.card}>
@@ -28,11 +27,11 @@ const Device = ({device, deleter}) => {
             </div>
             <div className={css.button}>
 
-            <button>Add to cart</button>
-            {
-                account.isAdmin &&
-                <button onClick={() => deleter(_id)}>Delete</button>
-            }
+                <button>Add to cart</button>
+                {
+                    account.isAdmin &&
+                    <button onClick={() => deleter(_id)}>Delete</button>
+                }
             </div>
         </div>
     );

@@ -24,7 +24,9 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            const category = await Category.create(req.body);
+
+            console.log(req.body);
+            const category = await Category.create({name:req.body.category});
 
             res.status(201).json(category)
         } catch (e) {
