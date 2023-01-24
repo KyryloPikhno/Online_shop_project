@@ -7,3 +7,4 @@ export * from './Register/Register';
 export * from './Account/Account';
 export * from './Admin/Admin';
 export * from './DeviceDetails/DeviceDetails';
+export * from './Footer/Footer';
