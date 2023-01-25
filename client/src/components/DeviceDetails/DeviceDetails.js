@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 
 import {accountActions, deviceActions} from "../../redux/slices";
-import css from './DeviceDetails.module.css';
 import {DeviceSlider} from "../DeviceSlider/DeviceSlider";
+import css from './DeviceDetails.module.css';
 
 
 const DeviceDetails = () => {
@@ -18,12 +18,13 @@ const DeviceDetails = () => {
 
     useEffect(() => {
         dispatch(deviceActions.getById({id}))
+
         dispatch(accountActions.getByAccess())
     }, [])
 
     return (
         <div className={css.container}>
-            <div>
+            <div className={css.image}>
                 <DeviceSlider images={images}/>
                 {/*{images && images.map((image, index) => (*/}
                 {/*    <img className={css.image} key={index} src={`${baseURL}/${image}`} alt={image[index]}/>*/}

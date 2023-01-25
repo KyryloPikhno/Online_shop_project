@@ -12,7 +12,7 @@ const DeviceSlider = ({images}) => {
             <Swiper loop={true} spaceBetween={10} navigation={true} modules={[Navigation, Thumbs]} grabCursor={true}
                     className={css.slider}>
                 {images && images.map((image, index) => (
-                    <SwiperSlide key={index}>
+                    <SwiperSlide   className={css.swiper} key={index}>
                         <img src={`${baseURL}/${image}`} alt={`slide_${index}`}/>
                     </SwiperSlide>
                 ))}
