@@ -35,13 +35,13 @@ const Header = () => {
                                     <NavLink to={'/admin'}>Admin</NavLink>
                                     <NavLink to={'/account'}>Account</NavLink>
                                     <NavLink to={'/order'}>Order</NavLink>
-                                    <button onClick={() => logoutAll(account._id)}>Logout</button>
+                                    <button  onClick={() => logoutAll(account._id)}>Logout</button>
                                 </div>
                                 :
                                 <div className={css.nav}>
                                     <NavLink to={'/account'}>Account</NavLink>
                                     <NavLink to={'/order'}>Order</NavLink>
-                                    <button onClick={() => logoutAll(account._id)}>Logout</button>
+                                    <button  onClick={() => logoutAll(account._id)}>Logout</button>
                                 </div>
                         }
                     </div>

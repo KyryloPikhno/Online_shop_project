@@ -1,9 +1,9 @@
-.container{
-display: flex;
+.container {
+    display: flex;
     flex-direction: column;
     gap: 30px;
+    align-items: center
 }
-
 
 .block{
     height: 450px;
@@ -12,22 +12,26 @@ display: flex;
 }
 
 .img{
-    width: 20vw;
+    /*width: 20vw;*/
+    min-width: 250px;
+    max-width: 320px;
 }
 
 .devices{
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
-    align-items: center;
-    width: 100%;
+    gap: 20px;
+    justify-content: space-between;
+    min-width: 800px;
+    max-width: 1000px;
 }
 
 .box{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 47vw;
+    min-width: 600px;
+    max-width: 700px;
     height: 300px;
 }
 

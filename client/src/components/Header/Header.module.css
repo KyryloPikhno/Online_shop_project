@@ -7,7 +7,6 @@
 }
 
 .header a h1{
-    margin-left: 12px;
     color: var(--light-alt);
 }
 
@@ -23,7 +22,6 @@
 
 .header div{
     height: 100%;
-    width: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,7 +41,19 @@
     cursor: pointer;
 }
 
+.button button:last-child{
+    width: 115px;
+    color: var(--light);
+    box-shadow: .8px .4px 1.8px black;
+    border: none;
+    background: var(--light-alt);
+    height: 25px;
+    border-radius:4px ;
+    cursor: pointer;
+}
+
 .nav{
     display: flex;
     gap: 8px;
 }
+

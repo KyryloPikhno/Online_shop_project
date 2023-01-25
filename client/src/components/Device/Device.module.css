@@ -6,10 +6,11 @@
     gap: 4px;
     width: 220px;
     height: 360px;
-    box-shadow: 1px 2px 15px;
+    box-shadow: .5px .4px 3.8px black;
     border-radius: 8px;
     font-size: 13px;
     padding: 5px;
+    margin-bottom: 20px;
 }
 
 
@@ -39,10 +40,10 @@
 .button button{
     width: 100px;
     background: var(--light);
-
     border: none;
     background: var(--light-alt);
     height: 20px;
     border-radius:4px ;
     cursor: pointer;
+    color: var(--light);
 }

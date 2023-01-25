@@ -10,7 +10,7 @@
 }
 
 .form input{
-    border: 1px solid black;
+    border: 1px solid var(--light-alt);
     border-radius: 8px;
     width: 400px;
     height: 30px;
@@ -20,8 +20,10 @@
 .form button{
     border-radius: 8px;
     width: 150px;
-    border: 1px solid black;
+    border: none;
     height: 30px;
+    color: var(--light);
+    background: var(--light-alt);
 }
 
 ::placeholder{
