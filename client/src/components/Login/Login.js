@@ -1,5 +1,6 @@
-import {useForm} from "react-hook-form";
 import {useNavigate, useSearchParams} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useForm} from "react-hook-form";
 
 import {authService} from "../../services";
 import css from './Login.module.css';
@@ -11,6 +12,8 @@ const Login = () => {
     const navigate = useNavigate()
 
     const [query] = useSearchParams()
+
+    const dispatch = useDispatch();
 
     let submit = async (user) => {
         try {

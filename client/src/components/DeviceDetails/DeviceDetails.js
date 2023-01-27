@@ -5,6 +5,9 @@ import {useEffect} from "react";
 import {accountActions, deviceActions} from "../../redux/slices";
 import {DeviceSlider} from "../DeviceSlider/DeviceSlider";
 import css from './DeviceDetails.module.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 
 
 const DeviceDetails = () => {
@@ -24,11 +27,8 @@ const DeviceDetails = () => {
 
     return (
         <div className={css.container}>
-            <div className={css.image}>
+            <div className={css.slider}>
                 <DeviceSlider images={images}/>
-                {/*{images && images.map((image, index) => (*/}
-                {/*    <img className={css.image} key={index} src={`${baseURL}/${image}`} alt={image[index]}/>*/}
-                {/*))}*/}
             </div>
             <div className={css.box}>
                 {name && <h2>{name}</h2>}

@@ -4,8 +4,8 @@ import {accountService} from "../../services";
 
 
 const initialState = {
-    login: false,
     account: {},
+    login: false,
     loading: false,
     error: null,
 };

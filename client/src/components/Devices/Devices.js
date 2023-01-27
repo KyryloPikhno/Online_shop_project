@@ -1,10 +1,14 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
+import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 
 import {accountActions, deviceActions} from "../../redux/slices";
 import {Device} from "../Device/Device";
 import img from '../../img/ios16-iphone13-pro-connect-airpods-max.png'
 import css from './Devices.module.css';
+import {green} from "@mui/material/colors";
 
 
 const Devices = () => {
@@ -46,14 +50,17 @@ const Devices = () => {
                             the destination
                         </div>
                         <div className={css.info}>
-                            <div>
+                            <div className={css.infoBox}>
+                                <PriceCheckIcon sx={{ color: green[400] }}/>
                                 best price
                             </div>
-                            <div>
-                                fast delivery
-                            </div>
-                            <div>
+                            <div className={css.infoBox}>
+                                <WorkspacePremiumIcon sx={{ color: green[400] }}/>
                                 free guarantee
+                            </div>
+                            <div className={css.infoBox}>
+                                <DeliveryDiningIcon sx={{ color: green[400] }}/>
+                                fast delivery
                             </div>
                         </div>
                     </div>

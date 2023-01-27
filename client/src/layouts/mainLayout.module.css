@@ -3,6 +3,7 @@
     --secondary: #8A4EFC;
     --light: #EEE;
     --light-alt: rgba(14,150,19,0.62);
+    --green:rgba(55,240,19,1.62);
     --dark: #131A26;
     --dark-alt: black;
 }
@@ -28,5 +29,5 @@ html body{
 }
 
 .block{
-    width: 70vw;
+    width: 85vw;
 }

@@ -1,7 +1,8 @@
-import {NavLink, useNavigate} from "react-router-dom";
-
 import {useDispatch, useSelector} from "react-redux";
-import {accountActions} from "../../redux/slices";
+import {NavLink, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
+
+import {accountActions, categoryActions} from "../../redux/slices";
 import {authService} from "../../services";
 import css from './Header.module.css'
 
@@ -11,48 +12,62 @@ const Header = () => {
 
     const {account, login} = useSelector(state => state.accountReducer);
 
+    const {categories} = useSelector(state => state.categoryReducer);
+
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        dispatch(categoryActions.getAll())
+    }, [])
+
     const logoutAll = (_id) => {
-        dispatch(accountActions.logoutAll({_id}))
+        dispatch(accountActions.logoutAll({_id}));
 
-        authService.deleteTokens()
+        authService.deleteTokens();
 
-        navigate('/login')
+        navigate('/login');
     };
 
     return (
         <div className={css.header}>
-
-
-            <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
-            {
-                login ?
-                    <div className={css.button}>
-                        {
-                            (account.isAdmin) ?
-                                <div className={css.nav}>
-                                    <NavLink to={'/admin'}>Admin</NavLink>
-                                    <NavLink to={'/account'}>Account</NavLink>
-                                    <NavLink to={'/order'}>Order</NavLink>
-                                    <button  onClick={() => logoutAll(account._id)}>Logout</button>
-                                </div>
-                                :
-                                <div className={css.nav}>
-                                    <NavLink to={'/account'}>Account</NavLink>
-                                    <NavLink to={'/order'}>Order</NavLink>
-                                    <button  onClick={() => logoutAll(account._id)}>Logout</button>
-                                </div>
-                        }
-                    </div>
-                    :
-                    <div className={css.button}>
-                        <NavLink to={'/login'}>Login</NavLink>
-                        <NavLink to={'/register'}>Register</NavLink>
-                    </div>
-            }
+            <div className={css.wrap}>
+                <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
+                {
+                    login ?
+                        <div className={css.button}>
+                            {
+                                (login && account.isAdmin) ?
+                                    <div className={css.nav}>
+                                        <NavLink to={'/admin'}>Admin</NavLink>
+                                        <NavLink to={'/account'}>Account</NavLink>
+                                        <NavLink to={'/order'}>Order</NavLink>
+                                        <button onClick={() => logoutAll(account._id)}>Logout</button>
+                                    </div>
+                                    :
+                                    <div className={css.nav}>
+                                        <NavLink to={'/account'}>Account</NavLink>
+                                        <NavLink to={'/order'}>Order</NavLink>
+                                        <button onClick={() => logoutAll(account._id)}>Logout</button>
+                                    </div>
+                            }
+                        </div>
+                        :
+                        <div className={css.button}>
+                            <NavLink to={'/login'}>Login</NavLink>
+                            <NavLink to={'/register'}>Register</NavLink>
+                        </div>
+                }
+            </div>
+            <div className={css.category}>
+                {
+                    categories && categories.map(category => (<button key={category._id}>
+                        {category.name}
+                    </button>))
+                }
+            </div>
         </div>
     );
+
 };
 
 export {Header};

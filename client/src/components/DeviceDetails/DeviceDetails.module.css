@@ -12,8 +12,10 @@
     background: var(--light-alt);
 }
 
-.image{
+.slider{
     width: 650px;
+    background: orange;
+    margin: 20px;
 }
 
 .price{

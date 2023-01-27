@@ -12,7 +12,6 @@
 }
 
 .img{
-    /*width: 20vw;*/
     min-width: 250px;
     max-width: 320px;
 }
@@ -35,6 +34,13 @@
     height: 300px;
 }
 
+.infoBox{
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
 .box h1{
     margin-top: 100px;
     display: flex;
@@ -55,5 +61,5 @@
 }
 
 .info div{
-    width: 120px;
+    width: 145px;
 }

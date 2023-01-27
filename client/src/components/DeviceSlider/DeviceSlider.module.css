@@ -1,8 +1,29 @@
-.slider {
-
-}
-
-.swiper{
-    padding-top:70% ;
+.swiperSlide {
+    border: 1px solid black;
+    padding-top: 100%;
     overflow: hidden;
+    position: relative;
 }
+
+.swiperSlide img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+[class='swiper-button-prev']::after{
+    color: var(--light-alt);
+}
+
+[class='swiper-button-next']::after{
+    color: var(--light-alt);
+}
+
+
+
+/* [class='swiper-slide-active']{*/
+/*    background: #D81E5B;*/
+/*    border: 1px solid black;*/
+/*}*/
+

@@ -1,30 +1,53 @@
 import {Swiper,SwiperSlide} from 'swiper/react'
-import {Navigation, Thumbs} from "swiper";
 
 import {baseURL} from "../../configs";
 import css from './DeviceSlider.module.css';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import {useState} from "react";
+import { Navigation, Thumbs} from 'swiper'
+
 
 
 const DeviceSlider = ({images}) => {
 
+    const [activeThumb, setActiveThumb] = useState(null);
+
+
     return (
         <>
-            <Swiper loop={true} spaceBetween={10} navigation={true} modules={[Navigation, Thumbs]} grabCursor={true}
-                    className={css.slider}>
-                {images && images.map((image, index) => (
-                    <SwiperSlide   className={css.swiper} key={index}>
-                        <img src={`${baseURL}/${image}`} alt={`slide_${index}`}/>
-                    </SwiperSlide>
-                ))}
+            <Swiper
+                navigation={true}
+                modules={[Navigation, Thumbs]}
+                grabCursor={true}
+                thumbs={{swiper: activeThumb}}
+            >
+                {
+                    images && images.map((image, index) => (
+                        <SwiperSlide className={css.swiperSlide} key={index}>
+                            <img src={`${baseURL}/${image}`} alt={`slide_${index}`}/>
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
-            <Swiper loop={true} spaceBetween={10} slidesPerView={2} modules={[Navigation, Thumbs]} grabCursor={true}
-                    className={css.slider}>
-                {images && images.map((image, index) => (
-                    <SwiperSlide key={index}>
-                        <img src={`${baseURL}/${image}`} alt={`slide_${index}`}/>
-                    </SwiperSlide>
-                ))}
+            <Swiper
+                // loop={true}
+                spaceBetween={10}
+                slidesPerView={3}
+                modules={[Navigation, Thumbs]}
+                onSwiper={setActiveThumb}
+            >
+                {
+                    images && images.map((image, index) => (
+                        <SwiperSlide className={css.swiperSlide} key={index}>
+                            <div className={css.swiperSlideThumb}>
+                                <img src={`${baseURL}/${image}`} alt={`slide_${index}`}/>
+                            </div>
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
+
         </>
     );
 };
