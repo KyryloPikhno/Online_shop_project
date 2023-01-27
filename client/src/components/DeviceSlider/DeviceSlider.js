@@ -37,6 +37,7 @@ const DeviceSlider = ({images}) => {
                 modules={[Navigation, Thumbs]}
                 onSwiper={setActiveThumb}
             >
+
                 {
                     images && images.map((image, index) => (
                         <SwiperSlide className={css.swiperSlide} key={index}>
