@@ -1,17 +1,15 @@
 const fs = require("fs");
 
+const {deviceRepository} = require("../repository");
 const {deviceService} = require("../services");
-const {Device} = require("../models");
 
 
 module.exports = {
     getAll: async (req, res, next) => {
-        let {category, limit, page} = req.query
-
         try {
-            const devices = await Device.find({});
+            const devices = await deviceRepository.find(req.query);
 
-            res.status(200).json({page, limit, devices});
+            res.status(200).json(devices);
         } catch (e) {
             next(e);
         }
