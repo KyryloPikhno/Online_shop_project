@@ -3,12 +3,12 @@ import {useEffect} from "react";
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
+import {green} from "@mui/material/colors";
 
 import {accountActions, deviceActions} from "../../redux/slices";
 import {Device} from "../Device/Device";
 import img from '../../img/ios16-iphone13-pro-connect-airpods-max.png'
 import css from './Devices.module.css';
-import {green} from "@mui/material/colors";
 
 
 const Devices = () => {
@@ -25,7 +25,7 @@ const Devices = () => {
     };
 
     useEffect(() => {
-        dispatch(deviceActions.getAll())
+        dispatch(deviceActions.getAll({}))
     }, [])
 
     useEffect(() => {
@@ -70,7 +70,7 @@ const Devices = () => {
                 </div>
             </div>
             <div className={css.devices}>
-                {devices && devices.map(device => <Device key={device._id} device={device} deleter={deleter}/>)}
+                {devices.devices && devices.devices.map(device => <Device key={device._id} device={device} deleter={deleter}/>)}
             </div>
         </div>
     );

@@ -11,9 +11,9 @@ const initialState = {
 
 const getAll = createAsyncThunk(
     'deviceSlice/getAll',
-    async (_, {rejectWithValue}) => {
+    async ({limit, page, name, price_lte, category, price_gte, color, brand}, {rejectWithValue}) => {
         try {
-            const {data} = await deviceService.getAll()
+            const {data} = await deviceService.getAll(limit, page, name, price_lte, category, price_gte, color, brand)
             return data
         } catch (e) {
             return rejectWithValue(e.response.data)

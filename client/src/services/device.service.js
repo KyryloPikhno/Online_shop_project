@@ -3,7 +3,11 @@ import {urls} from "../configs";
 
 
 const deviceService = {
-    getAll: () => axiosService.get(urls.devices),
+    getAll: (limit = 10, page = 1, name, price_lte, category, price_gte, color, brand) => axiosService.get(urls.devices, {
+        params: {
+            limit, page, name, price_lte, category, price_gte, color, brand
+        }
+    }),
     getById: (id) => axiosService.get(`${urls.devices}/${id}`),
     create: (device) => axiosService.post(urls.devices, device),
     delete: (id) => axiosService.delete(`${urls.devices}/${id}`),

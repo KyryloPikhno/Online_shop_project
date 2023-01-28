@@ -31,13 +31,22 @@ const Header = () => {
     return (
         <div className={css.header}>
             <div className={css.wrap}>
+                <div className={css.logoAndForm}>
                 <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
+                {
+                    login &&
+                    <form>
+                        <input type="text"/>
+                    </form>
+                }
+                </div>
                 {
                     login ?
                         <div className={css.button}>
                             {
                                 (login && account.isAdmin) ?
                                     <div className={css.nav}>
+
                                         <NavLink to={'/admin'}>Admin</NavLink>
                                         <NavLink to={'/account'}>Account</NavLink>
                                         <NavLink to={'/order'}>Order</NavLink>
