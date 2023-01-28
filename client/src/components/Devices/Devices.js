@@ -9,6 +9,7 @@ import {accountActions, deviceActions} from "../../redux/slices";
 import {Device} from "../Device/Device";
 import img from '../../img/ios16-iphone13-pro-connect-airpods-max.png'
 import css from './Devices.module.css';
+import {PaginationDevice} from "../PaginationDevice/PaginationDevice";
 
 
 const Devices = () => {
@@ -72,6 +73,7 @@ const Devices = () => {
             <div className={css.devices}>
                 {devices.devices && devices.devices.map(device => <Device key={device._id} device={device} deleter={deleter}/>)}
             </div>
+            <PaginationDevice/>
         </div>
     );
 };
