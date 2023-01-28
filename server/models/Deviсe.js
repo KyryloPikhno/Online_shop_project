@@ -8,6 +8,8 @@ const deviceSchema = new Schema({
     category: {type: ObjectId, required: true, ref: "Category"},
     brand: {type: String, default: ''},
     description: {type: String, default: ''},
+    countInStock: {type: Number, required: true, min: 0, max: 100},
+    rating: {type: Number, default: 0},
     images: [{type: String}],
 }, {
     timestamps: true

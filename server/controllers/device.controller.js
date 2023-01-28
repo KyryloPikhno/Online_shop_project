@@ -5,8 +5,14 @@ const {deviceService} = require("../services");
 
 module.exports = {
     getAll: async (req, res, next) => {
+        let filter = {};
+
+        if (req.query.categories) {
+            filter = {category: req.query.categories.split(',')}
+        }
+
         try {
-            const devices = await deviceService.findByParams({});
+            const devices = await deviceService.findByParams(filter);
 
             res.status(200).json(devices);
         } catch (e) {
@@ -16,7 +22,7 @@ module.exports = {
 
     getById: async (req, res, next) => {
         try {
-            const device = await deviceService.findOneByParams({_id:req.params.deviceId});
+            const device = await deviceService.findOneByParams({_id: req.params.deviceId});
 
             res.status(200).json(device);
         } catch (e) {
@@ -82,9 +88,9 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-             const device = await deviceService.findOneByParams({_id: req.params.deviceId})
+            const device = await deviceService.findOneByParams({_id: req.params.deviceId})
 
-             if (device && device.images.length !== 0) {
+            if (device && device.images.length !== 0) {
                 device.images.map((file) => {
                     fs.unlinkSync(`./uploads/${file}`);
                 });
