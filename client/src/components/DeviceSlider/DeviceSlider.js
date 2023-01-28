@@ -1,18 +1,15 @@
 import {Swiper,SwiperSlide} from 'swiper/react'
+import { Navigation, Thumbs} from 'swiper'
+import {useState} from "react";
+import 'swiper/css/effect-fade';
+import 'swiper/css';
 
 import {baseURL} from "../../configs";
 import css from './DeviceSlider.module.css';
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import {useState} from "react";
-import { Navigation, Thumbs} from 'swiper'
-
 
 
 const DeviceSlider = ({images}) => {
-
     const [activeThumb, setActiveThumb] = useState();
-
 
     return (
         <>
@@ -40,9 +37,7 @@ const DeviceSlider = ({images}) => {
                 {
                     images && images.map((image, index) => (
                         <SwiperSlide className={css.swiperSlideMini} key={index}>
-                            {/*<div className={css.swiperSlideThumb}>*/}
-                                <img src={`${baseURL}/${image}`} alt={`slide_${index}`}/>
-                            {/*</div>*/}
+                            <img src={`${baseURL}/${image}`} alt={`slide_${index}`}/>
                         </SwiperSlide>
                     ))
                 }
