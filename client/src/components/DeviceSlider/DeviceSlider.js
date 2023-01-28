@@ -11,7 +11,7 @@ import { Navigation, Thumbs} from 'swiper'
 
 const DeviceSlider = ({images}) => {
 
-    const [activeThumb, setActiveThumb] = useState(null);
+    const [activeThumb, setActiveThumb] = useState();
 
 
     return (
@@ -31,7 +31,6 @@ const DeviceSlider = ({images}) => {
                 }
             </Swiper>
             <Swiper
-                // loop={true}
                 spaceBetween={10}
                 slidesPerView={3}
                 modules={[Navigation, Thumbs]}
@@ -40,10 +39,10 @@ const DeviceSlider = ({images}) => {
 
                 {
                     images && images.map((image, index) => (
-                        <SwiperSlide className={css.swiperSlide} key={index}>
-                            <div className={css.swiperSlideThumb}>
+                        <SwiperSlide className={css.swiperSlideMini} key={index}>
+                            {/*<div className={css.swiperSlideThumb}>*/}
                                 <img src={`${baseURL}/${image}`} alt={`slide_${index}`}/>
-                            </div>
+                            {/*</div>*/}
                         </SwiperSlide>
                     ))
                 }

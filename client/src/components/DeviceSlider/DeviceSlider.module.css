@@ -1,8 +1,21 @@
 .swiperSlide {
-    border: 1px solid black;
     padding-top: 100%;
     overflow: hidden;
     position: relative;
+}
+
+.swiperSlideMini{
+    padding-top: 40%;
+    position: relative;
+}
+
+
+.swiperSlideMini img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    cursor: pointer;
 }
 
 .swiperSlide img {
@@ -20,10 +33,37 @@
     color: var(--light-alt);
 }
 
+div.swiper-slide {
+    background: #131A26;
+    padding: 12%
+}
 
+[class='swiper-slide DeviceSlider_swiperSlideMini__KOEfR swiper-slide-visible swiper-slide-next swiper-slide-thumb-active'] img{
+    border: 2px solid var(--light-alt);
+    border-radius: 8px;
+}
 
-/* [class='swiper-slide-active']{*/
-/*    background: #D81E5B;*/
-/*    border: 1px solid black;*/
+[class='swiper-slide DeviceSlider_swiperSlideMini__KOEfR swiper-slide-visible swiper-slide-thumb-active'] img{
+    border: 2px solid var(--light-alt);
+    border-radius: 8px;
+}
+
+[class='swiper-slide DeviceSlider_swiperSlideMini__KOEfR swiper-slide-visible swiper-slide-active swiper-slide-thumb-active'] img{
+    border: 2px solid var(--light-alt);
+    border-radius: 8px;
+}
+
+[class='swiper-slide DeviceSlider_swiperSlideMini__KOEfR swiper-slide-thumb-active swiper-slide-visible swiper-slide-active'] img{
+    border: 2px solid var(--light-alt);
+    border-radius: 8px;
+}
+
+/*[class='swiper-slide swiper-slide-thumb-active swiper-slide-visible swiper-slide-active DeviceSlider_swiperSlideMini__KOEfR'] img{*/
+/*    border: 2px solid var(--light-alt);*/
+/*    border-radius: 8px;*/
 /*}*/
 
+/*[class='swiper-slide DeviceSlider_swiperSlideMini__KOEfR swiper-slide-visible swiper-slide-active'] img{*/
+/*    border: 2px solid var(--light-alt);*/
+/*    border-radius: 8px;*/
+/*}*/
