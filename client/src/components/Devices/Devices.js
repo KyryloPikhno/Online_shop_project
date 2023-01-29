@@ -13,7 +13,7 @@ import {PaginationDevice} from "../PaginationDevice/PaginationDevice";
 
 
 const Devices = () => {
-    const {devices} = useSelector(state => state.deviceReducer);
+    const {devicesResponse} = useSelector(state => state.deviceReducer);
 
     const dispatch = useDispatch()
 
@@ -33,7 +33,6 @@ const Devices = () => {
         dispatch(accountActions.getByAccess())
     }, []);
 
-
     return (
         <div className={css.container}>
             <div className={css.block}>
@@ -52,15 +51,15 @@ const Devices = () => {
                         </div>
                         <div className={css.info}>
                             <div className={css.infoBox}>
-                                <PriceCheckIcon sx={{ color: green[400] }}/>
+                                <PriceCheckIcon sx={{color: green[400]}}/>
                                 best price
                             </div>
                             <div className={css.infoBox}>
-                                <WorkspacePremiumIcon sx={{ color: green[400] }}/>
+                                <WorkspacePremiumIcon sx={{color: green[400]}}/>
                                 free guarantee
                             </div>
                             <div className={css.infoBox}>
-                                <DeliveryDiningIcon sx={{ color: green[400] }}/>
+                                <DeliveryDiningIcon sx={{color: green[400]}}/>
                                 fast delivery
                             </div>
                         </div>
@@ -71,12 +70,16 @@ const Devices = () => {
                 </div>
             </div>
             <div className={css.devices}>
-                {devices.devices && devices.devices.map(device => <Device key={device._id} device={device} deleter={deleter}/>)}
+                {devicesResponse.devices && devicesResponse.devices.map(device => <Device key={device._id}
+                                                                                          device={device}
+                                                                                          deleter={deleter}/>)}
             </div>
-            <PaginationDevice/>
+            {
+                (devicesResponse.total_pages && devicesResponse.page) &&
+                <PaginationDevice total_pages={devicesResponse.total_pages} page={devicesResponse.page}/>
+            }
         </div>
     );
 };
-
 
 export {Devices};

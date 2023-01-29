@@ -3,7 +3,7 @@ import {deviceService} from "../../services";
 
 
 const initialState = {
-    devices: [],
+    devicesResponse: [],
     device:{},
     loading: false,
     error: null,
@@ -75,7 +75,7 @@ const deviceSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.devices = action.payload
+                state.devicesResponse = action.payload
                 state.error = null
                 state.loading = false
             })

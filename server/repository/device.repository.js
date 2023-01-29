@@ -58,7 +58,7 @@ module.exports = {
             page: +page,
             limit,
             count,
-            total_page: Math.ceil(count / limit),
+            total_pages: Math.ceil(count / limit),
             devices,
         };
     }
