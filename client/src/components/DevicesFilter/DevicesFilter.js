@@ -4,15 +4,22 @@ import css from './DevicesFilter.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {categoryActions} from "../../redux/slices";
+import {useSearchParams} from "react-router-dom";
 
 const DevicesFilter = () => {
     const {register, handleSubmit} = useForm({
         defaultValues: {
             "price_gte": null,
             "price_lte": null,
-            // "category[63d037608494ac712f992bbe]": true
+            "category[value]": "category[value]"
         }
     })
+
+    const [query,setQuery] = useSearchParams({});
+
+    console.log(query.get('category'));
+
+    const [value,setValue] = useState()
 
     const dispatch = useDispatch()
 
@@ -48,6 +55,8 @@ const DevicesFilter = () => {
                 category
             }
         }
+
+        setQuery(findObj)
         console.log(findObj);
     }
 

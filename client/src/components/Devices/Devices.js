@@ -26,7 +26,7 @@ const Devices = () => {
     };
 
     useEffect(() => {
-        dispatch(deviceActions.getAll({}))
+        dispatch(deviceActions.getAll({limit:6}))
     }, [])
 
     useEffect(() => {
