@@ -1,5 +1,5 @@
 import {CategoryForm} from "../CategoryForm/CategoryForm";
-import {DeviceForm} from "../DeviceForm/DeviceForm";
+import {CreateDeviceForm} from "../CreateDeviceForm/CreateDeviceForm";
 import css from './Admin.module.css';
 
 
@@ -8,7 +8,7 @@ const Admin = () => {
     return (
         <div className={css.container}>
             <CategoryForm/>
-            <DeviceForm/>
+            <CreateDeviceForm/>
         </div>
     );
 };

@@ -69,30 +69,4 @@
     gap: 20px;
 }
 
-.logoAndForm input{
-    height: 25px;
-    width: 250px;
-    border-radius: 8px;
-    border: 2px solid var(--light-alt);
-}
-
-/*.category{*/
-/*    display: flex;*/
-/*    justify-content: space-around;*/
-/*}*/
-
-/*.category button{*/
-/*    width: 115px;*/
-/*    color: var(--light);*/
-/*    !*box-shadow: .8px .4px 1.8px black;*!*/
-/*    border: none;*/
-/*    background: var(--light-alt);*/
-/*    height: 25px;*/
-/*    border-radius: 4px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.category button:hover{*/
-/*    background: var(--dark);*/
-/*}*/
 

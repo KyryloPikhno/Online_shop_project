@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {categoryActions, deviceActions} from "../../redux/slices";
-import css from './DeviceForm.module.css'
+import css from './CreateDeviceForm.module.css'
 
 
 const style = {
@@ -21,7 +21,7 @@ const style = {
     borderRadius:5
 };
 
-const DeviceForm = () => {
+const CreateDeviceForm = () => {
     const navigate = useNavigate();
 
     const {register, handleSubmit} = useForm()
@@ -86,7 +86,6 @@ const DeviceForm = () => {
                     <option value="pink">pink</option>
                     <option value="pink">gold</option>
                 </select>
-                {/*<input type='text' placeholder={'color'} {...register('color')}/>*/}
                 <input type='text' placeholder={'description'} {...register('description')}/>
                 <button onClick={handleOpen}>Save and next</button>
             </form>
@@ -114,4 +113,4 @@ const DeviceForm = () => {
     );
 };
 
-export {DeviceForm};
+export {CreateDeviceForm};

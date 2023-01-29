@@ -23,10 +23,10 @@ const Header = () => {
     }, [])
 
     const logoutAll = (_id) => {
+        dispatch(accountActions.logoutAll({_id}));
 
         authService.deleteTokens();
 
-        dispatch(accountActions.logoutAll({_id}));
         navigate('/login');
     };
 
@@ -43,7 +43,6 @@ const Header = () => {
                             {
                                 (login && account.isAdmin) ?
                                     <div className={css.nav}>
-
                                         <NavLink to={'/admin'}>Admin</NavLink>
                                         <NavLink to={'/account'}>Account</NavLink>
                                         <NavLink to={'/order'}>Order</NavLink>
