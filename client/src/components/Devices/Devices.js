@@ -10,10 +10,16 @@ import {PaginationDevice} from "../PaginationDevice/PaginationDevice";
 import {Device} from "../Device/Device";
 import img from '../../img/ios16-iphone13-pro-connect-airpods-max.png'
 import css from './Devices.module.css';
+import {useSearchParams} from "react-router-dom";
 
 
 const Devices = () => {
     const {devicesResponse} = useSelector(state => state.deviceReducer);
+
+    let [query] = useSearchParams({});
+
+    let res = query.getAll('category').toString()
+    console.log(res);
 
     const dispatch = useDispatch()
 
@@ -26,8 +32,17 @@ const Devices = () => {
     };
 
     useEffect(() => {
-        dispatch(deviceActions.getAll({limit:6}))
-    }, [])
+        dispatch(deviceActions.getAll({
+            page: query.get('page') || 1,
+            limit: 30,
+            name: query.get('name'),
+            category: query.getAll('category').toString(),
+            price_gte: query.get('price_gte'),
+            price_lte: query.get('price_lte'),
+            color: query.get('color'),
+            brand: query.get('brand')
+        }))
+    }, [query]);
 
     useEffect(() => {
         dispatch(accountActions.getByAccess())

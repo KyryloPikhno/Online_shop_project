@@ -1,25 +1,21 @@
 import {useForm} from "react-hook-form";
-
-import css from './DevicesFilter.module.css'
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {categoryActions} from "../../redux/slices";
 import {useSearchParams} from "react-router-dom";
 
+import css from './DevicesFilter.module.css'
+
+
 const DevicesFilter = () => {
+    const [query,setQuery] = useSearchParams({});
+
     const {register, handleSubmit} = useForm({
         defaultValues: {
             "price_gte": null,
             "price_lte": null,
-            "category[value]": "category[value]"
         }
     })
-
-    const [query,setQuery] = useSearchParams({});
-
-    console.log(query.get('category'));
-
-    const [value,setValue] = useState()
 
     const dispatch = useDispatch()
 
@@ -30,8 +26,7 @@ const DevicesFilter = () => {
     }, [])
 
     const submit = (obj) => {
-
-        const {category,price_gte,price_lte} = obj
+        const {category, price_gte, price_lte} = obj;
 
         let findObj = {};
 
@@ -52,7 +47,7 @@ const DevicesFilter = () => {
         if (category) {
             findObj = {
                 ...findObj,
-                category
+                category:category.toString()
             }
         }
 

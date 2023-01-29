@@ -3,7 +3,7 @@ const {Device} = require("../models");
 
 module.exports = {
     find: async (query) => {
-        const {limit = 12, page = 1, name, price_gte, price_lte, category, color, brand} = query;
+        const {limit = 12, page = 1, name, price_gte = 0, price_lte = 9999, category, color, brand} = query;
 
         let findObj = {};
 
@@ -14,24 +14,24 @@ module.exports = {
             }
         }
 
-        if (price_gte) {
+        if (price_gte || price_lte) {
             findObj = {
                 ...findObj,
-                price: {$gte: +price_gte},
+                price: {$gte: +price_gte, $lte: +price_lte},
             };
         }
 
-        if (price_lte) {
-            findObj = {
-                ...findObj,
-                price: {$lte: +price_lte},
-            }
-        }
+        // if (price_lte) {
+        //     findObj = {
+        //         ...findObj,
+        //         price: {$lte: +price_lte},
+        //     }
+        // }
 
         if (category) {
             findObj = {
                 ...findObj,
-                category: category.split(','),
+                category: category.split(',')
             }
         }
 

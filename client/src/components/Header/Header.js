@@ -2,10 +2,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
+import {DevicesFilter} from "../DevicesFilter/DevicesFilter";
+import {DevicesSearchForm} from "../DevicesSearchForm/DevicesSearchForm";
 import {accountActions, categoryActions} from "../../redux/slices";
 import {authService} from "../../services";
 import css from './Header.module.css'
-import {DevicesFilter} from "../DevicesFilter/DevicesFilter";
 
 
 const Header = () => {
@@ -22,10 +23,10 @@ const Header = () => {
     }, [])
 
     const logoutAll = (_id) => {
-        dispatch(accountActions.logoutAll({_id}));
 
         authService.deleteTokens();
 
+        dispatch(accountActions.logoutAll({_id}));
         navigate('/login');
     };
 
@@ -33,13 +34,8 @@ const Header = () => {
         <div className={css.header}>
             <div className={css.wrap}>
                 <div className={css.logoAndForm}>
-                <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
-                {/*{*/}
-                {/*    login &&*/}
-                {/*    <form>*/}
-                {/*        <input type="text"/>*/}
-                {/*    </form>*/}
-                {/*}*/}
+                    <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
+                    <DevicesSearchForm/>
                 </div>
                 {
                     login ?
@@ -69,7 +65,10 @@ const Header = () => {
                 }
             </div>
             <div>
-               <DevicesFilter/>
+                {
+                    (login && account.isAdmin) &&
+                    <DevicesFilter/>
+                }
             </div>
         </div>
     );
