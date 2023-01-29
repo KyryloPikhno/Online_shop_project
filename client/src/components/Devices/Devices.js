@@ -33,13 +33,13 @@ const Devices = () => {
             price_gte: query.get('price_gte'),
             price_lte: query.get('price_lte'),
             color: query.get('color'),
-            brand: query.get('brand')
+            brand: query.get('brand'),
         }))
     }, [query]);
 
     useEffect(() => {
         dispatch(accountActions.getByAccess())
-    }, []);
+    }, [query]);
 
     return (
         <div className={css.container}>

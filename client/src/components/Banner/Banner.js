@@ -4,8 +4,11 @@ import {green} from "@mui/material/colors";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import img from "../../img/ios16-iphone13-pro-connect-airpods-max.png";
+import {useSearchParams} from "react-router-dom";
 
 const Banner = () => {
+
+   const [query] = useSearchParams()
 
     return (
         <div className={css.block}>
@@ -39,7 +42,7 @@ const Banner = () => {
                 </div>
             </div>
             <div>
-                <img className={css.img} src={img} alt="banner"/>
+                <img src={img} alt="banner"/>
             </div>
         </div>
     );
