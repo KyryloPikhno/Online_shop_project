@@ -6,10 +6,10 @@ import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import {green} from "@mui/material/colors";
 
 import {accountActions, deviceActions} from "../../redux/slices";
+import {PaginationDevice} from "../PaginationDevice/PaginationDevice";
 import {Device} from "../Device/Device";
 import img from '../../img/ios16-iphone13-pro-connect-airpods-max.png'
 import css from './Devices.module.css';
-import {PaginationDevice} from "../PaginationDevice/PaginationDevice";
 
 
 const Devices = () => {
@@ -26,7 +26,7 @@ const Devices = () => {
     };
 
     useEffect(() => {
-        dispatch(deviceActions.getAll({}))
+        dispatch(deviceActions.getAll({page:3}))
     }, [])
 
     useEffect(() => {
@@ -81,5 +81,6 @@ const Devices = () => {
         </div>
     );
 };
+
 
 export {Devices};

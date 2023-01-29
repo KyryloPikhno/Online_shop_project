@@ -33,12 +33,12 @@ const Header = () => {
             <div className={css.wrap}>
                 <div className={css.logoAndForm}>
                 <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
-                {
-                    login &&
-                    <form>
-                        <input type="text"/>
-                    </form>
-                }
+                {/*{*/}
+                {/*    login &&*/}
+                {/*    <form>*/}
+                {/*        <input type="text"/>*/}
+                {/*    </form>*/}
+                {/*}*/}
                 </div>
                 {
                     login ?
@@ -68,11 +68,16 @@ const Header = () => {
                 }
             </div>
             <div className={css.category}>
-                {
-                    categories && categories.map(category => (<button key={category._id}>
-                        {category.name}
-                    </button>))
-                }
+                <form>
+
+
+
+                </form>
+                {/*{*/}
+                {/*    categories && categories.map(category => (<button key={category._id}>*/}
+                {/*        {category.name}*/}
+                {/*    </button>))*/}
+                {/*}*/}
             </div>
         </div>
     );

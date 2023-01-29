@@ -1,10 +1,11 @@
 import {Box, Modal} from "@mui/material";
+import {useForm} from "react-hook-form";
 import Dropzone from "react-dropzone";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {categoryActions, deviceActions} from "../../redux/slices";
 import {useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form";
+
+import {categoryActions, deviceActions} from "../../redux/slices";
 import css from './DeviceForm.module.css'
 
 
@@ -17,6 +18,7 @@ const style = {
     bgcolor: 'background.paper',
     boxShadow: 34,
     p: 4,
+    borderRadius:5
 };
 
 const DeviceForm = () => {
@@ -42,6 +44,7 @@ const DeviceForm = () => {
 
     const submit = async (device) => {
         try {
+            console.log(device);
             await dispatch(deviceActions.create({device}))
 
         } catch (e) {
@@ -65,22 +68,28 @@ const DeviceForm = () => {
         }
     };
 
-
     return (
         <div className={css.container}>
             <h1>Add new device to shop</h1>
             <form className={css.form} onSubmit={handleSubmit(submit)}>
                 <input type='text' placeholder={'name'} {...register('name')}/>
                 <input type='number' placeholder={'price'} {...register('price')}/>
-                <select {...register('category')}>
+                <select {...register('category', {required: true})}>
                     {categories.map(category => <option key={category._id}
                                                         value={category._id}>{category.name}</option>)}
                 </select>
                 <input type='text' placeholder={'brand'} {...register('brand')}/>
+                <input type='number' placeholder={'countInStock'} {...register('countInStock')}/>
+                <select value="black" {...register('color', {required: true})}>
+                    <option value="black">black</option>
+                    <option value="grey">grey</option>
+                    <option value="pink">pink</option>
+                    <option value="pink">gold</option>
+                </select>
+                {/*<input type='text' placeholder={'color'} {...register('color')}/>*/}
                 <input type='text' placeholder={'description'} {...register('description')}/>
                 <button onClick={handleOpen}>Save and next</button>
             </form>
-
             <Modal
                 keepMounted
                 open={open}
@@ -89,21 +98,10 @@ const DeviceForm = () => {
                 aria-describedby="keep-mounted-modal-description"
             >
                 <Box sx={style}>
-                    <div className={css.dropZone}>
+                    <div className={css.dropZoneContainer}>
                         <Dropzone onDrop={onDrop}>
                             {({getRootProps, getInputProps}) => (
-                                <div
-                                    className="m-1"
-                                    style={{
-                                        width: "460px",
-                                        height: "250px",
-                                        border: "1px solid lightgray",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
-                                    {...getRootProps()}
-                                >
+                                <div className={css.dropZone} {...getRootProps()}>
                                     <input {...getInputProps()} />
                                     <p>Drag and drop files here or click to upload</p>
                                 </div>
