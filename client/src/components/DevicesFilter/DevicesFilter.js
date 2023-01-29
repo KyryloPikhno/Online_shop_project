@@ -8,7 +8,7 @@ import css from './DevicesFilter.module.css'
 
 
 const DevicesFilter = () => {
-    const [query,setQuery] = useSearchParams({});
+    const [query, setQuery] = useSearchParams({});
 
     const {register, handleSubmit} = useForm({
         defaultValues: {
@@ -47,7 +47,7 @@ const DevicesFilter = () => {
         if (category) {
             findObj = {
                 ...findObj,
-                category:category.toString()
+                category: category.toString()
             }
         }
 
@@ -58,24 +58,24 @@ const DevicesFilter = () => {
     return (
         <form className={css.form} onSubmit={handleSubmit(submit)}>
             <div className={css.checkBox}>
-            {
-                categories &&
-                categories.map(category => (
-                    <label key={category._id}>
-                        <input
-                            {...register("category")}
-                            type="checkbox"
-                            value={category._id}
-                            id={category._id}
-                        />
-                        {category.name}
-                    </label>))
-            }
+                {
+                    categories &&
+                    categories.map(category => (
+                        <label key={category._id}>
+                            <input
+                                {...register("category")}
+                                type="checkbox"
+                                value={category._id}
+                                id={category._id}
+                            />
+                            {category.name}
+                        </label>))
+                }
             </div>
             <div className={css.price}>
                 <p>price</p>
                 <div>
-                    <input  type='number' placeholder={'price_gte'} {...register('price_gte')}/>
+                    <input type='number' placeholder={'price_gte'} {...register('price_gte')}/>
                     <input type='number' placeholder={'price_lte'} {...register('price_lte')}/>
                 </div>
             </div>

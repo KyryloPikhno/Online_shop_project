@@ -1,30 +1,58 @@
 import {Pagination} from "@mui/material";
+import {useSearchParams} from "react-router-dom";
 
 
-const PaginationDevice = ({total_pages,page}) => {
-    // const [query, setQuery] = useSearchParams({page: '1'});
+const PaginationDevice = ({total_pages, page}) => {
+    const [query, setQuery] = useSearchParams({page: '1'});
 
     const handleChange = (e, page) => {
         e.preventDefault();
 
-        //     if (query.get('query')) {
-        //         setQuery(() => ({query: query.get('query'), page}));
-        //     } else if (query.get('with_genres')) {
-        //         setQuery(() => ({
-        //             page,
-        //             with_genres: query.get('with_genres').toString(),
-        //         }));
-        //     } else if (query.get('sort_by')) {
-        //         setQuery(() => ({
-        //             page,
-        //             sort_by: query.get('sort_by')
-        //         }));
-        //     } else {
-        //         setQuery(() => ({
-        //             page,
-        //         }));
-        //     }
-        //     window.scrollTo(0, 0);
+        let obj = {};
+
+        if (query.get('name')) {
+            obj = {
+                ...obj,
+                name: query.get('name')
+            }
+        }
+
+        if (query.get('price_gte')) {
+            obj = {
+                ...obj,
+                price_gte: query.get('price_gte')
+            }
+        }
+
+        if (query.get('price_lte')) {
+            obj = {
+                ...obj,
+                price_lte: query.get('price_lte')
+            }
+        }
+
+        if (query.get('category')) {
+            obj = {
+                ...obj,
+                category: query.get('category').toString()
+            }
+        }
+
+        if (query.get('limit')) {
+            obj = {
+                ...obj,
+                limit: query.get('limit')
+            }
+        }
+
+        if (page) {
+            obj = {
+                ...obj,
+                page
+            }
+        }
+        console.log(obj);
+        setQuery(obj)
     };
 
     return (

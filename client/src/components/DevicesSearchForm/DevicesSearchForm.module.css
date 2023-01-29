@@ -14,6 +14,13 @@
   border: none;
   height: 25px;
   border-radius: 7px;
+  text-align: center;
+}
+
+.form input:focus{
+  background: var(--light);
+  border: none;
+  outline: none;
 }
 
 .form select{
@@ -22,3 +29,11 @@
   width: 100px;
   border:none;
 }
+
+.form select:focus{
+  background: var(--light);
+  border: none;
+  outline: none;
+}
+
+

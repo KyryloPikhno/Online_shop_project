@@ -34,7 +34,7 @@ const Devices = () => {
     useEffect(() => {
         dispatch(deviceActions.getAll({
             page: query.get('page') || 1,
-            limit: 30,
+            limit: query.get('limit') || 6,
             name: query.get('name'),
             category: query.getAll('category').toString(),
             price_gte: query.get('price_gte'),
