@@ -3,7 +3,7 @@ import {urls} from "../configs";
 
 
 const deviceService = {
-    getAll: (limit = 10, page = 1, name, price_lte, category, price_gte, color, brand) => axiosService.get(urls.devices, {
+    getAll: (limit , page = 1, name, price_lte, category, price_gte, color, brand) => axiosService.get(urls.devices, {
         params: {
             limit, page, name, price_lte, category, price_gte, color, brand
         }

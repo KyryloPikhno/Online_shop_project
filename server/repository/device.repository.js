@@ -3,7 +3,7 @@ const {Device} = require("../models");
 
 module.exports = {
     find: async (query) => {
-        const {limit = 10, page = 1, name, price_gte, price_lte, category, color, brand} = query;
+        const {limit = 12, page = 1, name, price_gte, price_lte, category, color, brand} = query;
 
         let findObj = {};
 

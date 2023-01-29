@@ -26,7 +26,7 @@ const Devices = () => {
     };
 
     useEffect(() => {
-        dispatch(deviceActions.getAll({page:3}))
+        dispatch(deviceActions.getAll({}))
     }, [])
 
     useEffect(() => {

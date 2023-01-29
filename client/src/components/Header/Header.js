@@ -5,6 +5,7 @@ import {useEffect} from "react";
 import {accountActions, categoryActions} from "../../redux/slices";
 import {authService} from "../../services";
 import css from './Header.module.css'
+import {DevicesFilter} from "../DevicesFilter/DevicesFilter";
 
 
 const Header = () => {
@@ -67,17 +68,8 @@ const Header = () => {
                         </div>
                 }
             </div>
-            <div className={css.category}>
-                <form>
-
-
-
-                </form>
-                {/*{*/}
-                {/*    categories && categories.map(category => (<button key={category._id}>*/}
-                {/*        {category.name}*/}
-                {/*    </button>))*/}
-                {/*}*/}
+            <div>
+               <DevicesFilter/>
             </div>
         </div>
     );
