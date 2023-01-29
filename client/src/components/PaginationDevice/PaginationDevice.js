@@ -51,7 +51,6 @@ const PaginationDevice = ({total_pages, page}) => {
                 page
             }
         }
-        console.log(obj);
         setQuery(obj)
     };
 
@@ -60,4 +59,4 @@ const PaginationDevice = ({total_pages, page}) => {
     );
 };
 
-    export {PaginationDevice};
+export {PaginationDevice};

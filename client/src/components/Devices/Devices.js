@@ -4,22 +4,19 @@ import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import {green} from "@mui/material/colors";
+import {useSearchParams} from "react-router-dom";
 
 import {accountActions, deviceActions} from "../../redux/slices";
 import {PaginationDevice} from "../PaginationDevice/PaginationDevice";
 import {Device} from "../Device/Device";
 import img from '../../img/ios16-iphone13-pro-connect-airpods-max.png'
 import css from './Devices.module.css';
-import {useSearchParams} from "react-router-dom";
 
 
 const Devices = () => {
     const {devicesResponse} = useSelector(state => state.deviceReducer);
 
     let [query] = useSearchParams({});
-
-    let res = query.getAll('category').toString()
-    console.log(res);
 
     const dispatch = useDispatch()
 
@@ -34,7 +31,7 @@ const Devices = () => {
     useEffect(() => {
         dispatch(deviceActions.getAll({
             page: query.get('page') || 1,
-            limit: query.get('limit') || 6,
+            limit: query.get('limit') || 9,
             name: query.get('name'),
             category: query.getAll('category').toString(),
             price_gte: query.get('price_gte'),

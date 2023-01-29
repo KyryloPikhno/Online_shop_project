@@ -1,10 +1,10 @@
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {categoryActions} from "../../redux/slices";
 import {useSearchParams} from "react-router-dom";
 
-import css from './DevicesFilter.module.css'
+import {categoryActions} from "../../redux/slices";
+import css from './DevicesFilter.module.css';
 
 
 const DevicesFilter = () => {
@@ -52,7 +52,6 @@ const DevicesFilter = () => {
         }
 
         setQuery(findObj)
-        console.log(findObj);
     }
 
     return (
