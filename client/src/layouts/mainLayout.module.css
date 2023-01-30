@@ -2,8 +2,8 @@
     --primary: #D81E5B;
     --secondary: #8A4EFC;
     --light: #EEE;
-    --light-alt: rgba(14,150,19,0.62);
-    --green:rgba(55,240,19,1.62);
+    --light-alt: #8A4EFC;
+    /*--light-alt: rgba(14,150,19,0.62);*/
     --dark: #131A26;
     --dark-alt: black;
 }
@@ -29,5 +29,5 @@ html body{
 }
 
 .block{
-    width: 85vw;
+    width: 70vw;
 }

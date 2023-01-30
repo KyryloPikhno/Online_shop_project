@@ -65,13 +65,12 @@ const Header = () => {
             </div>
             <div>
                 {
-                    (login && account.isAdmin) &&
+                    login &&
                     <DevicesFilter/>
                 }
             </div>
         </div>
     );
-
 };
 
 export {Header};

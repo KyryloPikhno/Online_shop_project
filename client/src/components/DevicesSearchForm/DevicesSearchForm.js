@@ -1,19 +1,21 @@
 import {useForm} from "react-hook-form";
-import {categoryActions, deviceActions} from "../../redux/slices";
-import css from './DevicesSearchForm.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {useSearchParams} from "react-router-dom";
+import {createSearchParams, useNavigate} from "react-router-dom";
+
+import {categoryActions} from "../../redux/slices";
+import css from './DevicesSearchForm.module.css';
 
 
 const DevicesSearchForm = () => {
     const {categories} = useSelector(state => state.categoryReducer)
 
-    const [query, setQuery] = useSearchParams();
+    const navigate = useNavigate();
 
     const {register, handleSubmit} = useForm({
         defaultValues: {
             "category": null,
+            "name": null,
         }
     })
 
@@ -39,11 +41,14 @@ const DevicesSearchForm = () => {
             if (category) {
                 findObj = {
                     ...findObj,
-                    category:category.toString()
+                    category: category.toString()
                 }
             }
 
-            setQuery(findObj)
+            navigate({
+                pathname: '/devices',
+                search: createSearchParams(findObj).toString()
+            });
         } catch (e) {
             console.log(e.message)
         }

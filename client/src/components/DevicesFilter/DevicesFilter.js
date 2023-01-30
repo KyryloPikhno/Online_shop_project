@@ -8,25 +8,23 @@ import css from './DevicesFilter.module.css';
 
 
 const DevicesFilter = () => {
-    const [query, setQuery] = useSearchParams({});
-
     const {register, handleSubmit} = useForm({
         defaultValues: {
             "price_gte": null,
             "price_lte": null,
         }
     })
-    const {categories} = useSelector(state => state.categoryReducer)
 
-    const [checkedState, setCheckedState] = useState(
-        new Array(categories.length).fill(false)
-    );
+    const [query] = useSearchParams();
+
+    // console.log(query.getAll('category'));
+
+    const {categories} = useSelector(state => state.categoryReducer)
 
     const navigate = useNavigate()
 
-    const dispatch = useDispatch();
 
-    console.log(checkedState);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(categoryActions.getAll())
@@ -57,21 +55,12 @@ const DevicesFilter = () => {
                 category: category.toString()
             }
         }
-        setQuery(findObj)
 
         navigate({
             pathname: '/devices',
             search: createSearchParams(findObj).toString()
         });
     };
-
-    const handleOnChange = (position) => {
-        const updatedCheckedState = checkedState.map((item, index) =>
-            index === position ? !item : item
-        );
-        setCheckedState(updatedCheckedState);
-    };
-
 
     return (
         <form className={css.form} onSubmit={handleSubmit(submit)}>
@@ -85,9 +74,7 @@ const DevicesFilter = () => {
                                 type="checkbox"
                                 value={category._id}
                                 id={category._id}
-                                checked={checkedState[index]}
-                                onChange={() => handleOnChange(index)}
-                            />
+                              />
                             {category.name}
                         </label>))
                 }
