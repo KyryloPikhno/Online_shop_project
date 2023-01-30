@@ -62,6 +62,18 @@ const DevicesFilter = () => {
         });
     };
 
+    const CHECKBOX_VALUES = [false, false,false, false];
+
+
+    const [checkboxValues, setCheckboxValues] = useState(CHECKBOX_VALUES);
+
+
+    const onCheck = (pos, value) => {
+        const nextCheckboxValues = [ ...checkboxValues ];
+        nextCheckboxValues[pos] = value;
+        setCheckboxValues(nextCheckboxValues);
+    }
+
     return (
         <form className={css.form} onSubmit={handleSubmit(submit)}>
             <div className={css.checkBox}>
@@ -74,6 +86,11 @@ const DevicesFilter = () => {
                                 type="checkbox"
                                 value={category._id}
                                 id={category._id}
+                                checked={checkboxValues[index]}
+                                onChange={(elem) => {
+                                    const value = elem.target.checked;
+                                    onCheck(index, value);
+                                }}
                               />
                             {category.name}
                         </label>))
