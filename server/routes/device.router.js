@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const {deviceController, categoryController} = require("../controllers");
+const {deviceController} = require("../controllers");
 const {authMiddleware, userMiddleware, fileMiddleware} = require("../middlewares");
 
 

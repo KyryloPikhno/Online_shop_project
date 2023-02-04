@@ -3,4 +3,5 @@ module.exports = {
     deviceController: require('./device.controller'),
     userController: require('./user.controller'),
     categoryController: require('./category.controller'),
+    orderController: require('./order.controller'),
 };
