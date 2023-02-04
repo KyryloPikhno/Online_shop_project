@@ -1,4 +1,4 @@
-const {Order} = require("../models");
+const {Order, DeviceList} = require("../models");
 
 
 module.exports = {
@@ -37,7 +37,39 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
+            const deviceIds = req.body.deviceList.map(async (orderItem) =>{
+                let newOrderItem = await DeviceList({
+                    quantity: orderItem.quantity,
+                    product: orderItem.product
+                })
 
+            const orderItemsIdsResolved = deviceIds;
+
+            const totalPrices = await Promise.all(orderItemsIdsResolved.map(async (orderItemId)=>{
+                const orderDevice = await DeviceList.findById(orderItemId).populate('device', 'price');
+                const totalPrice = orderDevice.product.price * orderDevice.quantity;
+                return totalPrice
+            }))
+
+            const totalPrice = totalPrices.reduce((a,b) => a +b , 0);
+
+            let order = await Order({
+                user: req.body.user,
+                deviceList: orderItemsIdsResolved,
+                phone: req.body.phone,
+                address: '',
+                city: req.body.city,
+                zip: req.body.zip,
+                country: req.body.country,
+                orderStatus: req.body.status,
+                totalPrice: totalPrice,
+            })
+            // order = await order.save();
+
+            if(!order)
+                return res.status(400).send('the order cannot be created!')
+
+            res.status(200).send(order);
         } catch (e) {
             next(e);
         }
