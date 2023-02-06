@@ -47,7 +47,12 @@ module.exports = {
                 return res._id
             }));
 
-            res.status(200).json(devicesIds);
+            const totalPrices = await Promise.all(devicesIds.map(async (orderItemId)=>{
+                const orderItem = await DeviceList.findById(orderItemId).populate('device','price');
+                return orderItem.device.price * orderItem.quantity;
+            }))
+
+            res.status(200).json(totalPrices)
         } catch (e) {
             next(e);
         }
