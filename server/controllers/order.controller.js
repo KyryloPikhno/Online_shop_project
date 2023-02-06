@@ -1,4 +1,4 @@
-const {Order, DeviceList, Device} = require("../models");
+const {Order, DeviceList} = require("../models");
 
 
 module.exports = {
