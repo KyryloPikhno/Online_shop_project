@@ -1,4 +1,4 @@
-const {Order, DeviceList} = require("../models");
+const {Order, DeviceList, Device} = require("../models");
 
 
 module.exports = {
@@ -76,17 +76,14 @@ module.exports = {
         }
     },
 
-    getTotalSales: async (req, res, next) => {
-        try {
-
-        } catch (e) {
-            next(e);
-        }
-    },
-
     getCount: async (req, res, next) => {
         try {
+            const orderCount = await Order.countDocuments({})
 
+            if (!orderCount) {
+                res.status(500).json({success: false})
+            }
+            res.status(200).json(orderCount)
         } catch (e) {
             next(e);
         }
@@ -94,7 +91,17 @@ module.exports = {
 
     getUserOrders: async (req, res, next) => {
         try {
+            const userOrderList = await Order.find({user: req.params.userId})
+                .populate({
+                    path: 'deviceList', populate: {
+                        path: 'device', populate: 'category'
+                    }
+                }).sort({'dateOrdered': -1});
 
+            if (!userOrderList) {
+                res.status(500).json({success: false})
+            }
+            res.status(200).send(userOrderList);
         } catch (e) {
             next(e);
         }
@@ -105,7 +112,7 @@ module.exports = {
             const order = await Order.findOneAndUpdate(
                 {_id: req.params.orderId},
                 {
-                    status: req.body.status
+                    orderStatus: req.body.status
                 },
                 {new: true}
             )
@@ -121,7 +128,7 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-
+            Order.findByIdAndRemove(req.params.orderId)
         } catch (e) {
             next(e);
         }
