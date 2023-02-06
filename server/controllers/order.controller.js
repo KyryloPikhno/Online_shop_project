@@ -22,10 +22,11 @@ module.exports = {
                 .populate('user', 'name')
                 .populate({
                     path: 'deviceList', populate: {
-                        path : 'device', populate: 'category'}
+                        path: 'device', populate: 'category'
+                    }
                 });
 
-            if(!order) {
+            if (!order) {
                 res.status(500).json({success: false})
             }
 
@@ -37,17 +38,16 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            const devices = Promise.all(req.body.deviceList.map(async item => {
-               let res = await DeviceList.create({
-                    quantity: item.quantity,
-                    device: item.device
+            const devicesIds = await Promise.all(req.body.deviceList.map(async (orderItem) => {
+                const res = await DeviceList.create({
+                    quantity: orderItem.quantity,
+                    product: orderItem.device
                 })
 
                 return res._id
             }));
 
-
-                res.json(devices)
+            res.status(200).json(devicesIds);
         } catch (e) {
             next(e);
         }
