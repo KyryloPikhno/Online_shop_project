@@ -1,9 +1,42 @@
+const {newUserValidator, editUserValidator} = require("../validators/user.validator");
+const {userService} = require("../services");
 const {ApiError} = require("../errors");
 const {User} = require("../models");
-const {userService} = require("../services");
 
 
 module.exports = {
+    isNewUserValid: async (req, res, next) => {
+        try {
+            let validate = newUserValidator.validate(req.body);
+
+            if (validate.error) {
+                throw new ApiError(validate.error.message, 400);
+            }
+
+            req.body = validate.value;
+
+            next()
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    isEditUserValid: async (req, res, next) => {
+        try {
+            let validate = editUserValidator.validate(req.body);
+
+            if (validate.error) {
+                throw new ApiError(validate.error.message, 400);
+            }
+
+            req.body = validate.value;
+
+            next()
+        } catch (e) {
+            next(e);
+        }
+    },
+
     getUserDynamically: (fieldName, from = 'body', dbField = fieldName) => async (req, res, next) => {
         try {
             const fieldToSearch = req[from][fieldName];
@@ -70,21 +103,5 @@ module.exports = {
         } catch (e) {
             next(e);
         }
-    },
-
-    // isNewUserValid: async (req, res, next) => {
-    //     try {
-    //         let validate = userValidator.newUserValidator.validate(req.body);
-    //
-    //         if (validate.error) {
-    //             throw new ApiError(validate.error.message, 400);
-    //         }
-    //
-    //         req.body = validate.value;
-    //
-    //         next()
-    //     } catch (e) {
-    //         next(e);
-    //     }
-    // },
+    }
 }

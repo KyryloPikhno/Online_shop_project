@@ -1,16 +1,43 @@
 const router = require('express').Router();
 
 const {categoryController} = require("../controllers");
+const {authMiddleware, userMiddleware} = require("../middlewares");
 
 
-router.get('/', categoryController.getAll);
+router.get(
+    '/',
+    authMiddleware.checkAssessToken,
+    categoryController.getAll
+);
 
-router.post('/',  categoryController.create);
+router.post(
+    '/',
+    authMiddleware.checkAssessToken,
+    authMiddleware.decryptionAccessToken,
+    userMiddleware.isAdmin,
+    categoryController.create
+);
 
-router.get('/:categoryId', categoryController.getById);
+router.get(
+    '/:categoryId',
+    authMiddleware.checkAssessToken,
+    categoryController.getById
+);
 
-router.put('/:categoryId', categoryController.update);
+router.put(
+    '/:categoryId',
+    authMiddleware.checkAssessToken,
+    authMiddleware.decryptionAccessToken,
+    userMiddleware.isAdmin,
+    categoryController.update
+);
 
-router.delete('/:categoryId', categoryController.delete);
+router.delete(
+    '/:categoryId',
+    authMiddleware.checkAssessToken,
+    authMiddleware.decryptionAccessToken,
+    userMiddleware.isAdmin,
+    categoryController.delete
+);
 
 module.exports = router;

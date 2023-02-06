@@ -6,6 +6,7 @@ const {userMiddleware, authMiddleware} = require('../middlewares');
 
 router.post(
     '/registration',
+    userMiddleware.isNewUserValid,
     userMiddleware.checkIsEmailUnique,
     authController.registration
 );
