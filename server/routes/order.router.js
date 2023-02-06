@@ -37,6 +37,7 @@ router.post(
 router.put(
     '/:orderId',
     authMiddleware.checkAssessToken,
+    orderMiddleware.checkIsOrderExistsForUpdate,
     orderController.update
 );
 

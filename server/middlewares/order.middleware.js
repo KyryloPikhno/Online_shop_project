@@ -20,10 +20,21 @@ module.exports = {
         }
     },
 
+    checkIsOrderExistsForUpdate: async (req, res, next) => {
+        try {
+            const order = await orderService.updateOne(req.params.orderId, req.body.status)
+
+            req.order = order
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+
     checkIsOrderExistsById: async (req, res, next) => {
         try {
             const order = await orderService.findOneByParams(req.params.orderId)
-
 
             if (!order) {
                 throw new ApiError('Order by id not found', 404);
@@ -66,7 +77,7 @@ module.exports = {
 
             const userOrderList = await orderService.findByParams({user: req.params.userId})
 
-            if(!userOrderList){
+            if (!userOrderList) {
                 throw new ApiError('Order is not defined', 404);
             }
 

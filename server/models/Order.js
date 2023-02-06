@@ -4,7 +4,6 @@ const { ObjectId } = Schema;
 
 const orderSchema = new Schema({
     user: {type: ObjectId, ref: "User", require: true},
-    dateOrdered: {type: Date, default: Date.now, require: true},
     deviceList: [{type: ObjectId, ref: 'DeviceList', require: true}],
     phone: {type: String, require: true},
     address: {type: String, require: true},

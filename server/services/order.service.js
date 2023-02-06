@@ -12,20 +12,6 @@ module.exports = {
                 }
             })
             .sort({'dateOrdered': -1});
-
-
-
-        // const userOrderList = await Order.find({user: req.params.userId})
-        //     .populate({
-        //         path: 'deviceList', populate: {
-        //             path: 'device', populate: 'category'
-        //         }
-        //     }).sort({'dateOrdered': -1});
-        //
-        // if (!userOrderList) {
-        //     res.status(500).json({success: false})
-        // }
-
     },
 
     findOneByParams: async (filter = {}) => {
@@ -87,7 +73,9 @@ module.exports = {
     },
 
     updateOne: async (orderId, newInfo) => {
-        return Order.findByIdAndUpdate(orderId, newInfo, {new: true})
+        return  Order.findOneAndUpdate(
+            orderId, {orderStatus: newInfo}, {new: true}
+        )
     },
 
     deleteOne: async (userId) => {

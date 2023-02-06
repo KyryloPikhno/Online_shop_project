@@ -47,17 +47,7 @@ module.exports = {
 
     update: async (req, res, next) => {
         try {
-            const order = await Order.findOneAndUpdate(
-                {_id: req.params.orderId},
-                {
-                    orderStatus: req.body.status
-                },
-                {new: true}
-            )
-
-            if (!order) return res.status(400).json('the order cannot be update!')
-
-            res.status(200).json(order);
+            res.status(200).json(req.order);
         } catch (e) {
             next(e);
         }
