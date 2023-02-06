@@ -9,8 +9,6 @@ module.exports = {
 
             const user = await userService.create({...req.body, password: hashPassword})
 
-            // const order = await Order.create({_user_id: user._id});
-
             res.status(201).json(user);
         } catch (e) {
             next(e)

@@ -1,5 +1,6 @@
-const {orderController} = require("../controllers");
 const router = require('express').Router();
+
+const {orderController} = require("../controllers");
 
 
 router.get('/', orderController.getAll);
@@ -18,3 +19,4 @@ router.put('/', orderController.update);
 
 router.delete('/', orderController.delete);
 
+module.exports = router;
