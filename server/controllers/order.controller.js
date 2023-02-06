@@ -1,4 +1,4 @@
-const {Order, DeviceList, Device} = require("../models");
+const {Order, DeviceList} = require("../models");
 
 
 module.exports = {
@@ -101,7 +101,7 @@ module.exports = {
             if (!userOrderList) {
                 res.status(500).json({success: false})
             }
-            res.status(200).send(userOrderList);
+            res.status(200).json(userOrderList);
         } catch (e) {
             next(e);
         }
@@ -117,8 +117,7 @@ module.exports = {
                 {new: true}
             )
 
-            if (!order)
-                return res.status(400).send('the order cannot be update!')
+            if (!order) return res.status(400).json('the order cannot be update!')
 
             res.status(200).json(order);
         } catch (e) {
@@ -128,7 +127,17 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            Order.findByIdAndRemove(req.params.orderId)
+            await Order.findByIdAndDelete(req.params.orderId)
+                .then(async order => {
+                    if (order) {
+                        order.deviceList.map(async item => {
+                            await DeviceList.findByIdAndRemove(item)
+                        })
+                        return res.status(204).json('The order is deleted!')
+                    } else {
+                        return res.status(404).json('Order not found!')
+                    }
+                })
         } catch (e) {
             next(e);
         }
