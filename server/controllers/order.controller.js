@@ -1,4 +1,4 @@
-const {Order, DeviceList} = require("../models");
+const {Order, DeviceList, Device} = require("../models");
 
 
 module.exports = {
@@ -47,9 +47,9 @@ module.exports = {
                 return res._id
             }));
 
-            const totalPrices = await Promise.all(devicesIds.map(async (orderItemId)=>{
-                const orderItem = await DeviceList.findById(orderItemId).populate('device','price');
-                return orderItem.device.price * orderItem.quantity;
+            const totalPrices = await Promise.all(devicesIds.map(async (_id)=>{
+                return Device.findById({_id});
+                // return orderItem.device.price * orderItem.quantity;
             }))
 
             res.status(200).json(totalPrices)
