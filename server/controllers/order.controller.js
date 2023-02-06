@@ -4,13 +4,15 @@ const {Order, DeviceList} = require("../models");
 module.exports = {
     getAll: async (req, res, next) => {
         try {
-            const orderList = await Order.find().populate('user', 'name').sort({'dateOrdered': -1});
+            const orders = await Order.find({})
+                .populate('user', 'name')
+                .sort({'dateOrdered': -1});
 
-            if (!orderList) {
+            if (!orders) {
                 res.status(500).json({success: false})
             }
 
-            res.status(200).json(orderList);
+            res.status(200).json(orders);
         } catch (e) {
             next(e);
         }
@@ -18,8 +20,8 @@ module.exports = {
 
     getById: async (req, res, next) => {
         try {
-            const order = await Order.findById(req.params.id)
-                .populate('user', 'name')
+            const order = await Order.findById(req.params.orderId)
+                .populate('user')
                 .populate({
                     path: 'deviceList', populate: {
                         path: 'device', populate: 'category'
@@ -47,12 +49,12 @@ module.exports = {
                 return res._id
             }));
 
-            const totalPrices = await Promise.all(devicesIds.map(async (_id)=>{
-                const orderItem = await DeviceList.findById({_id}).populate('device','price');
+            const totalPrices = await Promise.all(devicesIds.map(async (_id) => {
+                const orderItem = await DeviceList.findById({_id}).populate('device', 'price');
                 return await orderItem.device.price * orderItem.quantity;
             }))
 
-            const totalPrice = totalPrices.reduce((acc,item) => acc +item , 0);
+            const totalPrice = totalPrices.reduce((acc, item) => acc + item, 0);
 
             const order = await Order.create({
                 user: req.body.user,
@@ -65,7 +67,7 @@ module.exports = {
                 deviceList: devicesIds,
             })
 
-            if(!order)
+            if (!order)
                 return res.status(400).send('the order cannot be created!')
 
             res.status(200).json(order)
@@ -108,7 +110,7 @@ module.exports = {
                 {new: true}
             )
 
-            if(!order)
+            if (!order)
                 return res.status(400).send('the order cannot be update!')
 
             res.status(200).json(order);
