@@ -3,15 +3,15 @@ const { ObjectId } = Schema;
 
 
 const orderSchema = new Schema({
-    user: {type: ObjectId, ref: "User"},
-    dateOrdered: {type: Date, default: Date.now},
+    user: {type: ObjectId, ref: "User",require: true},
+    dateOrdered: {type: Date, default: Date.now,require: true},
     deviceList: [{type: ObjectId, ref: 'DeviceList', require: true}],
-    phone: {type: String},
-    address: {type: String},
-    city: {type: String},
-    zip: {type: String},
-    country: {type: String},
-    totalPrice: {type: Number},
+    phone: {type: String,require: true},
+    address: {type: String,require: true},
+    city: {type: String,require: true},
+    zip: {type: String,require: true},
+    country: {type: String,require: true},
+    totalPrice: {type: Number,require: true},
     orderStatus: {type: Boolean, required: true, default: 'false'}
 }, {
     timestamps: true

@@ -52,17 +52,17 @@ module.exports = {
                 return await orderItem.device.price * orderItem.quantity;
             }))
 
-            const totalPrice = totalPrices.reduce((a,b) => a +b , 0);
+            const totalPrice = totalPrices.reduce((acc,item) => acc +item , 0);
 
             const order = await Order.create({
                 user: req.body.user,
                 totalPrice,
-                status: req.body.status,
+                orderStatus: false,
                 phone: req.body.phone,
                 city: req.body.city,
                 zip: req.body.zip,
                 country: req.body.country,
-                deviceList: devicesIds
+                deviceList: devicesIds,
             })
 
             if(!order)
@@ -100,7 +100,18 @@ module.exports = {
 
     update: async (req, res, next) => {
         try {
+            const order = await Order.findOneAndUpdate(
+                {_id: req.params.orderId},
+                {
+                    status: req.body.status
+                },
+                {new: true}
+            )
 
+            if(!order)
+                return res.status(400).send('the order cannot be update!')
+
+            res.status(200).json(order);
         } catch (e) {
             next(e);
         }
