@@ -41,18 +41,34 @@ module.exports = {
             const devicesIds = await Promise.all(req.body.deviceList.map(async (orderItem) => {
                 const res = await DeviceList.create({
                     quantity: orderItem.quantity,
-                    product: orderItem.device
+                    device: orderItem.device
                 })
 
                 return res._id
             }));
 
             const totalPrices = await Promise.all(devicesIds.map(async (_id)=>{
-                return Device.findById({_id});
-                // return orderItem.device.price * orderItem.quantity;
+                const orderItem = await DeviceList.findById({_id}).populate('device','price');
+                return await orderItem.device.price * orderItem.quantity;
             }))
 
-            res.status(200).json(totalPrices)
+            const totalPrice = totalPrices.reduce((a,b) => a +b , 0);
+
+            const order = await Order.create({
+                user: req.body.user,
+                totalPrice,
+                status: req.body.status,
+                phone: req.body.phone,
+                city: req.body.city,
+                zip: req.body.zip,
+                country: req.body.country,
+                deviceList: devicesIds
+            })
+
+            if(!order)
+                return res.status(400).send('the order cannot be created!')
+
+            res.status(200).json(order)
         } catch (e) {
             next(e);
         }
