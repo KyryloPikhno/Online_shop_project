@@ -31,6 +31,7 @@ router.get(
 
 router.post(
     '/logoutAll',
+
     authMiddleware.checkAssessToken,
     authController.logoutAll
 );
