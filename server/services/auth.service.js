@@ -31,13 +31,13 @@ module.exports = {
         switch (actionType) {
             case CONFIRM_ACCOUNT:
                 secretWord = CONFIRM_ACCOUNT_ACTION_TOKEN_SECRET
-                break
+                break;
             case FORGOT_PASSWORD:
                 secretWord = FORGOT_PASSWORD_ACTION_TOKEN_SECRET
-                break
+                break;
         }
 
-        return jwt.sign(dataToSign, secretWord, {expiresIn: '7d'});
+        return jwt.sign(dataToSign, secretWord, {expiresIn: '5d'});
     },
 
     checkToken: (token = '', tokenType = tokenTypeEnum.accessToken) => {

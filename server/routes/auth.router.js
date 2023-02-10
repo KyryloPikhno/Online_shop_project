@@ -35,4 +35,11 @@ router.post(
     authController.logoutAll
 );
 
+router.post(
+    '/password/forgot',
+    userMiddleware.getUserDynamically('email'),
+    authController.forgotPassword
+);
+
+
 module.exports = router;

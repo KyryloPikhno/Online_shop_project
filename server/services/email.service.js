@@ -3,7 +3,8 @@ const hbs = require('nodemailer-express-handlebars')
 const path = require('path')
 
 const emailTemplates = require('../email-templates')
-const {NO_REPLY_EMAIL, NO_REPLY_EMAIL_PASSWORD, FRONTEND_URL} = require('../config')
+const {ApiError} = require("../errors");
+const {NO_REPLY_EMAIL, NO_REPLY_EMAIL_PASSWORD, FRONTEND_URL} = require("../configs/config");
 
 
 const sendEmail = async (receiverMail, emailAction, locals = {}) => {
