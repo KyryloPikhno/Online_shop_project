@@ -24,7 +24,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            const brand = await Brand.create({name:req.body.brand});
+            const brand = await Brand.create({name: req.body.brand});
 
             res.status(201).json(brand)
         } catch (e) {

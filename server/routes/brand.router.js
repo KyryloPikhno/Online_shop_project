@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const {brandController} = require("../controllers");
 const {authMiddleware, userMiddleware} = require("../middlewares");
+const {brandController} = require("../controllers");
 
 
 router.get(
@@ -9,6 +9,7 @@ router.get(
     authMiddleware.checkAssessToken,
     brandController.getAll
 );
+
 
 router.post(
     '/',

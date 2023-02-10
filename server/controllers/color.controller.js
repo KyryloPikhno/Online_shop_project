@@ -24,7 +24,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            const color = await Color.create({name:req.body.color});
+            const color = await Color.create({name: req.body.color});
 
             res.status(201).json(color)
         } catch (e) {

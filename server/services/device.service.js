@@ -1,5 +1,4 @@
 const {Device} = require("../models");
-const fs = require("fs");
 
 
 module.exports = {
@@ -19,9 +18,6 @@ module.exports = {
 
     create: async (deviceInfo) => {
         return Device.create(deviceInfo)
-            .populate('category')
-            .populate('brand')
-            .populate('color');
     },
 
     addImages: async (deviceId, images) => {
