@@ -6,6 +6,7 @@ module.exports = {
     Color: require('./Color'),
     DeviceList: require('./DeviceList'),
     Device: require('./Deviсe'),
+    OldPassword: require('./OldPassword'),
     Order: require('./Order'),
     User: require('./User'),
 };

@@ -41,5 +41,10 @@ router.post(
     authController.forgotPassword
 );
 
+router.put(
+    '/password/forgot',
+    authController.forgotPasswordAfterForgot
+);
+
 
 module.exports = router;
