@@ -22,7 +22,9 @@ module.exports = {
         try {
             const {user, body} = req;
 
-            // await emailService.sendEmail('mr.good@i.ua', WELCOME, {userName: user.name});
+            // req.user.email
+
+            await emailService.sendEmail('mr.good@i.ua', WELCOME, {userName: user.name});
 
             await authService.comparePasswords(user.password, body.password);
 

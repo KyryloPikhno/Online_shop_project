@@ -16,7 +16,7 @@ module.exports = {
     API_KAY: process.env.API_KAY || 1234,
     API_SECRET: process.env.API_SECRET || 5678,
 
-    // NO_REPLY_EMAIL: process.env.NO_REPLY_EMAIL,
-    // NO_REPLY_EMAIL_PASSWORD: process.env.NO_REPLY_EMAIL_PASSWORD,
+    NO_REPLY_EMAIL: process.env.NO_REPLY_EMAIL,
+    NO_REPLY_EMAIL_PASSWORD: process.env.NO_REPLY_EMAIL_PASSWORD,
     FRONTEND_URL: process.env.FRONTEND_URL || 'https://google.com',
 };
