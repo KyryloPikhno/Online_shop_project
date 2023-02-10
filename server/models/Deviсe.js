@@ -6,11 +6,11 @@ const deviceSchema = new Schema({
     name: {type: String, required: true, default: 'Devise', trim: true},
     price: {type: Number, required: true, default: 0},
     category: {type: ObjectId, required: true, ref: "Category"},
-    brand: {type: String, default: ''},
+    brand: {type: ObjectId, required: true, ref: "Brand"},
     description: {type: String, default: ''},
     countInStock: {type: Number, required: true, min: 0, max: 100},
     rating: {type: Number, default: 0},
-    color: {type: String, default: ''},
+    color: {type: ObjectId, required: true, ref: "Color"},
     images: [{type: String}],
 }, {
     timestamps: true
