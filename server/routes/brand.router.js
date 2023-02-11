@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const {authMiddleware, userMiddleware} = require("../middlewares");
+const {authMiddleware, userMiddleware, brandMiddleware} = require("../middlewares");
 const {brandController} = require("../controllers");
 
 

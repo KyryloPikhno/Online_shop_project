@@ -13,7 +13,7 @@ module.exports = {
     getById: async (req, res, next) => {
         try {
             const brand = await Brand.findById({_id: req.params.brandId});
-
+cd
             res.status(200).json(brand);
         } catch (e) {
             next(e);
