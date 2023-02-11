@@ -4,9 +4,7 @@ const {Brand} = require("../models");
 module.exports = {
     getAll: async (req, res, next) => {
         try {
-            const brands = await Brand.find({});
-
-            res.status(200).json(brands);
+            res.status(200).json(req.brands);
         } catch (e) {
             next(e);
         }
