@@ -1,6 +1,6 @@
-const {ApiError} = require("../errors");
-const {colorService, categoryService} = require("../services");
 const {commonValidator} = require("../validators/common.validator");
+const {colorService} = require("../services");
+const {ApiError} = require("../errors");
 
 
 module.exports = {

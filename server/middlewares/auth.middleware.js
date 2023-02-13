@@ -82,7 +82,9 @@ module.exports = {
 
     checkActionToken: async (req, res, next) => {
         try {
-            const actionToken = req.get('Authorization')
+            const accessTokenBearer = req.get('Authorization')
+
+            const actionToken = accessTokenBearer.replace('Bearer ', '')
 
             if (!actionToken) {
                 throw new ApiError('No actionToken', 401);
