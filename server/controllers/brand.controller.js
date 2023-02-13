@@ -1,4 +1,4 @@
-const {Brand} = require("../models");
+const {brandService} = require("../services");
 
 
 module.exports = {
@@ -12,9 +12,7 @@ module.exports = {
 
     getById: async (req, res, next) => {
         try {
-            const brand = await Brand.findById({_id: req.params.brandId});
-cd
-            res.status(200).json(brand);
+            res.status(200).json(req.brand);
         } catch (e) {
             next(e);
         }
@@ -22,7 +20,7 @@ cd
 
     create: async (req, res, next) => {
         try {
-            const brand = await Brand.create({name: req.body.brand});
+            const brand = await brandService.create({name: req.body.brand});
 
             res.status(201).json(brand)
         } catch (e) {
@@ -32,13 +30,7 @@ cd
 
     update: async (req, res, next) => {
         try {
-            const brand = await Brand.findByIdAndUpdate(req.params.brandId, {
-                    name: req.body.name
-                },
-                {new: true}
-            );
-
-            res.status(201).json(brand)
+            res.status(201).json(req.brand)
         } catch (e) {
             next(e);
         }
@@ -46,7 +38,7 @@ cd
 
     delete: async (req, res, next) => {
         try {
-            await Brand.deleteOne(req.params.brandId)
+            await brandService.deleteOne(req.params.brandId)
 
             res.status(204)
         } catch (e) {

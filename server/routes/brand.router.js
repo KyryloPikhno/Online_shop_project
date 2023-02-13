@@ -5,15 +5,11 @@ const {brandController} = require("../controllers");
 
 
 router.get(
-
-
-
     '/',
     authMiddleware.checkAssessToken,
     brandMiddleware.checkIsBrandsExist,
     brandController.getAll
 );
-
 
 router.post(
     '/',
@@ -26,6 +22,7 @@ router.post(
 router.get(
     '/:brandId',
     authMiddleware.checkAssessToken,
+    brandMiddleware.checkIsBrandExistsById,
     brandController.getById
 );
 
@@ -34,6 +31,7 @@ router.put(
     authMiddleware.checkAssessToken,
     authMiddleware.decryptionAccessToken,
     userMiddleware.isAdmin,
+    brandMiddleware.checkIsBrandExistsForUpdate,
     brandController.update
 );
 

@@ -21,7 +21,7 @@ module.exports = {
 
     checkIsBrandExistsForUpdate: async (req, res, next) => {
         try {
-            const brand = await brandService.updateOne(req.params.brandId, req.body.status)
+            const brand = await brandService.updateOne(req.params.brandId, {name: req.body.brand})
 
             if (!brand) {
                 throw new ApiError('Brand by id not found', 404);
@@ -37,7 +37,7 @@ module.exports = {
 
     checkIsBrandExistsById: async (req, res, next) => {
         try {
-            const brand = await brandService.findOneByParams(req.params.brandId)
+            const brand = await brandService.findOneByParams({_id: req.params.brandId})
 
             if (!brand) {
                 throw new ApiError('Brand by id not found', 404);
