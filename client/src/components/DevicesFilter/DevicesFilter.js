@@ -1,9 +1,9 @@
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 
-import {categoryActions} from "../../redux/slices";
+import {brandActions, categoryActions} from "../../redux/slices";
 import css from './DevicesFilter.module.css';
 
 
@@ -17,9 +17,9 @@ const DevicesFilter = () => {
 
     const [query] = useSearchParams();
 
-    // console.log(query.getAll('category'));
-
     const {categories} = useSelector(state => state.categoryReducer)
+
+    const {brands} = useSelector(state => state.brandReducer)
 
     const navigate = useNavigate()
 
@@ -28,10 +28,11 @@ const DevicesFilter = () => {
 
     useEffect(() => {
         dispatch(categoryActions.getAll())
+        dispatch(brandActions.getAll())
     }, [])
 
     const submit = (obj) => {
-        const {category, price_gte, price_lte} = obj;
+        const {category, price_gte, price_lte, brand} = obj;
 
         let findObj = {};
 
@@ -56,48 +57,55 @@ const DevicesFilter = () => {
             }
         }
 
+        if (brand) {
+            findObj = {
+                ...findObj,
+                brand: brand.toString()
+            }
+        }
+
         navigate({
             pathname: '/devices',
             search: createSearchParams(findObj).toString()
         });
     };
 
-    const CHECKBOX_VALUES = [false, false,false, false];
-
-
-    const [checkboxValues, setCheckboxValues] = useState(CHECKBOX_VALUES);
-
-
-    const onCheck = (pos, value) => {
-        const nextCheckboxValues = [ ...checkboxValues ];
-        nextCheckboxValues[pos] = value;
-        setCheckboxValues(nextCheckboxValues);
-    }
-
     return (
         <form className={css.form} onSubmit={handleSubmit(submit)}>
             <div className={css.checkBox}>
+                <p>Categories</p>
                 {
                     categories &&
-                    categories.map((category, index) => (
+                    categories.map(category => (
                         <label key={category._id}>
                             <input
                                 {...register("category")}
                                 type="checkbox"
                                 value={category._id}
                                 id={category._id}
-                                checked={checkboxValues[index]}
-                                onChange={(elem) => {
-                                    const value = elem.target.checked;
-                                    onCheck(index, value);
-                                }}
                               />
                             {category.name}
                         </label>))
                 }
             </div>
+            <div className={css.checkBox}>
+                <p>Brands</p>
+                {
+                    brands &&
+                    brands.map((brand) => (
+                        <label key={brand._id}>
+                            <input
+                                {...register("brand")}
+                                type="checkbox"
+                                value={brand._id}
+                                id={brand._id}
+                            />
+                            {brand.name}
+                        </label>))
+                }
+            </div>
             <div className={css.price}>
-                <p>price</p>
+                <p>Price</p>
                 <div>
                     <input type='number' placeholder={'price_gte'} {...register('price_gte')}/>
                     <input type='number' placeholder={'price_lte'} {...register('price_lte')}/>

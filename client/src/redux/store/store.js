@@ -1,12 +1,13 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 
-import {accountReducer, categoryReducer, deviceReducer} from "../slices";
+import {accountReducer, brandReducer, categoryReducer, deviceReducer} from "../slices";
 
 
 const rootReducer = combineReducers({
     deviceReducer,
     accountReducer,
-    categoryReducer
+    categoryReducer,
+    brandReducer
 });
 
 const setupStore = () => configureStore({

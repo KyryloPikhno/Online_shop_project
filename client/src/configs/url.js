@@ -6,6 +6,7 @@ const urls = {
     uploadImage: '/uploadImage',
     removeImage: 'removeImage',
     category: '/category',
+    brand: '/brand',
     auth: {
         registration: '/auth/registration',
         login: '/auth/login',
