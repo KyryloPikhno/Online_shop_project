@@ -3,7 +3,16 @@ const {Device} = require("../models");
 
 module.exports = {
     find: async (query) => {
-        const {limit = 12, page = 1, name, price_gte = 0, price_lte = 9999, category, color, brand} = query;
+        const {
+            limit = 12,
+            page = 1,
+            color,
+            brand,
+            name,
+            price_gte = 0,
+            price_lte = 9999,
+            category,
+        } = query;
 
         let findObj = {};
 
@@ -20,13 +29,6 @@ module.exports = {
                 price: {$gte: +price_gte, $lte: +price_lte},
             };
         }
-
-        // if (price_lte) {
-        //     findObj = {
-        //         ...findObj,
-        //         price: {$lte: +price_lte},
-        //     }
-        // }
 
         if (category) {
             findObj = {
@@ -50,7 +52,10 @@ module.exports = {
         }
 
         const [devices, count] = await Promise.all([
-            Device.find(findObj).limit(limit).skip((+page - 1) * limit).populate('category'),
+            Device.find(findObj).limit(limit).skip((+page - 1) * limit)
+                .populate('category')
+                .populate('brand')
+                .populate('color'),
             Device.count(findObj)
         ]);
 
@@ -63,3 +68,5 @@ module.exports = {
         };
     }
 };
+
+
