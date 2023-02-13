@@ -1,6 +1,6 @@
 module.exports = {
     userValidator: require('./user.validator'),
-    brandValidator: require('./brand.validator'),
+    commonValidator: require('./common.validator'),
     orderValidator: require('./order.validator'),
 };
 

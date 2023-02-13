@@ -1,9 +1,10 @@
 const {ApiError} = require("../errors");
 const {categoryService} = require("../services");
+const {commonValidator} = require("../validators/common.validator");
 
 
 module.exports = {
-    checkIsColorsExist: async (req, res, next) => {
+    checkIsCategoriesExist: async (req, res, next) => {
         try {
             const categories = await categoryService.findByParams({})
 
@@ -11,7 +12,7 @@ module.exports = {
                 throw new ApiError('Categories not found', 404);
             }
 
-            req.colors = categories
+            req.categories = categories
 
             next();
         } catch (e) {
@@ -21,7 +22,13 @@ module.exports = {
 
     checkIsCategoryExistsForUpdate: async (req, res, next) => {
         try {
-            const category = await categoryService.updateOne(req.params.categoryId, req.body.status)
+            let validate = commonValidator.validate({name: req.body.category});
+
+            if(validate.error) {
+                throw new ApiError(validate.error.message, 400);
+            }
+
+            const category = await categoryService.updateOne(req.params.categoryId, {name: req.body.category})
 
             if (!category) {
                 throw new ApiError('Category by id not found', 404);
@@ -37,7 +44,7 @@ module.exports = {
 
     checkIsCategoryExistsById: async (req, res, next) => {
         try {
-            const category = await categoryService.findOneByParams(req.params.categoryId)
+            const category = await categoryService.findOneByParams({_id: req.params.categoryId})
 
             if (!category) {
                 throw new ApiError('Category by id not found', 404);
@@ -49,5 +56,29 @@ module.exports = {
         } catch (e) {
             next(e);
         }
-    }
+    },
+
+    checkIsBodyValid: async (req, res, next) => {
+        try {
+            const validate = commonValidator.validate({name: req.body.category});
+
+            if(validate.error) {
+                throw new ApiError(validate.error.message, 400);
+            }
+
+            const category = await categoryService.create({name:req.body.category})
+
+            if (!category) {
+                throw new ApiError('Category is not created', 400);
+            }
+
+            req.body = validate.value;
+
+            req.category = category;
+
+            next()
+        } catch (e) {
+            next(e)
+        }
+    },
 };

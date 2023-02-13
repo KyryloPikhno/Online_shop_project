@@ -1,6 +1,6 @@
 const {ApiError} = require("../errors");
 const {brandService} = require("../services");
-const {newBrandValidator} = require("../validators/brand.validator");
+const {commonValidator} = require("../validators/common.validator");
 
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
 
     checkIsBrandExistsForUpdate: async (req, res, next) => {
         try {
-            let validate = newBrandValidator.validate(req.body);
+            let validate = commonValidator.validate(req.body);
 
             if(validate.error) {
                 throw new ApiError(validate.error.message, 400);
@@ -60,7 +60,7 @@ module.exports = {
 
     checkIsBodyValid: async (req, res, next) => {
         try {
-            const validate = newBrandValidator.validate(req.body);
+            const validate = commonValidator.validate({name: req.body.brand});
 
             if(validate.error) {
                 throw new ApiError(validate.error.message, 400);

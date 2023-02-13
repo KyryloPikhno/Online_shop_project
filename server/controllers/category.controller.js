@@ -1,12 +1,10 @@
-const {Category} = require("../models");
+const {categoryService} = require("../services");
 
 
 module.exports = {
     getAll: async (req, res, next) => {
         try {
-            const categories = await Category.find({});
-
-            res.status(200).json(categories);
+            res.status(200).json(req.categories);
         } catch (e) {
             next(e);
         }
@@ -14,9 +12,7 @@ module.exports = {
 
     getById: async (req, res, next) => {
         try {
-            const category = await Category.findById({_id: req.params.categoryId});
-
-            res.status(200).json(category);
+            res.status(200).json(req.category);
         } catch (e) {
             next(e);
         }
@@ -24,11 +20,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-
-            console.log(req.body);
-            const category = await Category.create({name:req.body.category});
-
-            res.status(201).json(category)
+            res.status(201).json(req.category)
         } catch (e) {
             next(e);
         }
@@ -36,13 +28,7 @@ module.exports = {
 
     update: async (req, res, next) => {
         try {
-            const category = await Category.findByIdAndUpdate(req.params.categoryId, {
-                    name: req.body.name
-                },
-                {new: true}
-            );
-
-            res.status(201).json(category)
+            res.status(201).json(req.category)
         } catch (e) {
             next(e);
         }
@@ -50,9 +36,9 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            await Category.deleteOne(req.params.categoryId)
+            await categoryService.deleteOne(req.params.categoryId)
 
-            res.status(204)
+            res.sendStatus(204)
         } catch (e) {
             next(e);
         }
