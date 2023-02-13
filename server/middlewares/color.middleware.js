@@ -1,5 +1,6 @@
 const {ApiError} = require("../errors");
-const {colorService} = require("../services");
+const {colorService, categoryService} = require("../services");
+const {commonValidator} = require("../validators/common.validator");
 
 
 module.exports = {
@@ -21,6 +22,12 @@ module.exports = {
 
     checkIsColorExistsForUpdate: async (req, res, next) => {
         try {
+            const validate = commonValidator.validate({name: req.body.color});
+
+            if(validate.error) {
+                throw new ApiError(validate.error.message, 400);
+            }
+
             const color = await colorService.updateOne(req.params.colorId, req.body.status)
 
             if (!color) {
@@ -49,5 +56,29 @@ module.exports = {
         } catch (e) {
             next(e);
         }
-    }
+    },
+
+    checkIsBodyValid: async (req, res, next) => {
+        try {
+            const validate = commonValidator.validate({name: req.body.color});
+
+            if(validate.error) {
+                throw new ApiError(validate.error.message, 400);
+            }
+
+            const color = await colorService.create({name:req.body.color})
+
+            if (!color) {
+                throw new ApiError('Color is not created', 400);
+            }
+
+            req.body = validate.value;
+
+            req.color = color;
+
+            next()
+        } catch (e) {
+            next(e)
+        }
+    },
 };

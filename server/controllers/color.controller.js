@@ -1,12 +1,10 @@
-const {Color} = require("../models");
+const {colorService} = require("../services");
 
 
 module.exports = {
     getAll: async (req, res, next) => {
         try {
-            const colors = await Color.find({});
-
-            res.status(200).json(colors);
+            res.status(200).json(req.colors);
         } catch (e) {
             next(e);
         }
@@ -14,9 +12,7 @@ module.exports = {
 
     getById: async (req, res, next) => {
         try {
-            const color = await Color.findById({_id: req.params.colorId});
-
-            res.status(200).json(color);
+            res.status(200).json(req.color);
         } catch (e) {
             next(e);
         }
@@ -24,9 +20,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            const color = await Color.create({name: req.body.color});
-
-            res.status(201).json(color)
+            res.status(201).json(req.color)
         } catch (e) {
             next(e);
         }
@@ -34,13 +28,7 @@ module.exports = {
 
     update: async (req, res, next) => {
         try {
-            const color = await Color.findByIdAndUpdate(req.params.colorId, {
-                    name: req.body.name
-                },
-                {new: true}
-            );
-
-            res.status(201).json(color)
+            res.status(201).json(req.color)
         } catch (e) {
             next(e);
         }
@@ -48,7 +36,7 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            await Color.deleteOne(req.params.colorId)
+            await colorService.deleteOne(req.params.colorId)
 
             res.status(204)
         } catch (e) {
