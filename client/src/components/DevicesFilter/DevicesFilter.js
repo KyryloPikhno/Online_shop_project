@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 
-import {brandActions, categoryActions} from "../../redux/slices";
+import {brandActions, categoryActions, colorActions} from "../../redux/slices";
 import css from './DevicesFilter.module.css';
 
 
@@ -15,24 +15,26 @@ const DevicesFilter = () => {
         }
     })
 
-    const [query] = useSearchParams();
+    // const [query] = useSearchParams();
 
-    const {categories} = useSelector(state => state.categoryReducer)
+    const {categories} = useSelector(state => state.categoryReducer);
 
-    const {brands} = useSelector(state => state.brandReducer)
+    const {brands} = useSelector(state => state.brandReducer);
+
+    const {colors} = useSelector(state => state.colorReducer);
 
     const navigate = useNavigate()
-
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(categoryActions.getAll())
-        dispatch(brandActions.getAll())
+        dispatch(categoryActions.getAll());
+        dispatch(brandActions.getAll());
+        dispatch(colorActions.getAll());
     }, [])
 
     const submit = (obj) => {
-        const {category, price_gte, price_lte, brand} = obj;
+        const {category, price_gte, price_lte, brand, color} = obj;
 
         let findObj = {};
 
@@ -64,6 +66,13 @@ const DevicesFilter = () => {
             }
         }
 
+        if (color) {
+            findObj = {
+                ...findObj,
+                color: color.toString()
+            }
+        }
+
         navigate({
             pathname: '/devices',
             search: createSearchParams(findObj).toString()
@@ -92,7 +101,7 @@ const DevicesFilter = () => {
                 <p>Brands</p>
                 {
                     brands &&
-                    brands.map((brand) => (
+                    brands.map(brand=> (
                         <label key={brand._id}>
                             <input
                                 {...register("brand")}
@@ -101,6 +110,22 @@ const DevicesFilter = () => {
                                 id={brand._id}
                             />
                             {brand.name}
+                        </label>))
+                }
+            </div>
+            <div className={css.checkBox}>
+                <p>Colors</p>
+                {
+                    colors &&
+                    colors.map(color => (
+                        <label key={color._id}>
+                            <input
+                                {...register("color")}
+                                type="checkbox"
+                                value={color._id}
+                                id={color._id}
+                            />
+                            {color.name}
                         </label>))
                 }
             </div>

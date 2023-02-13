@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-import {categoryActions, deviceActions} from "../../redux/slices";
+import {brandActions, categoryActions, colorActions, deviceActions} from "../../redux/slices";
 import css from './CreateDeviceForm.module.css'
 
 
@@ -24,31 +24,34 @@ const style = {
 const CreateDeviceForm = () => {
     const navigate = useNavigate();
 
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit} = useForm();
 
-    const {device} = useSelector(state => state.deviceReducer)
+    const {device} = useSelector(state => state.deviceReducer);
 
-    const {categories} = useSelector(state => state.categoryReducer)
+    const {categories} = useSelector(state => state.categoryReducer);
 
-    const dispatch = useDispatch()
+    const {brands} = useSelector(state => state.brandReducer);
+
+    const {colors} = useSelector(state => state.colorReducer);
+
+    const dispatch = useDispatch();
 
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => setOpen(true);
 
-    const handleClose = () => setOpen(false);
-
     useEffect(() => {
-        dispatch(categoryActions.getAll())
+        dispatch(categoryActions.getAll());
+        dispatch(brandActions.getAll());
+        dispatch(colorActions.getAll());
     }, [])
 
     const submit = async (device) => {
         try {
-            console.log(device);
-            await dispatch(deviceActions.create({device}))
+            await dispatch(deviceActions.create({device}));
 
         } catch (e) {
-            console.log(e.message)
+            console.log(e.message);
         }
     }
 
@@ -62,9 +65,9 @@ const CreateDeviceForm = () => {
 
             await dispatch(deviceActions.uploadImage({_id: device._id, formData}));
 
-            navigate('/devices')
+            navigate('/devices');
         } catch (e) {
-            console.log(e.message)
+            console.log(e.message);
         }
     };
 
@@ -74,17 +77,18 @@ const CreateDeviceForm = () => {
             <form className={css.form} onSubmit={handleSubmit(submit)}>
                 <input type='text' placeholder={'name'} {...register('name')}/>
                 <input type='number' placeholder={'price'} {...register('price')}/>
+                <input type='number' placeholder={'countInStock'} {...register('countInStock')}/>
                 <select {...register('category', {required: true})}>
                     {categories.map(category => <option key={category._id}
                                                         value={category._id}>{category.name}</option>)}
                 </select>
-                <input type='text' placeholder={'brand'} {...register('brand')}/>
-                <input type='number' placeholder={'countInStock'} {...register('countInStock')}/>
-                <select value="black" {...register('color', {required: true})}>
-                    <option value="black">black</option>
-                    <option value="grey">grey</option>
-                    <option value="pink">pink</option>
-                    <option value="pink">gold</option>
+                <select {...register('brand', {required: true})}>
+                    {brands.map(brand => <option key={brand._id}
+                                                        value={brand._id}>{brand.name}</option>)}
+                </select>
+                <select {...register('color', {required: true})}>
+                    {colors.map(color => <option key={color._id}
+                                                        value={color._id}>{color.name}</option>)}
                 </select>
                 <input type='text' placeholder={'description'} {...register('description')}/>
                 <button onClick={handleOpen}>Save and next</button>
@@ -92,7 +96,7 @@ const CreateDeviceForm = () => {
             <Modal
                 keepMounted
                 open={open}
-                onClose={handleClose}
+                // onClose={handleClose}
                 aria-labelledby="keep-mounted-modal-title"
                 aria-describedby="keep-mounted-modal-description"
             >

@@ -7,6 +7,7 @@ const urls = {
     removeImage: 'removeImage',
     category: '/category',
     brand: '/brand',
+    color: '/color',
     auth: {
         registration: '/auth/registration',
         login: '/auth/login',

@@ -28,12 +28,12 @@ const Devices = () => {
         dispatch(deviceActions.getAll({
             page: query.get('page') || 1,
             limit: query.get('limit') || 8,
-            name: query.get('name'),
             category: query.getAll('category').toString(),
+            color: query.getAll('color').toString(),
+            brand: query.getAll('brand').toString(),
+            name: query.get('name'),
             price_gte: query.get('price_gte'),
             price_lte: query.get('price_lte'),
-            color: query.get('color'),
-            brand: query.get('brand'),
         }))
     }, [query]);
 

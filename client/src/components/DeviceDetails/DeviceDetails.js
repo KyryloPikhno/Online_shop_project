@@ -17,13 +17,15 @@ const DeviceDetails = () => {
 
     const dispatch = useDispatch()
 
-    const {name, price, category, brand, createdAt, description, images} = device;
+    const {name, price, category, brand, color, createdAt, description, images} = device;
 
     useEffect(() => {
         dispatch(deviceActions.getById({id}))
 
         dispatch(accountActions.getByAccess())
+
     }, [])
+    console.log(device);
 
     return (
         <div className={css.container}>
@@ -37,7 +39,8 @@ const DeviceDetails = () => {
                 <hr/>
                 <div className={css.info}>
                     {category && <div>category: {category.name}</div>}
-                    {brand && <div>brand: {brand}</div>}
+                    {brand && <div>brand: {brand.name}</div>}
+                    {color && <div>color: {color.name}</div>}
                     {createdAt && <div>created: {createdAt.slice(0,10)}</div>}
                     {description && <div>{description}</div>}
                 </div>
