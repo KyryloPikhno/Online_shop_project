@@ -1,7 +1,8 @@
-const {ApiError} = require("../errors");
-const {authService} = require("../services");
+const {Auth, ActionToken} = require("../models");
+const {FORGOT_PASSWORD} = require("../configs/tokenActionEnum");
 const {tokenTypeEnum} = require("../enum");
-const {Auth} = require("../models");
+const {authService} = require("../services");
+const {ApiError} = require("../errors");
 
 
 module.exports = {
@@ -72,6 +73,32 @@ module.exports = {
             }
 
             req.userInfo = userInfo
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    checkActionToken: async (req, res, next) => {
+        try {
+            const actionToken = req.get('Authorization')
+
+            if (!actionToken) {
+                throw new ApiError('No actionToken', 401);
+            }
+
+            authService.checkActionToken(actionToken, FORGOT_PASSWORD)
+
+            const tokenInfo = await ActionToken
+                .findOne({token: actionToken, tokenType: FORGOT_PASSWORD})
+                .populate('_user_id')
+
+            if (!tokenInfo) {
+                throw new ApiError('token is not valid', 401);
+            }
+
+            req.user = tokenInfo._user_id
 
             next();
         } catch (e) {

@@ -43,6 +43,7 @@ router.post(
 
 router.put(
     '/password/forgot',
+    authMiddleware.checkActionToken,
     authController.forgotPasswordAfterForgot
 );
 

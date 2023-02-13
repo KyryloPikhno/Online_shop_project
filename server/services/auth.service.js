@@ -42,17 +42,37 @@ module.exports = {
 
     checkToken: (token = '', tokenType = tokenTypeEnum.accessToken) => {
         try {
-            let secret = ''
+            let secret = '';
 
             if (tokenType === tokenTypeEnum.accessToken) {
-                secret = ACCESS_SECRET
+                secret = ACCESS_SECRET;
             } else if (tokenType === tokenTypeEnum.refreshToken) {
-                secret = REFRESH_SECRET
+                secret = REFRESH_SECRET;
             }
 
-            return jwt.verify(token, secret)
+            return jwt.verify(token, secret);
         } catch (e) {
-            throw new ApiError('Token not valid', 401)
+            throw new ApiError('Token not valid', 401);
+        }
+    },
+
+    checkActionToken: (token = '', actionType) => {
+        try {
+            let secretWord = '';
+
+            switch (actionType) {
+                case CONFIRM_ACCOUNT:
+                    secretWord = CONFIRM_ACCOUNT_ACTION_TOKEN_SECRET;
+                    break;
+                case FORGOT_PASSWORD:
+                    secretWord = FORGOT_PASSWORD_ACTION_TOKEN_SECRET;
+                    break;
+            }
+
+            jwt.verify(token, secretWord);
+        } catch (e) {
+            throw new ApiError('Token not valid', 401);
         }
     },
 };
+
