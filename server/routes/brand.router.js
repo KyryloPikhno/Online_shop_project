@@ -2,6 +2,9 @@ const router = require('express').Router();
 
 const {authMiddleware, userMiddleware, brandMiddleware} = require("../middlewares");
 const {brandController} = require("../controllers");
+const {newOrderValidator} = require("../validators/order.validator");
+const {ApiError} = require("../errors");
+const {orderService} = require("../services");
 
 
 router.get(
@@ -16,6 +19,7 @@ router.post(
     authMiddleware.checkAssessToken,
     authMiddleware.decryptionAccessToken,
     userMiddleware.isAdmin,
+    brandMiddleware.checkIsBodyValid,
     brandController.create
 );
 

@@ -52,7 +52,7 @@ module.exports = {
         try {
             let validate = newOrderValidator.validate(req.body);
 
-            if (validate.error) {
+            if(validate.error) {
                 throw new ApiError(validate.error.message, 400);
             }
 

@@ -1,5 +1,6 @@
 const {ApiError} = require("../errors");
 const {brandService} = require("../services");
+const {newBrandValidator} = require("../validators/brand.validator");
 
 
 module.exports = {
@@ -21,6 +22,12 @@ module.exports = {
 
     checkIsBrandExistsForUpdate: async (req, res, next) => {
         try {
+            let validate = newBrandValidator.validate(req.body);
+
+            if(validate.error) {
+                throw new ApiError(validate.error.message, 400);
+            }
+
             const brand = await brandService.updateOne(req.params.brandId, {name: req.body.brand})
 
             if (!brand) {
@@ -49,5 +56,29 @@ module.exports = {
         } catch (e) {
             next(e);
         }
-    }
+    },
+
+    checkIsBodyValid: async (req, res, next) => {
+        try {
+            const validate = newBrandValidator.validate(req.body);
+
+            if(validate.error) {
+                throw new ApiError(validate.error.message, 400);
+            }
+
+            const brand = await brandService.create({name:req.body.brand})
+
+            if (!brand) {
+                throw new ApiError('Brand is not created', 400);
+            }
+
+            req.body = validate.value;
+
+            req.brand = brand;
+
+            next()
+        } catch (e) {
+            next(e)
+        }
+    },
 };

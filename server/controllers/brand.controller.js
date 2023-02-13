@@ -20,9 +20,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            const brand = await brandService.create({name: req.body.brand});
-
-            res.status(201).json(brand)
+            res.status(201).json(req.brand)
         } catch (e) {
             next(e);
         }
@@ -40,7 +38,7 @@ module.exports = {
         try {
             await brandService.deleteOne(req.params.brandId)
 
-            res.status(204)
+            res.sendStatus(204)
         } catch (e) {
             next(e);
         }
