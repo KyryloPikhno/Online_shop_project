@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 80vh;
+    height: 85vh;
     flex-direction: column;
     gap: 20px;
 }
@@ -32,17 +32,13 @@
     border: 1px solid var(--light-alt);
 }
 
-.form input:last-of-type {
-    height: 100px;
+.form span{
+    color: #D81E5B;
+    font-size: 10px;
 }
 
-.form button, .formCategory button {
-    border-radius: 8px;
-    width: 150px;
-    height: 30px;
-    background: var(--light-alt);
-    border: none;
-    color: var(--light);
+.form input:last-of-type {
+    height: 100px;
 }
 
 ::placeholder {
@@ -69,6 +65,23 @@
     color: lightslategray;
 }
 
+.validButton{
+    border-radius: 8px;
+    width: 150px;
+    height: 30px;
+    background: var(--light-alt);
+    border: none;
+    color: var(--light);
+}
+
+.noValidButton{
+    border-radius: 8px;
+    width: 150px;
+    height: 30px;
+    background: var(--light);
+    border: none;
+    color: gray;
+}
 
 
 

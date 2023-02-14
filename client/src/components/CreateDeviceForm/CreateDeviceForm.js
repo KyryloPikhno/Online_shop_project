@@ -1,11 +1,13 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
+import {joiResolver} from "@hookform/resolvers/joi";
 import {useNavigate} from "react-router-dom";
 import {Box, Modal} from "@mui/material";
 import {useForm} from "react-hook-form";
 import Dropzone from "react-dropzone";
 
 import {brandActions, categoryActions, colorActions, deviceActions} from "../../redux/slices";
+import {newDeviceValidator} from "../../validators";
 import css from './CreateDeviceForm.module.css'
 
 
@@ -24,7 +26,10 @@ const style = {
 const CreateDeviceForm = () => {
     const navigate = useNavigate();
 
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, reset, formState: {errors, isValid}} = useForm({
+        resolver: joiResolver(newDeviceValidator),
+        mode: 'all'
+    });
 
     const {device} = useSelector(state => state.deviceReducer);
 
@@ -76,22 +81,39 @@ const CreateDeviceForm = () => {
             <h1>Add new device to shop</h1>
             <form className={css.form} onSubmit={handleSubmit(submit)}>
                 <input type='text' placeholder={'name'} {...register('name')}/>
+                {errors.name && <span>{errors.name.message}</span>}
+
                 <input type='number' placeholder={'price'} {...register('price')}/>
+                {errors.price && <span>{errors.price.message}</span>}
+
+
                 <input type='number' placeholder={'countInStock'} {...register('countInStock')}/>
+                {errors.countInStock && <span>{errors.countInStock.message}</span>}
+
                 <select {...register('category', {required: true})}>
                     {categories.map(category => <option key={category._id}
                                                         value={category._id}>{category.name}</option>)}
                 </select>
+                {errors.category && <span>{errors.category.message}</span>}
+
+
                 <select {...register('brand', {required: true})}>
                     {brands.map(brand => <option key={brand._id}
                                                  value={brand._id}>{brand.name}</option>)}
                 </select>
+                {errors.brand && <span>{errors.brand.message}</span>}
+
                 <select {...register('color', {required: true})}>
                     {colors.map(color => <option key={color._id}
                                                  value={color._id}>{color.name}</option>)}
                 </select>
+                {errors.color && <span>{errors.color.message}</span>}
+
                 <input type='text' placeholder={'description'} {...register('description')}/>
-                <button onClick={handleOpen}>Save and next</button>
+                {errors.description && <span>{errors.description.message}</span>}
+
+                <button className={!isValid ? css.noValidButton:css.validButton} disabled={!isValid} onClick={handleOpen}>Save and next
+                </button>
             </form>
             <Modal
                 keepMounted
