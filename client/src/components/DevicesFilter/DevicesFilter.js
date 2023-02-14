@@ -1,7 +1,7 @@
-import {useForm} from "react-hook-form";
+import {createSearchParams, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
+import {useForm} from "react-hook-form";
 
 import {brandActions, categoryActions, colorActions} from "../../redux/slices";
 import css from './DevicesFilter.module.css';
@@ -14,8 +14,6 @@ const DevicesFilter = () => {
             "price_lte": null,
         }
     })
-
-    // const [query] = useSearchParams();
 
     const {categories} = useSelector(state => state.categoryReducer);
 
