@@ -1,9 +1,9 @@
-import {Box, Modal} from "@mui/material";
-import {useForm} from "react-hook-form";
-import Dropzone from "react-dropzone";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {Box, Modal} from "@mui/material";
+import {useForm} from "react-hook-form";
+import Dropzone from "react-dropzone";
 
 import {brandActions, categoryActions, colorActions, deviceActions} from "../../redux/slices";
 import css from './CreateDeviceForm.module.css'
@@ -84,11 +84,11 @@ const CreateDeviceForm = () => {
                 </select>
                 <select {...register('brand', {required: true})}>
                     {brands.map(brand => <option key={brand._id}
-                                                        value={brand._id}>{brand.name}</option>)}
+                                                 value={brand._id}>{brand.name}</option>)}
                 </select>
                 <select {...register('color', {required: true})}>
                     {colors.map(color => <option key={color._id}
-                                                        value={color._id}>{color.name}</option>)}
+                                                 value={color._id}>{color.name}</option>)}
                 </select>
                 <input type='text' placeholder={'description'} {...register('description')}/>
                 <button onClick={handleOpen}>Save and next</button>
