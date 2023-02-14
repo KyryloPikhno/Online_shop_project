@@ -33,8 +33,11 @@
 
 }
 
+::placeholder{
+    text-align: center;
+}
 
-.formCommon button {
+.validButton{
     border-radius: 8px;
     width: 150px;
     height: 30px;
@@ -43,7 +46,11 @@
     color: var(--light);
 }
 
-
-::placeholder{
-    text-align: center;
+.noValidButton{
+    border-radius: 8px;
+    width: 150px;
+    height: 30px;
+    background: var(--light);
+    border: none;
+    color: gray;
 }

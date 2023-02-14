@@ -26,7 +26,7 @@ const style = {
 const CreateDeviceForm = () => {
     const navigate = useNavigate();
 
-    const {register, handleSubmit, reset, formState: {errors, isValid}} = useForm({
+    const {register, handleSubmit, formState: {errors, isValid}} = useForm({
         resolver: joiResolver(newDeviceValidator),
         mode: 'all'
     });
@@ -112,7 +112,8 @@ const CreateDeviceForm = () => {
                 <input type='text' placeholder={'description'} {...register('description')}/>
                 {errors.description && <span>{errors.description.message}</span>}
 
-                <button className={!isValid ? css.noValidButton:css.validButton} disabled={!isValid} onClick={handleOpen}>Save and next
+                <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}
+                        onClick={handleOpen}>Save and next
                 </button>
             </form>
             <Modal
