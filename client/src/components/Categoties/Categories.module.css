@@ -1,0 +1,13 @@
+.container{
+    height: 400px;
+    overflow: scroll;
+    width: 200px;
+    border: 1px solid black;
+}
+
+.container div {
+    margin:5px ;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+}

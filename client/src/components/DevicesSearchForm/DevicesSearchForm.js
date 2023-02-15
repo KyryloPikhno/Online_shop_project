@@ -2,12 +2,12 @@ import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {createSearchParams, useNavigate} from "react-router-dom";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {categoryActions} from "../../redux/slices";
 import { FiSearch } from 'react-icons/fi'
 
-import {categoryActions} from "../../redux/slices";
-import css from './DevicesSearchForm.module.css';
-import {joiResolver} from "@hookform/resolvers/joi";
 import {devicesSearchFormValidator} from "../../validators";
+import css from './DevicesSearchForm.module.css';
 
 
 const DevicesSearchForm = () => {
