@@ -59,6 +59,8 @@ const DevicesSearchForm = () => {
         }
     }
 
+    console.log(isValid);
+
     const value = categories.map(category => category._id).toString()
 
     return (
@@ -70,6 +72,7 @@ const DevicesSearchForm = () => {
             </select>
             <input type='text' placeholder={'Enter name of device :)'} {...register('name')}/>
             {errors.name && <span>{errors.name.message}</span>}
+
             <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}><FiSearch/></button>
         </form>
     );
