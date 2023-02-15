@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 import {authService} from "../../services";
 import css from './Register.module.css';
@@ -29,7 +29,9 @@ const Register = () => {
             <input type='text' placeholder={'email'} {...register('email')}/>
             <input type='text' placeholder={'password'} {...register('password')}/>
             <button>Register</button>
-            {error && <p>{error}</p>}
+            {error && <span>{error}</span>}
+
+            <NavLink to={'/password/forgot'}>Forgot your password?</NavLink>
         </form>
     );
 };

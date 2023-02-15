@@ -40,3 +40,13 @@
 ::placeholder{
     text-align: center;
 }
+
+.link{
+    display: flex;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.link a{
+    color: var(--light-alt);
+}

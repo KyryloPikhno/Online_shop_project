@@ -45,7 +45,6 @@
 .button button:last-child {
     width: 115px;
     color: var(--light);
-    /*box-shadow: .8px .4px 1.8px black;*/
     border: none;
     background: var(--light-alt);
     height: 25px;
@@ -68,5 +67,23 @@
     justify-content: center;
     gap: 20px;
 }
+
+.filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    width: 180px;
+    box-shadow: .5px .4px 3.8px black;
+    border-radius: 8px;
+    font-size: 13px;
+    padding: 13px;
+    background: white;
+    position: fixed;
+    left: 40px;
+    top: 170px;
+}
+
 
 

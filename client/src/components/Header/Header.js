@@ -12,7 +12,7 @@ import css from './Header.module.css'
 const Header = () => {
     const navigate = useNavigate()
 
-    const [state , setState]= useState(false)
+    const [state, setState] = useState(false)
 
     const {account} = useSelector(state => state.accountReducer);
 
@@ -32,10 +32,14 @@ const Header = () => {
 
     console.log(state);
 
-    // if(window.location.pathname === '/login' || window.location.pathname === '/register'){
-    //     setState(true)
-    // }
+    useEffect(() => {
+        if (window.location.pathname === '/login' || window.location.pathname === '/register') {
+            setState(true)
+        } else {
+            setState(false)
+        }
 
+    }, [dispatch, window.location.pathname, account])
 
 
     return (
@@ -46,7 +50,12 @@ const Header = () => {
                     <DevicesSearchForm/>
                 </div>
                 {
-                   state ?
+                    state ?
+                        <div className={css.button}>
+                            <NavLink to={'/login'}>Login</NavLink>
+                            <NavLink to={'/register'}>Register</NavLink>
+                        </div>
+                        :
                         <div className={css.button}>
                             {
                                 account.isAdmin ?
@@ -64,19 +73,14 @@ const Header = () => {
                                     </div>
                             }
                         </div>
-                        :
-                        <div className={css.button}>
-                            <NavLink to={'/login'}>Login</NavLink>
-                            <NavLink to={'/register'}>Register</NavLink>
-                        </div>
                 }
             </div>
-            {/*<div>*/}
-            {/*    {*/}
-            {/*        window.location.pathname !== ('/login' || '/register') &&*/}
-            {/*        <DevicesFilter/>*/}
-            {/*    }*/}
-            {/*</div>*/}
+            {
+                !state &&
+                <div className={css.filter}>
+                    <DevicesFilter/>
+                </div>
+            }
         </div>
     );
 };

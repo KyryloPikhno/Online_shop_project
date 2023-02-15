@@ -1,4 +1,4 @@
-import {useNavigate, useSearchParams} from "react-router-dom";
+import {NavLink, useNavigate, useSearchParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
 
@@ -13,7 +13,7 @@ const Login = () => {
 
     const [query] = useSearchParams()
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     let submit = async (user) => {
         try {
@@ -36,6 +36,9 @@ const Login = () => {
                 <input type='text' placeholder={'email'} {...register('email')}/>
                 <input type='text' placeholder={'password'} {...register('password')}/>
                 <button>Login</button>
+                <div className={css.link}>
+                    No account yet?<NavLink to={'/register'}>Sign up</NavLink>
+                </div>
             </form>
         </div>
     );

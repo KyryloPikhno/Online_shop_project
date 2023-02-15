@@ -90,7 +90,7 @@ const DevicesFilter = () => {
                                 type="checkbox"
                                 value={category._id}
                                 id={category._id}
-                              />
+                            />
                             {category.name}
                         </label>))
                 }
@@ -99,7 +99,7 @@ const DevicesFilter = () => {
                 <p>Brands</p>
                 {
                     brands &&
-                    brands.map(brand=> (
+                    brands.map(brand => (
                         <label key={brand._id}>
                             <input
                                 {...register("brand")}
@@ -129,7 +129,7 @@ const DevicesFilter = () => {
             </div>
             <div className={css.price}>
                 <p>Price</p>
-                <div>
+                <div className={css.priceGteLte}>
                     <input type='number' placeholder={'price_gte'} {...register('price_gte')}/>
                     <input type='number' placeholder={'price_lte'} {...register('price_lte')}/>
                 </div>

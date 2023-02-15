@@ -29,3 +29,8 @@
 ::placeholder{
     text-align: center;
 }
+
+.form a{
+    color: var(--light-alt);
+    font-size: 12px;
+}
