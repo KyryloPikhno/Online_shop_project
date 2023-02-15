@@ -1,2 +1,4 @@
 export * from './newDevice.validator';
-export * from './common.validator';
+export * from './brand.validator';
+export * from './color.validator';
+export * from './category.validator';
