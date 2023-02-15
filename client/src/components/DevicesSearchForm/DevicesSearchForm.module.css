@@ -7,11 +7,14 @@
   height: 30px;
   align-items: center;
   gap: 5px;
+  position: relative;
 }
 
 .form span{
   color: #D81E5B;
   font-size: 10px;
+  position: absolute;
+  bottom: -25px;
 }
 
 .form input {
@@ -53,9 +56,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: 1s;
 }
 
 .noValidButton{
   color: gray;
+  transition: 1s;
 }
 

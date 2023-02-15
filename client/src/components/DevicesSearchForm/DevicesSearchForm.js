@@ -58,9 +58,6 @@ const DevicesSearchForm = () => {
             console.log(e.message)
         }
     }
-
-    console.log(isValid);
-
     const value = categories.map(category => category._id).toString()
 
     return (
