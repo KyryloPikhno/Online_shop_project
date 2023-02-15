@@ -16,6 +16,7 @@ const Categories = () => {
 
     return (
         <div className={css.container}>
+            <h3>All categories</h3>
             {
                 categories &&
                 categories.map(category => (

@@ -33,6 +33,29 @@ const create = createAsyncThunk(
     }
 );
 
+const update = createAsyncThunk(
+    'colorSlice/update',
+    async ({color}, {rejectWithValue}) => {
+        try {
+            const {data} = await colorService.update(color)
+            return data
+        } catch (e) {
+            return rejectWithValue(e.response.data)
+        }
+    }
+);
+
+const deleteById = createAsyncThunk(
+    'colorSlice/deleteById',
+    async ({colorId}, {rejectWithValue}) => {
+        try {
+            const {data} = await colorService.delete(colorId)
+            return data
+        } catch (e) {
+            return rejectWithValue(e.response.data)
+        }
+    }
+);
 
 
 const colorSlice = createSlice({
@@ -67,6 +90,31 @@ const colorSlice = createSlice({
                 state.loading = true
                 state.error = null
             })
+            .addCase(update.fulfilled, (state, action) => {
+                state.color = action.payload
+                state.error = null
+                state.loading = false
+            })
+            .addCase(update.rejected, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
+            .addCase(update.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
+            .addCase(deleteById.fulfilled, (state, action) => {
+                state.error = null
+                state.loading = false
+            })
+            .addCase(deleteById.rejected, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
+            .addCase(deleteById.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
 });
 
 const {reducer: colorReducer} = colorSlice;
@@ -74,6 +122,8 @@ const {reducer: colorReducer} = colorSlice;
 const colorActions = {
     getAll,
     create,
+    update,
+    deleteById
 };
 
 export {colorReducer, colorActions};

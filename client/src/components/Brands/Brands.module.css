@@ -1,10 +1,10 @@
 .container{
     height: 150px;
-    width: 200px;
-    padding: 10px;
     overflow: scroll;
+    width: 200px;
     border: 1px solid var(--light-alt);
     border-radius: 8px;
+    padding: 10px;
 }
 
 .container div {
@@ -21,6 +21,7 @@
     border: none;
     width: 15px;
     height: 15px;
-    border-radius:50px ;
+    border-radius: 50px;
     cursor: pointer;
 }
+

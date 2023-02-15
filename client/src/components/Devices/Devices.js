@@ -16,6 +16,9 @@ const Devices = () => {
 
     const dispatch = useDispatch()
 
+    // useEffect(() => {
+    //     dispatch(accountActions.getByAccess())
+    // }, [query]);
     const deleter = async (_id) => {
         try {
             await dispatch(deviceActions.deleteDevice({_id}))
@@ -37,9 +40,7 @@ const Devices = () => {
         }))
     }, [query]);
 
-    useEffect(() => {
-        dispatch(accountActions.getByAccess())
-    }, [query]);
+
 
     return (
         <div className={css.container}>

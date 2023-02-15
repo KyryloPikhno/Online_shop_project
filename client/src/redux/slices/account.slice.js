@@ -5,7 +5,6 @@ import {accountService} from "../../services";
 
 const initialState = {
     account: {},
-    login: false,
     loading: false,
     error: null,
 };
@@ -41,7 +40,6 @@ const accountSlice = createSlice({
         builder
             .addCase(getByAccess.fulfilled, (state, action) => {
                 state.account = action.payload
-                state.login = true
                 state.error = null
                 state.loading = false
             })

@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {NavLink, useNavigate} from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 import {DevicesFilter} from "../DevicesFilter/DevicesFilter";
 import {DevicesSearchForm} from "../DevicesSearchForm/DevicesSearchForm";
@@ -12,9 +12,9 @@ import css from './Header.module.css'
 const Header = () => {
     const navigate = useNavigate()
 
-    const {account, login} = useSelector(state => state.accountReducer);
+    const [state , setState]= useState(false)
 
-    const {categories} = useSelector(state => state.categoryReducer);
+    const {account} = useSelector(state => state.accountReducer);
 
     const dispatch = useDispatch()
 
@@ -30,6 +30,14 @@ const Header = () => {
         navigate('/login');
     };
 
+    console.log(state);
+
+    // if(window.location.pathname === '/login' || window.location.pathname === '/register'){
+    //     setState(true)
+    // }
+
+
+
     return (
         <div className={css.header}>
             <div className={css.wrap}>
@@ -38,10 +46,10 @@ const Header = () => {
                     <DevicesSearchForm/>
                 </div>
                 {
-                    login ?
+                   state ?
                         <div className={css.button}>
                             {
-                                (login && account.isAdmin) ?
+                                account.isAdmin ?
                                     <div className={css.nav}>
                                         <NavLink to={'/admin'}>Admin</NavLink>
                                         <NavLink to={'/account'}>Account</NavLink>
@@ -63,12 +71,12 @@ const Header = () => {
                         </div>
                 }
             </div>
-            <div>
-                {
-                    login &&
-                    <DevicesFilter/>
-                }
-            </div>
+            {/*<div>*/}
+            {/*    {*/}
+            {/*        window.location.pathname !== ('/login' || '/register') &&*/}
+            {/*        <DevicesFilter/>*/}
+            {/*    }*/}
+            {/*</div>*/}
         </div>
     );
 };
