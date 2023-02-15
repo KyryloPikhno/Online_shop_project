@@ -4,6 +4,7 @@ import {useForm} from "react-hook-form";
 import {NavLink} from "react-router-dom";
 
 import css from './PasswordForgot.module.css';
+import {passwordForgotService} from "../../services";
 
 
 const style = {
@@ -31,11 +32,13 @@ const PasswordForgot = () => {
 
     let submit = async (user) => {
         try {
-            console.log(user);
+            await passwordForgotService.forgotPassword(user);
+
+            await setOpen(true)
         } catch (e) {
             console.log(e)
         }
-    }
+    };
 
     return (
         <div>
@@ -43,7 +46,7 @@ const PasswordForgot = () => {
                 <p>To reset your password, enter your name and email address you use to sign in.</p>
                 <input type='text' placeholder={'name'} {...register('name')}/>
                 <input type='text' placeholder={'email'} {...register('email')}/>
-                <button onClick={() => setOpen(true)}>Get reset link</button>
+                <button>Get reset link</button>
             </form>
             <Modal
                 keepMounted

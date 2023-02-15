@@ -31,7 +31,7 @@ const Header = () => {
     };
 
     useEffect(() => {
-        if (window.location.pathname === '/login' || window.location.pathname === '/register' || window.location.pathname === '/password/forgot') {
+        if (window.location.pathname === '/login' || window.location.pathname === '/register' || window.location.pathname === '/password/forgot' || window.location.pathname === '/password/new') {
             setState(true)
         } else {
             setState(false)

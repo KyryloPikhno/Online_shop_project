@@ -1,19 +1,20 @@
 const baseURL = 'http://localhost:5400';
 
 const urls = {
-    devices: '/devices',
-    users: '/users',
     uploadImage: '/uploadImage',
     removeImage: 'removeImage',
     category: '/category',
+    devices: '/devices',
+    users: '/users',
     brand: '/brand',
     color: '/color',
     auth: {
+        passwordForgot:'/auth/password/forgot',
         registration: '/auth/registration',
-        login: '/auth/login',
+        logoutAll: '/auth/logoutAll',
         refresh: '/auth/refresh',
         account: '/auth/account',
-        logoutAll: '/auth/logoutAll'
+        login: '/auth/login',
     }
 };
 

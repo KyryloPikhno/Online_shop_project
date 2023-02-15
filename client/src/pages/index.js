@@ -1,3 +1,4 @@
+export * from './NewPasswordAfterForgotPage/NewPasswordAfterForgotPage';
 export * from './PasswordForgotPage/PasswordForgotPage';
 export * from './DeviceDetailsPage/DeviceDetailsPage';
 export * from './NotFoundPage/NotFoundPage';

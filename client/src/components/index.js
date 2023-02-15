@@ -1,3 +1,4 @@
+export * from './NewPasswordAfterForgot/NewPasswordAfterForgot';
 export * from './PasswordForgot/PasswordForgot';
 export * from './DeviceDetails/DeviceDetails';
 export * from './Register/Register';
