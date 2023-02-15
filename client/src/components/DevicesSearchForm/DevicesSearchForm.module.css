@@ -9,6 +9,11 @@
   gap: 5px;
 }
 
+.form span{
+  color: #D81E5B;
+  font-size: 10px;
+}
+
 .form input {
   width: 250px;
   border: none;
@@ -36,4 +41,21 @@
   outline: none;
 }
 
+.validButton ,.noValidButton{
+  font-size: 25px;
+  color: var(--light-alt);
+  background: none;
+  border:none;
+  width: 1.2rem;
+  height: 100%;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.noValidButton{
+  color: gray;
+}
 

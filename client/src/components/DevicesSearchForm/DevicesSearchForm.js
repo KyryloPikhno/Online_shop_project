@@ -2,9 +2,12 @@ import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {createSearchParams, useNavigate} from "react-router-dom";
+import { FiSearch } from 'react-icons/fi'
 
 import {categoryActions} from "../../redux/slices";
 import css from './DevicesSearchForm.module.css';
+import {joiResolver} from "@hookform/resolvers/joi";
+import {devicesSearchFormValidator} from "../../validators";
 
 
 const DevicesSearchForm = () => {
@@ -12,12 +15,14 @@ const DevicesSearchForm = () => {
 
     const navigate = useNavigate();
 
-    const {register, handleSubmit} = useForm({
+    const {register, handleSubmit, formState: {errors, isValid}} = useForm({
         defaultValues: {
             "category": null,
             "name": null,
-        }
-    })
+        },
+        resolver: joiResolver(devicesSearchFormValidator),
+        mode: 'all'
+    });
 
     const dispatch = useDispatch()
 
@@ -64,6 +69,8 @@ const DevicesSearchForm = () => {
                                                     value={category._id}>{category.name}</option>)}
             </select>
             <input type='text' placeholder={'Enter name of device :)'} {...register('name')}/>
+            {errors.name && <span>{errors.name.message}</span>}
+            <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}><FiSearch/></button>
         </form>
     );
 };
