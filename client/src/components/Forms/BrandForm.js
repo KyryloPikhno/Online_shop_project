@@ -2,9 +2,9 @@ import {joiResolver} from "@hookform/resolvers/joi";
 import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
 
-import {brandActions} from "../../redux/slices";
 import {brandValidator} from "../../validators";
-import css from "./BrandForm.module.css";
+import {brandActions} from "../../redux/slices";
+import css from "./Forms.module.css";
 
 
 const BrandForm = () => {

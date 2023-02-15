@@ -54,3 +54,8 @@
     border: none;
     color: gray;
 }
+
+.container span{
+    color: #D81E5B;
+    font-size: 10px;
+}
