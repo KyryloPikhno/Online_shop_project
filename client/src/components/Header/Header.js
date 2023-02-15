@@ -2,9 +2,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
-import {DevicesFilter} from "../DevicesFilter/DevicesFilter";
-import {DevicesSearchForm} from "../DevicesSearchForm/DevicesSearchForm";
 import {accountActions, categoryActions} from "../../redux/slices";
+import {DevicesSearchForm} from "../DevicesSearchForm/DevicesSearchForm";
+import {DevicesFilter} from "../DevicesFilter/DevicesFilter";
 import {authService} from "../../services";
 import css from './Header.module.css'
 
@@ -30,16 +30,13 @@ const Header = () => {
         navigate('/login');
     };
 
-    console.log(state);
-
     useEffect(() => {
-        if (window.location.pathname === '/login' || window.location.pathname === '/register') {
+        if (window.location.pathname === '/login' || window.location.pathname === '/register' || window.location.pathname === '/password/forgot') {
             setState(true)
         } else {
             setState(false)
         }
-
-    }, [dispatch, window.location.pathname, account])
+    }, [dispatch, window.location.pathname, account]);
 
 
     return (

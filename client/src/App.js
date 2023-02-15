@@ -8,6 +8,7 @@ import {
     LoginPage,
     NotFoundPage,
     OrderPage,
+    PasswordForgotPage,
     RegisterPage
 } from "./pages";
 import {MainLayout} from "./layouts";
@@ -21,6 +22,7 @@ function App() {
                 <Route index element={<Navigate to={'/login'}/>}/>
                 <Route path={'/login'} element={<LoginPage/>}/>
                 <Route path={'/register'} element={<RegisterPage/>}/>
+                <Route path={'/password/forgot'} element={<PasswordForgotPage/>}/>
                 <Route path={'/devices'} element={<DevicesPage/>}/>
                 <Route path={'/devices/:id'} element={<DeviceDetailsPage/>}/>
                 <Route path={'/order'} element={<OrderPage/>}/>

@@ -15,10 +15,6 @@ const Devices = () => {
     let [query] = useSearchParams({});
 
     const dispatch = useDispatch()
-
-    // useEffect(() => {
-    //     dispatch(accountActions.getByAccess())
-    // }, [query]);
     const deleter = async (_id) => {
         try {
             await dispatch(deviceActions.deleteDevice({_id}))
