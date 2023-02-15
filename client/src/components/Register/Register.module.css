@@ -30,7 +30,6 @@
     text-align: center;
 }
 
-.form a{
+.link a{
     color: var(--light-alt);
-    font-size: 12px;
 }

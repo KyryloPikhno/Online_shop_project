@@ -47,6 +47,8 @@
     font-size: 12px;
 }
 
-.link a{
+
+.form a{
     color: var(--light-alt);
+    font-size: 12px;
 }

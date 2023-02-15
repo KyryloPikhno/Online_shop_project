@@ -36,9 +36,7 @@ const Login = () => {
                 <input type='text' placeholder={'email'} {...register('email')}/>
                 <input type='text' placeholder={'password'} {...register('password')}/>
                 <button>Login</button>
-                <div className={css.link}>
-                    No account yet?<NavLink to={'/register'}>Sign up</NavLink>
-                </div>
+                <NavLink to={'/password/forgot'}>Forgot your password?</NavLink>
             </form>
         </div>
     );

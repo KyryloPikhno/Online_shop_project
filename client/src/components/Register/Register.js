@@ -30,8 +30,9 @@ const Register = () => {
             <input type='text' placeholder={'password'} {...register('password')}/>
             <button>Register</button>
             {error && <span>{error}</span>}
-
-            <NavLink to={'/password/forgot'}>Forgot your password?</NavLink>
+            <div className={css.link}>
+                No account yet?<NavLink to={'/register'}>Sign up</NavLink>
+            </div>
         </form>
     );
 };
