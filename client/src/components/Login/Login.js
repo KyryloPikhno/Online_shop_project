@@ -1,12 +1,26 @@
 import {NavLink, useNavigate, useSearchParams} from "react-router-dom";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
+import {useState} from "react";
 import {useForm} from "react-hook-form";
 
+import {loginValidator} from "../../validators";
 import {authService} from "../../services";
 import css from './Login.module.css';
 
 
 const Login = () => {
-    const {register, handleSubmit} = useForm();
+    const [error, setError] = useState(false);
+
+    const {register, handleSubmit, formState: {errors, isValid}} = useForm(
+        {
+            defaultValues: {
+                "email": null,
+                "password": null,
+            },
+            resolver: joiResolver(loginValidator),
+            mode: 'all'
+        }
+    );
 
     const navigate = useNavigate();
 
@@ -20,7 +34,7 @@ const Login = () => {
 
             navigate('/devices');
         } catch (e) {
-            console.log(e.message);
+            setError(e.message)
         }
     }
     return (
@@ -29,9 +43,14 @@ const Login = () => {
 
             <form className={css.form} onSubmit={handleSubmit(submit)}>
                 <input type='text' placeholder={'email'} {...register('email')}/>
-                <input type='text' placeholder={'password'} {...register('password')}/>
+                {errors.email && <span>{errors.email.message}</span>}
 
-                <button>Login</button>
+                <input type='text' placeholder={'password'} {...register('password')}/>
+                {errors.password && <span>{errors.password.message}</span>}
+
+                {error && <span>Wrong email or password. {error}</span>}
+
+                <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}>Login</button>
                 <NavLink to={'/password/forgot'}>Forgot your password?</NavLink>
             </form>
         </div>

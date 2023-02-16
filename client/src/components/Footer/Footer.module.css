@@ -1,5 +1,16 @@
-.footer{
-    border: 1px solid black;
+.footer {
+    padding-top:15px ;
+    margin-top:30px ;
     height: 300px;
     width: 100%;
+    background: linear-gradient(white, var(--light-alt));
+}
+
+.footer a h1 {
+    color: var(--light-alt);
+    font-size: 20px;
+}
+
+.footer a {
+    text-decoration: none;
 }

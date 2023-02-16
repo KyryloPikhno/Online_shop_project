@@ -4,6 +4,7 @@ import {urls} from "../configs";
 
 const _accessTokenKey = 'access';
 const _refreshTokenKey = 'refresh';
+const _actionTokenKey = 'action';
 
 const authService = {
     register: (user) => axiosService.post(urls.auth.registration, user),
@@ -25,6 +26,8 @@ const authService = {
     getAccessToken: () => localStorage.getItem(_accessTokenKey),
 
     getRefreshToken: () => localStorage.getItem(_refreshTokenKey),
+
+    getActionToken: () => localStorage.getItem(_actionTokenKey)
 };
 
 

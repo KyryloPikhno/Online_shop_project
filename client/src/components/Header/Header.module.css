@@ -23,18 +23,18 @@
     color: var(--light);
 }
 
-.button {
+.buttons {
     display: flex;
     gap: 12px;
 }
 
-.button div{
+.buttons div{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.button button{
+.buttons button{
     border:none;
     background: none;
     color: var(--light-alt);
@@ -42,7 +42,7 @@
     cursor: pointer;
 }
 
-.button button:last-child {
+.buttons button:last-child {
     width: 115px;
     color: var(--light);
     border: none;
@@ -52,7 +52,7 @@
     cursor: pointer;
 }
 
-.button button:last-child:hover{
+.buttons button:last-child:hover{
     background: var(--dark);
 }
 
@@ -75,13 +75,13 @@
     flex-direction: column;
     gap: 4px;
     width: 180px;
-    box-shadow: .5px .4px 3.8px black;
+    border: 2px solid var(--light-alt);
     border-radius: 8px;
     font-size: 13px;
     padding: 13px;
     background: white;
     position: fixed;
-    left: 40px;
+    left: 20px;
     top: 170px;
 }
 

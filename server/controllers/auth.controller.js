@@ -95,6 +95,7 @@ module.exports = {
     forgotPasswordAfterForgot: async (req, res, next) => {
         try {
             const {user, body} = req;
+            console.log(user);
 
             const hashPassword = await authService.hashPassword(body.password)
 

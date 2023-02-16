@@ -6,6 +6,7 @@ import {accountActions, categoryActions} from "../../redux/slices";
 import {DevicesSearchForm} from "../DevicesSearchForm/DevicesSearchForm";
 import {DevicesFilter} from "../DevicesFilter/DevicesFilter";
 import {authService} from "../../services";
+import {Logo} from "../Logo/Logo";
 import css from './Header.module.css'
 
 
@@ -13,6 +14,8 @@ const Header = () => {
     const navigate = useNavigate()
 
     const [state, setState] = useState(false)
+
+    const [isAdmin, setIsAdmin] = useState(false)
 
     const {account} = useSelector(state => state.accountReducer);
 
@@ -30,45 +33,46 @@ const Header = () => {
         navigate('/login');
     };
 
+    // useEffect(() => {
+    //     console.log(account.isAdmin);
+    //     if (!account.isAdmin) {
+    //         setIsAdmin(false);
+    //     }
+    //     if (account.isAdmin) {
+    //         setIsAdmin(true);
+    //     }
+    // }, [account, state]);
+
     useEffect(() => {
         if (window.location.pathname === '/login' || window.location.pathname === '/register' || window.location.pathname === '/password/forgot' || window.location.pathname === '/password/new') {
             setState(true)
         } else {
             setState(false)
         }
-    }, [dispatch, window.location.pathname, account]);
+    }, [window.location.pathname, account]);
 
 
     return (
         <div className={css.header}>
             <div className={css.wrap}>
                 <div className={css.logoAndForm}>
-                    <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
+                    <Logo/>
                     {!state && <DevicesSearchForm/>}
                 </div>
                 {
                     state ?
-                        <div className={css.button}>
+                        <div className={css.buttons}>
                             <NavLink to={'/login'}>Login</NavLink>
                             <NavLink to={'/register'}>Register</NavLink>
                         </div>
                         :
-                        <div className={css.button}>
-                            {
-                                account.isAdmin ?
-                                    <div className={css.nav}>
-                                        <NavLink to={'/admin'}>Admin</NavLink>
-                                        <NavLink to={'/account'}>Account</NavLink>
-                                        <NavLink to={'/order'}>Order</NavLink>
-                                        <button onClick={() => logoutAll(account._id)}>Logout</button>
-                                    </div>
-                                    :
-                                    <div className={css.nav}>
-                                        <NavLink to={'/account'}>Account</NavLink>
-                                        <NavLink to={'/order'}>Order</NavLink>
-                                        <button onClick={() => logoutAll(account._id)}>Logout</button>
-                                    </div>
-                            }
+                        <div className={css.buttons}>
+                            <div className={css.nav}>
+                                {isAdmin && <NavLink to={'/admin'}>Admin</NavLink>}
+                                <NavLink to={'/account'}>Account</NavLink>
+                                <NavLink to={'/order'}>Order</NavLink>
+                                <button onClick={() => logoutAll(account._id)}>Logout</button>
+                            </div>
                         </div>
                 }
             </div>

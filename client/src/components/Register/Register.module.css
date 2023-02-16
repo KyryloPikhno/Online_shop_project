@@ -17,19 +17,34 @@
     text-align: center;
 }
 
-.form button{
-    border-radius: 8px;
-    width: 150px;
-    border: none;
-    height: 30px;
-    color: var(--light);
-    background: var(--light-alt);
-}
-
 ::placeholder{
     text-align: center;
 }
 
 .link a{
     color: var(--light-alt);
+}
+
+
+.validButton{
+    border-radius: 8px;
+    width: 150px;
+    height: 30px;
+    background: var(--light-alt);
+    border: none;
+    color: var(--light);
+}
+
+.noValidButton{
+    border-radius: 8px;
+    width: 150px;
+    height: 30px;
+    background: var(--light);
+    border: none;
+    color: gray;
+}
+
+.form span{
+    color: #D81E5B;
+    font-size: 10px;
 }

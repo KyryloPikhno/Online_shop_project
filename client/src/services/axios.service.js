@@ -14,6 +14,13 @@ let isRefreshing = false;
 axiosService.interceptors.request.use((config) => {
     let access = authService.getAccessToken();
 
+    let action = authService.getActionToken();
+
+    if(action) {
+        config.headers.Authorization = action;
+
+        config.headers.Authorization = `Bearer ${action}`
+    }
     if (access) {
         config.headers.Authorization = access;
 

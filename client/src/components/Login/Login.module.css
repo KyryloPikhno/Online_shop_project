@@ -28,15 +28,6 @@
     text-align: center;
 }
 
-.form button{
-    border-radius: 8px;
-    width: 150px;
-    border: none;
-    height: 30px;
-    background: var(--light-alt);
-    color: var(--light);
-}
-
 ::placeholder{
     text-align: center;
 }
@@ -47,8 +38,30 @@
     font-size: 12px;
 }
 
-
 .form a{
     color: var(--light-alt);
     font-size: 12px;
+}
+
+.form span{
+    color: #D81E5B;
+    font-size: 10px;
+}
+
+.validButton{
+    border-radius: 8px;
+    width: 150px;
+    height: 30px;
+    background: var(--light-alt);
+    border: none;
+    color: var(--light);
+}
+
+.noValidButton{
+    border-radius: 8px;
+    width: 150px;
+    height: 30px;
+    background: var(--light);
+    border: none;
+    color: gray;
 }
