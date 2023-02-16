@@ -44,7 +44,7 @@ const Header = () => {
             <div className={css.wrap}>
                 <div className={css.logoAndForm}>
                     <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
-                    <DevicesSearchForm/>
+                    {!state && <DevicesSearchForm/>}
                 </div>
                 {
                     state ?

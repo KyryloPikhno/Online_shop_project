@@ -1,7 +1,10 @@
 import Joi from "joi";
 
+import {regexp} from "../configs";
+
+
 const colorValidator = Joi.object({
-    color: Joi.string().regex(/^[a-z A-Zа-яёЁіІЇї]{1,20}$/).messages({
+    color: Joi.string().regex(regexp.NAME).messages({
         'color.pattern.base': 'Color is required'
     })
 });

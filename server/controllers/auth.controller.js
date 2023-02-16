@@ -22,9 +22,7 @@ module.exports = {
         try {
             const {user, body} = req;
 
-            // req.user.email
-
-            await emailService.sendEmail('mr.good@i.ua', WELCOME, {userName: user.name});
+            await emailService.sendEmail(req.user.email, WELCOME, {userName: user.name});
 
             await authService.comparePasswords(user.password, body.password);
 
@@ -86,7 +84,7 @@ module.exports = {
 
             await ActionToken.create({token: actionToken, tokenType: FORGOT_PASSWORD, _user_id: _id})
 
-            await emailService.sendEmail('Mr.Good@i.ua', FORGOT_PASS, {url: forgotPassUrl, userName: name})
+            await emailService.sendEmail(email, FORGOT_PASS, {url: forgotPassUrl, userName: name})
 
             res.status(200).json('Success');
         } catch (e) {

@@ -1,7 +1,10 @@
 import Joi from "joi";
 
+import {regexp} from "../configs";
+
+
 const brandValidator = Joi.object({
-    brand: Joi.string().regex(/^[a-z A-Zа-яёЁіІЇї]{1,20}$/).messages({
+    brand: Joi.string().regex(regexp.NAME).messages({
         'brand.pattern.base': 'Brand is required'
     })
 });

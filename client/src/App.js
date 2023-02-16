@@ -12,6 +12,7 @@ import {
     RegisterPage
 } from "./pages";
 import {MainLayout} from "./layouts";
+import {PrivateRoute} from "./utils";
 
 
 function App() {
@@ -24,11 +25,13 @@ function App() {
                 <Route path={'/register'} element={<RegisterPage/>}/>
                 <Route path={'/password/forgot'} element={<PasswordForgotPage/>}/>
                 <Route path={'/password/new'} element={<NewPasswordAfterForgotPage/>}/>
-                <Route path={'/devices'} element={<DevicesPage/>}/>
-                <Route path={'/devices/:id'} element={<DeviceDetailsPage/>}/>
-                <Route path={'/order'} element={<OrderPage/>}/>
-                <Route path={'/account'} element={<AccountPage/>}/>
-                <Route path={'/admin'} element={<AdminPage/>}/>
+                <Route element={<PrivateRoute/>}>
+                    <Route path={'/devices'} element={<DevicesPage/>}/>
+                    <Route path={'/devices/:id'} element={<DeviceDetailsPage/>}/>
+                    <Route path={'/account'} element={<AccountPage/>}/>
+                    <Route path={'/order'} element={<OrderPage/>}/>
+                    <Route path={'/admin'} element={<AdminPage/>}/>
+                </Route>
             </Route>
             <Route path={'*'} element={<NotFoundPage/>}/>
         </Routes>

@@ -1,7 +1,10 @@
 import Joi from "joi";
 
+import {regexp} from "../configs";
+
+
 const newDeviceValidator = Joi.object({
-    name: Joi.string().regex(/^[a-zA-Z0-9]+ ?([a-zA-Z0-9]+$){1,20}$/).required().messages({
+    name: Joi.string().regex(regexp.NAME).required().messages({
         'name.pattern.base': 'Only letters. Min 1, max 20'
     }),
     price: Joi.number().min(50).max(10000).required(),
