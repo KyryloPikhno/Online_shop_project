@@ -33,21 +33,21 @@ const Header = () => {
         navigate('/login');
     };
 
-        // console.log(account.isAdmin);
+
+    useEffect(() => {
+        dispatch(accountActions.getByAccess())
+    }, [account,dispatch])
 
     useEffect(() => {
         if (window.location.pathname === '/login' || window.location.pathname === '/register' || window.location.pathname === '/password/forgot' || window.location.pathname === '/password/new') {
             setState(true)
         } else {
-            if (!account.isAdmin) {
-                setIsAdmin(false);
-            }
             if (account.isAdmin) {
                 setIsAdmin(true);
             }
             setState(false)
         }
-    }, [window.location.pathname, account]);
+    }, [window.location.pathname, account, dispatch]);
 
     return (
         <div className={css.header}>
