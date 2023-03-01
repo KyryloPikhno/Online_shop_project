@@ -4,7 +4,7 @@ import {accountService} from "../../services";
 
 
 const initialState = {
-    account: {},
+    account: false,
     loading: false,
     error: null,
 };
