@@ -44,11 +44,11 @@ app.get('/', (req, res) => {
 const start = async () => {
     try {
         let dbCon = false;
-        console.log('Connecting to database...');
 
         while (!dbCon) {
             try {
-                await mongoose.connect(process.env.MONGO_URL);
+                console.log('Connecting to database...');
+                await mongoose.connect(process.env.MONGO_URI);
                 dbCon = true;
                 console.log('Database available!!!');
             } catch (e) {
