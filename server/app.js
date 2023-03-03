@@ -4,7 +4,6 @@ const cors = require('cors');
 const path = require('path');
 
 const {userRouter, authRouter, deviceRouter, categoryRouter, orderRouter, brandRouter, colorRouter} = require("./routes");
-const{config} = require("./configs")
 
 
 const app = express();
@@ -42,12 +41,27 @@ app.get('/', (req, res) => {
     res.json('WELCOME');
 });
 
-app.listen(config.PORT, async () => {
+const start = async () => {
     try {
-        await mongoose.set('strictQuery', false);
-        await mongoose.connect(`mongodb+srv://Kyrylo:${config.DB_PASSWORD}@cluster0.qoum5y2.mongodb.net/${config.DB_NAME}`);
-        console.log(`Server listen ${config.PORT}`);
+        let dbCon = false;
+        console.log('Connecting to database...');
+
+        while (!dbCon) {
+            try {
+                await mongoose.connect(process.env.MONGO_URL);
+                dbCon = true;
+                console.log('Database available!!!');
+            } catch (e) {
+                console.log('Database unavailable, wait 3 seconds');
+                await new Promise(resolve => setTimeout(resolve, 3000));
+            }
+        }
+
+        await app.listen(+process.env.PORT, process.env.HOST);
+        console.log(`Server listen ${process.env.PORT}`);
     } catch (e) {
         console.log(e);
     }
-});
+};
+
+start();
