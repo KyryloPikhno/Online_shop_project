@@ -12,7 +12,7 @@ const Order = () => {
 
     useEffect(()=>{
         dispatch(accountActions.getByAccess())
-    },[account])
+    },[])
 
     return (
         <div className={css.container}>

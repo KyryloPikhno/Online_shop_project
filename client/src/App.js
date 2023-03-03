@@ -20,13 +20,13 @@ function App() {
     return (
         <Routes>
             <Route path={'/'} element={<MainLayout/>}>
-                <Route index element={<Navigate to={'/login'}/>}/>
+                <Route index element={<Navigate to={'/devices'}/>}/>
                 <Route path={'/login'} element={<LoginPage/>}/>
                 <Route path={'/register'} element={<RegisterPage/>}/>
                 <Route path={'/password/forgot'} element={<PasswordForgotPage/>}/>
                 <Route path={'/password/new'} element={<NewPasswordAfterForgotPage/>}/>
+                <Route path={'/devices'} element={<DevicesPage/>}/>
                 <Route element={<PrivateRoute/>}>
-                    <Route path={'/devices'} element={<DevicesPage/>}/>
                     <Route path={'/devices/:id'} element={<DeviceDetailsPage/>}/>
                     <Route path={'/account'} element={<AccountPage/>}/>
                     <Route path={'/order'} element={<OrderPage/>}/>

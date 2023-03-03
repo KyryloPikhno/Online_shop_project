@@ -6,7 +6,6 @@ const {brandController} = require("../controllers");
 
 router.get(
     '/',
-    authMiddleware.checkAssessToken,
     brandMiddleware.checkIsBrandsExist,
     brandController.getAll
 );

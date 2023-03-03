@@ -6,7 +6,6 @@ const {authMiddleware, userMiddleware, colorMiddleware} = require("../middleware
 
 router.get(
     '/',
-    authMiddleware.checkAssessToken,
     colorMiddleware.checkIsColorsExist,
     colorController.getAll
 );

@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
 import {accountActions} from "../../redux/slices";
+import {useEffect} from "react";
 
 import css from './Account.module.css';
 

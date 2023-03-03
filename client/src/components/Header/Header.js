@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
 import {accountActions, categoryActions} from "../../redux/slices";
@@ -15,8 +15,6 @@ const Header = () => {
 
     const {account} = useSelector(state => state.accountReducer);
 
-    console.log(account);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -27,6 +25,10 @@ const Header = () => {
         dispatch(categoryActions.getAll());
     }, [dispatch])
 
+    const location = useLocation();
+    const loginPathname = location.pathname === '/login';
+    const registerPathname = location.pathname === '/register';
+
     const logoutAll = (_id) => {
         dispatch(accountActions.logoutAll({_id}));
 
@@ -35,12 +37,15 @@ const Header = () => {
         navigate('/login');
     };
 
+
     return (
         <div className={css.header}>
             <div className={css.wrap}>
                 <div className={css.logoAndForm}>
                     <Logo/>
-                    {account && <DevicesSearchForm/>}
+                    {
+                        (!loginPathname && !registerPathname) && <DevicesSearchForm/>
+                    }
                 </div>
                 {
                     !account ?
@@ -60,7 +65,7 @@ const Header = () => {
                 }
             </div>
             {
-                account &&
+                (!loginPathname && !registerPathname) &&
                 <div className={css.filter}>
                     <DevicesFilter/>
                 </div>

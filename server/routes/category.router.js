@@ -6,7 +6,6 @@ const {authMiddleware, userMiddleware, categoryMiddleware} = require("../middlew
 
 router.get(
     '/',
-    authMiddleware.checkAssessToken,
     categoryMiddleware.checkIsCategoriesExist,
     categoryController.getAll
 );
