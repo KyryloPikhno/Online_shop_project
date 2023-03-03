@@ -5,7 +5,6 @@ import {brandService} from "../../services";
 
 const initialState = {
     brands: [],
-    brand:{},
     loading: false,
     error: null,
 };
@@ -51,7 +50,7 @@ const deleteById = createAsyncThunk(
     async ({brandId}, {rejectWithValue}) => {
         try {
             const {data} = await brandService.delete(brandId)
-            return data
+            return brandId
         } catch (e) {
             return rejectWithValue(e.response.data)
         }
@@ -78,7 +77,7 @@ const brandSlice = createSlice({
                 state.error = null
             })
             .addCase(create.fulfilled, (state, action) => {
-                state.brand = action.payload
+                state.brands.push(action.payload)
                 state.error = null
                 state.loading = false
             })
@@ -91,7 +90,8 @@ const brandSlice = createSlice({
                 state.error = null
             })
             .addCase(update.fulfilled, (state, action) => {
-                state.brand = action.payload
+                const find = state.brands.find(brand => brand._id === action.payload._id)
+                Object.assign(find, action.payload)
                 state.error = null
                 state.loading = false
             })
@@ -104,6 +104,8 @@ const brandSlice = createSlice({
                 state.error = null
             })
             .addCase(deleteById.fulfilled, (state, action) => {
+                const index = state.brands.findIndex(brand => brand._id === action.payload)
+                state.brands.splice(index,1)
                 state.error = null
                 state.loading = false
             })

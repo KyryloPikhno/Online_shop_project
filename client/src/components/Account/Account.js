@@ -6,13 +6,12 @@ import css from './Account.module.css';
 
 
 const Account = () => {
-
     const {account} = useSelector(state => state.accountReducer);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(accountActions.getByAccess())
+        dispatch(accountActions.getByAccess());
     }, [])
 
     return (<div>

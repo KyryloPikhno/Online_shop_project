@@ -17,9 +17,9 @@ const Devices = () => {
     const dispatch = useDispatch()
     const deleter = async (_id) => {
         try {
-            await dispatch(deviceActions.deleteDevice({_id}))
+            await dispatch(deviceActions.deleteDevice({_id}));
         } catch (e) {
-            console.log(e.message)
+            console.log(e.message);
         }
     };
 

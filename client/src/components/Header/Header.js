@@ -17,7 +17,6 @@ const Header = () => {
 
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         dispatch(accountActions.getByAccess());
     }, [dispatch]);
@@ -34,22 +33,15 @@ const Header = () => {
         navigate('/login');
     };
 
-    // useEffect(() => {
-    //     if (window.location.pathname === '/login' || window.location.pathname === '/register' || window.location.pathname === '/password/forgot' || window.location.pathname === '/password/new') {
-    //     } else {
-    //
-    //     }
-    // }, [window.location.pathname, account, dispatch]);
-
     return (
         <div className={css.header}>
             <div className={css.wrap}>
                 <div className={css.logoAndForm}>
                     <Logo/>
-                    {'' && <DevicesSearchForm/>}
+                    {account._id && <DevicesSearchForm/>}
                 </div>
                 {
-                    '' ?
+                    !account._id ?
                         <div className={css.buttons}>
                             <NavLink to={'/login'}>Login</NavLink>
                             <NavLink to={'/register'}>Register</NavLink>
@@ -66,7 +58,7 @@ const Header = () => {
                 }
             </div>
             {
-                !'state' &&
+                !account._id &&
                 <div className={css.filter}>
                     <DevicesFilter/>
                 </div>

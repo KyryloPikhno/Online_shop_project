@@ -13,10 +13,10 @@ const getByAccess = createAsyncThunk(
     'accountSlice/getByAccess',
     async (_, {rejectWithValue}) => {
         try {
-            const {data} = await accountService.getByAccess()
-            return data
+            const {data} = await accountService.getByAccess();
+            return data;
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );
@@ -25,9 +25,9 @@ const logoutAll = createAsyncThunk(
     'accountSlice/logoutAll',
     async ({_id}, {rejectWithValue}) => {
         try {
-            await accountService.logoutAll(_id)
+            await accountService.logoutAll(_id);
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );

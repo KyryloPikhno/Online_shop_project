@@ -4,7 +4,6 @@ import {categoryService} from "../../services";
 
 const initialState = {
     categories: [],
-    category:{},
     loading: false,
     error: null,
 };
@@ -13,10 +12,10 @@ const getAll = createAsyncThunk(
     'categorySlice/getAll',
     async (_, {rejectWithValue}) => {
         try {
-            const {data} = await categoryService.getAll()
-            return data
+            const {data} = await categoryService.getAll();
+            return data;
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );
@@ -25,10 +24,10 @@ const create = createAsyncThunk(
     'categorySlice/create',
     async ({category}, {rejectWithValue}) => {
         try {
-            const {data} = await categoryService.create(category)
-            return data
+            const {data} = await categoryService.create(category);
+            return data;
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );
@@ -37,10 +36,10 @@ const update = createAsyncThunk(
     'categorySlice/update',
     async ({category}, {rejectWithValue}) => {
         try {
-            const {data} = await categoryService.update(category)
-            return data
+            const {data} = await categoryService.update(category);
+            return data;
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );
@@ -49,10 +48,10 @@ const deleteById = createAsyncThunk(
     'categorySlice/deleteById',
     async ({categoryId}, {rejectWithValue}) => {
         try {
-            const {data} = await categoryService.delete(categoryId)
-            return data
+            await categoryService.delete(categoryId);
+            return categoryId;
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );
@@ -78,7 +77,7 @@ const categorySlice = createSlice({
                 state.error = null
             })
             .addCase(create.fulfilled, (state, action) => {
-                state.category = action.payload
+                state.categories.push(action.payload)
                 state.error = null
                 state.loading = false
             })
@@ -91,7 +90,8 @@ const categorySlice = createSlice({
                 state.error = null
             })
             .addCase(update.fulfilled, (state, action) => {
-                state.category = action.payload
+                const find = state.categories.find(category => category._id === action.payload._id)
+                Object.assign(find, action.payload)
                 state.error = null
                 state.loading = false
             })
@@ -104,7 +104,8 @@ const categorySlice = createSlice({
                 state.error = null
             })
             .addCase(deleteById.fulfilled, (state, action) => {
-                // state.category = action.payload
+                const index = state.categories.findIndex(category => category._id === action.payload)
+                state.categories.splice(index, 1)
                 state.error = null
                 state.loading = false
             })

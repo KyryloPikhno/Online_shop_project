@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 app.listen(config.PORT, async () => {
     try {
         await mongoose.set('strictQuery', false);
-        await mongoose.connect(`mongodb://localhost:27017/${config.DB_NAME}`);
+        await mongoose.connect(`mongodb+srv://Kyrylo:${config.DB_PASSWORD}@cluster0.qoum5y2.mongodb.net/${config.DB_NAME}`);
         console.log(`Server listen ${config.PORT}`);
     } catch (e) {
         console.log(e);

@@ -1,8 +1,10 @@
 import {NavLink, useNavigate, useSearchParams} from "react-router-dom";
 import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
+import {useDispatch} from "react-redux";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 
+import {accountActions} from "../../redux/slices";
 import {loginValidator} from "../../validators";
 import {authService} from "../../services";
 import css from './Login.module.css';
@@ -24,6 +26,8 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    const dispatch = useDispatch();
+
     const [query] = useSearchParams();
 
     let submit = async (user) => {
@@ -31,6 +35,8 @@ const Login = () => {
             const {data} = await authService.login(user);
 
             authService.setTokens(data);
+
+            dispatch(accountActions.getByAccess());
 
             navigate('/devices');
         } catch (e) {

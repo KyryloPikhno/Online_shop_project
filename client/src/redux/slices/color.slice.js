@@ -4,7 +4,6 @@ import {colorService} from "../../services";
 
 const initialState = {
     colors: [],
-    color:{},
     loading: false,
     error: null,
 };
@@ -13,10 +12,10 @@ const getAll = createAsyncThunk(
     'colorSlice/getAll',
     async (_, {rejectWithValue}) => {
         try {
-            const {data} = await colorService.getAll()
-            return data
+            const {data} = await colorService.getAll();
+            return data;
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );
@@ -25,10 +24,10 @@ const create = createAsyncThunk(
     'colorSlice/create',
     async ({color}, {rejectWithValue}) => {
         try {
-            const {data} = await colorService.create(color)
-            return data
+            const {data} = await colorService.create(color);
+            return data;
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );
@@ -37,10 +36,10 @@ const update = createAsyncThunk(
     'colorSlice/update',
     async ({color}, {rejectWithValue}) => {
         try {
-            const {data} = await colorService.update(color)
-            return data
+            const {data} = await colorService.update(color);
+            return data;
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );
@@ -49,14 +48,13 @@ const deleteById = createAsyncThunk(
     'colorSlice/deleteById',
     async ({colorId}, {rejectWithValue}) => {
         try {
-            const {data} = await colorService.delete(colorId)
-            return data
+            await colorService.delete(colorId);
+            return colorId;
         } catch (e) {
-            return rejectWithValue(e.response.data)
+            return rejectWithValue(e.response.data);
         }
     }
 );
-
 
 const colorSlice = createSlice({
     name: 'colorSlice',
@@ -78,7 +76,7 @@ const colorSlice = createSlice({
                 state.error = null
             })
             .addCase(create.fulfilled, (state, action) => {
-                state.color = action.payload
+                state.colors.push(action.payload)
                 state.error = null
                 state.loading = false
             })
@@ -91,7 +89,8 @@ const colorSlice = createSlice({
                 state.error = null
             })
             .addCase(update.fulfilled, (state, action) => {
-                state.color = action.payload
+                const find = state.colors.find(color => color._id === action.payload._id)
+                Object.assign(find, action.payload)
                 state.error = null
                 state.loading = false
             })
@@ -104,6 +103,8 @@ const colorSlice = createSlice({
                 state.error = null
             })
             .addCase(deleteById.fulfilled, (state, action) => {
+                const index = state.colors.findIndex(color => color._id === action.payload)
+                state.colors.splice(index,1)
                 state.error = null
                 state.loading = false
             })
