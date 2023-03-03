@@ -52,8 +52,8 @@ const start = async () => {
                 dbCon = true;
                 console.log('Database available!!!');
             } catch (e) {
-                console.log('Database unavailable, wait 3 seconds');
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                console.log('Database unavailable, wait 5 seconds');
+                await new Promise(resolve => setTimeout(resolve, 5000));
             }
         }
 
