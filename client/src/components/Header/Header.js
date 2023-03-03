@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {NavLink, useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 
 import {accountActions, categoryActions} from "../../redux/slices";
 import {DevicesSearchForm} from "../DevicesSearchForm/DevicesSearchForm";
@@ -14,6 +14,8 @@ const Header = () => {
     const navigate = useNavigate();
 
     const {account} = useSelector(state => state.accountReducer);
+
+    console.log(account);
 
     const dispatch = useDispatch();
 
@@ -38,10 +40,10 @@ const Header = () => {
             <div className={css.wrap}>
                 <div className={css.logoAndForm}>
                     <Logo/>
-                    {account._id && <DevicesSearchForm/>}
+                    {account && <DevicesSearchForm/>}
                 </div>
                 {
-                    !account._id ?
+                    !account ?
                         <div className={css.buttons}>
                             <NavLink to={'/login'}>Login</NavLink>
                             <NavLink to={'/register'}>Register</NavLink>
@@ -58,7 +60,7 @@ const Header = () => {
                 }
             </div>
             {
-                !account._id &&
+                account &&
                 <div className={css.filter}>
                     <DevicesFilter/>
                 </div>

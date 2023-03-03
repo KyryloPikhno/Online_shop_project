@@ -1,14 +1,17 @@
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
+import {deviceActions} from "../../redux/slices";
 import {baseURL} from "../../configs";
 import css from './Device.module.css';
-import {useSelector} from "react-redux";
 
 
-const Device = ({device, deleter}) => {
-    const navigate = useNavigate()
+const Device = ({device}) => {
+    const navigate = useNavigate();
 
-    const {account} = useSelector(state => state.accountReducer)
+    const dispatch = useDispatch();
+
+    const {account} = useSelector(state => state.accountReducer);
 
     const {name, price, images, _id} = device;
 
@@ -30,7 +33,7 @@ const Device = ({device, deleter}) => {
                 <button>Add to cart</button>
                 {
                     account.isAdmin &&
-                    <button onClick={() => deleter(_id)}>Delete</button>
+                    <button onClick={() => dispatch(deviceActions.deleteDevice({_id}))}>Delete</button>
                 }
             </div>
         </div>

@@ -22,8 +22,7 @@ const Colors = () => {
                 colors.map(color => (
                     <div key={color._id}>
                         {color.name}
-                        <button onClick={() => dispatch(colorActions.deleteById({colorId: color._id}))}>X
-                        </button>
+                        <button onClick={() => dispatch(colorActions.deleteById({colorId: color._id}))}>X</button>
                     </div>
                 ))
             }

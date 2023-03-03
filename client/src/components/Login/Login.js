@@ -24,11 +24,11 @@ const Login = () => {
         }
     );
 
+    const [query] = useSearchParams();
+
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-
-    const [query] = useSearchParams();
 
     let submit = async (user) => {
         try {
@@ -40,7 +40,7 @@ const Login = () => {
 
             navigate('/devices');
         } catch (e) {
-            setError(e.message)
+            setError(e.message);
         }
     }
     return (

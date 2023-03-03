@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 
-import {accountActions, deviceActions} from "../../redux/slices";
+import {deviceActions} from "../../redux/slices";
 import {PaginationDevice} from "../PaginationDevice/PaginationDevice";
 import {Device} from "../Device/Device";
 import {Banner} from "../Banner/Banner";
@@ -14,14 +14,7 @@ const Devices = () => {
 
     let [query] = useSearchParams({});
 
-    const dispatch = useDispatch()
-    const deleter = async (_id) => {
-        try {
-            await dispatch(deviceActions.deleteDevice({_id}));
-        } catch (e) {
-            console.log(e.message);
-        }
-    };
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(deviceActions.getAll({
@@ -36,15 +29,11 @@ const Devices = () => {
         }))
     }, [query]);
 
-
-
     return (
         <div className={css.container}>
             <Banner/>
             <div className={css.devices}>
-                {devicesResponse.devices && devicesResponse.devices.map(device => <Device key={device._id}
-                                                                                          device={device}
-                                                                                          deleter={deleter}/>)}
+                {devicesResponse.devices && devicesResponse.devices.map(device => <Device key={device._id} device={device}/>)}
             </div>
             {
                 (devicesResponse.total_pages && devicesResponse.page) &&

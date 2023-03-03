@@ -44,22 +44,27 @@ const accountSlice = createSlice({
                 state.loading = false
             })
             .addCase(getByAccess.rejected, (state, action) => {
+                state.account = false
                 state.error = action.payload
                 state.loading = false
             })
             .addCase(getByAccess.pending, (state) => {
+                state.account = false
                 state.loading = true
                 state.error = null
             })
-            .addCase(logoutAll.fulfilled, (state, action) => {
+            .addCase(logoutAll.fulfilled, (state) => {
+                state.account = false
                 state.loading = false
                 state.login = false
             })
             .addCase(logoutAll.rejected, (state, action) => {
+                state.account = false
                 state.error = action.payload
                 state.loading = false
             })
             .addCase(logoutAll.pending, (state) => {
+                state.account = false
                 state.loading = true
                 state.error = null
             })
