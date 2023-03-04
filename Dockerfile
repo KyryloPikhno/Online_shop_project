@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 MAINTAINER Kyrylo Pikhno
 
-RUN mkdir /Applications
+RUN mkdir /app
 
 WORKDIR /app
 
