@@ -12,6 +12,7 @@ services:
     restart: on-failure
     command: >
       sh -c "npm start"
+
   db:
     image: mongo
     env_file:
