@@ -42,27 +42,31 @@ app.get('/', (req, res) => {
     res.json('WELCOME');
 });
 
+const connection = async () => {
+    let dbCon = false;
+
+    while (!dbCon) {
+        try {
+            console.log('Connecting to database...');
+            await mongoose.connect(process.env.MONGO_URI);
+            dbCon = true;
+            console.log('Database available!!!');
+        } catch (e) {
+            console.log('Database unavailable, wait 5 seconds');
+            await new Promise(resolve => setTimeout(resolve, 5000));
+        }
+    }
+};
+
 const start = async () => {
     try {
-        let dbCon = false;
-
-        while (!dbCon) {
-            try {
-                console.log('Connecting to database...');
-                await mongoose.connect(process.env.MONGO_URI);
-                dbCon = true;
-                console.log('Database available!!!');
-            } catch (e) {
-                console.log('Database unavailable, wait 5 seconds');
-                await new Promise(resolve => setTimeout(resolve, 5000));
-            }
-        }
-
+        await connection()
         await app.listen(+process.env.PORT, process.env.HOST);
         console.log(`Server listen ${process.env.PORT}`);
     } catch (e) {
         console.log(e);
     }
 };
+
 
 start();
