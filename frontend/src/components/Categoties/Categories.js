@@ -1,18 +1,18 @@
-import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
 import {categoryActions} from "../../redux/slices";
 
 import css from './Categories.module.css'
 
+
 const Categories = () => {
+    const {categories} = useSelector(state => state.categoryReducer);
 
-    const {categories} = useSelector(state => state.categoryReducer)
-
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(categoryActions.getAll())
-    }, [])
+        dispatch(categoryActions.getAll());
+    }, []);
 
     return (
         <div className={css.container}>

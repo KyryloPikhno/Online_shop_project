@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
 import {colorService} from "../../services";
 
 
@@ -104,7 +105,7 @@ const colorSlice = createSlice({
             })
             .addCase(deleteById.fulfilled, (state, action) => {
                 const index = state.colors.findIndex(color => color._id === action.payload)
-                state.colors.splice(index,1)
+                state.colors.splice(index, 1)
                 state.error = null
                 state.loading = false
             })

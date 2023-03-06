@@ -8,23 +8,24 @@ import css from "./Forms.module.css";
 
 
 const BrandForm = () => {
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm({
+    const {register, reset, handleSubmit, formState: {errors, isValid}} = useForm({
         defaultValues: {
             "brand": null,
         },
-            resolver: joiResolver(brandValidator),
-            mode: 'all',
-    })
+        resolver: joiResolver(brandValidator),
+        mode: 'all',
+    });
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const submit = async (obj) => {
         try {
             if (obj) {
-                await dispatch(brandActions.create({brand: obj}))
+                await dispatch(brandActions.create({brand: obj}));
+                reset();
             }
         } catch (e) {
-            console.log(e.message)
+            console.log(e.message);
         }
     };
 

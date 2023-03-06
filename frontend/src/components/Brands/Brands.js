@@ -2,17 +2,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {brandActions} from "../../redux/slices";
 import {useEffect} from "react";
 
-import css from './Brands.module.css'
+import css from './Brands.module.css';
 
 const Brands = () => {
-    const {brands} = useSelector(state => state.brandReducer)
+    const {brands} = useSelector(state => state.brandReducer);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(brandActions.getAll());
-    }, [])
-
+    }, []);
 
     return (
         <div className={css.container}>

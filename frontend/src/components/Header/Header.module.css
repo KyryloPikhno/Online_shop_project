@@ -83,6 +83,7 @@
     position: fixed;
     left: 20px;
     top: 170px;
+    z-index: 10;
 }
 
 

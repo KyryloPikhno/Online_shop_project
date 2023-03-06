@@ -25,12 +25,12 @@
     "react-scripts": "5.0.1",
     "swiper": "^8.4.6",
     "web-vitals": "^2.1.4",
-    "npm-which": "^3.0.1"
+    "npm-watch": "^0.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "watch":"npm-watch",
+    "watch": "npm-watch",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

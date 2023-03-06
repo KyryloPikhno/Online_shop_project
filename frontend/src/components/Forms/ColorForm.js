@@ -8,23 +8,24 @@ import css from "./Forms.module.css";
 
 
 const ColorForm = () => {
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm({
+    const {register, reset, handleSubmit, formState: {errors, isValid}} = useForm({
         defaultValues: {
             "color": null,
         },
         resolver: joiResolver(colorValidator),
         mode: 'all',
-    })
+    });
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const submit = async (obj) => {
         try {
             if (obj) {
-                await dispatch(colorActions.create({color: obj}))
+                await dispatch(colorActions.create({color: obj}));
+                reset();
             }
         } catch (e) {
-            console.log(e.message)
+            console.log(e.message);
         }
     };
 

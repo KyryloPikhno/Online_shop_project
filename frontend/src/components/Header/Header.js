@@ -28,7 +28,6 @@ const Header = () => {
     const location = useLocation();
     const loginPathname = location.pathname === '/login';
     const registerPathname = location.pathname === '/register';
-
     const logoutAll = (_id) => {
         dispatch(accountActions.logoutAll({_id}));
 
@@ -36,7 +35,6 @@ const Header = () => {
 
         navigate('/login');
     };
-
 
     return (
         <div className={css.header}>

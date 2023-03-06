@@ -1,18 +1,18 @@
-import {colorActions} from "../../redux/slices";
 import {useDispatch, useSelector} from "react-redux";
+import {colorActions} from "../../redux/slices";
 import {useEffect} from "react";
 
 import css from './Colors.module.css';
 
 
 const Colors = () => {
-    const {colors} = useSelector(state => state.colorReducer)
+    const {colors} = useSelector(state => state.colorReducer);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(colorActions.getAll())
-    }, [])
+        dispatch(colorActions.getAll());
+    }, []);
 
     return (
         <div className={css.container}>

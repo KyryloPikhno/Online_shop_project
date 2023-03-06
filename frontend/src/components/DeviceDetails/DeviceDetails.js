@@ -1,31 +1,30 @@
-import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 
 import {accountActions, deviceActions} from "../../redux/slices";
 import {DeviceSlider} from "../DeviceSlider/DeviceSlider";
 import css from './DeviceDetails.module.css';
-import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
+import 'swiper/css';
 
 
 const DeviceDetails = () => {
-    const {id} = useParams()
+    const {id} = useParams();
 
-    const {device} = useSelector(state => state.deviceReducer)
+    const {device} = useSelector(state => state.deviceReducer);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const {name, price, category, brand, color, createdAt, description, images} = device;
 
     useEffect(() => {
-        dispatch(deviceActions.getById({id}))
+        dispatch(deviceActions.getById({id}));
 
-        dispatch(accountActions.getByAccess())
+        dispatch(accountActions.getByAccess());
 
-    }, [])
-    console.log(device);
+    }, []);
 
     return (
         <div className={css.container}>
@@ -41,7 +40,7 @@ const DeviceDetails = () => {
                     {category && <div>category: {category.name}</div>}
                     {brand && <div>brand: {brand.name}</div>}
                     {color && <div>color: {color.name}</div>}
-                    {createdAt && <div>created: {createdAt.slice(0,10)}</div>}
+                    {createdAt && <div>created: {createdAt.slice(0, 10)}</div>}
                     {description && <div>{description}</div>}
                 </div>
                 <div className={css.buttons}>

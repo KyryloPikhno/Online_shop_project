@@ -8,23 +8,24 @@ import css from "./Forms.module.css";
 
 
 const CategoryForm = () => {
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm({
+    const {register, reset, handleSubmit, formState: {errors, isValid}} = useForm({
         defaultValues: {
             "category": null,
         },
         resolver: joiResolver(categoryValidator),
         mode: 'all',
-    })
+    });
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const submit = async (obj) => {
         try {
             if (obj) {
-                await dispatch(categoryActions.create({category: obj}))
+                await dispatch(categoryActions.create({category: obj}));
+                reset();
             }
         } catch (e) {
-            console.log(e.message)
+            console.log(e.message);
         }
     };
 

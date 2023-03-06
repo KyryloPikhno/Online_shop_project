@@ -9,4 +9,4 @@ const colorService = {
     delete: (colorId) => axiosService.delete(`${urls.color}/${colorId}`)
 };
 
-export {colorService}
+export {colorService};
