@@ -2,8 +2,8 @@ import {axiosService} from "./axios.service";
 import {urls} from "../configs";
 
 
-const _accessTokenKey = 'access';
 const _refreshTokenKey = 'refresh';
+const _accessTokenKey = 'access';
 const _actionTokenKey = 'action';
 
 const authService = {
@@ -14,8 +14,8 @@ const authService = {
     refresh: (token) => axiosService.post(urls.auth.refresh, {refresh: token}),
 
     setTokens: ({accessToken, refreshToken}) => {
-        localStorage.setItem(_accessTokenKey, accessToken)
-        localStorage.setItem(_refreshTokenKey, refreshToken)
+        localStorage.setItem(_accessTokenKey, accessToken);
+        localStorage.setItem(_refreshTokenKey, refreshToken);
     },
 
     deleteTokens: () => {
