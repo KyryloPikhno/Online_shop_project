@@ -8,4 +8,4 @@ WORKDIR /app
 
 COPY ./server/package.json /app
 
-RUN npm i --prodaction
+RUN npm i --production
