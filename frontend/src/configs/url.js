@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:5400';
+const baseURL = '/api';
 
 const urls = {
     uploadImage: '/uploadImage',

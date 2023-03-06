@@ -9,7 +9,7 @@ services:
     ports:
       - "5400:5400"
     volumes:
-      - ./server:/app
+      - ./backend:/app
       - /app/node_modules
     restart: on-failure
     command: >
@@ -32,7 +32,7 @@ services:
       - "80:80"
     restart: on-failure
     volumes:
-      - ./frontend:/usr/share/nginx/html
+      - ./client:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
 
 
