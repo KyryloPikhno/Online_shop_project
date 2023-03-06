@@ -47,7 +47,7 @@ module.exports = {
 
         const totalPrice = await totalPrices.reduce((acc, item) => acc + item, 0);
 
-        const order = await Order.create({
+        return await Order.create({
             user: orderInfo.user,
             totalPrice,
             orderStatus: false,
@@ -58,8 +58,6 @@ module.exports = {
             country: orderInfo.country,
             deviceList: devicesIds,
         })
-
-        return order
     },
 
     getCount: async (filter ={}) => {

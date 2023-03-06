@@ -49,7 +49,7 @@ const deleteById = createAsyncThunk(
     'brandSlice/deleteById',
     async ({brandId}, {rejectWithValue}) => {
         try {
-            const {data} = await brandService.delete(brandId)
+            await brandService.delete(brandId)
             return brandId
         } catch (e) {
             return rejectWithValue(e.response.data)

@@ -1,14 +1,13 @@
-import css from './Banner.module.css';
-import PriceCheckIcon from "@mui/icons-material/PriceCheck";
-import {green} from "@mui/material/colors";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
+import PriceCheckIcon from "@mui/icons-material/PriceCheck";
+import {green} from "@mui/material/colors";
+
 import img from "../../img/ios16-iphone13-pro-connect-airpods-max.png";
-import {useSearchParams} from "react-router-dom";
+import css from './Banner.module.css';
+
 
 const Banner = () => {
-
-   const [query] = useSearchParams()
 
     return (
         <div className={css.block}>
