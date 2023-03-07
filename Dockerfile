@@ -6,6 +6,6 @@ RUN mkdir /app
 
 WORKDIR /app
 
-COPY backend/package.json /app
+COPY ./backend/package.json /app
 
-RUN npm i --production
+RUN npm i --prodaction
