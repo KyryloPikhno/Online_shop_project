@@ -31,9 +31,9 @@ const CreateDeviceForm = () => {
         mode: 'all'
     });
 
-    const {device} = useSelector(state => state.deviceReducer);
-
     const {categories} = useSelector(state => state.categoryReducer);
+
+    const {device} = useSelector(state => state.deviceReducer);
 
     const {brands} = useSelector(state => state.brandReducer);
 
@@ -49,16 +49,15 @@ const CreateDeviceForm = () => {
         dispatch(categoryActions.getAll());
         dispatch(brandActions.getAll());
         dispatch(colorActions.getAll());
-    }, [])
+    }, []);
 
     const submit = async (device) => {
         try {
             await dispatch(deviceActions.create({device}));
-
         } catch (e) {
             console.log(e.message);
         }
-    }
+    };
 
     const onDrop = async (files) => {
         try {
@@ -80,14 +79,13 @@ const CreateDeviceForm = () => {
         <div className={css.container}>
             <h1>Add new device to shop</h1>
             <form className={css.form} onSubmit={handleSubmit(submit)}>
-                <input type='text' placeholder={'name'} {...register('name')}/>
+                <input type='text' placeholder={'Name'} {...register('name')}/>
                 {errors.name && <span>{errors.name.message}</span>}
 
-                <input type='number' placeholder={'price'} {...register('price')}/>
+                <input type='number' placeholder={'Price'} {...register('price')}/>
                 {errors.price && <span>{errors.price.message}</span>}
 
-
-                <input type='number' placeholder={'countInStock'} {...register('countInStock')}/>
+                <input type='number' placeholder={'Count in stock'} {...register('countInStock')}/>
                 {errors.countInStock && <span>{errors.countInStock.message}</span>}
 
                 <select {...register('category', {required: true})}>
@@ -95,7 +93,6 @@ const CreateDeviceForm = () => {
                                                         value={category._id}>{category.name}</option>)}
                 </select>
                 {errors.category && <span>{errors.category.message}</span>}
-
 
                 <select {...register('brand', {required: true})}>
                     {brands.map(brand => <option key={brand._id}
@@ -109,7 +106,7 @@ const CreateDeviceForm = () => {
                 </select>
                 {errors.color && <span>{errors.color.message}</span>}
 
-                <input type='text' placeholder={'description'} {...register('description')}/>
+                <input type='text' placeholder={'Description'} {...register('description')}/>
                 {errors.description && <span>{errors.description.message}</span>}
 
                 <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}

@@ -33,7 +33,7 @@ const CategoryForm = () => {
         <div className={css.container}>
             <h3>Add new category</h3>
             <form className={css.formCommon} onSubmit={handleSubmit(submit)}>
-                <input type='text' placeholder={'category'} {...register('category')}/>
+                <input type='text' placeholder={'Category'} {...register('category')}/>
                 {errors.category && <span>{errors.category.message}</span>}
                 <button className={!isValid ? css.noValidButton : css.validButton}  disabled={!isValid}>Save</button>
             </form>

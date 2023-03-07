@@ -38,7 +38,7 @@ module.exports = {
         try {
             await colorService.deleteOne(req.params.colorId)
 
-            res.status(204)
+            res.sendStatus(204)
         } catch (e) {
             next(e);
         }

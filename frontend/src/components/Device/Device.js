@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import {deviceActions} from "../../redux/slices";
+import {deviceActions, orderActions} from "../../redux/slices";
 import {baseURL} from "../../configs";
 import css from './Device.module.css';
 
@@ -14,6 +14,10 @@ const Device = ({device}) => {
     const {account} = useSelector(state => state.accountReducer);
 
     const {name, price, images, _id} = device;
+
+    const deviceAdder = (id) => {
+        dispatch(orderActions.addDevice({_id: id, quantity: 1, price}));
+    };
 
     return (
         <div className={css.card}>
@@ -29,8 +33,7 @@ const Device = ({device}) => {
                 </span>
             </div>
             <div className={css.button}>
-
-                <button>Add to cart</button>
+                <button onClick={()=>deviceAdder(_id)}>Add to cart</button>
                 {
                     account.isAdmin &&
                     <button onClick={() => dispatch(deviceActions.deleteDevice({_id}))}>Delete</button>

@@ -33,7 +33,7 @@ const BrandForm = () => {
         <div className={css.container}>
             <h3>Add new brand</h3>
             <form className={css.formCommon} onSubmit={handleSubmit(submit)}>
-                <input type='text' placeholder={'brand'} {...register('brand')}/>
+                <input type='text' placeholder={'Brand'} {...register('brand')}/>
                 {errors.brand && <span>{errors.brand.message}</span>}
                 <button className={!isValid ? css.noValidButton : css.validButton}  disabled={!isValid}>Save</button>
             </form>

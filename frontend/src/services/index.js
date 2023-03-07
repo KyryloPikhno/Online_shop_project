@@ -4,5 +4,6 @@ export * from './device.service';
 export * from './passwordForgot';
 export * from './brand.service';
 export * from './axios.service';
+export * from './order.service';
 export * from './color.service';
 export * from './auth.service';

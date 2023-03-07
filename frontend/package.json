@@ -25,7 +25,8 @@
     "react-scripts": "5.0.1",
     "swiper": "^8.4.6",
     "web-vitals": "^2.1.4",
-    "npm-watch": "^0.11.0"
+    "npm-watch": "^0.11.0",
+    "moment": "^2.29.4"
   },
   "scripts": {
     "start": "react-scripts start",

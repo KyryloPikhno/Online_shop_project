@@ -8,11 +8,16 @@ import css from './Order.module.css';
 const Order = () => {
     const {account} = useSelector(state => state.accountReducer);
 
-    const  dispatch = useDispatch()
+    const {deviceList} = useSelector(state => state.orderReducer);
 
-    useEffect(()=>{
-        dispatch(accountActions.getByAccess())
-    },[])
+    const dispatch = useDispatch();
+
+    console.log(deviceList);
+
+
+    useEffect(() => {
+        dispatch(accountActions.getByAccess());
+    }, []);
 
     return (
         <div className={css.container}>

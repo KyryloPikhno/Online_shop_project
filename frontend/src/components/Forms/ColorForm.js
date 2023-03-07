@@ -33,7 +33,7 @@ const ColorForm = () => {
         <div className={css.container}>
             <h3>Add new color</h3>
             <form className={css.formCommon} onSubmit={handleSubmit(submit)}>
-                <input type='text' placeholder={'color'} {...register('color')}/>
+                <input type='text' placeholder={'Color'} {...register('color')}/>
                 {errors.color && <span>{errors.color.message}</span>}
                 <button className={!isValid ? css.noValidButton : css.validButton}  disabled={!isValid}>Save</button>
             </form>

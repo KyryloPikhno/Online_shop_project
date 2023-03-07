@@ -6,13 +6,13 @@ const {ApiError} = require("../errors");
 module.exports = {
     checkIsOrdersExist: async (req, res, next) => {
         try {
-            const orders = await orderService.findByParams({})
+            const orders = await orderService.findByParams({});
 
             if (!orders) {
                 throw new ApiError('Orders not found', 404);
             }
 
-            req.orders = orders
+            req.orders = orders;
 
             next();
         } catch (e) {
@@ -22,9 +22,7 @@ module.exports = {
 
     checkIsOrderExistsForUpdate: async (req, res, next) => {
         try {
-            const order = await orderService.updateOne(req.params.orderId, req.body.status)
-
-            req.order = order
+            req.order = await orderService.updateOne(req.params.orderId, req.body.status);
 
             next();
         } catch (e) {
@@ -34,13 +32,13 @@ module.exports = {
 
     checkIsOrderExistsById: async (req, res, next) => {
         try {
-            const order = await orderService.findOneByParams(req.params.orderId)
+            const order = await orderService.findOneByParams(req.params.orderId);
 
             if (!order) {
                 throw new ApiError('Order by id not found', 404);
             }
 
-            req.order = order
+            req.order = order;
 
             next();
         } catch (e) {
@@ -56,7 +54,7 @@ module.exports = {
                 throw new ApiError(validate.error.message, 400);
             }
 
-            const order = await orderService.create(req.body)
+            const order = await orderService.create(req.body);
 
             if (!order) {
                 throw new ApiError('Order is not created', 400);
@@ -66,25 +64,24 @@ module.exports = {
 
             req.order = order;
 
-            next()
+            next();
         } catch (e) {
-            next(e)
+            next(e);
         }
     },
 
     checkIsUserOrdersExist: async (req, res, next) => {
         try {
-
-            const userOrderList = await orderService.findByParams({user: req.params.userId})
+            const userOrderList = await orderService.findByParams({user: req.params.userId});
 
             if (!userOrderList) {
                 throw new ApiError('Order is not defined', 404);
             }
 
             req.userOrderList = userOrderList;
-            next()
+            next();
         } catch (e) {
-            next(e)
+            next(e);
         }
     }
 };

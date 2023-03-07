@@ -8,6 +8,7 @@ const urls = {
     users: '/users',
     brand: '/brand',
     color: '/color',
+    order: '/order',
     auth: {
         passwordForgot:'/auth/password/forgot',
         registration: '/auth/registration',
