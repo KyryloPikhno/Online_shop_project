@@ -3,6 +3,7 @@ export * from './PasswordForgotPage/PasswordForgotPage';
 export * from './DeviceDetailsPage/DeviceDetailsPage';
 export * from './NotFoundPage/NotFoundPage';
 export * from './RegisterPage/RegisterPage';
+export * from './PaymentPage/PaymentPage';
 export * from './DevicesPage/DevicesPage';
 export * from './AccountPage/AccountPage';
 export * from './LoginPage/LoginPage';

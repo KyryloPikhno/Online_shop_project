@@ -44,6 +44,14 @@ module.exports = {
         )
     },
 
+    updateOneByParams: async ({deviceId, newInfo}) => {
+        return Device.findByIdAndUpdate(
+            deviceId,
+            newInfo,
+            {new: true}
+        )
+    },
+
     deleteOne: async (deviceId) => {
         return Device.deleteOne({_id: deviceId})
     }

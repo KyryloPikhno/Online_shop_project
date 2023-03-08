@@ -22,7 +22,7 @@ module.exports = {
 
     checkIsOrderExistsForUpdate: async (req, res, next) => {
         try {
-            req.order = await orderService.updateOne(req.params.orderId, req.body.status);
+            req.order = await orderService.updateOne(req.params.orderId, req.body.orderInfo);
 
             next();
         } catch (e) {
@@ -48,13 +48,13 @@ module.exports = {
 
     checkIsBodyValid: async (req, res, next) => {
         try {
-            let validate = newOrderValidator.validate(req.body);
+            let validate = newOrderValidator.validate(req.body.orderInfo);
 
             if(validate.error) {
                 throw new ApiError(validate.error.message, 400);
             }
 
-            const order = await orderService.create(req.body);
+            const order = await orderService.create(req.body.orderInfo);
 
             if (!order) {
                 throw new ApiError('Order is not created', 400);

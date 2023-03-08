@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
-import {accountActions, categoryActions} from "../../redux/slices";
+import {accountActions, categoryActions, orderActions} from "../../redux/slices";
 import {DevicesSearchForm} from "../DevicesSearchForm/DevicesSearchForm";
 import {DevicesFilter} from "../DevicesFilter/DevicesFilter";
 import {authService} from "../../services";
@@ -14,6 +14,8 @@ const Header = () => {
     const navigate = useNavigate();
 
     const {account} = useSelector(state => state.accountReducer);
+
+    const {quantity} = useSelector(state => state.orderReducer);
 
     const dispatch = useDispatch();
 
@@ -29,6 +31,8 @@ const Header = () => {
     const loginPathname = location.pathname === '/login';
     const registerPathname = location.pathname === '/register';
     const logoutAll = (_id) => {
+        dispatch(orderActions.reset());
+
         dispatch(accountActions.logoutAll({_id}));
 
         authService.deleteTokens();
@@ -56,7 +60,7 @@ const Header = () => {
                             <div className={css.nav}>
                                 {!!account?.isAdmin && <NavLink to={'/admin'}>Admin</NavLink>}
                                 <NavLink to={'/account'}>Account</NavLink>
-                                <NavLink to={'/order'}>Order</NavLink>
+                                <NavLink to={'/order'}>Order { quantity !== 0 && <div className={css.quantity}>{quantity}</div>}</NavLink>
                                 <button onClick={() => logoutAll(account._id)}>Logout</button>
                             </div>
                         </div>
@@ -71,5 +75,6 @@ const Header = () => {
         </div>
     );
 };
+
 
 export {Header};

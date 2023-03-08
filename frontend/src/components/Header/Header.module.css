@@ -59,6 +59,7 @@
 .nav{
     display: flex;
     gap: 8px;
+    position: relative;
 }
 
 .logoAndForm {
@@ -85,6 +86,22 @@
     top: 170px;
     z-index: 10;
 }
+
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--light-alt);
+    position: absolute;
+    font-size: 12px;
+    top: -8px;
+    right: 116px;
+    color: white;
+}
+
 
 
 

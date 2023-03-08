@@ -7,8 +7,8 @@ const orderService = {
     getCount: () => axiosService(`${urls.order}/count`),
     getByOrderId: (orderId) => axiosService(`${urls.order}/${orderId}`),
     getUserOrders: (userId) => axiosService(`${urls.order}/user_orders/${userId}`),
-    create: (order) => axiosService.post(urls.order, order),
-    update: (order, orderId) => axiosService.put(`${urls.order}/${orderId}`, order),
+    create: (orderInfo) => axiosService.post(urls.order, {orderInfo}),
+    update: (orderInfo, orderId) => axiosService.put(`${urls.order}/${orderId}`, {orderInfo}),
     delete: (orderId) => axiosService.delete(`${urls.order}/${orderId}`)
 };
 

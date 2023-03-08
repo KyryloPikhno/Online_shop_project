@@ -21,6 +21,10 @@ const authService = {
     deleteTokens: () => {
         localStorage.removeItem(_accessTokenKey);
         localStorage.removeItem(_refreshTokenKey);
+
+        localStorage.removeItem("deviceList");
+        localStorage.removeItem("totalPrice");
+        localStorage.removeItem("quantity");
     },
 
     getAccessToken: () => localStorage.getItem(_accessTokenKey),

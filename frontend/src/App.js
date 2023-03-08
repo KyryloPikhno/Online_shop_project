@@ -9,6 +9,7 @@ import {
     NotFoundPage,
     OrderPage,
     PasswordForgotPage,
+    PaymentPage,
     RegisterPage
 } from "./pages";
 import {MainLayout} from "./layouts";
@@ -30,6 +31,7 @@ function App() {
                     <Route path={'/devices/:id'} element={<DeviceDetailsPage/>}/>
                     <Route path={'/account'} element={<AccountPage/>}/>
                     <Route path={'/order'} element={<OrderPage/>}/>
+                    <Route path={'/order/payment/:accountId'} element={<PaymentPage/>}/>
                     <Route path={'/admin'} element={<AdminPage/>}/>
                 </Route>
             </Route>

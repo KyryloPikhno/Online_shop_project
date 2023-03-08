@@ -15,8 +15,8 @@ const Device = ({device}) => {
 
     const {name, price, images, _id} = device;
 
-    const deviceAdder = (id) => {
-        dispatch(orderActions.addDevice({_id: id, quantity: 1, price}));
+    const deviceAdder = () => {
+        dispatch(orderActions.addDevice({_id, name, image: images[0], quantity: 1, price}));
     };
 
     return (
@@ -33,7 +33,7 @@ const Device = ({device}) => {
                 </span>
             </div>
             <div className={css.button}>
-                <button onClick={()=>deviceAdder(_id)}>Add to cart</button>
+                <button onClick={deviceAdder}>Add to cart</button>
                 {
                     account.isAdmin &&
                     <button onClick={() => dispatch(deviceActions.deleteDevice({_id}))}>Delete</button>

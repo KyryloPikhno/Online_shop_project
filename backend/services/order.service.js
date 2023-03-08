@@ -1,5 +1,6 @@
 const {Order, DeviceList} = require("../models");
 const {ApiError} = require("../errors");
+const {deviceService} = require("./index");
 
 
 module.exports = {
@@ -34,33 +35,35 @@ module.exports = {
         const devicesIds = await Promise.all(orderInfo.deviceList.map(async (orderItem) => {
             const res = await DeviceList.create({
                 quantity: orderItem.quantity,
-                device: orderItem.device
+                device: orderItem.device,
+                price: orderItem.price,
             })
+
+            // const device = await deviceService.findOneByParams({_id: orderItem.device});
+            //
+            // const newCountInStock = await device.countInStock - orderItem.quantity;
+            //
+            // await deviceService.updateOneByParams({_id: device._id, countInStock: newCountInStock});
 
             return res._id
         }));
 
         const totalPrices = await Promise.all(devicesIds.map(async (_id) => {
             const orderItem = await DeviceList.findById({_id}).populate('device', 'price');
-            return await orderItem.device.price * orderItem.quantity;
+            return await orderItem.price * orderItem.quantity;
         }))
 
         const totalPrice = await totalPrices.reduce((acc, item) => acc + item, 0);
 
         return await Order.create({
             user: orderInfo.user,
-            totalPrice,
+            totalPrice: totalPrice,
             orderStatus: false,
-            phone: orderInfo.phone,
-            city: orderInfo.city,
-            zip: orderInfo.zip,
-            address: orderInfo.address,
-            country: orderInfo.country,
             deviceList: devicesIds,
         })
     },
 
-    getCount: async (filter ={}) => {
+    getCount: async (filter = {}) => {
         const orderCount = Order.countDocuments({})
 
         if (!orderCount) {
@@ -70,10 +73,18 @@ module.exports = {
         return orderCount
     },
 
-    updateOne: async (orderId, newInfo) => {
-        return  Order.findOneAndUpdate(
-            orderId, {orderStatus: newInfo}, {new: true}
-        )
+    updateOne: async (orderId, orderInfo) => {
+        return Order.findOneAndUpdate(
+            orderId, {
+                orderStatus: orderInfo.status,
+                phone: orderInfo.phone,
+                city: orderInfo.city,
+                zip: orderInfo.zip,
+                address: orderInfo.address,
+                country: orderInfo.country,
+            },
+            {new: true}
+        );
     },
 
     deleteOne: async (userId) => {
