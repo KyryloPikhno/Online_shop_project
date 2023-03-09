@@ -34,17 +34,17 @@ module.exports = {
         const devicesIds = await Promise.all(orderInfo.deviceList.map(async (orderItem) => {
             const res = await DeviceList.create({
                 quantity: Number(orderItem.quantity),
-                device: orderItem.device,
+                device: orderItem._id,
                 price: Number(orderItem.price),
             })
 
-            const device = await Device.findById({_id: orderItem.device});
+            const device = await Device.findById({_id: orderItem._id});
             const newCountInStock = await device.countInStock - orderItem.quantity;
 
             if (newCountInStock < 0) {
-                throw new ApiError('Device countInStock cannot be less than zero!', 400);
+                throw new ApiError(`${device.name} quantity is too large. Try to order less than we have in stock :)`, 400);
             } else {
-                await Device.findOneAndUpdate({_id: orderItem.device}, {countInStock: newCountInStock});
+                await Device.findOneAndUpdate({_id: orderItem._id}, {countInStock: newCountInStock});
             }
 
             return res._id

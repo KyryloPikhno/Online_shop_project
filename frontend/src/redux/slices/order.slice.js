@@ -3,10 +3,6 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {orderService} from "../../services";
 
 
-const deviceList = localStorage.getItem("deviceList") !== null ? JSON.parse(localStorage.getItem("deviceList")) : [];
-const totalPrice = localStorage.getItem("totalPrice") !== null ? JSON.parse(localStorage.getItem("totalPrice")) : 0;
-const quantity = localStorage.getItem("quantity") !== null ? JSON.parse(localStorage.getItem("quantity")) : 0;
-
 const setDeviceToLocalStorage = (devices, totalPrice, quantity) => {
     localStorage.setItem("deviceList", JSON.stringify(devices));
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
@@ -20,10 +16,10 @@ const removeDeviceFromLocalStorage = () => {
 };
 
 const initialState = {
-    deviceList,
-    totalPrice,
-    quantity,
-    orderInfo:{},
+    deviceList: localStorage.getItem("deviceList") !== null ? JSON.parse(localStorage.getItem("deviceList")) : [],
+    totalPrice: localStorage.getItem("totalPrice") !== null ? JSON.parse(localStorage.getItem("totalPrice")) : 0,
+    quantity: localStorage.getItem("quantity") !== null ? JSON.parse(localStorage.getItem("quantity")) : 0,
+    orderInfo: {},
     loading: false,
     error: null,
 };

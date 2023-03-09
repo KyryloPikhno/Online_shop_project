@@ -10,27 +10,30 @@ import css from './Order.module.css';
 const Order = () => {
     const {account} = useSelector(state => state.accountReducer);
 
-    const {deviceList, totalPrice, quantity} = useSelector(state => state.orderReducer);
+    const {deviceList, totalPrice, quantity, error, orderInfo} = useSelector(state => state.orderReducer);
 
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
-    const orderCreator = () => {
-        dispatch(orderActions.create({
-            orderInfo: {
-                user: account._id,
-                totalPrice,
-                deviceList,
-            }
-        }));
-
-        navigate(`payment/${account._id}`);
-    };
-
     useEffect(() => {
         dispatch(accountActions.getByAccess());
     }, []);
+
+    const orderCreator =  () => {
+        try {
+            dispatch(orderActions.create({
+                orderInfo: {
+                    user: account._id,
+                    deviceList,
+                    totalPrice,
+                }
+            }));
+
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     const incrementDevice = (device) => {
         dispatch(orderActions.addDevice(device));
@@ -47,6 +50,12 @@ const Order = () => {
     const removeOrder = () => {
         dispatch(orderActions.reset());
     };
+    useEffect(()=>{
+        if(!error && orderInfo._id){
+             navigate(`payment/${account._id}`);
+        }
+    console.log(error, orderInfo);
+    },[error, orderInfo])
 
     return (
         <div className={css.container}>
@@ -62,7 +71,7 @@ const Order = () => {
                         <div className={css.property}>Quantity: {device.quantity}
                             <div className={css.buttons}>
                                 {
-                                    device.countInStock && <button onClick={() => incrementDevice(device)}>▲</button>
+                                    <button onClick={() => incrementDevice(device)}>▲</button>
                                 }
                                 <button onClick={() => decrementDevice(device._id)}>▼</button>
                             </div>
