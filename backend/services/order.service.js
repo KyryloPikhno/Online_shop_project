@@ -1,6 +1,5 @@
-const {Order, DeviceList} = require("../models");
+const {Order, DeviceList, Device} = require("../models");
 const {ApiError} = require("../errors");
-const {deviceService} = require("./index");
 
 
 module.exports = {
@@ -34,16 +33,19 @@ module.exports = {
     create: async (orderInfo) => {
         const devicesIds = await Promise.all(orderInfo.deviceList.map(async (orderItem) => {
             const res = await DeviceList.create({
-                quantity: orderItem.quantity,
+                quantity: Number(orderItem.quantity),
                 device: orderItem.device,
-                price: orderItem.price,
+                price: Number(orderItem.price),
             })
 
-            // const device = await deviceService.findOneByParams({_id: orderItem.device});
-            //
-            // const newCountInStock = await device.countInStock - orderItem.quantity;
-            //
-            // await deviceService.updateOneByParams({_id: device._id, countInStock: newCountInStock});
+            const device = await Device.findById({_id: orderItem.device});
+            const newCountInStock = await device.countInStock - orderItem.quantity;
+
+            if (newCountInStock < 0) {
+                throw new ApiError('Device countInStock cannot be less than zero!', 400);
+            } else {
+                await Device.findOneAndUpdate({_id: orderItem.device}, {countInStock: newCountInStock});
+            }
 
             return res._id
         }));
@@ -64,7 +66,7 @@ module.exports = {
     },
 
     getCount: async (filter = {}) => {
-        const orderCount = Order.countDocuments({})
+        const orderCount = Order.countDocuments({});
 
         if (!orderCount) {
             throw new ApiError('Unsuccessful', 500);
@@ -76,12 +78,12 @@ module.exports = {
     updateOne: async (orderId, orderInfo) => {
         return Order.findOneAndUpdate(
             orderId, {
-                orderStatus: orderInfo.status,
                 phone: orderInfo.phone,
-                city: orderInfo.city,
-                zip: orderInfo.zip,
-                address: orderInfo.address,
                 country: orderInfo.country,
+                city: orderInfo.city,
+                zip: Number(orderInfo.zip),
+                address: orderInfo.address,
+                orderStatus: orderInfo.status,
             },
             {new: true}
         );

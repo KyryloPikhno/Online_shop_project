@@ -39,11 +39,17 @@
     gap: 8px;
 }
 
-.buttons button{
+.button,.disabledButton{
     border-radius: 8px;
     border:none ;
     width: 150px;
     background: var(--light-alt);
     color: var(--light);
     height: 30px;
+    cursor: pointer;
+}
+
+.disabledButton {
+    background: var(--light);
+
 }

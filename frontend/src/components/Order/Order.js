@@ -1,10 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
 import {accountActions, orderActions} from "../../redux/slices";
 import {baseURL} from "../../configs";
 import css from './Order.module.css';
-import {useNavigate} from "react-router-dom";
 
 
 const Order = () => {
@@ -61,7 +61,9 @@ const Order = () => {
                         <div className={css.property}>Price: {device.price}</div>
                         <div className={css.property}>Quantity: {device.quantity}
                             <div className={css.buttons}>
-                                <button onClick={() => incrementDevice(device)}>▲</button>
+                                {
+                                    device.countInStock && <button onClick={() => incrementDevice(device)}>▲</button>
+                                }
                                 <button onClick={() => decrementDevice(device._id)}>▼</button>
                             </div>
                         </div>

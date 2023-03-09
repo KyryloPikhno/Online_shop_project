@@ -13,10 +13,10 @@ const Device = ({device}) => {
 
     const {account} = useSelector(state => state.accountReducer);
 
-    const {name, price, images, _id} = device;
+    const {name, price, images, _id, countInStock} = device;
 
     const deviceAdder = () => {
-        dispatch(orderActions.addDevice({_id, name, image: images[0], quantity: 1, price}));
+        dispatch(orderActions.addDevice({_id, name, image: images[0], quantity: 1, price, countInStock}));
     };
 
     return (

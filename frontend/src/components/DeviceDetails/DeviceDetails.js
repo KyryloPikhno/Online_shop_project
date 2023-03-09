@@ -1,8 +1,8 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 
-import {accountActions, deviceActions} from "../../redux/slices";
+import {accountActions, deviceActions, orderActions} from "../../redux/slices";
 import {DeviceSlider} from "../DeviceSlider/DeviceSlider";
 import css from './DeviceDetails.module.css';
 import 'swiper/css/navigation';
@@ -15,16 +15,28 @@ const DeviceDetails = () => {
 
     const {device} = useSelector(state => state.deviceReducer);
 
+    const {account} = useSelector(state => state.accountReducer);
+
     const dispatch = useDispatch();
 
-    const {name, price, category, brand, color, createdAt, description, images} = device;
+    const navigate = useNavigate();
+
+    const {_id, name, price, countInStock, category, brand, color, createdAt, description, images} = device;
 
     useEffect(() => {
         dispatch(deviceActions.getById({id}));
-
         dispatch(accountActions.getByAccess());
-
     }, []);
+
+    const deviceAdder = () => {
+        dispatch(orderActions.addDevice({_id, name, image: images[0], quantity: 1, price, countInStock}));
+    };
+
+    const deleter = () => {
+        dispatch(deviceActions.deleteDevice({_id}));
+
+        navigate('/devices');
+    };
 
     return (
         <div className={css.container}>
@@ -40,12 +52,16 @@ const DeviceDetails = () => {
                     {category && <div>category: {category.name}</div>}
                     {brand && <div>brand: {brand.name}</div>}
                     {color && <div>color: {color.name}</div>}
+                    {countInStock && <div>Count in stock: {countInStock}</div>}
                     {createdAt && <div>created: {createdAt.slice(0, 10)}</div>}
                     {description && <div>{description}</div>}
                 </div>
                 <div className={css.buttons}>
-                    <button>Add to card</button>
-                    <button>Delete</button>
+                        <button className={countInStock !== 0 ? css.button : css.disabledButton} disabled={countInStock === 0} onClick={deviceAdder}>Add to card</button>
+                    {
+                        account.isAdmin &&
+                        <button className={css.button} onClick={deleter}>Delete</button>
+                    }
                 </div>
             </div>
         </div>

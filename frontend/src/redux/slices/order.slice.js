@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
 import {orderService} from "../../services";
 
 
@@ -55,11 +56,12 @@ const orderSlice = createSlice({
                     image: newDevice.image,
                     price: newDevice.price,
                     quantity: 1,
-                    totalPrice: newDevice.price
-                })
+                    totalPrice: newDevice.price,
+                    countInStock: newDevice.countInStock,
+                });
             } else {
                 existingDevice.quantity++
-                existingDevice.totalPrice = Number(existingDevice.totalPrice) + Number(newDevice.price)
+                existingDevice.totalPrice = Number(existingDevice.totalPrice) + Number(newDevice.price);
             }
 
             state.totalPrice = state.deviceList.reduce((acc, device) => acc + Number(device.price) * Number(device.quantity), 0);
