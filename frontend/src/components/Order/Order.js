@@ -50,16 +50,19 @@ const Order = () => {
     const removeOrder = () => {
         dispatch(orderActions.reset());
     };
-    useEffect(()=>{
-        if(!error && orderInfo._id){
-             navigate(`payment/${account._id}`);
+    useEffect(() => {
+        if (!error && orderInfo._id) {
+            navigate(`payment/${account._id}`);
         }
-    console.log(error, orderInfo);
-    },[error, orderInfo])
+    }, [error, orderInfo]);
+
+        const start = error?.indexOf('The');
+        const end = error?.indexOf('<br');
+        const currentError = error?.substring(start, end);
 
     return (
         <div className={css.container}>
-            <h1>Order by <span>{account.name}</span></h1>
+            <h1>Order by <span className={css.username}>{account.name}</span></h1>
             {
                 !!deviceList.length &&
                 deviceList.map(device => (
@@ -92,6 +95,7 @@ const Order = () => {
                     <button onClick={orderCreator}>Pay for it</button>
                 </div>
             }
+            {currentError && <span className={css.currentError}>{currentError}</span>}
         </div>
     );
 };

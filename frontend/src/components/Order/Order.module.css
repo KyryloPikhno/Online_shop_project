@@ -7,7 +7,7 @@
     gap: 10px;
 }
 
-.container span {
+.username {
     color: var(--light-alt);
     margin-left: 2px;
 }
@@ -106,4 +106,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.currentError{
+    color: #D81E5B;
+    font-size: 10px;
 }

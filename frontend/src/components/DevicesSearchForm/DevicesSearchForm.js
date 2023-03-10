@@ -67,7 +67,7 @@ const DevicesSearchForm = () => {
                 {categories.map(category => <option key={category._id}
                                                     value={category._id}>{category.name}</option>)}
             </select>
-            <input type='text' placeholder={'Enter name of device :)'} {...register('name')}/>
+            <input type='text' placeholder={'Search...'} {...register('name')}/>
             {errors.name && <span>{errors.name.message}</span>}
 
             <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}><FiSearch/></button>

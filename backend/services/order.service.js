@@ -42,7 +42,7 @@ module.exports = {
             const newCountInStock = await device.countInStock - orderItem.quantity;
 
             if (newCountInStock < 0) {
-                throw new ApiError(`${device.name} quantity is too large. Try to order less than we have in stock :)`, 400);
+                throw new ApiError(`The ${device.name} only ${device.countInStock} in stock`, 400);
             } else {
                 await Device.findOneAndUpdate({_id: orderItem._id}, {countInStock: newCountInStock});
             }
