@@ -6,13 +6,13 @@ const {ApiError} = require("../errors");
 module.exports = {
     checkIsBrandsExist: async (req, res, next) => {
         try {
-            const brands = await brandService.findByParams({})
+            const brands = await brandService.findByParams({});
 
             if (!brands) {
                 throw new ApiError('Brands not found', 404);
             }
 
-            req.brands = brands
+            req.brands = brands;
 
             next();
         } catch (e) {
@@ -28,13 +28,13 @@ module.exports = {
                 throw new ApiError(validate.error.message, 400);
             }
 
-            const brand = await brandService.updateOne(req.params.brandId, {name: req.body.brand})
+            const brand = await brandService.updateOne(req.params.brandId, {name: req.body.brand});
 
             if (!brand) {
                 throw new ApiError('Brand by id not found', 404);
             }
 
-            req.brand = brand
+            req.brand = brand;
 
             next();
         } catch (e) {
@@ -44,13 +44,13 @@ module.exports = {
 
     checkIsBrandExistsById: async (req, res, next) => {
         try {
-            const brand = await brandService.findOneByParams({_id: req.params.brandId})
+            const brand = await brandService.findOneByParams({_id: req.params.brandId});
 
             if (!brand) {
                 throw new ApiError('Brand by id not found', 404);
             }
 
-            req.brand = brand
+            req.brand = brand;
 
             next();
         } catch (e) {
@@ -66,7 +66,7 @@ module.exports = {
                 throw new ApiError(validate.error.message, 400);
             }
 
-            const brand = await brandService.create({name:req.body.brand})
+            const brand = await brandService.create({name: req.body.brand});
 
             if (!brand) {
                 throw new ApiError('Brand is not created', 400);
@@ -76,9 +76,9 @@ module.exports = {
 
             req.brand = brand;
 
-            next()
+            next();
         } catch (e) {
-            next(e)
+            next(e);
         }
     },
 };

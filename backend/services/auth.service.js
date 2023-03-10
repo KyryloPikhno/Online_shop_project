@@ -11,7 +11,7 @@ module.exports = {
     hashPassword: (password) => bcrypt.hash(password, 10),
 
     comparePasswords: async (hashPassword, password) => {
-        const isPasswordsSame = await bcrypt.compare(password, hashPassword)
+        const isPasswordsSame = await bcrypt.compare(password, hashPassword);
 
         if (!isPasswordsSame) {
             throw new ApiError('Wrong email or password', 400);
@@ -19,21 +19,21 @@ module.exports = {
     },
 
     generateAccessTokenPair: (dataToSign = {}) => {
-        const accessToken = jwt.sign(dataToSign, ACCESS_SECRET, {expiresIn: '1d'});
-        const refreshToken = jwt.sign(dataToSign, REFRESH_SECRET, {expiresIn: '2d'});
+        const accessToken = jwt.sign(dataToSign, ACCESS_SECRET, {expiresIn: '30s'});
+        const refreshToken = jwt.sign(dataToSign, REFRESH_SECRET, {expiresIn: '60s'});
 
-        return {accessToken, refreshToken}
+        return {accessToken, refreshToken};
     },
 
     generateActionToken: (actionType, dataToSign = {}) => {
-        let secretWord = ''
+        let secretWord = '';
 
         switch (actionType) {
             case CONFIRM_ACCOUNT:
-                secretWord = CONFIRM_ACCOUNT_ACTION_TOKEN_SECRET
+                secretWord = CONFIRM_ACCOUNT_ACTION_TOKEN_SECRET;
                 break;
             case FORGOT_PASSWORD:
-                secretWord = FORGOT_PASSWORD_ACTION_TOKEN_SECRET
+                secretWord = FORGOT_PASSWORD_ACTION_TOKEN_SECRET;
                 break;
         }
 

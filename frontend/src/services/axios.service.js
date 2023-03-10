@@ -19,7 +19,7 @@ axiosService.interceptors.request.use((config) => {
     if(action) {
         config.headers.Authorization = action;
 
-        config.headers.Authorization = `Bearer ${action}`
+        config.headers.Authorization = `Bearer ${action}`;
     }
     if (access) {
         config.headers.Authorization = access;

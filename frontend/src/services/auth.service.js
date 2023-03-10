@@ -31,7 +31,7 @@ const authService = {
 
     getRefreshToken: () => localStorage.getItem(_refreshTokenKey),
 
-    getActionToken: () => localStorage.getItem(_actionTokenKey)
+    getActionToken: () => localStorage.getItem(_actionTokenKey),
 };
 
 

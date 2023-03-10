@@ -56,9 +56,9 @@ const Order = () => {
         }
     }, [error, orderInfo]);
 
-        const start = error?.indexOf('The');
-        const end = error?.indexOf('<br');
-        const currentError = error?.substring(start, end);
+        // const start = error?.indexOf('The');
+        // const end = error?.indexOf('<br');
+        // const currentError = error?.substring(start, end);
 
     return (
         <div className={css.container}>
@@ -96,7 +96,7 @@ const Order = () => {
                 </div>
             }
             {
-                currentError && <span className={css.currentError}>{currentError}</span>
+                error && <span className={css.currentError}>{error.message}</span>
             }
         </div>
     );

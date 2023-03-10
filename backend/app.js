@@ -22,9 +22,12 @@ app.use((req, res, next) => {
     next();
 });
 
+
 mongoose.set("strictPopulate", false);
 
 app.use('/auth', authRouter);
+
+app.use('/devices', deviceRouter);
 
 app.use('/users', userRouter);
 
@@ -33,8 +36,6 @@ app.use('/category', categoryRouter);
 app.use('/brand', brandRouter);
 
 app.use('/color', colorRouter);
-
-app.use('/devices', deviceRouter);
 
 app.use('/order', orderRouter);
 
@@ -57,6 +58,12 @@ const connection = async () => {
         }
     }
 };
+app.use((err, req, res, next) => {
+    res.status(err.status || 500).json({
+        message: err.message || 'Unknown error',
+        status: err.status || 500
+    });
+});
 
 const start = async () => {
     try {
