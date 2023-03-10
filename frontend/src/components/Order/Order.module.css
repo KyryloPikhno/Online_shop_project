@@ -108,6 +108,11 @@
     justify-content: center;
 }
 
+.total button:hover{
+    background: var(--dark);
+    color: white;
+}
+
 .currentError{
     color: #D81E5B;
     font-size: 10px;

@@ -51,5 +51,10 @@
 
 .disabledButton {
     background: var(--light);
+    color: #D81E5B;
+    cursor: auto;
+}
 
+.buttons button:last-child:hover{
+    background: var(--dark);
 }

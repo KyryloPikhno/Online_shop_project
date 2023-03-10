@@ -95,10 +95,11 @@ const Order = () => {
                     <button onClick={orderCreator}>Pay for it</button>
                 </div>
             }
-            {currentError && <span className={css.currentError}>{currentError}</span>}
+            {
+                currentError && <span className={css.currentError}>{currentError}</span>
+            }
         </div>
     );
 };
-
 
 export {Order};

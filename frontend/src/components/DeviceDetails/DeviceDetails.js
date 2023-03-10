@@ -38,6 +38,7 @@ const DeviceDetails = () => {
         navigate('/devices');
     };
 
+
     return (
         <div className={css.container}>
             <div className={css.slider}>
@@ -57,7 +58,7 @@ const DeviceDetails = () => {
                     {description && <div>{description}</div>}
                 </div>
                 <div className={css.buttons}>
-                        <button className={countInStock !== 0 ? css.button : css.disabledButton} disabled={countInStock === 0} onClick={deviceAdder}>Add to card</button>
+                        <button className={countInStock !== 0 ? css.button : css.disabledButton} disabled={countInStock === 0} onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card': 'Device is out of stock'}</button>
                     {
                         account.isAdmin &&
                         <button className={css.button} onClick={deleter}>Delete</button>
@@ -67,5 +68,6 @@ const DeviceDetails = () => {
         </div>
     );
 };
+
 
 export {DeviceDetails};

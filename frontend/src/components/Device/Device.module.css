@@ -30,13 +30,13 @@
     width: 100%;
 }
 
-.button{
+.buttons{
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.button button{
+.button,.disabledButton{
     width: 100px;
     background: var(--light);
     border: none;
@@ -45,4 +45,14 @@
     border-radius:4px ;
     cursor: pointer;
     color: var(--light);
+}
+
+.button:hover{
+    background: var(--dark);
+}
+
+.disabledButton {
+    background: var(--light);
+    color: #D81E5B;
+    cursor: auto;
 }

@@ -32,15 +32,16 @@ const Device = ({device}) => {
                $ {price}
                 </span>
             </div>
-            <div className={css.button}>
-                <button onClick={deviceAdder}>Add to cart</button>
+            <div className={css.buttons}>
+                <button className={countInStock !== 0 ? css.button : css.disabledButton} disabled={countInStock === 0} onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card': 'Out of stock'}</button>
                 {
                     account.isAdmin &&
-                    <button onClick={() => dispatch(deviceActions.deleteDevice({_id}))}>Delete</button>
+                    <button className={css.button} onClick={() => dispatch(deviceActions.deleteDevice({_id}))}>Delete</button>
                 }
             </div>
         </div>
     );
 };
+
 
 export {Device};
