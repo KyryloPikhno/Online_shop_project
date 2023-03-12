@@ -53,6 +53,8 @@ const Payment = () => {
     useEffect(() => {
         if (orderStatus) {
             setOpen(true);
+
+            dispatch(orderActions.reset());
         }
     }, [orderStatus]);
 

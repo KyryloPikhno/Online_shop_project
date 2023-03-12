@@ -19,11 +19,24 @@ const initialState = {
     deviceList: localStorage.getItem("deviceList") !== null ? JSON.parse(localStorage.getItem("deviceList")) : [],
     totalPrice: localStorage.getItem("totalPrice") !== null ? JSON.parse(localStorage.getItem("totalPrice")) : 0,
     quantity: localStorage.getItem("quantity") !== null ? JSON.parse(localStorage.getItem("quantity")) : 0,
+    userOrders: [],
     orderInfo: {},
     orderStatus: false,
     loading: false,
     error: null,
 };
+
+const getUserOrders = createAsyncThunk(
+    'orderSlice/getUserOrders',
+    async ({userId}, {rejectWithValue}) => {
+        try {
+            const {data} = await orderService.getUserOrders(userId);
+            return data;
+        } catch (e) {
+            return rejectWithValue(e.response.data);
+        }
+    }
+);
 
 const create = createAsyncThunk(
     'orderSlice/create',
@@ -128,6 +141,19 @@ const orderSlice = createSlice({
     },
     extraReducers: builder =>
         builder
+            .addCase(getUserOrders.fulfilled, (state, action) => {
+                state.userOrders = action.payload
+                state.error = null
+                state.loading = false
+            })
+            .addCase(getUserOrders.rejected, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
+            .addCase(getUserOrders.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
             .addCase(create.fulfilled, (state, action) => {
                 state.orderInfo = action.payload
                 state.error = null
@@ -162,6 +188,7 @@ const orderActions = {
     addDevice,
     removeDevice,
     deleteDevice,
+    getUserOrders,
     create,
     update,
     reset

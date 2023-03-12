@@ -1,19 +1,26 @@
-.container{
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+    gap: 100px;
+}
+
+
+.userInfo{
     display: flex;
     align-items: center;
     justify-content: center;
-    /*border: 2px solid black;*/
-    width: 70vw;
-    height: 60vh;
     position: relative;
     gap: 30px;
 }
 
-.container img {
+.userInfo img {
     width: 200px;
 }
 
-.container span{
+.userInfo span{
     color: var(--light-alt);
 }
 
@@ -27,5 +34,74 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+.orders{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.order{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 8px;
+    border:2px solid var(--light-alt);
+    width: 620px;
+    position: relative;
+}
+
+.order button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background: hotpink;
+    border: none;
+    width: 17px;
+    height: 17px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.property{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 180px;
+    height: 60px;
+    padding: 5px;
+}
+.devices{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.device{
+    box-shadow: .5px .4px 3.8px black;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+    padding: 10px;
+}
+
+.device img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+}
+
+.imgBox{
+    border: 2px solid var(--light-alt);
+    border-radius: 8px;
 }
 
