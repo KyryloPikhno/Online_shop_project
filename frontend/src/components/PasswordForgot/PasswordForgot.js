@@ -3,8 +3,8 @@ import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {NavLink} from "react-router-dom";
 
-import css from './PasswordForgot.module.css';
 import {passwordForgotService} from "../../services";
+import css from './PasswordForgot.module.css';
 
 
 const style = {

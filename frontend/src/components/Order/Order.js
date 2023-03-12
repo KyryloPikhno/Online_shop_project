@@ -20,7 +20,7 @@ const Order = () => {
         dispatch(accountActions.getByAccess());
     }, []);
 
-    const orderCreator =  () => {
+    const orderCreator = () => {
         try {
             dispatch(orderActions.create({
                 orderInfo: {
@@ -29,11 +29,16 @@ const Order = () => {
                     totalPrice,
                 }
             }));
-
         } catch (e) {
             console.log(e);
         }
     };
+
+    useEffect(() => {
+        if (!error && orderInfo._id) {
+            navigate(`payment/${orderInfo._id}`);
+        }
+    }, [error, orderInfo]);
 
     const incrementDevice = (device) => {
         dispatch(orderActions.addDevice(device));
@@ -50,15 +55,6 @@ const Order = () => {
     const removeOrder = () => {
         dispatch(orderActions.reset());
     };
-    useEffect(() => {
-        if (!error && orderInfo._id) {
-            navigate(`payment/${account._id}`);
-        }
-    }, [error, orderInfo]);
-
-        // const start = error?.indexOf('The');
-        // const end = error?.indexOf('<br');
-        // const currentError = error?.substring(start, end);
 
     return (
         <div className={css.container}>
@@ -79,7 +75,7 @@ const Order = () => {
                                 <button onClick={() => decrementDevice(device._id)}>▼</button>
                             </div>
                         </div>
-                        <div className={css.property}>Total price: {device.totalPrice}</div>
+                        <div className={css.property}>Price: {device.totalPrice}</div>
                         <div className={css.deleteDevice}>
                             <button onClick={() => deleteDevice(device._id)}>X</button>
                         </div>
@@ -92,7 +88,7 @@ const Order = () => {
                     <div>Quantity: {quantity}</div>
                     <div>Total price: {totalPrice}</div>
                     <button onClick={removeOrder}>Remove order</button>
-                    <button onClick={orderCreator}>Pay for it</button>
+                    <button onClick={orderCreator}>Next</button>
                 </div>
             }
             {

@@ -77,19 +77,22 @@ module.exports = {
 
     updateOne: async (orderId, orderInfo) => {
         return Order.findOneAndUpdate(
-            orderId, {
-                phone: orderInfo.phone,
+            {_id: orderId}, {
                 country: orderInfo.country,
                 city: orderInfo.city,
                 zip: Number(orderInfo.zip),
                 address: orderInfo.address,
-                orderStatus: orderInfo.status,
+                phone: orderInfo.phone,
+                cardNumber: orderInfo.card,
+                cardDateMonth: orderInfo.month,
+                cardDateYear: orderInfo.year,
+                orderStatus: !!orderInfo.card && !!orderInfo.month && !!orderInfo.year,
             },
             {new: true}
         );
     },
 
     deleteOne: async (userId) => {
-        return Order.deleteOne({_id: orderId})
+        return Order.deleteOne({_id: orderId});
     }
 };

@@ -11,7 +11,10 @@ const orderSchema = new Schema({
     city: {type: String},
     zip: {type: Number},
     country: {type: String},
-    orderStatus: {type: Boolean, required: true, default: 'false'}
+    cardNumber: {type: Number},
+    cardDateMonth: {type: Number},
+    cardDateYear: {type: Number},
+    orderStatus: {type: Boolean, default: 'false', require: true},
 }, {
     timestamps: true
 });
