@@ -33,10 +33,13 @@ const Device = ({device}) => {
                 </span>
             </div>
             <div className={css.buttons}>
-                <button className={countInStock !== 0 ? css.button : css.disabledButton} disabled={countInStock === 0} onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card': 'Out of stock'}</button>
+                <button className={countInStock !== 0 ? css.button : css.disabledButton}
+                        disabled={countInStock === 0}
+                        onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card' : 'Out of stock'}</button>
                 {
                     account.isAdmin &&
-                    <button className={css.button} onClick={() => dispatch(deviceActions.deleteDevice({_id}))}>Delete</button>
+                    <button className={css.button}
+                            onClick={() => dispatch(deviceActions.deleteDevice({_id}))}>Delete</button>
                 }
             </div>
         </div>

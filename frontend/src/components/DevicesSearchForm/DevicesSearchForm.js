@@ -1,17 +1,17 @@
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
 import {createSearchParams, useNavigate} from "react-router-dom";
-import {joiResolver} from "@hookform/resolvers/joi";
+import {useDispatch, useSelector} from "react-redux";
 import {categoryActions} from "../../redux/slices";
-import { FiSearch } from 'react-icons/fi'
+import {joiResolver} from "@hookform/resolvers/joi";
+import {useEffect} from "react";
+import {FiSearch} from 'react-icons/fi';
+import {useForm} from "react-hook-form";
 
 import {devicesSearchFormValidator} from "../../validators";
 import css from './DevicesSearchForm.module.css';
 
 
 const DevicesSearchForm = () => {
-    const {categories} = useSelector(state => state.categoryReducer)
+    const {categories} = useSelector(state => state.categoryReducer);
 
     const navigate = useNavigate();
 
@@ -24,11 +24,11 @@ const DevicesSearchForm = () => {
         mode: 'all'
     });
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(categoryActions.getAll())
-    }, [])
+        dispatch(categoryActions.getAll());
+    }, []);
 
     const submit = async (obj) => {
         try {
@@ -52,13 +52,13 @@ const DevicesSearchForm = () => {
 
             navigate({
                 pathname: '/devices',
-                search: createSearchParams(findObj).toString()
+                search: createSearchParams(findObj).toString(),
             });
         } catch (e) {
             console.log(e.message)
         }
     }
-    const value = categories.map(category => category._id).toString()
+    const value = categories.map(category => category._id).toString();
 
     return (
         <form className={css.form} onSubmit={handleSubmit(submit)}>

@@ -58,9 +58,9 @@ const Order = () => {
 
     return (
         <div className={css.container}>
-            <h1>Order by <span className={css.username}>{account.name}</span></h1>
-            {
-                !!deviceList.length &&
+            {!!deviceList.length && <h1>Order by <span className={css.username}>{account.name}</span></h1>
+            } {
+            !!deviceList.length ?
                 deviceList.map(device => (
                     <div key={device._id} className={css.device}>
                         <div className={css.imgBox}><img src={`${baseURL}/${device.image}`} alt=""/></div>
@@ -81,9 +81,11 @@ const Order = () => {
                         </div>
                     </div>
                 ))
-            }
+                :
+                <h1 className={css.empty}>It's so empty here 🤔</h1>
+        }
             {
-                (totalPrice && quantity) &&
+                (!!deviceList.length && totalPrice && quantity) &&
                 <div className={css.total}>
                     <div>Quantity: {quantity}</div>
                     <div>Total price: {totalPrice}</div>

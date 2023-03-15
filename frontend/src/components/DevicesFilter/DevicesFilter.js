@@ -15,13 +15,13 @@ const DevicesFilter = () => {
         }
     })
 
-    const {categories} = useSelector(state => state.categoryReducer);
+    const {categories, loading: categoriesLoading} = useSelector(state => state.categoryReducer);
 
-    const {brands} = useSelector(state => state.brandReducer);
+    const {brands, loading: brandsLoading} = useSelector(state => state.brandReducer);
 
-    const {colors} = useSelector(state => state.colorReducer);
+    const {colors, loading: colorsLoading} = useSelector(state => state.colorReducer);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -134,7 +134,7 @@ const DevicesFilter = () => {
                     <input type='number' placeholder={'price_lte'} {...register('price_lte')}/>
                 </div>
             </div>
-            <button>submit</button>
+            <button>Submit</button>
         </form>
     );
 };

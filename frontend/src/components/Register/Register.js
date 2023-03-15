@@ -21,17 +21,17 @@ const Register = () => {
         }
     );
 
-    let [error, setError] = useState(null)
+    let [error, setError] = useState(null);
 
-    let navigate = useNavigate()
+    let navigate = useNavigate();
 
     let submit = async (user) => {
         try {
-            await authService.register(user)
+            await authService.register(user);
 
-            navigate('/login')
+            navigate('/login');
         } catch (e) {
-            setError(e.response?.data)
+            setError(e.response?.data);
         }
     }
 

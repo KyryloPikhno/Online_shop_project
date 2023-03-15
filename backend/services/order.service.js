@@ -27,7 +27,7 @@ module.exports = {
             throw new ApiError('Order not found', 500);
         }
 
-        return order
+        return order;
     },
 
     create: async (orderInfo) => {
@@ -47,7 +47,7 @@ module.exports = {
                 await Device.findOneAndUpdate({_id: orderItem._id}, {countInStock: newCountInStock});
             }
 
-            return res._id
+            return res._id;
         }));
 
         const totalPrices = await Promise.all(devicesIds.map(async (_id) => {
@@ -72,7 +72,7 @@ module.exports = {
             throw new ApiError('Unsuccessful', 500);
         }
 
-        return orderCount
+        return orderCount;
     },
 
     updateOne: async (orderId, orderInfo) => {

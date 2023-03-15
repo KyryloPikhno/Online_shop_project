@@ -17,7 +17,7 @@ module.exports = {
     },
 
     create: async (deviceInfo) => {
-        return Device.create(deviceInfo)
+        return Device.create(deviceInfo);
     },
 
     addImages: async (deviceId, images) => {
@@ -25,7 +25,7 @@ module.exports = {
             {_id: deviceId},
             {$push: {images}},
             {new: true}
-        )
+        );
     },
 
     deleteImage: async (deviceId, fileName) => {

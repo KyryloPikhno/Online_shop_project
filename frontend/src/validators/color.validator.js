@@ -9,4 +9,4 @@ const colorValidator = Joi.object({
     })
 });
 
-export {colorValidator}
+export {colorValidator};

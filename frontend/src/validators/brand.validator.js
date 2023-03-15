@@ -9,4 +9,4 @@ const brandValidator = Joi.object({
     })
 });
 
-export {brandValidator}
+export {brandValidator};

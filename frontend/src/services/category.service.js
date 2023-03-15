@@ -9,4 +9,4 @@ const categoryService = {
     delete: (categoryId) => axiosService.delete(`${urls.category}/${categoryId}`)
 };
 
-export {categoryService}
+export {categoryService};

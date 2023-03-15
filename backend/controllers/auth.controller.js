@@ -10,11 +10,11 @@ module.exports = {
         try {
             const hashPassword = await authService.hashPassword(req.body.password);
 
-            const user = await userService.create({...req.body, password: hashPassword})
+            const user = await userService.create({...req.body, password: hashPassword});
 
             res.status(201).json(user);
         } catch (e) {
-            next(e)
+            next(e);
         }
     },
 
@@ -28,9 +28,9 @@ module.exports = {
 
             const tokenPair = authService.generateAccessTokenPair({id: user._id});
 
-            await Auth.create({...tokenPair, _user_id: user._id})
+            await Auth.create({...tokenPair, _user_id: user._id});
 
-            res.status(200).json({user, ...tokenPair})
+            res.status(200).json({user, ...tokenPair});
         } catch (e) {
             next(e);
         }
@@ -38,13 +38,13 @@ module.exports = {
 
     refresh: async (req, res, next) => {
         try {
-            const {refreshToken, _user_id} = req.tokenInfo
+            const {refreshToken, _user_id} = req.tokenInfo;
 
-            await Auth.deleteOne({refreshToken})
+            await Auth.deleteOne({refreshToken});
 
             const tokenPair = authService.generateAccessTokenPair({id: _user_id});
 
-            await Auth.create({...tokenPair, _user_id})
+            await Auth.create({...tokenPair, _user_id});
 
             res.status(201).json(tokenPair);
         } catch (e) {
@@ -56,7 +56,7 @@ module.exports = {
         try {
             const user = await userService.findOneByParams({_id: req.userInfo.id});
 
-            res.status(200).json(user)
+            res.status(200).json(user);
         } catch (e) {
             next(e);
         }
@@ -64,9 +64,9 @@ module.exports = {
 
     logoutAll: async (req, res, next) => {
         try {
-            const {_user_id} = req.tokenInfo
+            const {_user_id} = req.tokenInfo;
 
-            await Auth.deleteMany({_user_id})
+            await Auth.deleteMany({_user_id});
 
             res.sendStatus(204);
         } catch (e) {
@@ -76,15 +76,15 @@ module.exports = {
 
     forgotPassword: async (req, res, next) => {
         try {
-            const {_id, email, name} = req.user
+            const {_id, email, name} = req.user;
 
             const actionToken = authService.generateActionToken(FORGOT_PASSWORD, {email: email});
 
-            const forgotPassUrl = `${FRONTEND_URL}/password/new?token=${actionToken}`
+            const forgotPassUrl = `${FRONTEND_URL}/password/new?token=${actionToken}`;
 
-            await ActionToken.create({token: actionToken, tokenType: FORGOT_PASSWORD, _user_id: _id})
+            await ActionToken.create({token: actionToken, tokenType: FORGOT_PASSWORD, _user_id: _id});
 
-            await emailService.sendEmail(email, FORGOT_PASS, {url: forgotPassUrl, userName: name})
+            await emailService.sendEmail(email, FORGOT_PASS, {url: forgotPassUrl, userName: name});
 
             res.status(200).json('Success');
         } catch (e) {
@@ -95,17 +95,16 @@ module.exports = {
     forgotPasswordAfterForgot: async (req, res, next) => {
         try {
             const {user, body} = req;
-            console.log(user);
 
-            const hashPassword = await authService.hashPassword(body.password)
+            const hashPassword = await authService.hashPassword(body.password);
 
-            await OldPassword.create({_user_id: user._id, password: user.password})
+            await OldPassword.create({_user_id: user._id, password: user.password});
 
-            await ActionToken.deleteOne({token: req.get('Authorization')})
+            await ActionToken.deleteOne({token: req.get('Authorization')});
 
-            await User.updateOne({_id: user._id}, {password: hashPassword})
+            await User.updateOne({_id: user._id}, {password: hashPassword});
 
-            res.status(201).json('Success')
+            res.status(201).json('Success');
         } catch (e) {
             next(e);
         }

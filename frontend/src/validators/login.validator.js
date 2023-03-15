@@ -8,4 +8,4 @@ const loginValidator = Joi.object({
     password: Joi.string().regex(regexp.PASSWORD).required(),
 });
 
-export {loginValidator}
+export {loginValidator};

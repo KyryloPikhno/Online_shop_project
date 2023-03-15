@@ -2,9 +2,9 @@ import {useSearchParams} from "react-router-dom";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {useForm} from "react-hook-form";
 
+import {passwordForgotService} from "../../services";
 import {newPasswordValidator} from "../../validators";
 import css from './NewPasswordAfterForgot.module.css';
-import {passwordForgotService} from "../../services";
 
 
 const NewPasswordAfterForgot = () => {
@@ -22,12 +22,11 @@ const NewPasswordAfterForgot = () => {
     const _actionTokenKey = 'action';
     let submit = async (password) => {
         try {
-            localStorage.setItem(_actionTokenKey, query.get('token').toString())
+            localStorage.setItem(_actionTokenKey, query.get('token').toString());
 
-            passwordForgotService.forgotPasswordAfterForgot(password)
-
+            passwordForgotService.forgotPasswordAfterForgot(password);
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     };
 

@@ -23,4 +23,4 @@ const newDeviceValidator = Joi.object({
     }),
 });
 
-export {newDeviceValidator}
+export {newDeviceValidator};

@@ -26,9 +26,9 @@ module.exports = {
         try {
             const hashPassword = await authService.hashPassword(req.body.password);
 
-            const user = await userService.create({...req.body, password: hashPassword})
+            const user = await userService.create({...req.body, password: hashPassword});
 
-            res.status(201).json(user)
+            res.status(201).json(user);
         } catch (e) {
             next(e);
         }
@@ -39,9 +39,9 @@ module.exports = {
             const newUserInfo = req.body;
             const userId = req.params.userId;
 
-            const user = await userService.updateOne(userId, newUserInfo)
+            const user = await userService.updateOne(userId, newUserInfo);
 
-            res.status(201).json(user)
+            res.status(201).json(user);
         } catch (e) {
             next(e);
         }
@@ -49,9 +49,9 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            const user = await userService.deleteOne(req.params.userId)
+            const user = await userService.deleteOne(req.params.userId);
 
-            res.status(204).send(user)
+            res.status(204).send(user);
         } catch (e) {
             next(e);
         }

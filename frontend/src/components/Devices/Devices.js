@@ -10,7 +10,7 @@ import css from './Devices.module.css';
 
 
 const Devices = () => {
-    const {devicesResponse, error, loading} = useSelector(state => state.deviceReducer);
+    const {devicesResponse, error, loading } = useSelector(state => state.deviceReducer);
 
     let [query] = useSearchParams({});
 
@@ -30,13 +30,28 @@ const Devices = () => {
         }))
     }, [query]);
 
+
     return (
         <div className={css.container}>
             {error && <span className={css.error}>{error.message}</span>}
             <Banner/>
+            {
+                loading ?
+                    <div className={css.devices}>
+                        <div className={css.loader}></div>
+                        <div className={css.loader}></div>
+                        <div className={css.loader}></div>
+                        <div className={css.loader}></div>
+                        <div className={css.loader}></div>
+                        <div className={css.loader}></div>
+                        <div className={css.loader}></div>
+                        <div className={css.loader}></div>
+                    </div>
+                    :
             <div className={css.devices}>
                 {devicesResponse.devices && devicesResponse.devices.map(device => <Device key={device._id} device={device}/>)}
             </div>
+            }
             {
                 (devicesResponse.total_pages && devicesResponse.page) &&
                 <PaginationDevice total_pages={devicesResponse.total_pages} page={devicesResponse.page}/>

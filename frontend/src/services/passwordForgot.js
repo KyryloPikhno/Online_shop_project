@@ -6,4 +6,4 @@ const passwordForgotService = {
     forgotPasswordAfterForgot: (password) => axiosService.put(urls.auth.passwordForgot, password),
 };
 
-export {passwordForgotService}
+export {passwordForgotService};

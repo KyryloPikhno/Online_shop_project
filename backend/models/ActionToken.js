@@ -5,7 +5,7 @@ const ActionTokenSchema = new Schema({
     token: {type: String},
     tokenType: {type: String},
 }, {
-    timestamps: true
+    timestamps: true,
 });
 
 module.exports = model('Action_Token', ActionTokenSchema);

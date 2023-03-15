@@ -26,7 +26,7 @@ const PasswordForgot = () => {
             "name": null,
             "email": null,
         }
-    })
+    });
 
     const [open, setOpen] = useState(false);
 
@@ -34,9 +34,9 @@ const PasswordForgot = () => {
         try {
             await passwordForgotService.forgotPassword(user);
 
-            await setOpen(true)
+            await setOpen(true);
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
     };
 

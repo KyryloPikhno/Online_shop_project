@@ -15,7 +15,7 @@ module.exports = {
 
             req.body = validate.value;
 
-            next()
+            next();
         } catch (e) {
             next(e);
         }
@@ -31,7 +31,7 @@ module.exports = {
 
             req.body = validate.value;
 
-            next()
+            next();
         } catch (e) {
             next(e);
         }
@@ -49,7 +49,7 @@ module.exports = {
 
             req.user = user;
 
-            next()
+            next();
         } catch (e) {
             next(e);
         }
@@ -65,7 +65,7 @@ module.exports = {
                 throw new ApiError('User already exists..', 400);
             }
 
-            next()
+            next();
         } catch (e) {
             next(e);
         }
@@ -96,7 +96,7 @@ module.exports = {
             const user = await User.findOne({ email });
 
             if (user) {
-                res.status(409).json('User with this email already exists')
+                res.status(409).json('User with this email already exists');
             }
 
             next();

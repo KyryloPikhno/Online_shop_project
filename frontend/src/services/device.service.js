@@ -19,4 +19,4 @@ const deviceService = {
     }),
 };
 
-export {deviceService}
+export {deviceService};

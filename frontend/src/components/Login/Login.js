@@ -46,7 +46,7 @@ const Login = () => {
 
     return (
         <div className={css.container}>
-            {query.has('expSession') && <h1>session end</h1>}
+            {query.has('expSession') && <h1>Session end</h1>}
 
             <form className={css.form} onSubmit={handleSubmit(submit)}>
                 <input type='text' placeholder={'email'} {...register('email')}/>

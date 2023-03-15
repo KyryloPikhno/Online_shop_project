@@ -1,5 +1,5 @@
-import {Pagination} from "@mui/material";
 import {useSearchParams} from "react-router-dom";
+import {Pagination} from "@mui/material";
 
 
 const PaginationDevice = ({total_pages, page}) => {
@@ -13,35 +13,35 @@ const PaginationDevice = ({total_pages, page}) => {
         if (query.get('name')) {
             obj = {
                 ...obj,
-                name: query.get('name')
+                name: query.get('name'),
             }
         }
 
         if (query.get('price_gte')) {
             obj = {
                 ...obj,
-                price_gte: query.get('price_gte')
+                price_gte: query.get('price_gte'),
             }
         }
 
         if (query.get('price_lte')) {
             obj = {
                 ...obj,
-                price_lte: query.get('price_lte')
+                price_lte: query.get('price_lte'),
             }
         }
 
         if (query.get('category')) {
             obj = {
                 ...obj,
-                category: query.get('category').toString()
+                category: query.get('category').toString(),
             }
         }
 
         if (query.get('limit')) {
             obj = {
                 ...obj,
-                limit: query.get('limit')
+                limit: query.get('limit'),
             }
         }
 
@@ -51,7 +51,8 @@ const PaginationDevice = ({total_pages, page}) => {
                 page
             }
         }
-        setQuery(obj)
+
+        setQuery(obj);
     };
 
     return (

@@ -20,7 +20,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         try {
-            res.status(201).json(req.brand)
+            res.status(201).json(req.brand);
         } catch (e) {
             next(e);
         }
@@ -28,7 +28,7 @@ module.exports = {
 
     update: async (req, res, next) => {
         try {
-            res.status(201).json(req.brand)
+            res.status(201).json(req.brand);
         } catch (e) {
             next(e);
         }
@@ -36,9 +36,9 @@ module.exports = {
 
     delete: async (req, res, next) => {
         try {
-            await brandService.deleteOne(req.params.brandId)
+            await brandService.deleteOne(req.params.brandId);
 
-            res.sendStatus(204)
+            res.sendStatus(204);
         } catch (e) {
             next(e);
         }

@@ -9,4 +9,4 @@ const brandService = {
     delete: (brandId) => axiosService.delete(`${urls.brand}/${brandId}`)
 };
 
-export {brandService}
+export {brandService};

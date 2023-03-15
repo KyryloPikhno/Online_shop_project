@@ -4,7 +4,9 @@ const PaymentPage = () => {
 
 
     return (
-        <Payment/>
+        <div>
+            <Payment/>
+        </div>
     );
 };
 

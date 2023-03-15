@@ -32,7 +32,7 @@ const Payment = () => {
 
     const [open, setOpen] = useState(false);
 
-    const {orderStatus, loading, error} = useSelector(state => state.orderReducer);
+    const {orderStatus, error} = useSelector(state => state.orderReducer);
 
     const {register, handleSubmit, formState: {errors, isValid}} = useForm(
         {
@@ -45,6 +45,7 @@ const Payment = () => {
         try {
             await dispatch(orderActions.update({orderId,  orderInfo}));
 
+            setOpen(true);
         } catch (e) {
             console.log(e);
         }
@@ -52,8 +53,6 @@ const Payment = () => {
 
     useEffect(() => {
         if (orderStatus) {
-            setOpen(true);
-
             dispatch(orderActions.reset());
         }
     }, [orderStatus]);

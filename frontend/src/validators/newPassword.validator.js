@@ -10,4 +10,4 @@ const newPasswordValidator = Joi.object({
         .label('Confirm password')
         .messages({ 'any.only': '{{#label}} does not match' })});
 
-export {newPasswordValidator}
+export {newPasswordValidator};

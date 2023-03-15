@@ -6,13 +6,13 @@ const {ApiError} = require("../errors");
 module.exports = {
     checkIsCategoriesExist: async (req, res, next) => {
         try {
-            const categories = await categoryService.findByParams({})
+            const categories = await categoryService.findByParams({});
 
             if (!categories) {
                 throw new ApiError('Categories not found', 404);
             }
 
-            req.categories = categories
+            req.categories = categories;
 
             next();
         } catch (e) {
@@ -28,13 +28,13 @@ module.exports = {
                 throw new ApiError(validate.error.message, 400);
             }
 
-            const category = await categoryService.updateOne(req.params.categoryId, {name: req.body.category})
+            const category = await categoryService.updateOne(req.params.categoryId, {name: req.body.category});
 
             if (!category) {
                 throw new ApiError('Category by id not found', 404);
             }
 
-            req.category = category
+            req.category = category;
 
             next();
         } catch (e) {
@@ -44,13 +44,13 @@ module.exports = {
 
     checkIsCategoryExistsById: async (req, res, next) => {
         try {
-            const category = await categoryService.findOneByParams({_id: req.params.categoryId})
+            const category = await categoryService.findOneByParams({_id: req.params.categoryId});
 
             if (!category) {
                 throw new ApiError('Category by id not found', 404);
             }
 
-            req.category = category
+            req.category = category;
 
             next();
         } catch (e) {
@@ -66,7 +66,7 @@ module.exports = {
                 throw new ApiError(validate.error.message, 400);
             }
 
-            const category = await categoryService.create({name:req.body.category})
+            const category = await categoryService.create({name: req.body.category});
 
             if (!category) {
                 throw new ApiError('Category is not created', 400);
@@ -76,9 +76,9 @@ module.exports = {
 
             req.category = category;
 
-            next()
+            next();
         } catch (e) {
-            next(e)
+            next(e);
         }
     },
 };

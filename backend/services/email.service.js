@@ -36,7 +36,7 @@ const sendEmail = async (receiverMail, emailAction, locals = {}) => {
 
     transporter.use('compile', hbs(options));
 
-    locals.frontendURL = FRONTEND_URL
+    locals.frontendURL = FRONTEND_URL;
 
     return transporter.sendMail({
         to: receiverMail,

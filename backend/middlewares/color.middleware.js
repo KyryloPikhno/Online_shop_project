@@ -6,13 +6,13 @@ const {ApiError} = require("../errors");
 module.exports = {
     checkIsColorsExist: async (req, res, next) => {
         try {
-            const colors = await colorService.findByParams({})
+            const colors = await colorService.findByParams({});
 
             if (!colors) {
                 throw new ApiError('Colors not found', 404);
             }
 
-            req.colors = colors
+            req.colors = colors;
 
             next();
         } catch (e) {
@@ -28,13 +28,13 @@ module.exports = {
                 throw new ApiError(validate.error.message, 400);
             }
 
-            const color = await colorService.updateOne(req.params.colorId, req.body.status)
+            const color = await colorService.updateOne(req.params.colorId, req.body.status);
 
             if (!color) {
                 throw new ApiError('Color by id not found', 404);
             }
 
-            req.color = color
+            req.color = color;
 
             next();
         } catch (e) {
@@ -44,13 +44,13 @@ module.exports = {
 
     checkIsColorExistsById: async (req, res, next) => {
         try {
-            const color = await colorService.findOneByParams(req.params.colorId)
+            const color = await colorService.findOneByParams(req.params.colorId);
 
             if (!color) {
                 throw new ApiError('Order by id not found', 404);
             }
 
-            req.color = color
+            req.color = color;
 
             next();
         } catch (e) {
@@ -66,7 +66,7 @@ module.exports = {
                 throw new ApiError(validate.error.message, 400);
             }
 
-            const color = await colorService.create({name:req.body.color})
+            const color = await colorService.create({name: req.body.color});
 
             if (!color) {
                 throw new ApiError('Color is not created', 400);
@@ -76,9 +76,9 @@ module.exports = {
 
             req.color = color;
 
-            next()
+            next();
         } catch (e) {
-            next(e)
+            next(e);
         }
     },
 };

@@ -8,4 +8,4 @@ const devicesSearchFormValidator = Joi.object({
     }),
 });
 
-export {devicesSearchFormValidator}
+export {devicesSearchFormValidator};

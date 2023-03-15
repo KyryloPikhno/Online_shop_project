@@ -9,4 +9,4 @@ const categoryValidator = Joi.object({
     })
 });
 
-export {categoryValidator}
+export {categoryValidator};
