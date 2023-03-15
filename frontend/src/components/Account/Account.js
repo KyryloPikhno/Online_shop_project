@@ -28,6 +28,7 @@ const Account = () => {
     }, [account]);
 
 
+
     return (<div className={css.container}>
             {accountError && <span className={css.error}>{accountError.message}</span>}
             {orderError && <span className={css.error}>{orderError.message}</span>}

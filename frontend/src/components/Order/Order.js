@@ -37,6 +37,7 @@ const Order = () => {
     useEffect(() => {
         if (!error && orderInfo._id) {
             navigate(`payment/${orderInfo._id}`);
+            dispatch(orderActions.reset());
         }
     }, [error, orderInfo]);
 
