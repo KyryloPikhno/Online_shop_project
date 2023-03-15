@@ -1,12 +1,12 @@
-import css from './Footer.module.css'
 import {Logo} from "../Logo/Logo";
+import css from './Footer.module.css'
 
 
 const Footer = () => {
 
     return (
         <div className={css.footer}>
-            <div className={css.logo}>
+            <div>
                <Logo/>
             </div>
             <div>

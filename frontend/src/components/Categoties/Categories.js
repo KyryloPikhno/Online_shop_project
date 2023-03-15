@@ -6,7 +6,7 @@ import css from './Categories.module.css'
 
 
 const Categories = () => {
-    const {categories} = useSelector(state => state.categoryReducer);
+    const {categories,error,loading} = useSelector(state => state.categoryReducer);
 
     const dispatch = useDispatch();
 
@@ -16,6 +16,7 @@ const Categories = () => {
 
     return (
         <div className={css.container}>
+            {error && <span className={css.error}> {error.message}</span>}
             <h3>All categories</h3>
             {
                 categories &&

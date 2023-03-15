@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
+import moment from "moment/moment";
 
 import {accountActions, deviceActions, orderActions} from "../../redux/slices";
 import {DeviceSlider} from "../DeviceSlider/DeviceSlider";
@@ -13,7 +14,7 @@ import 'swiper/css';
 const DeviceDetails = () => {
     const {id} = useParams();
 
-    const {device} = useSelector(state => state.deviceReducer);
+    const {device, error, loading} = useSelector(state => state.deviceReducer);
 
     const {account} = useSelector(state => state.accountReducer);
 
@@ -41,6 +42,8 @@ const DeviceDetails = () => {
 
     return (
         <div className={css.container}>
+            {error && <span className={css.error}>{error.message}</span>}
+
             <div className={css.slider}>
                 <DeviceSlider images={images}/>
             </div>
@@ -50,15 +53,17 @@ const DeviceDetails = () => {
                 <div>Free delivery in Ukraine and Kyiv with self-delivery</div>
                 <hr/>
                 <div className={css.info}>
-                    {category && <div>category: {category.name}</div>}
-                    {brand && <div>brand: {brand.name}</div>}
-                    {color && <div>color: {color.name}</div>}
+                    {category && <div>Category: {category.name}</div>}
+                    {brand && <div>Brand: {brand.name}</div>}
+                    {color && <div>Color: {color.name}</div>}
                     {countInStock && <div>Count in stock: {countInStock}</div>}
-                    {createdAt && <div>created: {createdAt.slice(0, 10)}</div>}
-                    {description && <div>{description}</div>}
+                    <div>Created: {createdAt && moment(createdAt).format("dd/mm/yy HH:mm:ss")}</div>
+                    {description && <div>Description: {description}</div>}
                 </div>
                 <div className={css.buttons}>
-                        <button className={countInStock !== 0 ? css.button : css.disabledButton} disabled={countInStock === 0} onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card': 'Device is out of stock'}</button>
+                    <button className={countInStock !== 0 ? css.button : css.disabledButton}
+                            disabled={countInStock === 0}
+                            onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card' : 'Device is out of stock'}</button>
                     {
                         account.isAdmin &&
                         <button className={css.button} onClick={deleter}>Delete</button>

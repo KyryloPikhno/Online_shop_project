@@ -25,3 +25,7 @@
     cursor: pointer;
 }
 
+.error{
+    color: #D81E5B;
+    font-size: 10px;
+}

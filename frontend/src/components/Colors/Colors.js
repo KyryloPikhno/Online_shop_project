@@ -6,7 +6,7 @@ import css from './Colors.module.css';
 
 
 const Colors = () => {
-    const {colors} = useSelector(state => state.colorReducer);
+    const {colors, error, loading} = useSelector(state => state.colorReducer);
 
     const dispatch = useDispatch();
 
@@ -16,6 +16,7 @@ const Colors = () => {
 
     return (
         <div className={css.container}>
+            {error && <span className={css.error}> {error.message}</span>}
             <h3>All colors</h3>
             {
                 colors &&

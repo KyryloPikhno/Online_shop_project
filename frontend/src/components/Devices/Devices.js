@@ -10,11 +10,12 @@ import css from './Devices.module.css';
 
 
 const Devices = () => {
-    const {devicesResponse} = useSelector(state => state.deviceReducer);
+    const {devicesResponse, error, loading} = useSelector(state => state.deviceReducer);
 
     let [query] = useSearchParams({});
 
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         dispatch(deviceActions.getAll({
@@ -31,6 +32,7 @@ const Devices = () => {
 
     return (
         <div className={css.container}>
+            {error && <span className={css.error}>{error.message}</span>}
             <Banner/>
             <div className={css.devices}>
                 {devicesResponse.devices && devicesResponse.devices.map(device => <Device key={device._id} device={device}/>)}

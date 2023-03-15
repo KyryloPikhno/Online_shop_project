@@ -105,3 +105,7 @@
     border-radius: 8px;
 }
 
+.error{
+    color: #D81E5B;
+    font-size: 10px;
+}

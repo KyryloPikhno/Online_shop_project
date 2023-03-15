@@ -6,7 +6,6 @@
 }
 
 .devices{
-    /*border:1px solid black ;*/
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -16,3 +15,7 @@
     width: 1000px;
 }
 
+.error{
+    color: #D81E5B;
+    font-size: 10px;
+}

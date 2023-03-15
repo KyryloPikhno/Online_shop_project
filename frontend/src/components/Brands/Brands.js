@@ -5,7 +5,7 @@ import {useEffect} from "react";
 import css from './Brands.module.css';
 
 const Brands = () => {
-    const {brands} = useSelector(state => state.brandReducer);
+    const {brands, error, loading} = useSelector(state => state.brandReducer);
 
     const dispatch = useDispatch();
 
@@ -15,6 +15,7 @@ const Brands = () => {
 
     return (
         <div className={css.container}>
+            {error && <span className={css.error}>{error.message}</span>}
             <h3>All brands</h3>
             {
                 brands &&

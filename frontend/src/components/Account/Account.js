@@ -9,10 +9,9 @@ import {baseURL} from "../../configs";
 
 
 const Account = () => {
-    const {account} = useSelector(state => state.accountReducer);
+    const {account, error: accountError, loading: accountLoading} = useSelector(state => state.accountReducer);
 
-    const {userOrders, error, loading} = useSelector(state => state.orderReducer);
-    console.log(userOrders);
+    const {userOrders, error: orderError, loading: orderLoading} = useSelector(state => state.orderReducer);
 
     const dispatch = useDispatch();
 
@@ -28,6 +27,8 @@ const Account = () => {
 
 
     return (<div className={css.container}>
+            {accountError && <span className={css.error}>{accountError.message}</span>}
+            {orderError && <span className={css.error}>{orderError.message}</span>}
             <div className={css.userInfo}>
                 <div className={css.imgBox}><img src={img} alt="User"/></div>
                 {account &&
@@ -47,8 +48,7 @@ const Account = () => {
                     !!userOrders.length &&
                     userOrders.map(order => (
                         <div key={order._id} className={css.order}>
-                                <button>X</button>
-
+                            <button onClick={() => dispatch(orderActions.deleteById({orderId: order._id}))}>X</button>
                             <div>id: {order._id.slice(-4)}</div>
                             <div>Price: {order.totalPrice}</div>
                             <div>Updated: {order.updatedAt && moment(order.updatedAt).format("dd/mm/yy HH:mm:ss")}</div>

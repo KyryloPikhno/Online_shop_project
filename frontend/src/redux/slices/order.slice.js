@@ -62,6 +62,18 @@ const update = createAsyncThunk(
     }
 );
 
+const deleteById = createAsyncThunk(
+    'orderSlice/deleteById',
+    async ({orderId}, {rejectWithValue}) => {
+        try {
+            await orderService.delete(orderId);
+            return orderId;
+        } catch (e) {
+            return rejectWithValue(e.response.data);
+        }
+    }
+);
+
 const orderSlice = createSlice({
     name: 'orderSlice',
     initialState,
@@ -180,6 +192,20 @@ const orderSlice = createSlice({
                 state.loading = true
                 state.error = null
             })
+            .addCase(deleteById.fulfilled, (state, action) => {
+                const index = state.userOrders.findIndex(order => order._id === action.payload)
+                state.userOrders.splice(index, 1)
+                state.error = null
+                state.loading = false
+            })
+            .addCase(deleteById.rejected, (state, action) => {
+                state.error = action.payload
+                state.loading = false
+            })
+            .addCase(deleteById.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
 });
 
 const {reducer: orderReducer, actions: {addDevice, removeDevice, deleteDevice, reset}} = orderSlice;
@@ -191,6 +217,7 @@ const orderActions = {
     getUserOrders,
     create,
     update,
+    deleteById,
     reset
 };
 

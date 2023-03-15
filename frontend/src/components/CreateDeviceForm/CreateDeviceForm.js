@@ -31,9 +31,9 @@ const CreateDeviceForm = () => {
         mode: 'all'
     });
 
-    const {categories} = useSelector(state => state.categoryReducer);
-
     const {device} = useSelector(state => state.deviceReducer);
+
+    const {categories} = useSelector(state => state.categoryReducer);
 
     const {brands} = useSelector(state => state.brandReducer);
 
@@ -109,7 +109,8 @@ const CreateDeviceForm = () => {
                 <input type='text' placeholder={'Description'} {...register('description')}/>
                 {errors.description && <span>{errors.description.message}</span>}
 
-                <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}
+                <button
+                    className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}
                         onClick={handleOpen}>Save and next
                 </button>
             </form>
