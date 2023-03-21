@@ -19,7 +19,7 @@ module.exports = {
         if (name) {
             findObj = {
                 ...findObj,
-                name: new RegExp(name),
+                name: { $regex: name },
             }
         }
 

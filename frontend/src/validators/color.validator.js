@@ -5,7 +5,7 @@ import {regexp} from "../configs";
 
 const colorValidator = Joi.object({
     color: Joi.string().regex(regexp.NAME).messages({
-        'color.pattern.base': 'Color is required'
+        'string.pattern.base': 'Color is required'
     })
 });
 

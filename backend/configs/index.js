@@ -1,5 +1,5 @@
 module.exports = {
-    tokenActionEnum: require('./tokenActionEnum'),
-    regexp: require('./regexp.enum'),
+    tokenActionEnum: require('../enum/tokenActionEnum'),
+    regexp: require('../enum/regexp.enum'),
     config: require('./config'),
 };

@@ -1,7 +1,7 @@
 const {authService, userService, emailService} = require("../services");
 const {Auth, ActionToken, User, OldPassword} = require("../models");
-const {WELCOME, FORGOT_PASS} = require("../configs/email-action.enum");
-const {FORGOT_PASSWORD} = require("../configs/tokenActionEnum");
+const {WELCOME, FORGOT_PASS} = require("../enum/email-action.enum");
+const {FORGOT_PASSWORD} = require("../enum/tokenActionEnum");
 const {FRONTEND_URL} = require("../configs/config");
 
 

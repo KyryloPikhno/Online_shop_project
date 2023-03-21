@@ -1,4 +1,4 @@
-const {FORGOT_PASSWORD} = require("../configs/tokenActionEnum");
+const {FORGOT_PASSWORD} = require("../enum/tokenActionEnum");
 const {Auth, ActionToken} = require("../models");
 const {authService} = require("../services");
 const {tokenTypeEnum} = require("../enum");
