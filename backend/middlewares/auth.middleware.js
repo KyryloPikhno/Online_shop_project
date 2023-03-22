@@ -97,7 +97,7 @@ module.exports = {
                 .populate('_user_id');
 
             if (!tokenInfo) {
-                throw new ApiError('token is not valid', 401);
+                throw new ApiError('Token is not valid', 401);
             }
 
             req.user = tokenInfo._user_id;

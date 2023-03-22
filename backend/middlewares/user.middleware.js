@@ -62,7 +62,7 @@ module.exports = {
             const user = await User.findOne({ [dbField]: fieldToSearch });
 
             if (user) {
-                throw new ApiError('User already exists..', 400);
+                throw new ApiError('User already exists...', 400);
             }
 
             next();
@@ -96,7 +96,7 @@ module.exports = {
             const user = await User.findOne({ email });
 
             if (user) {
-                res.status(409).json('User with this email already exists');
+                throw new ApiError('User with this email already exists', 409);
             }
 
             next();
