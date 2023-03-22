@@ -1,4 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import {brandActions} from "../../redux/slices";
 import {useEffect} from "react";
 
@@ -22,8 +23,7 @@ const Brands = () => {
                 brands.map(brand => (
                     <div key={brand._id}>
                         {brand.name}
-                        <button onClick={() => dispatch(brandActions.deleteById({brandId: brand._id}))}>X
-                        </button>
+                        <button onClick={() => dispatch(brandActions.deleteById({brandId: brand._id}))}><HighlightOffIcon color='warning' fontSize='small'/></button>
                     </div>
                 ))
             }

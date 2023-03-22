@@ -46,4 +46,5 @@ const DeviceSlider = ({images}) => {
     );
 };
 
+
 export {DeviceSlider};

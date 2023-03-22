@@ -1,4 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import {useEffect} from "react";
 import moment from "moment";
 
@@ -65,8 +66,7 @@ const Account = () => {
                                         userOrders.map(order => (
                                             <div key={order._id} className={css.order}>
                                                 <button
-                                                    onClick={() => dispatch(orderActions.deleteById({orderId: order._id}))}>X
-                                                </button>
+                                                    onClick={() => dispatch(orderActions.deleteById({orderId: order._id}))}><HighlightOffIcon color='warning' fontSize='small'/></button>
                                                 <div>id: {order._id.slice(-4)}</div>
                                                 <div>Price: {order.totalPrice}</div>
                                                 <div>Updated: {order.updatedAt && moment(order.updatedAt).format("dd/mm/yy HH:mm:ss")}</div>

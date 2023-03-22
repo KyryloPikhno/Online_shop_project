@@ -78,6 +78,11 @@ const DevicesFilter = () => {
     };
 
     return (
+        <div className={css.filter}>
+            {
+                (categoriesLoading || brandsLoading || colorsLoading)?
+                <div className={css.loader}></div>
+         :
         <form className={css.form} onSubmit={handleSubmit(submit)}>
             <div className={css.checkBox}>
                 <div className={css.logoBox}>
@@ -139,6 +144,8 @@ const DevicesFilter = () => {
             </div>
             <button>Submit</button>
         </form>
+            }
+        </div>
     );
 };
 

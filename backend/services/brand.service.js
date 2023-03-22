@@ -2,15 +2,15 @@ const {Brand} = require("../models");
 
 
 module.exports = {
-    findByParams: async (filter = {}) => {
+    findByParams: (filter = {}) => {
         return Brand.find(filter);
     },
 
-    findOneByParams: async (filter = {}) => {
+    findOneByParams: (filter = {}) => {
         return Brand.findOne(filter);
     },
 
-    create: async (brandInfo) => {
+    create: (brandInfo) => {
         return Brand.create(brandInfo);
     },
 
@@ -18,7 +18,7 @@ module.exports = {
         return Brand.findByIdAndUpdate(brandId, newInfo, {new: true});
     },
 
-    deleteOne: async (brandId) => {
+    deleteOne: (brandId) => {
         return Brand.deleteOne({_id: brandId});
     }
 };

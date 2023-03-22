@@ -17,12 +17,14 @@
 }
 
 .container button {
-    background: hotpink;
     border: none;
     width: 15px;
     height: 15px;
-    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    background: none;
 }
 
 .error{

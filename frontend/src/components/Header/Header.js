@@ -25,9 +25,10 @@ const Header = () => {
 
     useEffect(() => {
         dispatch(categoryActions.getAll());
-    }, [dispatch])
+    }, [dispatch]);
 
     const location = useLocation();
+    const deviceDetailsPathname = location.pathname === `/devices/${location.pathname.split('/devices/')[1]}`;
     const devicesPathname = location.pathname === '/devices';
     const homePathname = location.pathname === '/home';
 
@@ -47,7 +48,7 @@ const Header = () => {
                 <div className={css.logoAndForm}>
                     <Logo/>
                     {
-                        (devicesPathname || homePathname) && <DevicesSearchForm/>
+                        (devicesPathname || homePathname || deviceDetailsPathname) && <DevicesSearchForm/>
                     }
                 </div>
                 {
@@ -68,10 +69,8 @@ const Header = () => {
                 }
             </div>
             {
-                (devicesPathname || homePathname) &&
-                <div className={css.filter}>
+                (devicesPathname || homePathname || deviceDetailsPathname) &&
                     <DevicesFilter/>
-                </div>
             }
         </div>
     );

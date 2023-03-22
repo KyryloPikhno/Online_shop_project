@@ -7,7 +7,7 @@ const {ApiError} = require("../errors");
 const {NO_REPLY_EMAIL, NO_REPLY_EMAIL_PASSWORD, FRONTEND_URL} = require("../configs/config");
 
 
-const sendEmail = async (receiverMail, emailAction, locals = {}) => {
+const sendEmail = (receiverMail, emailAction, locals = {}) => {
     const transporter = nodemailer.createTransport({
         from: 'No reply',
         service: 'gmail',

@@ -55,7 +55,7 @@
     cursor: auto;
 }
 
-.buttons button:last-child:hover{
+.buttons button:hover{
     background: var(--dark);
 }
 

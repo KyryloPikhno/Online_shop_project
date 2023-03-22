@@ -74,5 +74,4 @@ const DeviceDetails = () => {
     );
 };
 
-
 export {DeviceDetails};

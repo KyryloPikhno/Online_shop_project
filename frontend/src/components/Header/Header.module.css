@@ -69,24 +69,6 @@
     gap: 20px;
 }
 
-.filter {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 4px;
-    width: 180px;
-    height: 100vh;
-    border: 2px solid var(--light-alt);
-    font-size: 13px;
-    padding-left: 13px;
-    padding-right: 13px;
-    background: white;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 10;
-}
-
 .quantity {
     display: flex;
     align-items: center;

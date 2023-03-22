@@ -3,7 +3,7 @@ const {ApiError} = require("../errors");
 
 
 module.exports = {
-    findByParams: async (filter = {}) => {
+    findByParams: (filter = {}) => {
         return Order.find(filter)
             .populate('user', 'name')
             .populate({
@@ -14,7 +14,7 @@ module.exports = {
             .sort({'dateOrdered': -1});
     },
 
-    findOneByParams: async (filter = {}) => {
+    findOneByParams: (filter = {}) => {
         const order = Order.findById(filter)
             .populate('user')
             .populate({
@@ -65,7 +65,7 @@ module.exports = {
         })
     },
 
-    getCount: async (filter = {}) => {
+    getCount: (filter = {}) => {
         const orderCount = Order.countDocuments({});
 
         if (!orderCount) {
@@ -75,7 +75,7 @@ module.exports = {
         return orderCount;
     },
 
-    updateOne: async (orderId, orderInfo) => {
+    updateOne: (orderId, orderInfo) => {
         return Order.findOneAndUpdate(
             {_id: orderId}, {
                 country: orderInfo.country,
@@ -92,7 +92,7 @@ module.exports = {
         );
     },
 
-    deleteOne: async (userId) => {
+    deleteOne: (userId) => {
         return Order.deleteOne({_id: orderId});
     }
 };

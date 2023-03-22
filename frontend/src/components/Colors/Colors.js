@@ -1,4 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import {colorActions} from "../../redux/slices";
 import {useEffect} from "react";
 
@@ -23,7 +24,7 @@ const Colors = () => {
                 colors.map(color => (
                     <div key={color._id}>
                         {color.name}
-                        <button onClick={() => dispatch(colorActions.deleteById({colorId: color._id}))}>X</button>
+                        <button onClick={() => dispatch(colorActions.deleteById({colorId: color._id}))}><HighlightOffIcon color='warning' fontSize='small'/></button>
                     </div>
                 ))
             }

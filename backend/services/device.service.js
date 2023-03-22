@@ -2,25 +2,25 @@ const {Device} = require("../models");
 
 
 module.exports = {
-    findByParams: async (filter = {}) => {
+    findByParams: (filter = {}) => {
         return Device.find(filter)
             .populate('category')
             .populate('brand')
             .populate('color');
     },
 
-    findOneByParams: async (filter = {}) => {
+    findOneByParams: (filter = {}) => {
         return Device.findOne(filter)
             .populate('category')
             .populate('brand')
             .populate('color');
     },
 
-    create: async (deviceInfo) => {
+    create: (deviceInfo) => {
         return Device.create(deviceInfo);
     },
 
-    addImages: async (deviceId, images) => {
+    addImages: (deviceId, images) => {
         return Device.findOneAndUpdate(
             {_id: deviceId},
             {$push: {images}},
@@ -28,7 +28,7 @@ module.exports = {
         );
     },
 
-    deleteImage: async (deviceId, fileName) => {
+    deleteImage: (deviceId, fileName) => {
         return Device.findOneAndUpdate(
             {_id: deviceId},
             {$pull: {images: fileName}},
@@ -36,7 +36,7 @@ module.exports = {
         )
     },
 
-    updateOne: async (deviceId, newInfo) => {
+    updateOne: (deviceId, newInfo) => {
         return Device.findByIdAndUpdate(
             deviceId,
             newInfo,
@@ -44,7 +44,7 @@ module.exports = {
         )
     },
 
-    deleteOne: async (deviceId) => {
+    deleteOne: (deviceId) => {
         return Device.deleteOne({_id: deviceId})
     }
 };

@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
 import {categoryActions} from "../../redux/slices";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import {useEffect} from "react";
 
 import css from './Categories.module.css'
 
@@ -23,8 +24,7 @@ const Categories = () => {
                 categories.map(category => (
                     <div key={category._id}>
                         {category.name}
-                        <button onClick={() => dispatch(categoryActions.deleteById({categoryId: category._id}))}>X
-                        </button>
+                        <button onClick={() => dispatch(categoryActions.deleteById({categoryId: category._id}))}><HighlightOffIcon color='warning' fontSize='small'/></button>
                     </div>
                 ))
             }

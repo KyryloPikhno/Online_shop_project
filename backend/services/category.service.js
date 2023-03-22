@@ -2,11 +2,11 @@ const {Category} = require("../models");
 
 
 module.exports = {
-    findByParams: async (filter = {}) => {
+    findByParams: (filter = {}) => {
         return Category.find(filter);
     },
 
-    findOneByParams: async (filter = {}) => {
+    findOneByParams: (filter = {}) => {
         return Category.findOne(filter);
     },
 
@@ -14,11 +14,11 @@ module.exports = {
         return Category.create(categoryInfo);
     },
 
-    updateOne: async (categoryId, newInfo) => {
+    updateOne: (categoryId, newInfo) => {
         return Category.findByIdAndUpdate(categoryId, newInfo, {new: true});
     },
 
-    deleteOne: async (categoryId) => {
+    deleteOne: (categoryId) => {
         return Category.deleteOne({_id: categoryId});
     }
 };

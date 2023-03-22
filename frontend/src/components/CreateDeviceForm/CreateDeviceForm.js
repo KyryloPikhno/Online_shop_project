@@ -79,39 +79,57 @@ const CreateDeviceForm = () => {
         <div className={css.container}>
             <h1>Add new device to shop</h1>
             <form className={css.form} onSubmit={handleSubmit(submit)}>
-                <input type='text' placeholder={'Name'} {...register('name')}/>
+                <div className={css.inputBox}>
+                    <div className={css.placeholder}>Name</div>
+                    <input type='text'  {...register('name')}/>
+                </div>
                 {errors.name && <span>{errors.name.message}</span>}
 
-                <input type='number' placeholder={'Price'} {...register('price')}/>
+                <div className={css.inputBox}>
+                    <div className={css.placeholder}>Price</div>
+                    <input type='number'  {...register('price')}/>
+                </div>
                 {errors.price && <span>{errors.price.message}</span>}
 
-                <input type='number' placeholder={'Count in stock'} {...register('countInStock')}/>
+                <div className={css.inputBox}>
+                    <div className={css.placeholder}>Count</div>
+                    <input type='number' {...register('countInStock')}/>
+                </div>
                 {errors.countInStock && <span>{errors.countInStock.message}</span>}
 
-                <select {...register('category', {required: true})}>
-                    {categories.map(category => <option key={category._id}
-                                                        value={category._id}>{category.name}</option>)}
-                </select>
+                <div className={css.inputBox}>
+                    <div className={css.placeholder}>Category</div>
+                    <select {...register('category', {required: true})}>
+                        {categories.map(category => <option key={category._id}
+                                                            value={category._id}>{category.name}</option>)}
+                    </select></div>
                 {errors.category && <span>{errors.category.message}</span>}
 
-                <select {...register('brand', {required: true})}>
-                    {brands.map(brand => <option key={brand._id}
-                                                 value={brand._id}>{brand.name}</option>)}
-                </select>
+                <div className={css.inputBox}>
+                    <div className={css.placeholder}>Brand</div>
+                    <select {...register('brand', {required: true})}>
+                        {brands.map(brand => <option key={brand._id}
+                                                     value={brand._id}>{brand.name}</option>)}
+                    </select></div>
                 {errors.brand && <span>{errors.brand.message}</span>}
 
-                <select {...register('color', {required: true})}>
-                    {colors.map(color => <option key={color._id}
-                                                 value={color._id}>{color.name}</option>)}
-                </select>
+                <div className={css.inputBox}>
+                    <div className={css.placeholder}>Color</div>
+                    <select {...register('color', {required: true})}>
+                        {colors.map(color => <option key={color._id}
+                                                     value={color._id}>{color.name}</option>)}
+                    </select></div>
                 {errors.color && <span>{errors.color.message}</span>}
 
-                <input type='text' placeholder={'Description'} {...register('description')}/>
+                <div className={css.inputBoxLast}>
+                    <div className={css.placeholderLast}>Desc</div>
+                    <input type='text'  {...register('description')}/>
+                </div>
                 {errors.description && <span>{errors.description.message}</span>}
 
                 <button
                     className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}
-                        onClick={handleOpen}>Save and next
+                    onClick={handleOpen}>Save and next
                 </button>
             </form>
             <Modal

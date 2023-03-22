@@ -2,23 +2,23 @@ const {Color} = require("../models");
 
 
 module.exports = {
-    findByParams: async (filter = {}) => {
+    findByParams: (filter = {}) => {
         return Color.find(filter);
     },
 
-    findOneByParams: async (filter = {}) => {
+    findOneByParams: (filter = {}) => {
         return Color.findOne(filter);
     },
 
-    create: async (colorInfo) => {
+    create: (colorInfo) => {
         return Color.create(colorInfo);
     },
 
-    updateOne: async (colorId, newInfo) => {
+    updateOne: (colorId, newInfo) => {
         return Color.findByIdAndUpdate(colorId, newInfo, {new: true});
     },
 
-    deleteOne: async (colorId) => {
+    deleteOne: (colorId) => {
         return Color.deleteOne({_id: colorId});
     }
 };
