@@ -1,11 +1,24 @@
-import {useSearchParams} from "react-router-dom";
+import {NavLink, useSearchParams} from "react-router-dom";
 import {joiResolver} from "@hookform/resolvers/joi";
+import {Box, Modal} from "@mui/material";
+import {useState} from "react";
 import {useForm} from "react-hook-form";
 
 import {passwordForgotService} from "../../services";
 import {newPasswordValidator} from "../../validators";
 import css from './NewPasswordAfterForgot.module.css';
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    bgcolor: 'background.paper',
+    boxShadow: 34,
+    p: 4,
+    borderRadius:5
+};
 
 const NewPasswordAfterForgot = () => {
     const [query] = useSearchParams();
@@ -17,7 +30,11 @@ const NewPasswordAfterForgot = () => {
         },
         resolver: joiResolver(newPasswordValidator),
         mode: 'all'
-    })
+    });
+
+    const [open, setOpen] = useState(false);
+
+    const [error, setError] = useState(false);
 
     const _actionTokenKey = 'action';
     let submit = async (password) => {
@@ -25,24 +42,47 @@ const NewPasswordAfterForgot = () => {
             localStorage.setItem(_actionTokenKey, query.get('token').toString());
 
             passwordForgotService.forgotPasswordAfterForgot(password);
+
+            await setOpen(true);
         } catch (e) {
+            setError(e.message);
             console.log(e);
         }
     };
 
     return (
-        <form className={css.form} onSubmit={handleSubmit(submit)}>
-            <h1>Reset your password</h1>
-            <p>Enter your new password. After confirming, you will be asked to log in again.</p>
-            <input type='text' placeholder={'password'} {...register('password')}/>
-            {errors.password && <span>{errors.password.message}</span>}
+        <div>
+            <form className={css.form} onSubmit={handleSubmit(submit)}>
+                <h1>Reset your password</h1>
+                <p>Enter your new password. After confirming, you will be asked to log in again.</p>
+                <input type='text' placeholder={'password'} {...register('password')}/>
+                {errors.password && <span>{errors.password.message}</span>}
 
-            <input type='text' placeholder={'confirm new password'} {...register('password_confirmation')}/>
-            {errors.password_confirmation && <span>{errors.password_confirmation.message}</span>}
+                <input type='text' placeholder={'confirm new password'} {...register('password_confirmation')}/>
+                {errors.password_confirmation && <span>{errors.password_confirmation.message}</span>}
 
-            <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}>Reset password
-            </button>
-        </form>
+                <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}>Reset password
+                </button>
+            </form>
+            <Modal
+                keepMounted
+                open={open}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description"
+            >
+                <Box sx={style}>
+                    <div className={css.modalInfo}>
+                        {
+                            error ?
+                                <p>{error}</p>
+                                :
+                                <h1>Your password changed </h1>
+                        }
+                        <NavLink to={'/login'}>Go to login page</NavLink>
+                    </div>
+                </Box>
+            </Modal>
+        </div>
     );
 };
 

@@ -10,8 +10,10 @@ module.exports = {
         return User.findOne(filter).populate('order').select('name email isAdmin createdAt updatedAt');
     },
 
-    create: (userInfo) => {
-        return User.create(userInfo).select('name email isAdmin createdAt updatedAt');
+    create: async (userInfo) => {
+        const user = await User.create(userInfo);
+
+        return User.findOne({_id: user._id}).select('name email isAdmin createdAt updatedAt')
     },
 
     updateOne: (userId, newInfo) => {
