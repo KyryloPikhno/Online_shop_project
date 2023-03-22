@@ -44,7 +44,7 @@ module.exports = {
             const user = await User.findOne({ [dbField]: fieldToSearch });
 
             if (!user) {
-                throw new ApiError('User not found', 404);
+                throw new ApiError('Wrong email or password', 404);
             }
 
             req.user = user;

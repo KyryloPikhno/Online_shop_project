@@ -4,6 +4,8 @@ import {useEffect} from "react";
 import moment from "moment/moment";
 
 import {accountActions, deviceActions, orderActions} from "../../redux/slices";
+import deviceDeleterSound from '../../sounds/46c6ae07207785c.mp3'
+import deviceAdderSound from '../../sounds/vylet-2.mp3'
 import {DeviceSlider} from "../DeviceSlider/DeviceSlider";
 import css from './DeviceDetails.module.css';
 import 'swiper/css/navigation';
@@ -29,11 +31,19 @@ const DeviceDetails = () => {
         dispatch(accountActions.getByAccess());
     }, []);
 
+    const audioAdderSound = new Audio(deviceAdderSound);
+    const audioDeleterSound = new Audio(deviceDeleterSound);
+
     const deviceAdder = () => {
+        audioAdderSound.play();
+
         dispatch(orderActions.addDevice({_id, name, image: images[0], quantity: 1, price, countInStock}));
     };
 
+
     const deleter = () => {
+        audioDeleterSound.play();
+
         dispatch(deviceActions.deleteDevice({_id}));
 
         navigate('/devices');

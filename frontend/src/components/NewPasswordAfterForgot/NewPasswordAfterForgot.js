@@ -41,12 +41,11 @@ const NewPasswordAfterForgot = () => {
         try {
             localStorage.setItem(_actionTokenKey, query.get('token').toString());
 
-            passwordForgotService.forgotPasswordAfterForgot(password);
+            await passwordForgotService.forgotPasswordAfterForgot(password);
 
             await setOpen(true);
         } catch (e) {
             setError(e.message);
-            console.log(e);
         }
     };
 
@@ -61,6 +60,8 @@ const NewPasswordAfterForgot = () => {
                 <input type='text' placeholder={'confirm new password'} {...register('password_confirmation')}/>
                 {errors.password_confirmation && <span>{errors.password_confirmation.message}</span>}
 
+                {error && <span>Token not valid. {error}</span>}
+
                 <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}>Reset password
                 </button>
             </form>
@@ -72,12 +73,7 @@ const NewPasswordAfterForgot = () => {
             >
                 <Box sx={style}>
                     <div className={css.modalInfo}>
-                        {
-                            error ?
-                                <p>{error}</p>
-                                :
                                 <h1>Your password changed </h1>
-                        }
                         <NavLink to={'/login'}>Go to login page</NavLink>
                     </div>
                 </Box>

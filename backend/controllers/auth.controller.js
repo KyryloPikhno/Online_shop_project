@@ -3,6 +3,7 @@ const {Auth, ActionToken, User, OldPassword} = require("../models");
 const {WELCOME, FORGOT_PASS} = require("../enum/email-action.enum");
 const {FORGOT_PASSWORD} = require("../enum/tokenActionEnum");
 const {FRONTEND_URL} = require("../configs/config");
+const {ApiError} = require("../errors");
 
 
 module.exports = {
@@ -22,13 +23,13 @@ module.exports = {
         try {
             const {user, body} = req;
 
-            await emailService.sendEmail(req.user.email, WELCOME, {userName: user.name});
-
             await authService.comparePasswords(user.password, body.password);
 
             const tokenPair = authService.generateAccessTokenPair({id: user._id});
 
             await Auth.create({...tokenPair, _user_id: user._id});
+
+            await emailService.sendEmail(req.user.email, WELCOME, {userName: user.name});
 
             res.status(200).json({user, ...tokenPair});
         } catch (e) {
@@ -100,7 +101,11 @@ module.exports = {
 
             await OldPassword.create({_user_id: user._id, password: user.password});
 
-            await ActionToken.deleteOne({token: req.get('Authorization')});
+            const actionTokenBearer = req.get('Authorization');
+
+            const actionToken = actionTokenBearer.replace('Bearer ', '');
+
+            await ActionToken.deleteOne({token: actionToken});
 
             await User.updateOne({_id: user._id}, {password: hashPassword});
 
