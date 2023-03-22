@@ -147,9 +147,13 @@ const orderSlice = createSlice({
             state.deviceList = []
             state.totalPrice = 0
             state.quantity = 0
-
+            state.userOrders = []
+            state.orderInfo = {}
+            state.orderStatus = false
+            state.loading = false
+            state.error = null
             removeDeviceFromLocalStorage();
-        }
+        },
     },
     extraReducers: builder =>
         builder

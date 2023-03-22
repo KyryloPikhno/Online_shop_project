@@ -1,5 +1,5 @@
-import {Outlet, Navigate} from 'react-router-dom';
 import {useEffect, useState} from "react";
+import {Outlet, Navigate} from 'react-router-dom';
 
 import {authService} from "../services";
 
@@ -16,7 +16,7 @@ const PrivateRoute = () => {
         if (!res) {
             setState(false);
         }
-    }, [state]);
+    }, []);
 
     return (
         state ? <Outlet/> : <Navigate to="/login"/>

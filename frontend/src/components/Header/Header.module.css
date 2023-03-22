@@ -72,18 +72,18 @@
 .filter {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     gap: 4px;
     width: 180px;
+    height: 100vh;
     border: 2px solid var(--light-alt);
-    border-radius: 8px;
     font-size: 13px;
-    padding: 13px;
+    padding-left: 13px;
+    padding-right: 13px;
     background: white;
     position: fixed;
-    left: 20px;
-    top: 170px;
+    left: 0;
+    top: 0;
     z-index: 10;
 }
 

@@ -28,8 +28,9 @@ const Header = () => {
     }, [dispatch])
 
     const location = useLocation();
-    const loginPathname = location.pathname === '/login';
-    const registerPathname = location.pathname === '/register';
+    const devicesPathname = location.pathname === '/devices';
+    const homePathname = location.pathname === '/home';
+
     const logoutAll = (_id) => {
         dispatch(orderActions.reset());
 
@@ -46,7 +47,7 @@ const Header = () => {
                 <div className={css.logoAndForm}>
                     <Logo/>
                     {
-                        (!loginPathname && !registerPathname) && <DevicesSearchForm/>
+                        (devicesPathname || homePathname) && <DevicesSearchForm/>
                     }
                 </div>
                 {
@@ -67,7 +68,7 @@ const Header = () => {
                 }
             </div>
             {
-                (!loginPathname && !registerPathname) &&
+                (devicesPathname || homePathname) &&
                 <div className={css.filter}>
                     <DevicesFilter/>
                 </div>
@@ -75,6 +76,5 @@ const Header = () => {
         </div>
     );
 };
-
 
 export {Header};

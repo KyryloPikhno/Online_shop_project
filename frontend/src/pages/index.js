@@ -9,3 +9,4 @@ export * from './AccountPage/AccountPage';
 export * from './LoginPage/LoginPage';
 export * from './OrderPage/OrderPage';
 export * from './AdminPage/AdminPage';
+export * from './HomePage/HomePage';

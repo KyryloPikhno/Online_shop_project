@@ -13,7 +13,7 @@ const DevicesFilter = () => {
             "price_gte": null,
             "price_lte": null,
         }
-    })
+    });
 
     const {categories, loading: categoriesLoading} = useSelector(state => state.categoryReducer);
 
@@ -80,6 +80,9 @@ const DevicesFilter = () => {
     return (
         <form className={css.form} onSubmit={handleSubmit(submit)}>
             <div className={css.checkBox}>
+                <div className={css.logoBox}>
+                    <h1>D</h1>
+                </div>
                 <p>Categories</p>
                 {
                     categories &&
@@ -130,13 +133,14 @@ const DevicesFilter = () => {
             <div className={css.price}>
                 <p>Price</p>
                 <div className={css.priceGteLte}>
-                    <input type='number' placeholder={'price_gte'} {...register('price_gte')}/>
-                    <input type='number' placeholder={'price_lte'} {...register('price_lte')}/>
+                    <input type='number' placeholder={'from'} {...register('price_gte')}/>
+                    <input type='number' placeholder={'to'} {...register('price_lte')}/>
                 </div>
             </div>
             <button>Submit</button>
         </form>
     );
 };
+
 
 export {DevicesFilter};
