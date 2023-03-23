@@ -28,7 +28,7 @@ const Banner = () => {
             setCurrentIndex((currentIndex) =>
                 currentIndex === images.length - 1 ? 0 : currentIndex + 1
             );
-        }, 10000);
+        }, 6000);
         return () => clearInterval(interval);
     }, []);
 

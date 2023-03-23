@@ -1,11 +1,11 @@
-.filter {
+.filter,.closedFilter {
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 4px;
     width: 180px;
     height: 100vh;
-    /*border: 2px solid var(--light-alt);*/
+    backdrop-filter: blur(2px);
     font-size: 13px;
     padding-left: 13px;
     padding-right: 13px;
@@ -14,6 +14,12 @@
     left: 0;
     top: 0;
     z-index: 10;
+    transition: 1s;
+}
+
+.closedFilter{
+    left: -230px;
+    transition: 1s;
 }
 
 .loader{
@@ -21,7 +27,6 @@
     height: 100vh;
     padding-left: 13px;
     padding-right: 13px;
-    border-radius: 8px;
     cursor: progress;
     background:
             linear-gradient(0.25turn, transparent, #fff, transparent),
@@ -104,12 +109,28 @@
 
 .logoBox{
     height: 80px;
-    width: 100%;
+    width: 130px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 30px;
+}
 
+.logoBox img {
+    width: 55px;
+}
+
+.closerButton{
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    border-radius: 50px;
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .logoBox h1{
@@ -117,3 +138,26 @@
     color: var(--light-alt);
     text-align: center;
 }
+
+.openFilter ,.closedFilter{
+    position: fixed;
+    left: 13px;
+    top: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: var(--light-alt);
+    box-shadow: .5px .4px 3.8px black;
+    transition: .5s;
+}
+
+.closedFilter {
+    left: -125px;
+    transition: .5s;
+    background-color: white;
+    box-shadow: none;
+}
+

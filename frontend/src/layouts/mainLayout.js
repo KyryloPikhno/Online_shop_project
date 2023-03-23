@@ -1,17 +1,17 @@
+import {useEffect} from "react";
 import {Outlet} from "react-router-dom";
 
 import {Footer, Header} from "../components";
-import css from './mainLayout.module.css'
-import {useDispatch} from "react-redux";
-import {useEffect} from "react";
 import {accountActions} from "../redux/slices";
+import {useDispatch} from "react-redux";
+import css from './mainLayout.module.css'
 
 
 const MainLayout = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(accountActions.getByAccess())
+        dispatch(accountActions.getByAccess());
     }, []);
 
     return (

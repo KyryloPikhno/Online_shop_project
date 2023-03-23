@@ -1,7 +1,9 @@
 import {createSearchParams, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import ClearIcon from '@mui/icons-material/Clear';
 import {useForm} from "react-hook-form";
+import logo from '../../img/image.png'
 
 import {brandActions, categoryActions, colorActions} from "../../redux/slices";
 import css from './DevicesFilter.module.css';
@@ -25,21 +27,7 @@ const DevicesFilter = () => {
 
     const dispatch = useDispatch();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         dispatch(categoryActions.getAll());
@@ -94,73 +82,79 @@ const DevicesFilter = () => {
     };
 
     return (
-        <div className={css.filter}>
-            {
-                (categoriesLoading || brandsLoading || colorsLoading) ?
-                    <div className={css.loader}></div>
-                    :
-                    <form className={css.form} onSubmit={handleSubmit(submit)}>
-                        <div className={css.checkBox}>
-                            <div className={css.logoBox}>
-                                <h1>D</h1>
+        <div>
+            <div className={!open ? css.openFilter : css.closedFilter} onMouseOver={() => setOpen(true)}>Open filter
+            </div>
+            <div className={open ? css.filter : css.closedFilter}>
+                {
+                    (categoriesLoading || brandsLoading || colorsLoading) ?
+                        <div className={css.loader}></div>
+                        :
+                        <form className={css.form} onSubmit={handleSubmit(submit)}>
+                            <span className={css.closerButton} onClick={() => setOpen(false)}><ClearIcon/></span>
+                            <div className={css.checkBox}>
+                                <div className={css.logoBox}>
+                                    <img src={logo} alt={logo}/>
+                                </div>
+                                <p>Categories</p>
+                                {
+
+                                    categories &&
+                                    categories.map(category => (
+                                        <label key={category._id}>
+                                            <input
+                                                {...register("category")}
+                                                type="checkbox"
+                                                value={category._id}
+                                                id={category._id}
+                                            />
+                                            {category.name}
+                                        </label>))
+                                }
                             </div>
-                            <p>Categories</p>
-                            {
-                                categories &&
-                                categories.map(category => (
-                                    <label key={category._id}>
-                                        <input
-                                            {...register("category")}
-                                            type="checkbox"
-                                            value={category._id}
-                                            id={category._id}
-                                        />
-                                        {category.name}
-                                    </label>))
-                            }
-                        </div>
-                        <div className={css.checkBox}>
-                            <p>Brands</p>
-                            {
-                                brands &&
-                                brands.map(brand => (
-                                    <label key={brand._id}>
-                                        <input
-                                            {...register("brand")}
-                                            type="checkbox"
-                                            value={brand._id}
-                                            id={brand._id}
-                                        />
-                                        {brand.name}
-                                    </label>))
-                            }
-                        </div>
-                        <div className={css.checkBox}>
-                            <p>Colors</p>
-                            {
-                                colors &&
-                                colors.map(color => (
-                                    <label key={color._id}>
-                                        <input
-                                            {...register("color")}
-                                            type="checkbox"
-                                            value={color._id}
-                                            id={color._id}
-                                        />
-                                        {color.name}
-                                    </label>))
-                            }
-                        </div>
-                        <div className={css.price}>
-                            <p>Price</p>
-                            <div className={css.priceGteLte}>
-                                <input type='number' placeholder={'from'} {...register('price_gte')}/>
-                                <input type='number' placeholder={'to'} {...register('price_lte')}/>
+                            <div className={css.checkBox}>
+                                <p>Brands</p>
+                                {
+                                    brands &&
+                                    brands.map(brand => (
+                                        <label key={brand._id}>
+                                            <input
+                                                {...register("brand")}
+                                                type="checkbox"
+                                                value={brand._id}
+                                                id={brand._id}
+                                            />
+                                            {brand.name}
+                                        </label>))
+                                }
                             </div>
-                        </div>
-                        <button>Submit</button>
-                    </form>
-            }
+                            <div className={css.checkBox}>
+                                <p>Colors</p>
+                                {
+                                    colors &&
+                                    colors.map(color => (
+                                        <label key={color._id}>
+                                            <input
+                                                {...register("color")}
+                                                type="checkbox"
+                                                value={color._id}
+                                                id={color._id}
+                                            />
+                                            {color.name}
+                                        </label>))
+                                }
+                            </div>
+                            <div className={css.price}>
+                                <p>Price</p>
+                                <div className={css.priceGteLte}>
+                                    <input type='number' placeholder={'from'} {...register('price_gte')}/>
+                                    <input type='number' placeholder={'to'} {...register('price_lte')}/>
+                                </div>
+                            </div>
+                            <button>Submit</button>
+                        </form>
+                }
+            </div>
         </div>
     );
 };
