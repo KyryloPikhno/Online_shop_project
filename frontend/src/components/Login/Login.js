@@ -52,7 +52,7 @@ const Login = () => {
                 <input type='text' placeholder={'email'} {...register('email')}/>
                 {errors.email && <span>{errors.email.message}</span>}
 
-                <input type='text' placeholder={'password'} {...register('password')}/>
+                <input type='password' placeholder={'password'} {...register('password')}/>
                 {errors.password && <span>{errors.password.message}</span>}
 
                 {error && <span>Wrong email or password. {error}</span>}

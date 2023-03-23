@@ -54,10 +54,10 @@ const NewPasswordAfterForgot = () => {
             <form className={css.form} onSubmit={handleSubmit(submit)}>
                 <h1>Reset your password</h1>
                 <p>Enter your new password. After confirming, you will be asked to log in again.</p>
-                <input type='text' placeholder={'password'} {...register('password')}/>
+                <input type='password' placeholder={'password'} {...register('password')}/>
                 {errors.password && <span>{errors.password.message}</span>}
 
-                <input type='text' placeholder={'confirm new password'} {...register('password_confirmation')}/>
+                <input type='password' placeholder={'confirm new password'} {...register('password_confirmation')}/>
                 {errors.password_confirmation && <span>{errors.password_confirmation.message}</span>}
 
                 {error && <span>Token not valid. {error}</span>}
