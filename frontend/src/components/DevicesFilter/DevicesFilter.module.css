@@ -109,9 +109,11 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 30px;
+
 }
 
 .logoBox h1{
     text-decoration: none;
     color: var(--light-alt);
+    text-align: center;
 }

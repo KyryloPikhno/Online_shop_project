@@ -1,6 +1,3 @@
-require('dotenv').config();
-
-
 module.exports = {
     PORT: process.env.PORT || 4000,
     DB_NAME: process.env.DB_NAME || 'online_shop',
