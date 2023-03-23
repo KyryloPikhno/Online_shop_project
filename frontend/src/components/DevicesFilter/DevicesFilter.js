@@ -41,8 +41,6 @@ const DevicesFilter = () => {
 
 
 
-
-
     useEffect(() => {
         dispatch(categoryActions.getAll());
         dispatch(brandActions.getAll());
