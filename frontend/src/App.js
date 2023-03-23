@@ -20,7 +20,7 @@ function App() {
     return (
         <Routes>
             <Route path={'/'} element={<MainLayout/>}>
-                <Route index element={<Navigate to={'/devices'}/>}/>
+                <Route index element={<Navigate to={'/home'}/>}/>
                 <Route path={'/home'} element={<HomePage/>}/>
                 <Route path={'/login'} element={<LoginPage/>}/>
                 <Route path={'/register'} element={<RegisterPage/>}/>
@@ -36,11 +36,10 @@ function App() {
                         <Route path={'/admin'} element={<AdminPage/>}/>
                     </Route>
                 </Route>
+                <Route path={'*'} element={<NotFoundPage/>}/>
             </Route>
-            <Route path={'*'} element={<NotFoundPage/>}/>
         </Routes>
     );
 }
-
 
 export default App;

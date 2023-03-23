@@ -28,7 +28,10 @@ const DeviceDetails = () => {
 
     useEffect(() => {
         dispatch(deviceActions.getById({id}));
+
         dispatch(accountActions.getByAccess());
+
+        window.scrollTo(0, 0);
     }, []);
 
     const audioAdderSound = new Audio(deviceAdderSound);

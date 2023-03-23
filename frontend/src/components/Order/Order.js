@@ -1,4 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
@@ -78,7 +79,7 @@ const Order = () => {
                         </div>
                         <div className={css.property}>Price: {device.totalPrice}</div>
                         <div className={css.deleteDevice}>
-                            <button onClick={() => deleteDevice(device._id)}>X</button>
+                            <button onClick={() => deleteDevice(device._id)}><HighlightOffIcon color='warning' fontSize='small'/></button>
                         </div>
                     </div>
                 ))

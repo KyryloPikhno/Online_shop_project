@@ -38,7 +38,7 @@ const Login = () => {
 
             dispatch(accountActions.getByAccess());
 
-            navigate('/devices');
+            navigate('/home');
         } catch (e) {
             setError(e.message);
         }

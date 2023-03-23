@@ -27,7 +27,9 @@ const Devices = () => {
             name: query.get('name'),
             price_gte: query.get('price_gte'),
             price_lte: query.get('price_lte'),
-        }))
+        }));
+
+        window.scrollTo(0, 0);
     }, [query]);
 
 
