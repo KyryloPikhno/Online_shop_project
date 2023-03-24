@@ -98,11 +98,10 @@ const DevicesFilter = () => {
                                 </div>
                                 <p>Categories</p>
                                 {
-
                                     categories &&
                                     categories.map(category => (
                                         <label key={category._id}>
-                                            <input
+                                            <input className={css.labelInput}
                                                 {...register("category")}
                                                 type="checkbox"
                                                 value={category._id}
@@ -118,7 +117,7 @@ const DevicesFilter = () => {
                                     brands &&
                                     brands.map(brand => (
                                         <label key={brand._id}>
-                                            <input
+                                            <input className={css.labelInput}
                                                 {...register("brand")}
                                                 type="checkbox"
                                                 value={brand._id}
@@ -134,7 +133,7 @@ const DevicesFilter = () => {
                                     colors &&
                                     colors.map(color => (
                                         <label key={color._id}>
-                                            <input
+                                            <input className={css.labelInput}
                                                 {...register("color")}
                                                 type="checkbox"
                                                 value={color._id}

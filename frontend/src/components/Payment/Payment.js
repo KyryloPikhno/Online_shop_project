@@ -57,6 +57,9 @@ const Payment = () => {
         }
     }, [orderStatus]);
 
+    const months = Array.from({length: 12}, (_, i) => i + 1);
+    const years = Array.from({length: 15}, (_, i) => 2023 + i);
+
     return (
         <div className={css.container}>
             <form onSubmit={handleSubmit(submit)} className={css.form}>
@@ -65,13 +68,17 @@ const Payment = () => {
                     <img className={css.imgMaster} src={imgMaster} alt={imgMaster}/>
 
                     <input className={css.cardInput} type="number"
-                           placeholder={'Enter card number'} {...register('card')}/>
+                           placeholder="XXXX  XXXX  XXXX  XXXX" {...register('card')}/>
                     {errors.card && <span>{errors.card.message}</span>}
 
-                    <input className={css.dayInput} type="number" placeholder={'Month'} {...register('month')}/>
+                    <select {...register('month')} className={css.monthInput} id="monthSelect">
+                        {months.map(m => <option key={m} value={m}>{m}</option>)}
+                    </select>
                     {errors.month && <span>{errors.month.message}</span>}
 
-                    <input className={css.monthInput} type="number" placeholder={'Year'} {...register('year')}/>
+                    <select {...register('year')} className={css.yearInput} id="monthSelect">
+                        {years.map(y => <option key={y} value={y}>{y}</option>)}
+                    </select>
                     {errors.year && <span>{errors.year.message}</span>}
                 </div>
 

@@ -49,17 +49,29 @@
 
 .cardInput{
     position: absolute;
-    top: 90px;
+    top: 80px;
     border: 1px solid var(--light-alt);
     border-radius: 8px;
     width: 350px;
     height: 30px;
     left: 25px;
     text-align: center;
+    font-size: 15px;
+}
+
+.cardInput::-webkit-outer-spin-button,
+.cardInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.cardInput input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 
-.dayInput{
+.monthInput{
     position: absolute;
     bottom: 30px;
     right: 150px;
@@ -70,7 +82,7 @@
     text-align: center;
 }
 
-.monthInput{
+.yearInput{
     position: absolute;
     bottom: 30px;
     right: 90px;
@@ -84,7 +96,7 @@
 .imgChip{
     position: absolute;
     width: 57px;
-    top: 30px;
+    top: 20px;
     left: 30px;
 }
 

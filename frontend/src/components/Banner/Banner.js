@@ -4,23 +4,24 @@ import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import {green} from "@mui/material/colors";
 
-import airpodsImg from '../../img/airpods.png';
-import iphoneImg from "../../img/iphone13.png";
-import watchImg from '../../img/watch.png';
-import ipodImg from '../../img/IPad.png';
-import macImg from '../../img/mac.png';
+import img_1 from '../../img/airpods.png';
+import img_2 from "../../img/iphone13.png";
+import img_3 from '../../img/watch.png';
+import img_4 from '../../img/IPad.png';
+import img_5 from '../../img/airpods-compare-airpods-max-202209.jpeg';
+import img_6 from '../../img/imac24-digitalmat-gallery-2-202111.png';
+import img_7 from '../../img/studio-display-digitalmat-gallery-1-202203.png';
+import img_8 from '../../img/MQDY3ref_VW_PF+watch-49-titanium-ultra_VW_PF_WF_CO+watch-face-49-alpine-ultra_VW_PF_WF_CO.jpeg';
+import img_9 from '../../img/macbook-air-digitalmat-gallery-1-202206.png';
+import img_10 from '../../img/mac-mini-hero-202301.jpeg';
+import img_11 from '../../img/iphone-compare-iphone-se-202209.jpeg';
+import img_12 from '../../img/MMMQ3_AV1.jpeg';
 import css from './Banner.module.css';
 
 
-const images = [
-    airpodsImg,
-    iphoneImg,
-    watchImg,
-    ipodImg,
-    macImg,
-];
-
 const Banner = () => {
+    const images = [img_1, img_2, img_3, img_4, img_5, img_6, img_7, img_8, img_9, img_10, img_11, img_12];
+
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
@@ -69,5 +70,6 @@ const Banner = () => {
         </div>
     );
 };
+
 
 export {Banner};

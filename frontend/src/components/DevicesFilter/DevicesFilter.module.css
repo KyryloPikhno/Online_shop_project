@@ -52,6 +52,7 @@
     font-size: 16px;
 }
 
+
 .form p{
     color: var(--light-alt);
     margin-top: 7px;
@@ -75,6 +76,20 @@
     height: 25px;
     text-align: center;
     border: 1px solid var(--light-alt);
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.priceGteLte input::-webkit-outer-spin-button,
+.priceGteLte input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.priceGteLte input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .checkBox{
@@ -160,4 +175,12 @@
     background-color: white;
     box-shadow: none;
 }
+
+.labelInput:checked {
+    background-color: black;
+}
+
+
+
+
 

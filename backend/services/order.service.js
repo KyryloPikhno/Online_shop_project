@@ -11,7 +11,7 @@ module.exports = {
                     path: 'device', populate: 'category'
                 }
             })
-            .sort({'dateOrdered': -1});
+            .sort({'createdAt': -1});
     },
 
     findOneByParams: (filter = {}) => {

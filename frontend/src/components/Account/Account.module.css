@@ -145,3 +145,48 @@
 .empty {
     color: var(--light-alt);
 }
+
+.continueOrder{
+    border-radius: 8px;
+    width: 115px;
+    height: 25px;
+    background: var(--light-alt);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    cursor: pointer;
+}
+
+.continueOrder:hover{
+    background: black;
+    color: white;
+}
+
+.table {
+    border-collapse: collapse;
+    margin: 25px;
+    font-size: 14px;
+    width: 500px;
+}
+
+.table th,
+.table td {
+    border: 2px solid black;
+    padding: 5px;
+    text-align: center;
+    width: 125px;
+}
+
+.statusTd{
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*flex-direction: column;*/
+}
+
+.table th {
+    font-weight: bold;
+    text-align: center;
+}

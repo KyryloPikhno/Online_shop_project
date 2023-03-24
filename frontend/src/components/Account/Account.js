@@ -1,5 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import moment from "moment";
 
@@ -16,6 +17,8 @@ const Account = () => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const {_id, name, email, isAdmin, createdAt, updatedAt} = account;
 
     useEffect(() => {
@@ -27,7 +30,6 @@ const Account = () => {
             dispatch(orderActions.getUserOrders({userId: account._id}));
         }
     }, [account]);
-
 
 
     return (<div className={css.container}>
@@ -61,16 +63,33 @@ const Account = () => {
                                 <h2 className={css.empty}>It's so empty here 🤔</h2>
                                 :
                                 <div className={css.orders}>
+
                                     {
                                         !!userOrders.length &&
                                         userOrders.map(order => (
                                             <div key={order._id} className={css.order}>
                                                 <button
-                                                    onClick={() => dispatch(orderActions.deleteById({orderId: order._id}))}><HighlightOffIcon color='warning' fontSize='small'/></button>
-                                                <div>id: {order._id.slice(-4)}</div>
-                                                <div>Price: {order.totalPrice}</div>
-                                                <div>Updated: {order.updatedAt && moment(order.updatedAt).format("dd/mm/yy HH:mm:ss")}</div>
-                                                <div>Status: {order.orderStatus.toString()}</div>
+                                                    onClick={() => dispatch(orderActions.deleteById({orderId: order._id}))}>
+                                                    <HighlightOffIcon color='warning' fontSize='small'/></button>
+                                                <table className={css.table}>
+                                                    <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Price</th>
+                                                        <th>Updated</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{order._id.slice(-4)}</td>
+                                                            <td>{order.totalPrice}</td>
+                                                            <td>{order.updatedAt && moment(order.updatedAt).format("dd/mm/yy HH:mm:ss")}</td>
+                                                            <td className={css.statusTd}>{order.orderStatus ? <div>Ordered</div> :
+                                                                <span className={css.continueOrder} onClick={() => navigate(`/order/payment/${order._id}`)}>Continue order</span>}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                                 <div className={css.devices}>
                                                     {
                                                         !!order.deviceList.length && order.deviceList.map(item => (

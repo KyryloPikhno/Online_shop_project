@@ -42,7 +42,7 @@ const PasswordForgot = () => {
 
             await setOpen(true);
         } catch (e) {
-            setError(e);
+            setError(e.message);
         }
     };
 
@@ -56,7 +56,7 @@ const PasswordForgot = () => {
                 <input type='text' placeholder={'email'} {...register('email')}/>
                 {errors.email && <span>{errors.email.message}</span>}
 
-                {error && <span>{error}</span>}
+                {error && <span>Invalid email. {error}</span>}
 
                 <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}>Get reset link</button>
             </form>
