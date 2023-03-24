@@ -1,8 +1,10 @@
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import {Box, Modal} from "@mui/material";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {NavLink} from "react-router-dom";
 
+import {passwordForgotValidator} from "../../validators";
 import {passwordForgotService} from "../../services";
 import css from './PasswordForgot.module.css';
 
@@ -21,14 +23,18 @@ const style = {
 
 
 const PasswordForgot = () => {
-    let {register, handleSubmit} = useForm({
+    let {register, handleSubmit, formState: {errors, isValid}} = useForm({
         defaultValues: {
             "name": null,
             "email": null,
-        }
+        },
+        resolver: joiResolver(passwordForgotValidator),
+        mode: 'all'
     });
 
     const [open, setOpen] = useState(false);
+
+    const [error, setError] = useState(null);
 
     let submit = async (user) => {
         try {
@@ -36,7 +42,7 @@ const PasswordForgot = () => {
 
             await setOpen(true);
         } catch (e) {
-            console.log(e);
+            setError(e);
         }
     };
 
@@ -45,8 +51,14 @@ const PasswordForgot = () => {
             <form className={css.form} onSubmit={handleSubmit(submit)}>
                 <p>To reset your password, enter your name and email address you use to sign in.</p>
                 <input type='text' placeholder={'name'} {...register('name')}/>
+                {errors.name && <span>{errors.name.message}</span>}
+
                 <input type='text' placeholder={'email'} {...register('email')}/>
-                <button>Get reset link</button>
+                {errors.email && <span>{errors.email.message}</span>}
+
+                {error && <span>{error}</span>}
+
+                <button className={!isValid ? css.noValidButton : css.validButton} disabled={!isValid}>Get reset link</button>
             </form>
             <Modal
                 keepMounted

@@ -3,7 +3,7 @@ const {Category} = require("../models");
 
 module.exports = {
     findByParams: (filter = {}) => {
-        return Category.find(filter);
+        return Category.find(filter).sort({ name: 1 }).exec();
     },
 
     findOneByParams: (filter = {}) => {

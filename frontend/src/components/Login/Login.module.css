@@ -57,6 +57,11 @@
     color: var(--light);
 }
 
+.validButton:hover{
+    background:black;
+    color: white;
+}
+
 .noValidButton{
     border-radius: 8px;
     width: 150px;

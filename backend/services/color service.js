@@ -3,7 +3,7 @@ const {Color} = require("../models");
 
 module.exports = {
     findByParams: (filter = {}) => {
-        return Color.find(filter);
+        return Color.find(filter).sort({ name: 1 }).exec();
     },
 
     findOneByParams: (filter = {}) => {

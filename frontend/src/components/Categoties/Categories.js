@@ -7,7 +7,7 @@ import css from './Categories.module.css'
 
 
 const Categories = () => {
-    const {categories,error,loading} = useSelector(state => state.categoryReducer);
+    const {categories, error, loading} = useSelector(state => state.categoryReducer);
 
     const dispatch = useDispatch();
 

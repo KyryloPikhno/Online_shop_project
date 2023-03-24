@@ -1,4 +1,5 @@
 export * from './devicesSearchForm.validator';
+export * from './passwordForgot.validator';
 export * from './newPassword.validator';
 export * from './newDevice.validator';
 export * from './register.validator';

@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {accountService} from "../../services";
+import {accountService, authService} from "../../services";
 
 
 const initialState = {
@@ -13,8 +13,13 @@ const getByAccess = createAsyncThunk(
     'accountSlice/getByAccess',
     async (_, {rejectWithValue}) => {
         try {
-            const {data} = await accountService.getByAccess();
-            return data;
+            const access = authService.getAccessToken();
+
+            if (access) {
+                const {data} = await accountService.getByAccess();
+                return data;
+            }
+
         } catch (e) {
             return rejectWithValue(e.response.data);
         }

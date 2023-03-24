@@ -21,11 +21,11 @@ const Register = () => {
         }
     );
 
-    let [error, setError] = useState(null);
+    const [error, setError] = useState(null);
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
-    let submit = async (user) => {
+    const submit = async (user) => {
         try {
             await authService.register(user);
 

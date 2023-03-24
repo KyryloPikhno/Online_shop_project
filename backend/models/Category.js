@@ -6,4 +6,9 @@ const categorySchema = new Schema({
     {timestamps: true}
 );
 
+categorySchema.pre('save', function(next) {
+    this.name = this.name.charAt(0).toUpperCase() + this.name.slice(1);
+    next();
+});
+
 module.exports = model("Category", categorySchema);
