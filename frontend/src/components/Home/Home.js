@@ -29,7 +29,7 @@ const Home = () => {
 
     return (
         <div className={css.container}>
-            <h1>Welcome on our platform</h1>
+            <h1>Hi dear friend</h1>
             <div className={css.overwiev}>
                 <p>Welcome to <span>DigiStore</span> - your reliable source for the latest tech innovations! We offer a
                     wide range of
