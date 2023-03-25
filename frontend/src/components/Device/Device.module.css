@@ -12,7 +12,6 @@
     padding: 5px;
 }
 
-
 .card span{
     color: var(--light-alt);
 }
@@ -44,7 +43,7 @@
     height: 20px;
     border-radius:4px ;
     cursor: pointer;
-    color: var(--light);
+    color: white;
 }
 
 .button:hover{

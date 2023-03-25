@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.c1c4bb32.css",
+    "main.css": "/static/css/main.441ab39a.css",
     "main.js": "/static/js/main.ff5298dd.js",
     "static/media/IPad.png": "/static/media/IPad.6e21d7cb947c7d675aff.png",
     "static/media/airpods.png": "/static/media/airpods.2eb1e7fce7f2d97394fa.png",
@@ -20,11 +20,11 @@
     "static/media/mastercard.png": "/static/media/mastercard.3074f66625e010fbcb96.png",
     "static/media/46c6ae07207785c.mp3": "/static/media/46c6ae07207785c.4dd8ef41da55fb3395ec.mp3",
     "index.html": "/index.html",
-    "main.c1c4bb32.css.map": "/static/css/main.c1c4bb32.css.map",
+    "main.441ab39a.css.map": "/static/css/main.441ab39a.css.map",
     "main.ff5298dd.js.map": "/static/js/main.ff5298dd.js.map"
   },
   "entrypoints": [
-    "static/css/main.c1c4bb32.css",
+    "static/css/main.441ab39a.css",
     "static/js/main.ff5298dd.js"
   ]
 }
