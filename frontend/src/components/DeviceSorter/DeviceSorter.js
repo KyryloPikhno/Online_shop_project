@@ -1,11 +1,11 @@
 import {useSearchParams} from "react-router-dom";
-import {Pagination} from "@mui/material";
 
+import css from './DeviceSorter.module.css';
 
-const PaginationDevice = ({total_pages, page}) => {
-    const [query, setQuery] = useSearchParams({page: '1'});
+const DeviceSorter = () => {
+    const [query, setQuery] = useSearchParams();
 
-    const handleChange = (e, page) => {
+    const handleSelectChange = e => {
         e.preventDefault();
 
         let obj = {};
@@ -59,17 +59,17 @@ const PaginationDevice = ({total_pages, page}) => {
             }
         }
 
-        if (page) {
+        if (query.get('page')) {
             obj = {
                 ...obj,
-                page
+                page: query.get('page')
             }
         }
 
-        if (query.get('sort')) {
+        if (e.target.value) {
             obj = {
                 ...obj,
-                sort: query.get('sort')
+                sort: e.target.value
             }
         }
 
@@ -77,8 +77,13 @@ const PaginationDevice = ({total_pages, page}) => {
     };
 
     return (
-        <Pagination color="standard" count={total_pages} page={page} onChange={handleChange}></Pagination>
+        <div className={css.container}>
+            <select value={query.get('sort') || 'Sort by ascending price'} className={css.select} onChange={handleSelectChange}>
+                <option value="asd">Sort by ascending price</option>
+                <option value="desc">Sort by descending price</option>
+            </select>
+        </div>
     );
 };
 
-export {PaginationDevice};
+export {DeviceSorter};

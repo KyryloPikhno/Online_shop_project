@@ -2,8 +2,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 
-import {deviceActions} from "../../redux/slices";
 import {PaginationDevice} from "../PaginationDevice/PaginationDevice";
+import {deviceActions} from "../../redux/slices";
+import {DeviceSorter} from "../DeviceSorter/DeviceSorter";
 import {Device} from "../Device/Device";
 import {Banner} from "../Banner/Banner";
 import css from './Devices.module.css';
@@ -27,6 +28,7 @@ const Devices = () => {
             name: query.get('name'),
             price_gte: query.get('price_gte'),
             price_lte: query.get('price_lte'),
+            sort: query.get('sort')
         }));
 
         window.scrollTo(0, 0);
@@ -37,6 +39,7 @@ const Devices = () => {
         <div className={css.container}>
             {error && <span className={css.error}>{error.message}</span>}
             <Banner/>
+            <DeviceSorter/>
             {
                 loading ?
                     <div className={css.devices}>
@@ -50,9 +53,9 @@ const Devices = () => {
                         <div className={css.loader}></div>
                     </div>
                     :
-            <div className={css.devices}>
-                {devicesResponse.devices && devicesResponse.devices.map(device => <Device key={device._id} device={device}/>)}
-            </div>
+                    <div className={css.devices}>
+                        {devicesResponse.devices && devicesResponse.devices.map(device => <Device key={device._id} device={device}/>)}
+                    </div>
             }
             {
                 (devicesResponse.total_pages && devicesResponse.page) &&

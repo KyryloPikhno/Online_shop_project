@@ -1,4 +1,4 @@
-import {createSearchParams, useNavigate} from "react-router-dom";
+import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import ClearIcon from '@mui/icons-material/Clear';
@@ -16,6 +16,8 @@ const DevicesFilter = () => {
             "price_lte": null,
         }
     });
+
+    const [query] = useSearchParams();
 
     const {categories, loading: categoriesLoading} = useSelector(state => state.categoryReducer);
 
@@ -72,6 +74,13 @@ const DevicesFilter = () => {
             findObj = {
                 ...findObj,
                 color: color.toString()
+            }
+        }
+
+        if (query.get('sort')) {
+            findObj = {
+                ...findObj,
+                sort: query.get('sort')
             }
         }
 

@@ -12,6 +12,7 @@ module.exports = {
             price_gte = 0,
             price_lte = 9999,
             category,
+            sort
         } = query;
 
         let findObj = {};
@@ -19,7 +20,7 @@ module.exports = {
         if (name) {
             findObj = {
                 ...findObj,
-                name: { $regex: name },
+                name: {$regex: name, $options: 'i'},
             }
         }
 
@@ -51,8 +52,16 @@ module.exports = {
             }
         }
 
+        let sortOrder = 1;
+
+        if (sort === 'asc') {
+            sortOrder = 1;
+        } else if (sort === 'desc') {
+            sortOrder = -1;
+        }
+
         const [devices, count] = await Promise.all([
-            Device.find(findObj).limit(limit).skip((+page - 1) * limit)
+            Device.find(findObj).sort({ price: sortOrder }).limit(limit).skip((+page - 1) * limit)
                 .populate('category')
                 .populate('brand')
                 .populate('color'),

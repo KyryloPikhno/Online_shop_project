@@ -3,10 +3,12 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import moment from "moment/moment";
 
+
 import {accountActions, deviceActions, orderActions} from "../../redux/slices";
 import deviceDeleterSound from '../../sounds/46c6ae07207785c.mp3'
 import deviceAdderSound from '../../sounds/vylet-2.mp3'
 import {DeviceSlider} from "../DeviceSlider/DeviceSlider";
+import {Device} from "../Device/Device";
 import css from './DeviceDetails.module.css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
@@ -16,7 +18,7 @@ import 'swiper/css';
 const DeviceDetails = () => {
     const {id} = useParams();
 
-    const {device, error, loading} = useSelector(state => state.deviceReducer);
+    const {device, similarDevices, error, loading} = useSelector(state => state.deviceReducer);
 
     const {account} = useSelector(state => state.accountReducer);
 
@@ -52,6 +54,12 @@ const DeviceDetails = () => {
         navigate('/devices');
     };
 
+    useEffect(() => {
+        if (category) {
+            dispatch(deviceActions.getSimilarDevices({categoryId: category._id}));
+        }
+    }, [dispatch, category]);
+
 
     return (
         <div className={css.container}>
@@ -80,6 +88,11 @@ const DeviceDetails = () => {
                     {
                         account.isAdmin &&
                         <button className={css.button} onClick={deleter}>Delete</button>
+                    }
+                </div>
+                <div>
+                    {!!similarDevices.length &&
+                        similarDevices.map(device => <Device key={device._id} device={device}/>)
                     }
                 </div>
             </div>

@@ -6,8 +6,12 @@ const {authMiddleware, userMiddleware, fileMiddleware} = require("../middlewares
 
 router.get(
     '/',
-    // authMiddleware.checkAssessToken,
     deviceController.getAll
+);
+
+router.get(
+    '/similarDevices/:categoryId',
+    deviceController.getSimilarDevices
 );
 
 router.get(

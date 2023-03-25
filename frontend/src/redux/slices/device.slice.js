@@ -5,6 +5,7 @@ import {deviceService} from "../../services";
 
 const initialState = {
     devicesResponse: [],
+    similarDevices: [],
     device: {},
     loading: false,
     error: null,
@@ -13,9 +14,21 @@ const initialState = {
 
 const getAll = createAsyncThunk(
     'deviceSlice/getAll',
-    async ({limit, page, name, price_lte, category, price_gte, color, brand}, {rejectWithValue}) => {
+    async ({limit, page, name, price_lte, category, price_gte, color, brand, sort}, {rejectWithValue}) => {
         try {
-            const {data} = await deviceService.getAll(limit, page, name, price_lte, category, price_gte, color, brand);
+            const {data} = await deviceService.getAll(limit, page, name, price_lte, category, price_gte, color, brand, sort);
+            return data;
+        } catch (e) {
+            return rejectWithValue(e.response.data);
+        }
+    }
+);
+
+const getSimilarDevices = createAsyncThunk(
+    'deviceSlice/getSimilarDevices',
+    async ({categoryId}, {rejectWithValue}) => {
+        try {
+            const {data} = await deviceService.getSimilarDevices(categoryId);
             return data;
         } catch (e) {
             return rejectWithValue(e.response.data);
@@ -90,6 +103,19 @@ const deviceSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
+            .addCase(getSimilarDevices.fulfilled, (state, action) => {
+                state.similarDevices = action.payload;
+                state.error = null;
+                state.loading = false;
+            })
+            .addCase(getSimilarDevices.rejected, (state, action) => {
+                state.error = action.payload;
+                state.loading = false;
+            })
+            .addCase(getSimilarDevices.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
             .addCase(create.fulfilled, (state, action) => {
                 state.devicesResponse.devices.push(action.payload);
                 state.device = action.payload;
@@ -151,6 +177,7 @@ const {reducer: deviceReducer} = deviceSlice;
 
 const deviceActions = {
     getAll,
+    getSimilarDevices,
     getById,
     create,
     uploadImage,
