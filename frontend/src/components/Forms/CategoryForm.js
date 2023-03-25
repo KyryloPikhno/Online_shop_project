@@ -1,4 +1,4 @@
-import {joiResolver} from "@hookform/resolvers/joi";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
 

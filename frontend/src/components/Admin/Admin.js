@@ -1,5 +1,5 @@
-import {CreateDeviceForm} from "../CreateDeviceForm/CreateDeviceForm";
 import {BrandForm, CategoryForm, ColorForm} from "../Forms";
+import {CreateDeviceForm} from "../CreateDeviceForm/CreateDeviceForm";
 import {Categories} from "../Categoties/Categories";
 import {Brands} from "../Brands/Brands";
 import {Colors} from "../Colors/Colors";

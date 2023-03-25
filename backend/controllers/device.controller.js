@@ -18,7 +18,7 @@ module.exports = {
     getSimilarDevices: async (req, res, next) => {
         try {
             const devices = await deviceService.findByParams({
-                _id: {$ne: req.params.categoryId},
+                _id: {$ne: req.params.deviceId},
                 category: req.params.categoryId
             });
 

@@ -3,16 +3,12 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import moment from "moment/moment";
 
-
 import {accountActions, deviceActions, orderActions} from "../../redux/slices";
+import {SimilarDeviceSlider} from "../SimilarDeviceSlider/SimilarDeviceSlider";
 import deviceDeleterSound from '../../sounds/46c6ae07207785c.mp3'
+import {DeviceImgSlider} from "../DeviceImgSlider/DeviceImgSlider";
 import deviceAdderSound from '../../sounds/vylet-2.mp3'
-import {DeviceSlider} from "../DeviceSlider/DeviceSlider";
-import {Device} from "../Device/Device";
-import css from './DeviceDetails.module.css';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
-import 'swiper/css';
+import css from './DeviceImgSlide.module.css';
 
 
 const DeviceDetails = () => {
@@ -34,7 +30,7 @@ const DeviceDetails = () => {
         dispatch(accountActions.getByAccess());
 
         window.scrollTo(0, 0);
-    }, []);
+    }, [id]);
 
     const audioAdderSound = new Audio(deviceAdderSound);
     const audioDeleterSound = new Audio(deviceDeleterSound);
@@ -45,7 +41,6 @@ const DeviceDetails = () => {
         dispatch(orderActions.addDevice({_id, name, image: images[0], quantity: 1, price, countInStock}));
     };
 
-
     const deleter = () => {
         audioDeleterSound.play();
 
@@ -55,46 +50,52 @@ const DeviceDetails = () => {
     };
 
     useEffect(() => {
-        if (category) {
-            dispatch(deviceActions.getSimilarDevices({categoryId: category._id}));
+        if (category && _id) {
+            dispatch(deviceActions.getSimilarDevices({categoryId: category._id, deviceId: _id}));
         }
-    }, [dispatch, category]);
+    }, [category, _id]);
 
 
     return (
         <div className={css.container}>
             {error && <span className={css.error}>{error.message}</span>}
-
-            <div className={css.slider}>
-                <DeviceSlider images={images}/>
-            </div>
-            <div className={css.box}>
-                {name && <h2>{name}</h2>}
-                {price && <h2 className={css.price}>$ {price}</h2>}
-                <div>Free delivery in Ukraine and Kyiv with self-delivery</div>
-                <hr/>
-                <div className={css.info}>
-                    {category && <div>Category: {category.name}</div>}
-                    {brand && <div>Brand: {brand.name}</div>}
-                    {color && <div>Color: {color.name}</div>}
-                    {countInStock && <div>Count in stock: {countInStock}</div>}
-                    <div>Created: {createdAt && moment(createdAt).format("dd/mm/yy HH:mm:ss")}</div>
-                    {description && <div>Description: {description}</div>}
+            {loading?
+            <div className={css.loader}></div>
+            :
+            <div className={css.oneMoreContainer}>
+                <div className={css.slider}>
+                    <DeviceImgSlider images={images}/>
                 </div>
-                <div className={css.buttons}>
-                    <button className={countInStock !== 0 ? css.button : css.disabledButton}
-                            disabled={countInStock === 0}
-                            onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card' : 'Device is out of stock'}</button>
-                    {
-                        account.isAdmin &&
-                        <button className={css.button} onClick={deleter}>Delete</button>
-                    }
+                <div className={css.box}>
+                    {name && <h2>{name}</h2>}
+                    {price && <h2 className={css.price}>$ {price}</h2>}
+                    <div>Free delivery in Ukraine and Kyiv with self-delivery</div>
+                    <hr/>
+                    <div className={css.info}> 
+                        {category && <div>Category: {category.name}</div>}
+                        {brand && <div>Brand: {brand.name}</div>}
+                        <div className={css.colorBox}>
+                            {color && <div>Color: {color.name}</div>}
+                            {color && <div className={css.color} style={{background: color.name}}></div>}
+                        </div>
+                        {countInStock && <div>Count in stock: {countInStock}</div>}
+                        <div>Created: {createdAt && moment(createdAt).format("dd/mm/yy HH:mm:ss")}</div>
+                        {description && <div>Description: {description}</div>}
+                    </div>
+                    <div className={css.buttons}>
+                        <button className={countInStock !== 0 ? css.button : css.disabledButton}
+                                disabled={countInStock === 0}
+                                onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card' : 'Device is out of stock'}</button>
+                        {
+                            account.isAdmin &&
+                            <button className={css.button} onClick={deleter}>Delete</button>
+                        }
+                    </div>
                 </div>
-                <div>
-                    {!!similarDevices.length &&
-                        similarDevices.map(device => <Device key={device._id} device={device}/>)
-                    }
-                </div>
+            </div>}
+            <div className={css.similarDevices}>
+                <h1>Similar devices</h1>
+                <SimilarDeviceSlider similarDevices={similarDevices}/>
             </div>
         </div>
     );

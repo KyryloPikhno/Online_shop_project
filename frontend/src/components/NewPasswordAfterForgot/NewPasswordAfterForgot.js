@@ -1,5 +1,5 @@
 import {NavLink, useSearchParams} from "react-router-dom";
-import {joiResolver} from "@hookform/resolvers/joi";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import {Box, Modal} from "@mui/material";
 import {useState} from "react";
 import {useForm} from "react-hook-form";

@@ -173,18 +173,11 @@
 
 .table th,
 .table td {
-    border: 2px solid black;
     padding: 5px;
     text-align: center;
     width: 125px;
 }
 
-.statusTd{
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
-    /*flex-direction: column;*/
-}
 
 .table th {
     font-weight: bold;

@@ -1,5 +1,6 @@
-import {joiResolver} from "@hookform/resolvers/joi";
+
 import {useDispatch} from "react-redux";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import {useForm} from "react-hook-form";
 
 import {brandValidator} from "../../validators";

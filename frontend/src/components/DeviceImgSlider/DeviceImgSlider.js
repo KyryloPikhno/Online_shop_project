@@ -1,6 +1,7 @@
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation, Thumbs} from 'swiper';
 import {useState} from "react";
+
 import 'swiper/css/effect-fade';
 import 'swiper/css';
 
@@ -8,11 +9,11 @@ import {baseURL} from "../../configs";
 import css from './DeviceSlider.module.css';
 
 
-const DeviceSlider = ({images}) => {
+const DeviceImgSlider = ({images}) => {
     const [activeThumb, setActiveThumb] = useState();
 
     return (
-        <>
+        <div>
             <Swiper
                 navigation={true}
                 modules={[Navigation, Thumbs]}
@@ -41,10 +42,9 @@ const DeviceSlider = ({images}) => {
                     ))
                 }
             </Swiper>
-
-        </>
+        </div>
     );
 };
 
 
-export {DeviceSlider};
+export {DeviceImgSlider};

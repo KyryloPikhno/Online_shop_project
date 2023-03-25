@@ -8,7 +8,7 @@ const deviceService = {
             limit, page, name, price_lte, category, price_gte, color, brand, sort
         }
     }),
-    getSimilarDevices: (categoryId) => axiosService.get(`${urls.devices}/${urls.similarDevices}/${categoryId}`),
+    getSimilarDevices: (categoryId, deviceId) => axiosService.get(`${urls.devices}/${urls.similarDevices}/${deviceId}/${categoryId}`),
     getById: (id) => axiosService.get(`${urls.devices}/${id}`),
     create: (device) => axiosService.post(urls.devices, device),
     delete: (id) => axiosService.delete(`${urls.devices}/${id}`),

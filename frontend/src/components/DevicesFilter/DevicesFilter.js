@@ -35,7 +35,7 @@ const DevicesFilter = () => {
         dispatch(categoryActions.getAll());
         dispatch(brandActions.getAll());
         dispatch(colorActions.getAll());
-    }, [dispatch]);
+    }, []);
 
     const submit = (obj) => {
         const {category, price_gte, price_lte, brand, color} = obj;
@@ -92,8 +92,7 @@ const DevicesFilter = () => {
 
     return (
         <div>
-            <div className={!open ? css.openFilter : css.closedFilter} onMouseOver={() => setOpen(true)}>Open filter
-            </div>
+            <div className={!open ? css.openFilter : css.closedFilter} onMouseOver={() => setOpen(true)}>Filter</div>
             <div className={open ? css.filter : css.closedFilter}>
                 {
                     (categoriesLoading || brandsLoading || colorsLoading) ?

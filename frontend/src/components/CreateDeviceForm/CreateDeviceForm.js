@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {joiResolver} from "@hookform/resolvers/joi";
 import {useNavigate} from "react-router-dom";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import {Box, Modal} from "@mui/material";
 import {useForm} from "react-hook-form";
 import Dropzone from "react-dropzone";

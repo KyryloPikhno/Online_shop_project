@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 import {deviceActions, orderActions} from "../../redux/slices";
 import deviceDeleterSound from '../../sounds/46c6ae07207785c.mp3'
@@ -9,8 +9,6 @@ import css from './Device.module.css';
 
 
 const Device = ({device}) => {
-    const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     const {account} = useSelector(state => state.accountReducer);
@@ -34,11 +32,11 @@ const Device = ({device}) => {
 
     return (
         <div className={css.card}>
-            <div className={css.imageBox} onClick={() => navigate(_id)}>
+            <NavLink to={`/devices/${_id}`} className={css.imageBox}>
                 <img className={css.img}
                      src={`${baseURL}/${images[0]}`}
                      alt={images[0]}/>
-            </div>
+            </NavLink>
             <div>{name}</div>
             <div>
                 <span>

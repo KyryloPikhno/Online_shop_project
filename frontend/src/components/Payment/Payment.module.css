@@ -141,7 +141,12 @@
     height: 30px;
     background: var(--light-alt);
     border: none;
-    color: var(--light);
+    color: white;
+    cursor: pointer;
+}
+
+.validButton:hover{
+    background: black;
 }
 
 .noValidButton{
@@ -181,7 +186,8 @@
     height: 30px;
     background: var(--light-alt);
     border: none;
-    color: var(--light);
+    color: white;
+    cursor: pointer;
 }
 
 .button:hover{

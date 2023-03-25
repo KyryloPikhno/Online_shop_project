@@ -21,11 +21,11 @@ const Header = () => {
 
     useEffect(() => {
         dispatch(accountActions.getByAccess());
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
         dispatch(categoryActions.getAll());
-    }, [dispatch]);
+    }, []);
 
     const location = useLocation();
     const deviceDetailsPathname = location.pathname === `/devices/${location.pathname.split('/devices/')[1]}`;

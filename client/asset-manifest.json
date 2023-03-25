@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c1c4bb32.css",
+    "main.js": "/static/js/main.ff5298dd.js",
+    "static/media/IPad.png": "/static/media/IPad.6e21d7cb947c7d675aff.png",
+    "static/media/airpods.png": "/static/media/airpods.2eb1e7fce7f2d97394fa.png",
+    "static/media/MQDY3ref_VW_PF+watch-49-titanium-ultra_VW_PF_WF_CO+watch-face-49-alpine-ultra_VW_PF_WF_CO.jpeg": "/static/media/MQDY3ref_VW_PF+watch-49-titanium-ultra_VW_PF_WF_CO+watch-face-49-alpine-ultra_VW_PF_WF_CO.d5534f084c27e8fb6919.jpeg",
+    "static/media/watch.png": "/static/media/watch.8965128c1cf844168108.png",
+    "static/media/imac24-digitalmat-gallery-2-202111.png": "/static/media/imac24-digitalmat-gallery-2-202111.8e82f650bfdb6b5898db.png",
+    "static/media/studio-display-digitalmat-gallery-1-202203.png": "/static/media/studio-display-digitalmat-gallery-1-202203.ac68fc41c05a868ab6c6.png",
+    "static/media/image.png": "/static/media/image.d63a16ff4831a9c209e0.png",
+    "static/media/macbook-air-digitalmat-gallery-1-202206.png": "/static/media/macbook-air-digitalmat-gallery-1-202206.e4231b4551ef30a9cde3.png",
+    "static/media/25176458.jpg": "/static/media/25176458.54e1c7305a8f7fb33a72.jpg",
+    "static/media/MMMQ3_AV1.jpeg": "/static/media/MMMQ3_AV1.d52c79ad66d2b0b4e039.jpeg",
+    "static/media/mac-mini-hero-202301.jpeg": "/static/media/mac-mini-hero-202301.98da9bd80183981ca86f.jpeg",
+    "static/media/260739937.jpg": "/static/media/260739937.9cf8c2e221b00637bf56.jpg",
+    "static/media/1679585769035_2526430.jpeg": "/static/media/1679585769035_2526430.a8824274ebfaa4c34f03.jpeg",
+    "static/media/airpods-compare-airpods-max-202209.jpeg": "/static/media/airpods-compare-airpods-max-202209.f7a62d24451d28cabcad.jpeg",
+    "static/media/vylet-2.mp3": "/static/media/vylet-2.9b9106cb6b428f19cdb4.mp3",
+    "static/media/mastercard.png": "/static/media/mastercard.3074f66625e010fbcb96.png",
+    "static/media/46c6ae07207785c.mp3": "/static/media/46c6ae07207785c.4dd8ef41da55fb3395ec.mp3",
+    "index.html": "/index.html",
+    "main.c1c4bb32.css.map": "/static/css/main.c1c4bb32.css.map",
+    "main.ff5298dd.js.map": "/static/js/main.ff5298dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c1c4bb32.css",
+    "static/js/main.ff5298dd.js"
+  ]
+}

@@ -155,13 +155,14 @@
 }
 
 .openFilter ,.closedFilter{
+    color: white;
     position: fixed;
     left: 13px;
     top: 265px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
+    width: 50px;
     height: 50px;
     border-radius: 8px;
     background-color: var(--light-alt);

@@ -1,7 +1,7 @@
 import {createSearchParams, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {categoryActions} from "../../redux/slices";
-import {joiResolver} from "@hookform/resolvers/joi";
+import {joiResolver} from "@hookform/resolvers/joi/dist/joi";
 import {useEffect} from "react";
 import {FiSearch} from 'react-icons/fi';
 import {useForm} from "react-hook-form";
@@ -28,7 +28,7 @@ const DevicesSearchForm = () => {
 
     useEffect(() => {
         dispatch(categoryActions.getAll());
-    }, [dispatch]);
+    }, []);
 
     const submit = async (obj) => {
         try {

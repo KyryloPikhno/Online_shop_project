@@ -26,9 +26,9 @@ const getAll = createAsyncThunk(
 
 const getSimilarDevices = createAsyncThunk(
     'deviceSlice/getSimilarDevices',
-    async ({categoryId}, {rejectWithValue}) => {
+    async ({categoryId, deviceId}, {rejectWithValue}) => {
         try {
-            const {data} = await deviceService.getSimilarDevices(categoryId);
+            const {data} = await deviceService.getSimilarDevices(categoryId, deviceId);
             return data;
         } catch (e) {
             return rejectWithValue(e.response.data);

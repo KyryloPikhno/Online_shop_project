@@ -10,7 +10,8 @@ router.get(
 );
 
 router.get(
-    '/similarDevices/:categoryId',
+    '/similarDevices/:deviceId/:categoryId',
+    authMiddleware.checkAssessToken,
     deviceController.getSimilarDevices
 );
 
