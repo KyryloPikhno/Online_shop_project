@@ -158,57 +158,57 @@ const orderSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getUserOrders.fulfilled, (state, action) => {
-                state.userOrders = action.payload
-                state.error = null
-                state.loading = false
+                state.userOrders = action.payload;
+                state.error = null;
+                state.loading = false;
             })
             .addCase(getUserOrders.rejected, (state, action) => {
-                state.error = action.payload
-                state.loading = false
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(getUserOrders.pending, (state) => {
-                state.loading = true
-                state.error = null
+                state.loading = true;
+                state.error = null;
             })
             .addCase(create.fulfilled, (state, action) => {
-                state.orderInfo = action.payload
-                state.error = null
-                state.loading = false
+                state.orderInfo = action.payload;
+                state.error = null;
+                state.loading = false;
             })
             .addCase(create.rejected, (state, action) => {
-                state.error = action.payload
-                state.loading = false
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(create.pending, (state) => {
-                state.loading = true
-                state.error = null
+                state.loading = true;
+                state.error = null;
             })
             .addCase(update.fulfilled, (state, action) => {
-                state.orderStatus = action.payload.orderStatus
-                state.error = null
-                state.loading = false
+                state.orderStatus = action.payload.orderStatus;
+                state.error = null;
+                state.loading = false;
             })
             .addCase(update.rejected, (state, action) => {
-                state.error = action.payload
-                state.loading = false
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(update.pending, (state) => {
-                state.loading = true
-                state.error = null
+                state.loading = true;
+                state.error = null;
             })
             .addCase(deleteById.fulfilled, (state, action) => {
-                const index = state.userOrders.findIndex(order => order._id === action.payload)
-                state.userOrders.splice(index, 1)
-                state.error = null
-                state.loading = false
+                const index = state.userOrders.findIndex(order => order._id === action.payload);
+                state.userOrders.splice(index, 1);
+                state.error = null;
+                state.loading = false;
             })
             .addCase(deleteById.rejected, (state, action) => {
-                state.error = action.payload
-                state.loading = false
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(deleteById.pending, (state) => {
-                state.loading = true
-                state.error = null
+                state.loading = true;
+                state.error = null;
             })
 });
 

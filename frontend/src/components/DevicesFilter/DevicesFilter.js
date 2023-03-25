@@ -33,7 +33,7 @@ const DevicesFilter = () => {
         dispatch(categoryActions.getAll());
         dispatch(brandActions.getAll());
         dispatch(colorActions.getAll());
-    }, [dispatch])
+    }, [dispatch]);
 
     const submit = (obj) => {
         const {category, price_gte, price_lte, brand, color} = obj;

@@ -14,14 +14,14 @@ import img_7 from '../../img/studio-display-digitalmat-gallery-1-202203.png';
 import img_8 from '../../img/MQDY3ref_VW_PF+watch-49-titanium-ultra_VW_PF_WF_CO+watch-face-49-alpine-ultra_VW_PF_WF_CO.jpeg';
 import img_9 from '../../img/macbook-air-digitalmat-gallery-1-202206.png';
 import img_10 from '../../img/mac-mini-hero-202301.jpeg';
-import img_11 from '../../img/iphone-compare-iphone-se-202209.jpeg';
+import img_11 from '../../img/1679585769035_2526430.jpeg';
 import img_12 from '../../img/MMMQ3_AV1.jpeg';
-import img_1 from '../../img';
+import img_13 from '../../img/260739937.jpg';
 import css from './Banner.module.css';
 
 
 const Banner = () => {
-    const images = [img_1, img_2, img_3, img_4, img_5, img_6, img_7, img_8, img_9, img_10, img_11, img_12];
+    const images = [img_1, img_2, img_3, img_4, img_5, img_6, img_7, img_8, img_9, img_10, img_11, img_12, img_13];
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -30,7 +30,7 @@ const Banner = () => {
             setCurrentIndex((currentIndex) =>
                 currentIndex === images.length - 1 ? 0 : currentIndex + 1
             );
-        }, 6000);
+        }, 5000);
         return () => clearInterval(interval);
     }, []);
 
@@ -71,6 +71,5 @@ const Banner = () => {
         </div>
     );
 };
-
 
 export {Banner};

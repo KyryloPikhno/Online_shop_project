@@ -157,7 +157,7 @@
 .openFilter ,.closedFilter{
     position: fixed;
     left: 13px;
-    top: 300px;
+    top: 265px;
     display: flex;
     align-items: center;
     justify-content: center;

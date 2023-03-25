@@ -44,7 +44,7 @@
 
 .buttons button:last-child {
     width: 115px;
-    color: var(--light);
+    color: white;
     border: none;
     background: var(--light-alt);
     height: 25px;

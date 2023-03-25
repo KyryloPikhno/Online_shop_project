@@ -44,34 +44,34 @@ const accountSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getByAccess.fulfilled, (state, action) => {
-                state.account = action.payload
-                state.error = null
-                state.loading = false
+                state.account = action.payload;
+                state.error = null;
+                state.loading = false;
             })
             .addCase(getByAccess.rejected, (state, action) => {
-                state.account = false
-                state.error = action.payload
-                state.loading = false
+                state.account = false;
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(getByAccess.pending, (state) => {
-                state.account = false
-                state.loading = true
-                state.error = null
+                state.account = false;
+                state.loading = true;
+                state.error = null;
             })
             .addCase(logoutAll.fulfilled, (state) => {
-                state.account = false
-                state.loading = false
-                state.login = false
+                state.account = false;
+                state.loading = false;
+                state.login = false;
             })
             .addCase(logoutAll.rejected, (state, action) => {
-                state.account = false
-                state.error = action.payload
-                state.loading = false
+                state.account = false;
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(logoutAll.pending, (state) => {
-                state.account = false
-                state.loading = true
-                state.error = null
+                state.account = false;
+                state.loading = true;
+                state.error = null;
             })
 });
 

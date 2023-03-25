@@ -78,72 +78,72 @@ const deviceSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.devicesResponse = action.payload
-                state.error = null
-                state.loading = false
+                state.devicesResponse = action.payload;
+                state.error = null;
+                state.loading = false;
             })
             .addCase(getAll.rejected, (state, action) => {
-                state.error = action.payload
-                state.loading = false
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(getAll.pending, (state) => {
-                state.loading = true
-                state.error = null
+                state.loading = true;
+                state.error = null;
             })
             .addCase(create.fulfilled, (state, action) => {
-                state.devicesResponse.devices.push(action.payload)
-                state.device = action.payload
-                state.error = null
-                state.loading = false
+                state.devicesResponse.devices.push(action.payload);
+                state.device = action.payload;
+                state.error = null;
+                state.loading = false;
             })
             .addCase(create.rejected, (state, action) => {
-                state.error = action.payload
-                state.loading = false
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(create.pending, (state) => {
-                state.loading = true
-                state.error = null
+                state.loading = true;
+                state.error = null;
             })
             .addCase(uploadImage.fulfilled, (state, action) => {
-                const find = state.devicesResponse.devices.find(device => device._id === action.payload._id)
-                Object.assign(find, action.payload)
-                state.error = null
-                state.loading = false
+                const find = state.devicesResponse.devices.find(device => device._id === action.payload._id);
+                Object.assign(find, action.payload);
+                state.error = null;
+                state.loading = false;
             })
             .addCase(uploadImage.rejected, (state, action) => {
-                state.error = action.payload
-                state.loading = false
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(uploadImage.pending, (state) => {
-                state.loading = true
-                state.error = null
+                state.loading = true;
+                state.error = null;
             })
             .addCase(deleteDevice.fulfilled, (state, action) => {
-                const index = state.devicesResponse.devices.findIndex(device => device._id === action.payload)
-                state.devicesResponse.devices.splice(index,1)
-                state.error = null
-                state.loading = false
+                const index = state.devicesResponse.devices.findIndex(device => device._id === action.payload);
+                state.devicesResponse.devices.splice(index, 1);
+                state.error = null;
+                state.loading = false;
             })
             .addCase(deleteDevice.rejected, (state, action) => {
-                state.error = action.payload
-                state.loading = false
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(deleteDevice.pending, (state) => {
-                state.loading = true
-                state.error = null
+                state.loading = true;
+                state.error = null;
             })
             .addCase(getById.fulfilled, (state, action) => {
-                state.device = action.payload
-                state.error = null
-                state.loading = false
+                state.device = action.payload;
+                state.error = null;
+                state.loading = false;
             })
             .addCase(getById.rejected, (state, action) => {
-                state.error = action.payload
-                state.loading = false
+                state.error = action.payload;
+                state.loading = false;
             })
             .addCase(getById.pending, (state) => {
-                state.loading = true
-                state.error = null
+                state.loading = true;
+                state.error = null;
             })
 });
 
