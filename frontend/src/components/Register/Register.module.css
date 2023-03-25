@@ -44,6 +44,11 @@
     color: gray;
 }
 
+.validButton:hover{
+    background:black;
+    color: white;
+}
+
 .form span{
     color: #D81E5B;
     font-size: 10px;

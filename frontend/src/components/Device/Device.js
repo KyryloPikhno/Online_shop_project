@@ -39,7 +39,7 @@ const Device = ({device}) => {
                      src={`${baseURL}/${images[0]}`}
                      alt={images[0]}/>
             </div>
-            <div>Name: {name}</div>
+            <div>{name}</div>
             <div>
                 <span>
                $ {price}

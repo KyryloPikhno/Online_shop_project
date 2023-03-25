@@ -28,7 +28,7 @@ const DevicesSearchForm = () => {
 
     useEffect(() => {
         dispatch(categoryActions.getAll());
-    }, []);
+    }, [dispatch]);
 
     const submit = async (obj) => {
         try {

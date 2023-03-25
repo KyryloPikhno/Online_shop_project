@@ -8,7 +8,7 @@ const newDeviceValidator = Joi.object({
         'string.pattern.base': 'Invalid characters or less than one letter entered'
     }),
     price: Joi.number().min(50).max(10000).required(),
-    countInStock: Joi.number().min(1).max(1000).required(),
+    countInStock: Joi.number().min(1).max(100).required(),
     category: Joi.string().required().messages({
         'string.pattern.base': 'Category _id required'
     }),

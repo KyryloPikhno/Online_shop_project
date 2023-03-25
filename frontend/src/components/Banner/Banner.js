@@ -5,7 +5,7 @@ import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import {green} from "@mui/material/colors";
 
 import img_1 from '../../img/airpods.png';
-import img_2 from "../../img/iphone13.png";
+import img_2 from "../../img/25176458.jpg";
 import img_3 from '../../img/watch.png';
 import img_4 from '../../img/IPad.png';
 import img_5 from '../../img/airpods-compare-airpods-max-202209.jpeg';
@@ -16,6 +16,7 @@ import img_9 from '../../img/macbook-air-digitalmat-gallery-1-202206.png';
 import img_10 from '../../img/mac-mini-hero-202301.jpeg';
 import img_11 from '../../img/iphone-compare-iphone-se-202209.jpeg';
 import img_12 from '../../img/MMMQ3_AV1.jpeg';
+import img_1 from '../../img';
 import css from './Banner.module.css';
 
 

@@ -11,7 +11,7 @@ import css from './Order.module.css';
 const Order = () => {
     const {account} = useSelector(state => state.accountReducer);
 
-    const {deviceList, totalPrice, quantity, error, orderInfo, loading} = useSelector(state => state.orderReducer);
+    const {deviceList, totalPrice, quantity, error, orderInfo} = useSelector(state => state.orderReducer);
 
     const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ const Order = () => {
 
     useEffect(() => {
         dispatch(accountActions.getByAccess());
-    }, []);
+    }, [dispatch]);
 
     const orderCreator = () => {
         try {

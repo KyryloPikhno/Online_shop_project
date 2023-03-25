@@ -55,7 +55,7 @@ const Payment = () => {
         if (orderStatus) {
             dispatch(orderActions.reset());
         }
-    }, [orderStatus]);
+    }, [orderStatus, dispatch]);
 
     const months = Array.from({length: 12}, (_, i) => i + 1);
     const years = Array.from({length: 15}, (_, i) => 2023 + i);

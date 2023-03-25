@@ -12,7 +12,7 @@ const MainLayout = () => {
 
     useEffect(() => {
         dispatch(accountActions.getByAccess());
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className={css.container}>

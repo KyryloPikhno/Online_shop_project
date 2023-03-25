@@ -33,7 +33,7 @@ const DevicesFilter = () => {
         dispatch(categoryActions.getAll());
         dispatch(brandActions.getAll());
         dispatch(colorActions.getAll());
-    }, [])
+    }, [dispatch])
 
     const submit = (obj) => {
         const {category, price_gte, price_lte, brand, color} = obj;
@@ -102,10 +102,10 @@ const DevicesFilter = () => {
                                     categories.map(category => (
                                         <label key={category._id}>
                                             <input className={css.labelInput}
-                                                {...register("category")}
-                                                type="checkbox"
-                                                value={category._id}
-                                                id={category._id}
+                                                   {...register("category")}
+                                                   type="checkbox"
+                                                   value={category._id}
+                                                   id={category._id}
                                             />
                                             {category.name}
                                         </label>))
@@ -118,10 +118,10 @@ const DevicesFilter = () => {
                                     brands.map(brand => (
                                         <label key={brand._id}>
                                             <input className={css.labelInput}
-                                                {...register("brand")}
-                                                type="checkbox"
-                                                value={brand._id}
-                                                id={brand._id}
+                                                   {...register("brand")}
+                                                   type="checkbox"
+                                                   value={brand._id}
+                                                   id={brand._id}
                                             />
                                             {brand.name}
                                         </label>))
@@ -134,10 +134,10 @@ const DevicesFilter = () => {
                                     colors.map(color => (
                                         <label key={color._id}>
                                             <input className={css.labelInput}
-                                                {...register("color")}
-                                                type="checkbox"
-                                                value={color._id}
-                                                id={color._id}
+                                                   {...register("color")}
+                                                   type="checkbox"
+                                                   value={color._id}
+                                                   id={color._id}
                                             />
                                             {color.name}
                                         </label>))
