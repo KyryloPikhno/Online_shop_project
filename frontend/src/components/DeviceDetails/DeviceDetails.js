@@ -59,42 +59,42 @@ const DeviceDetails = () => {
     return (
         <div className={css.container}>
             {error && <span className={css.error}>{error.message}</span>}
-            {loading?
-            <div className={css.loader}></div>
-            :
-            <div className={css.oneMoreContainer}>
-                <div className={css.slider}>
-                    <DeviceImgSlider images={images}/>
-                </div>
-                <div className={css.box}>
-                    {name && <h2>{name}</h2>}
-                    {price && <h2 className={css.price}>$ {price}</h2>}
-                    <div>Free delivery in Ukraine and Kyiv with self-delivery</div>
-                    <hr/>
-                    <div className={css.info}> 
-                        {category && <div>Category: {category.name}</div>}
-                        {brand && <div>Brand: {brand.name}</div>}
-                        <div className={css.colorBox}>
-                            {color && <div>Color: {color.name}</div>}
-                            {color && <div className={css.color} style={{background: color.name}}></div>}
+            {loading ?
+                <div className={css.loader}></div>
+                :
+                <div className={css.oneMoreContainer}>
+                    <div className={css.slider}>
+                        <DeviceImgSlider images={images}/>
+                    </div>
+                    <div className={css.box}>
+                        {name && <h2>{name}</h2>}
+                        {price && <h2 className={css.price}>$ {price}</h2>}
+                        <div>Free delivery in Ukraine and Kyiv with self-delivery</div>
+                        <hr/>
+                        <div className={css.info}>
+                            {category && <div>Category: {category.name}</div>}
+                            {brand && <div>Brand: {brand.name}</div>}
+                            <div className={css.colorBox}>
+                                {color && <div>Color: {color.name}</div>}
+                                {color && <div className={css.color} style={{background: color.name}}></div>}
+                            </div>
+                            {countInStock && <div>Count in stock: {countInStock} pieces</div>}
+                            <div>Created: {createdAt && moment(createdAt).format("dd/mm/yy HH:mm:ss")}</div>
+                            {description && <div className={css.desc}>Description:<br/>{description}</div>}
                         </div>
-                        {countInStock && <div>Count in stock: {countInStock}</div>}
-                        <div>Created: {createdAt && moment(createdAt).format("dd/mm/yy HH:mm:ss")}</div>
-                        {description && <div>Description: {description}</div>}
+                        <div className={css.buttons}>
+                            <button className={countInStock !== 0 ? css.button : css.disabledButton}
+                                    disabled={countInStock === 0}
+                                    onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card' : 'Device is out of stock'}</button>
+                            {
+                                account.isAdmin &&
+                                <button className={css.button} onClick={deleter}>Delete</button>
+                            }
+                        </div>
                     </div>
-                    <div className={css.buttons}>
-                        <button className={countInStock !== 0 ? css.button : css.disabledButton}
-                                disabled={countInStock === 0}
-                                onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card' : 'Device is out of stock'}</button>
-                        {
-                            account.isAdmin &&
-                            <button className={css.button} onClick={deleter}>Delete</button>
-                        }
-                    </div>
-                </div>
-            </div>}
+                </div>}
             <div className={css.similarDevices}>
-                <h1>Similar devices</h1>
+                {!!similarDevices.length && <h1>Similar devices</h1>}
                 <SimilarDeviceSlider similarDevices={similarDevices}/>
             </div>
         </div>

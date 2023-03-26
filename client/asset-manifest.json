@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a5a5efb4.css",
-    "main.js": "/static/js/main.3a800ed8.js",
+    "main.css": "/static/css/main.09b160a1.css",
+    "main.js": "/static/js/main.3b5671cc.js",
     "static/media/IPad.png": "/static/media/IPad.6e21d7cb947c7d675aff.png",
     "static/media/airpods.png": "/static/media/airpods.2eb1e7fce7f2d97394fa.png",
     "static/media/MQDY3ref_VW_PF+watch-49-titanium-ultra_VW_PF_WF_CO+watch-face-49-alpine-ultra_VW_PF_WF_CO.jpeg": "/static/media/MQDY3ref_VW_PF+watch-49-titanium-ultra_VW_PF_WF_CO+watch-face-49-alpine-ultra_VW_PF_WF_CO.d5534f084c27e8fb6919.jpeg",
@@ -20,11 +20,11 @@
     "static/media/mastercard.png": "/static/media/mastercard.3074f66625e010fbcb96.png",
     "static/media/46c6ae07207785c.mp3": "/static/media/46c6ae07207785c.4dd8ef41da55fb3395ec.mp3",
     "index.html": "/index.html",
-    "main.a5a5efb4.css.map": "/static/css/main.a5a5efb4.css.map",
-    "main.3a800ed8.js.map": "/static/js/main.3a800ed8.js.map"
+    "main.09b160a1.css.map": "/static/css/main.09b160a1.css.map",
+    "main.3b5671cc.js.map": "/static/js/main.3b5671cc.js.map"
   },
   "entrypoints": [
-    "static/css/main.a5a5efb4.css",
-    "static/js/main.3a800ed8.js"
+    "static/css/main.09b160a1.css",
+    "static/js/main.3b5671cc.js"
   ]
 }
