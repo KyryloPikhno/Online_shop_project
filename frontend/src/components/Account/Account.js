@@ -5,6 +5,7 @@ import {useEffect} from "react";
 import moment from "moment";
 
 import {accountActions, orderActions} from "../../redux/slices";
+import {UpButton} from "../UpButton/UpButton";
 import {baseURL} from "../../configs";
 import img from '../../img/User_Icon.png';
 import css from './Account.module.css';
@@ -122,6 +123,7 @@ const Account = () => {
                         }
                     </div>
             }
+            <UpButton/>
         </div>
     );
 };

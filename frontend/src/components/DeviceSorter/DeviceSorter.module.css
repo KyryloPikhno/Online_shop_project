@@ -14,6 +14,8 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    cursor: pointer;
+    text-align: center;
 }
 
 select option {

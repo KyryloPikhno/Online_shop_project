@@ -18,7 +18,7 @@ import img_11 from '../../img/1679585769035_2526430.jpeg';
 import img_12 from '../../img/MMMQ3_AV1.jpeg';
 import img_13 from '../../img/260739937.jpg';
 import css from './Banner.module.css';
-
+ 
 
 const Banner = () => {
     const images = [img_1, img_2, img_3, img_4, img_5, img_6, img_7, img_8, img_9, img_10, img_11, img_12, img_13];
@@ -45,7 +45,7 @@ const Banner = () => {
                         <br/>
                         YOUR DAY
                     </h1>
-                    <div className={css.info}>
+                    <div className={css.inform}>
                         Shop for electronic devices with us, guaranteed quality, fast delivery and arrived safely to
                         the destination
                     </div>

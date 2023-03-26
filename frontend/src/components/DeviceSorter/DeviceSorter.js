@@ -8,7 +8,7 @@ const DeviceSorter = () => {
     const handleSelectChange = e => {
         e.preventDefault();
 
-        let obj = {};
+        let obj = {}; 
 
         if (query.get('name')) {
             obj = {

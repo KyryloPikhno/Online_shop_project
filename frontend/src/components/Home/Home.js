@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 
 import {categoryActions} from "../../redux/slices";
+import {UpButton} from "../UpButton/UpButton";
 import {Banner} from "../Banner/Banner";
 import css from './Home.module.css';
 
@@ -29,9 +30,10 @@ const Home = () => {
 
     return (
         <div className={css.container}>
-            <h1>Hi dear friend</h1>
+            <h1>Hi, dear friend!</h1>
             <div className={css.overwiev}>
-                <p>Welcome to <span>DigiStore</span> - your reliable source for the latest tech innovations! We offer a
+                <p className={css.text}>Welcome to <span className={css.text}>DigiStore</span> - your reliable source
+                    for the latest tech innovations! We offer a
                     wide range of
                     products, from smartphones to laptops and drones, at affordable prices. Shop with us and stay at the
                     forefront of technology!</p>
@@ -58,6 +60,7 @@ const Home = () => {
             }
             <Banner/>
             <button className={css.link} onClick={() => navigate('/devices')}>View all devices</button>
+            <UpButton/>
         </div>
     );
 };

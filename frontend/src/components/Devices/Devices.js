@@ -5,6 +5,7 @@ import {useEffect} from "react";
 import {PaginationDevice} from "../PaginationDevice/PaginationDevice";
 import {deviceActions} from "../../redux/slices";
 import {DeviceSorter} from "../DeviceSorter/DeviceSorter";
+import {UpButton} from "../UpButton/UpButton";
 import {Device} from "../Device/Device";
 import {Banner} from "../Banner/Banner";
 import css from './Devices.module.css';
@@ -61,6 +62,7 @@ const Devices = () => {
                 (devicesResponse.total_pages && devicesResponse.page) &&
                 <PaginationDevice total_pages={devicesResponse.total_pages} page={devicesResponse.page}/>
             }
+            <UpButton/>
         </div>
     );
 };
