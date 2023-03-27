@@ -32,12 +32,10 @@ const Header = () => {
     const devicesPathname = location.pathname === '/devices';
     const homePathname = location.pathname === '/home';
 
-    const logoutAll = (_id) => {
-        dispatch(orderActions.reset());
-
-        dispatch(accountActions.logoutAll({_id}));
-
-        authService.deleteTokens();
+    const logoutAll = async (_id) => {
+        await dispatch(orderActions.reset());
+        await dispatch(accountActions.logoutAll({_id}));
+        await authService.deleteTokens();
 
         navigate('/login');
     };

@@ -19,9 +19,7 @@ const getByAccess = createAsyncThunk(
                 const {data} = await accountService.getByAccess();
                 return data;
             }
-
             return false;
-
         } catch (e) {
             return rejectWithValue(e.response.data);
         }
@@ -33,6 +31,7 @@ const logoutAll = createAsyncThunk(
     async ({_id}, {rejectWithValue}) => {
         try {
             await accountService.logoutAll(_id);
+            return false;
         } catch (e) {
             return rejectWithValue(e.response.data);
         }
@@ -60,8 +59,8 @@ const accountSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(logoutAll.fulfilled, (state) => {
-                state.account = false;
+            .addCase(logoutAll.fulfilled, (state, action) => {
+                state.account = action.payload;
                 state.loading = false;
                 state.login = false;
             })
