@@ -1,14 +1,24 @@
 import {useEffect, useState} from "react";
 import {Navigate, Outlet} from "react-router-dom";
 
-import {accountService} from "../services";
+import {accountService, authService} from "../services";
 
 
 const AdminRoute = () => {
     const [state, setState] = useState(true);
 
     useEffect(() => {
-        accountService.getByAccess().then(value => setState(value.data?.isAdmin));
+        try {
+            const access = authService.getAccessToken();
+
+            if (access) {
+                accountService.getByAccess().then(value => setState(value.data?.isAdmin));
+            } else {
+                setState(false);
+            }
+        } catch (e) {
+            console.log(e.message)
+        }
     }, []);
 
     return (

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const {deviceController} = require("../controllers");
 const {authMiddleware, userMiddleware, fileMiddleware} = require("../middlewares");
+const {deviceController} = require("../controllers");
 
 
 router.get(

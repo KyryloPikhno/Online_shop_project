@@ -1,13 +1,13 @@
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
+import {Box, Slider} from "@mui/material";
 import ClearIcon from '@mui/icons-material/Clear';
 import {useForm} from "react-hook-form";
 import logo from '../../img/image.png'
 
 import {brandActions, categoryActions, colorActions} from "../../redux/slices";
 import css from './DevicesFilter.module.css';
-import {Box, Slider} from "@mui/material";
 
 
 const DevicesFilter = () => {
@@ -17,7 +17,6 @@ const DevicesFilter = () => {
             "price_lte": null,
         }
     });
-
 
     const [query] = useSearchParams();
 
@@ -51,9 +50,7 @@ const DevicesFilter = () => {
 
     const [open, setOpen] = useState(false);
 
-    const [checkedState, setCheckedState] = useState(
-        JSON.parse(localStorage.getItem('checkbox')) || {}
-    );
+    const [checkedState, setCheckedState] = useState(JSON.parse(localStorage.getItem('checkbox')) || {});
 
     useEffect(() => {
         localStorage.setItem('checkbox', JSON.stringify(checkedState));
@@ -66,7 +63,6 @@ const DevicesFilter = () => {
             [checkboxId]: e.target.checked
         });
     };
-
 
     useEffect(() => {
         dispatch(categoryActions.getAll());
