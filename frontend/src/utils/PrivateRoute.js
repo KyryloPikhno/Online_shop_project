@@ -4,7 +4,7 @@ import {Outlet, Navigate} from 'react-router-dom';
 import {authService} from "../services";
 
 
-const PrivateRoute = () => {
+const PrivateRoute =  () => {
     const [state, setState] = useState(true);
 
     useEffect(() => {

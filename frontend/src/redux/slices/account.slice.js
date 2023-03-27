@@ -20,6 +20,8 @@ const getByAccess = createAsyncThunk(
                 return data;
             }
 
+            return false;
+
         } catch (e) {
             return rejectWithValue(e.response.data);
         }

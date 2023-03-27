@@ -4,7 +4,7 @@ import {Navigate, Outlet} from "react-router-dom";
 import {accountService, authService} from "../services";
 
 
-const AdminRoute = () => {
+const AdminRoute =  () => {
     const [state, setState] = useState(true);
 
     useEffect(() => {
