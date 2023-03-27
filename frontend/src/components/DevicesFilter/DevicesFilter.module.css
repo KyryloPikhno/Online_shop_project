@@ -71,7 +71,7 @@
 }
 
 .priceGteLte input{
-    width: 70px;
+    width: 73px;
     border-radius: 8px;
     height: 25px;
     text-align: center;
@@ -105,7 +105,9 @@
     gap: 5px;
 }
 
+
 .form button{
+    margin-left: 26px;
     width: 100px;
     background: var(--light);
     border: none;
@@ -129,6 +131,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 30px;
+
 }
 
 .logoBox img {
@@ -146,6 +149,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-left: 12px;
 }
 
 .logoBox h1{
@@ -177,10 +181,40 @@
     box-shadow: none;
 }
 
-.labelInput:checked {
-    background-color: black;
+label input {
+    display: none; /* <--скрываем дефолтный чекбокс */
 }
 
+label span { /* <-- стилизируем новый */
+    height: 12px;
+    width: 12px;
+    border: 1px solid gray;
+    display: inline-block;
+    position: relative;
+    background-color: #FFF;
+    border-radius: 2px;
+    padding: 3px;
+}
+
+[type=checkbox]:checked + span:before { /* <-- ставим иконку, когда чекбокс включен  */
+    content: '\2714';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: black;
+    background: var(--light-alt);
+}
+
+
+.form span {
+    color: var(--light-alt);
+}
 
 
 

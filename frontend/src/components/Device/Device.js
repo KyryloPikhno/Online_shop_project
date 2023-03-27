@@ -48,7 +48,7 @@ const Device = ({device}) => {
                         disabled={countInStock === 0}
                         onClick={deviceAdder}>{countInStock !== 0 ? 'Add to card' : 'Out of stock'}</button>
                 {
-                    account.isAdmin &&
+                    account?.isAdmin &&
                     <button className={css.button} onClick={deviceDeleter}>Delete</button>
                 }
             </div>

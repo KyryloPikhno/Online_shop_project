@@ -7,17 +7,24 @@ import logo from '../../img/image.png'
 
 import {brandActions, categoryActions, colorActions} from "../../redux/slices";
 import css from './DevicesFilter.module.css';
+import {Box, Slider} from "@mui/material";
 
 
 const DevicesFilter = () => {
-    const {register, handleSubmit} = useForm({
+    const {register, handleSubmit, setValue} = useForm({
         defaultValues: {
             "price_gte": null,
             "price_lte": null,
         }
     });
 
+
     const [query] = useSearchParams();
+
+    useEffect(() => {
+        setValue("price_gte", query.get('price_gte'));
+        setValue("price_lte", query.get('price_lte'));
+    }, [query]);
 
     const {categories, loading: categoriesLoading} = useSelector(state => state.categoryReducer);
 
@@ -29,7 +36,37 @@ const DevicesFilter = () => {
 
     const dispatch = useDispatch();
 
+    const valuetext = (value) => `${value}USD`;
+
+    const min = Number(query.get('price_gte')) / 10 || 0;
+    const max = Number(query.get('price_lte')) / 40 || 100;
+
+    const [valueRange, setValueRange] = useState([min, max]);
+
+    const handleChangeRange = (event, newValue) => {
+        setValue("price_gte", newValue[0] * 10);
+        setValue("price_lte", newValue[1] * 40);
+        setValueRange(newValue);
+    };
+
     const [open, setOpen] = useState(false);
+
+    const [checkedState, setCheckedState] = useState(
+        JSON.parse(localStorage.getItem('checkbox')) || {}
+    );
+
+    useEffect(() => {
+        localStorage.setItem('checkbox', JSON.stringify(checkedState));
+    }, [checkedState]);
+
+    const handleChange = e => {
+        const checkboxId = e.target.id;
+        setCheckedState({
+            ...checkedState,
+            [checkboxId]: e.target.checked
+        });
+    };
+
 
     useEffect(() => {
         dispatch(categoryActions.getAll());
@@ -114,7 +151,10 @@ const DevicesFilter = () => {
                                                    type="checkbox"
                                                    value={category._id}
                                                    id={category._id}
+                                                   checked={checkedState[category._id] || false}
+                                                   onClick={handleChange}
                                             />
+                                            <span></span>
                                             {category.name}
                                         </label>))
                                 }
@@ -130,9 +170,13 @@ const DevicesFilter = () => {
                                                    type="checkbox"
                                                    value={brand._id}
                                                    id={brand._id}
+                                                   checked={checkedState[brand._id] || false}
+                                                   onClick={handleChange}
                                             />
+                                            <span></span>
                                             {brand.name}
-                                        </label>))
+                                        </label>
+                                    ))
                                 }
                             </div>
                             <div className={css.checkBox}>
@@ -146,7 +190,10 @@ const DevicesFilter = () => {
                                                    type="checkbox"
                                                    value={color._id}
                                                    id={color._id}
+                                                   checked={checkedState[color._id] || false}
+                                                   onClick={handleChange}
                                             />
+                                            <span></span>
                                             {color.name}
                                         </label>))
                                 }
@@ -158,6 +205,14 @@ const DevicesFilter = () => {
                                     <input type='number' placeholder={'to'} {...register('price_lte')}/>
                                 </div>
                             </div>
+                            <Box sx={{width: 150}}>
+                                <Slider
+                                    getAriaLabel={() => 'Range'}
+                                    value={valueRange}
+                                    onChange={handleChangeRange}
+                                    getAriaValueText={valuetext}
+                                />
+                            </Box>
                             <button>Submit</button>
                         </form>
                 }

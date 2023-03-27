@@ -8,7 +8,7 @@ const AdminRoute = () => {
     const [state, setState] = useState(true);
 
     useEffect(() => {
-        accountService.getByAccess().then(value => setState(value.data.isAdmin));
+        accountService.getByAccess().then(value => setState(value.data?.isAdmin));
     }, []);
 
     return (
