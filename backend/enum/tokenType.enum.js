@@ -1,4 +1,4 @@
 module.exports = {
-    accessToken: 'accessToken',
-    refreshToken: 'refreshToken'
-};
+  accessToken: "accessToken",
+  refreshToken: "refreshToken",
+}

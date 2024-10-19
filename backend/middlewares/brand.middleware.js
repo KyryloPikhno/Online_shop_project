@@ -1,84 +1,83 @@
-const {commonValidator} = require("../validators/common.validator");
-const {brandService} = require("../services");
-const {ApiError} = require("../errors");
-
+const { commonValidator } = require("../validators/common.validator")
+const { brandService } = require("../services")
+const { ApiError } = require("../errors")
 
 module.exports = {
-    checkIsBrandsExist: async (req, res, next) => {
-        try {
-            const brands = await brandService.findByParams({});
+  checkIsBrandsExist: async (req, res, next) => {
+    try {
+      const brands = await brandService.findByParams({})
 
-            if (!brands) {
-                throw new ApiError('Brands not found', 404);
-            }
+      if (!brands) {
+        throw new ApiError("Brands not found", 404)
+      }
 
-            req.brands = brands;
+      req.brands = brands
 
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
+      next()
+    } catch (e) {
+      next(e)
+    }
+  },
 
-    checkIsBrandExistsForUpdate: async (req, res, next) => {
-        try {
-            let validate = commonValidator.validate(req.body);
+  checkIsBrandExistsForUpdate: async (req, res, next) => {
+    try {
+      let validate = commonValidator.validate(req.body)
 
-            if(validate.error) {
-                throw new ApiError(validate.error.message, 400);
-            }
+      if (validate.error) {
+        throw new ApiError(validate.error.message, 400)
+      }
 
-            const brand = await brandService.updateOne(req.params.brandId, {name: req.body.brand});
+      const brand = await brandService.updateOne(req.params.brandId, { name: req.body.brand })
 
-            if (!brand) {
-                throw new ApiError('Brand by id not found', 404);
-            }
+      if (!brand) {
+        throw new ApiError("Brand by id not found", 404)
+      }
 
-            req.brand = brand;
+      req.brand = brand
 
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
+      next()
+    } catch (e) {
+      next(e)
+    }
+  },
 
-    checkIsBrandExistsById: async (req, res, next) => {
-        try {
-            const brand = await brandService.findOneByParams({_id: req.params.brandId});
+  checkIsBrandExistsById: async (req, res, next) => {
+    try {
+      const brand = await brandService.findOneByParams({ _id: req.params.brandId })
 
-            if (!brand) {
-                throw new ApiError('Brand by id not found', 404);
-            }
+      if (!brand) {
+        throw new ApiError("Brand by id not found", 404)
+      }
 
-            req.brand = brand;
+      req.brand = brand
 
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
+      next()
+    } catch (e) {
+      next(e)
+    }
+  },
 
-    checkIsBodyValid: async (req, res, next) => {
-        try {
-            const validate = commonValidator.validate({name: req.body.brand});
+  checkIsBodyValid: async (req, res, next) => {
+    try {
+      const validate = commonValidator.validate({ name: req.body.brand })
 
-            if(validate.error) {
-                throw new ApiError(validate.error.message, 400);
-            }
+      if (validate.error) {
+        throw new ApiError(validate.error.message, 400)
+      }
 
-            const brand = await brandService.create({name: req.body.brand});
+      const brand = await brandService.create({ name: req.body.brand })
 
-            if (!brand) {
-                throw new ApiError('Brand is not created', 400);
-            }
+      if (!brand) {
+        throw new ApiError("Brand is not created", 400)
+      }
 
-            req.body = validate.value;
+      req.body = validate.value
 
-            req.brand = brand;
+      req.brand = brand
 
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
-};
+      next()
+    } catch (e) {
+      next(e)
+    }
+  },
+}

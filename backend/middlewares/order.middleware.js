@@ -1,88 +1,86 @@
-const {newOrderValidator} = require("../validators/order.validator");
-const {orderService} = require("../services");
-const {ApiError} = require("../errors");
-
+const { newOrderValidator } = require("../validators/order.validator")
+const { orderService } = require("../services")
+const { ApiError } = require("../errors")
 
 module.exports = {
-    checkIsOrdersExist: async (req, res, next) => {
-        try {
-            const orders = await orderService.findByParams({});
+  checkIsOrdersExist: async (req, res, next) => {
+    try {
+      const orders = await orderService.findByParams({})
 
-            if (!orders) {
-                throw new ApiError('Orders not found', 404);
-            }
+      if (!orders) {
+        throw new ApiError("Orders not found", 404)
+      }
 
-            req.orders = orders;
+      req.orders = orders
 
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
-
-    checkIsOrderExistsForUpdate: async (req, res, next) => {
-        try {
-            req.order = await orderService.updateOne(req.params.orderId, req.body.orderInfo);
-
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
-
-    checkIsOrderExistsById: async (req, res, next) => {
-        try {
-            const order = await orderService.findOneByParams(req.params.orderId);
-
-            if (!order) {
-                throw new ApiError('Order by id not found', 404);
-            }
-
-            req.order = order;
-
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
-
-    checkIsBodyValid: async (req, res, next) => {
-        try {
-            let validate = newOrderValidator.validate(req.body.orderInfo);
-
-            if(validate.error) {
-                throw new ApiError(validate.error.message, 400);
-            }
-
-            const order = await orderService.create(req.body.orderInfo);
-
-            if (!order) {
-                throw new ApiError('Order is not created', 400);
-            }
-
-            req.body = validate.value;
-
-            req.order = order;
-
-            next();
-        } catch (e) {
-            next(e);
-        }
-    },
-
-    checkIsUserOrdersExist: async (req, res, next) => {
-        try {
-            const userOrderList = await orderService.findByParams({user: req.params.userId});
-
-            if (!userOrderList) {
-                throw new ApiError('Order is not defined', 404);
-            }
-
-            req.userOrderList = userOrderList;
-            next();
-        } catch (e) {
-            next(e);
-        }
+      next()
+    } catch (e) {
+      next(e)
     }
-};
+  },
 
+  checkIsOrderExistsForUpdate: async (req, res, next) => {
+    try {
+      req.order = await orderService.updateOne(req.params.orderId, req.body.orderInfo)
+
+      next()
+    } catch (e) {
+      next(e)
+    }
+  },
+
+  checkIsOrderExistsById: async (req, res, next) => {
+    try {
+      const order = await orderService.findOneByParams(req.params.orderId)
+
+      if (!order) {
+        throw new ApiError("Order by id not found", 404)
+      }
+
+      req.order = order
+
+      next()
+    } catch (e) {
+      next(e)
+    }
+  },
+
+  checkIsBodyValid: async (req, res, next) => {
+    try {
+      let validate = newOrderValidator.validate(req.body.orderInfo)
+
+      if (validate.error) {
+        throw new ApiError(validate.error.message, 400)
+      }
+
+      const order = await orderService.create(req.body.orderInfo)
+
+      if (!order) {
+        throw new ApiError("Order is not created", 400)
+      }
+
+      req.body = validate.value
+
+      req.order = order
+
+      next()
+    } catch (e) {
+      next(e)
+    }
+  },
+
+  checkIsUserOrdersExist: async (req, res, next) => {
+    try {
+      const userOrderList = await orderService.findByParams({ user: req.params.userId })
+
+      if (!userOrderList) {
+        throw new ApiError("Order is not defined", 404)
+      }
+
+      req.userOrderList = userOrderList
+      next()
+    } catch (e) {
+      next(e)
+    }
+  },
+}

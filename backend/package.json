@@ -1,10 +1,11 @@
 {
-  "name":"server",
+  "name": "server",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-  "start": "node app.js"
-},
+    "dev": "nodemon app.js",
+    "lint": "eslint ."
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.33.0",
@@ -19,7 +20,11 @@
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
     "nodemailer": "^6.9.1",
+    "prettier": "^3.3.3",
     "ws": "3.3.2"
   }
 }
