@@ -37,7 +37,7 @@ const connection = async () => {
       dbCon = true
       console.log("Database available!!!")
     } catch (e) {
-      console.error("Database unavailable, wait 5 seconds", e.message) // Выводим сообщение об ошибке
+      console.error("Database unavailable, wait 5 seconds", e.message)
       await new Promise((resolve) => setTimeout(resolve, 5000))
     }
   }
