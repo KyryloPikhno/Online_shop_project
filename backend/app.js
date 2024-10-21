@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const path = require("path")
+require("dotenv").config()
 
 const {
   userRouter,
@@ -33,7 +34,7 @@ const connection = async () => {
   while (!dbCon) {
     try {
       console.log("Connecting to database...")
-      await mongoose.connect("mongodb://localhost:27017/online_shop")
+      await mongoose.connect(process.env.DB_URL)
       dbCon = true
       console.log("Database available!!!")
     } catch (e) {
