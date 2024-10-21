@@ -1,10 +1,12 @@
 const mongoose = require("mongoose")
 const { faker } = require("@faker-js/faker")
-const { User, Brand, Color, Category, Device, Order } = require("../models")
+const { Brand, User, Color, Category, Device, Order } = require("../models")
+const { authService } = require("../services")
+require("dotenv").config()
 
 const connection = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/online_shop", {
+    await mongoose.connect(process.env.DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
@@ -22,6 +24,19 @@ const seedData = async () => {
     await Category.deleteMany()
     await Device.deleteMany()
     await Order.deleteMany()
+
+    const users = await User.create([
+      {
+        name: process.env.USER_1_NAME,
+        email: process.env.USER_1_EMAIL,
+        password: await authService.hashPassword(process.env.USER_1_PASSWORD),
+        isAdmin: process.env.USER_1_IS_ADMIN === "true",
+      },
+    ])
+
+    if (users.length === 0) {
+      throw new Error("Failed to seed brands.")
+    }
 
     const brands = []
     for (let i = 0; i < 5; i++) {
@@ -85,6 +100,12 @@ const seedData = async () => {
       throw new Error("Failed to seed categories.")
     }
 
+    const getRandomImageUrl = () => {
+      const width = 640
+      const height = 480
+      return `https://picsum.photos/${width}/${height}?random=${Math.floor(Math.random() * 1000)}`
+    }
+
     const devices = []
     for (let i = 0; i < 10; i++) {
       const randomCategoryIndex = Math.floor(Math.random() * categoryDocs.length)
@@ -105,7 +126,7 @@ const seedData = async () => {
           countInStock: 10,
           rating: 5,
           color: colorsDocs[randomColorIndex]._id,
-          images: [""],
+          images: [getRandomImageUrl(), getRandomImageUrl(), getRandomImageUrl()],
         })
         devices.push(device)
       } else {
