@@ -1,3 +1,3 @@
 module.exports = {
-    deviceRepository: require('./device.repository')
-};
+  deviceRepository: require("./device.repository"),
+}
