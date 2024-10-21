@@ -4,6 +4,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
+    "seed": "node utils/seedData.js",
     "lint": "eslint ."
   },
   "dependencies": {

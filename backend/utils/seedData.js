@@ -25,66 +25,92 @@ const seedData = async () => {
 
     const brands = []
     for (let i = 0; i < 5; i++) {
-      const brand = await Brand.create({ name: faker.company.name() })
+      const brand = await Brand.create({ name: faker.company.name().slice(0, 32) })
       brands.push(brand)
     }
 
-    const colors = []
-    for (let i = 0; i < 5; i++) {
-      const color = await Color.create({ name: faker.color.human() })
-      colors.push(color)
+    if (brands.length === 0) {
+      throw new Error("Failed to seed brands.")
     }
 
-    const categories = []
-    for (let i = 0; i < 5; i++) {
-      const category = await Category.create({ name: faker.commerce.department() })
-      categories.push(category)
+    const colors = new Set()
+    while (colors.size < 5) {
+      colors.add(faker.color.human())
+    }
+
+    const colorsDocs = []
+    for (let colorName of colors) {
+      try {
+        const color = await Color.create({ name: colorName })
+        colorsDocs.push(color)
+      } catch (err) {
+        if (err.code === 11000) {
+          const uniqueColor = await Color.create({
+            name: `${colorName}-${Math.floor(Math.random() * 1000)}`,
+          })
+          colorsDocs.push(uniqueColor)
+        } else {
+          throw err
+        }
+      }
+    }
+
+    if (colorsDocs.length === 0) {
+      throw new Error("Failed to seed colors.")
+    }
+
+    const categories = new Set()
+    while (categories.size < 5) {
+      categories.add(faker.commerce.department())
+    }
+
+    const categoryDocs = []
+    for (let categoryName of categories) {
+      try {
+        const category = await Category.create({ name: categoryName })
+        categoryDocs.push(category)
+      } catch (err) {
+        if (err.code === 11000) {
+          const uniqueCategory = await Category.create({
+            name: `${categoryName}-${Math.floor(Math.random() * 1000)}`,
+          })
+          categoryDocs.push(uniqueCategory)
+        } else {
+          throw err
+        }
+      }
+    }
+
+    if (categoryDocs.length === 0) {
+      throw new Error("Failed to seed categories.")
     }
 
     const devices = []
     for (let i = 0; i < 10; i++) {
-      const device = await Device.create({
-        name: faker.commerce.productName(),
-        price: 100,
-        category: categories[Math.floor(Math.random() * categories.length)]._id,
-        brand: brands[Math.floor(Math.random() * brands.length)]._id,
-        description: faker.lorem.sentence(),
-        countInStock: 10,
-        rating: 5,
-        color: colors[Math.floor(Math.random() * colors.length)]._id,
-        images: [""],
-      })
-      devices.push(device)
-    }
+      const randomCategoryIndex = Math.floor(Math.random() * categoryDocs.length)
+      const randomBrandIndex = Math.floor(Math.random() * brands.length)
+      const randomColorIndex = Math.floor(Math.random() * colorsDocs.length)
 
-    const users = []
-    for (let i = 0; i < 5; i++) {
-      const user = await User.create({
-        name: faker.name.findName(),
-        email: faker.internet.email(),
-        password: faker.internet.password(),
-        isAdmin: faker.datatype.boolean(),
-      })
-      users.push(user)
-    }
-
-    const orders = []
-    for (let i = 0; i < 5; i++) {
-      const order = await Order.create({
-        user: users[Math.floor(Math.random() * users.length)]._id,
-        deviceList: [devices[Math.floor(Math.random() * devices.length)]._id],
-        totalPrice: parseFloat(faker.commerce.price()),
-        phone: faker.phone.number(),
-        address: faker.address.streetAddress(),
-        city: faker.address.city(),
-        zip: faker.address.zipCode(),
-        country: faker.address.country(),
-        cardNumber: faker.finance.creditCardNumber(),
-        cardDateMonth: faker.date.month(),
-        cardDateYear: faker.date.past().getFullYear(),
-        orderStatus: faker.datatype.boolean(),
-      })
-      orders.push(order)
+      if (
+        categoryDocs[randomCategoryIndex] &&
+        brands[randomBrandIndex] &&
+        colorsDocs[randomColorIndex]
+      ) {
+        const device = await Device.create({
+          name: faker.commerce.productName(),
+          price: 100,
+          category: categoryDocs[randomCategoryIndex]._id,
+          brand: brands[randomBrandIndex]._id,
+          description: faker.lorem.sentence(),
+          countInStock: 10,
+          rating: 5,
+          color: colorsDocs[randomColorIndex]._id,
+          images: [""],
+        })
+        devices.push(device)
+      } else {
+        console.error("One of the required arrays is empty. Cannot create device.")
+      }
     }
 
     console.log("Data seeded successfully!")
