@@ -9,6 +9,10 @@ module.exports = {
     try {
       const accessTokenBearer = req.get("Authorization")
 
+      if (!accessTokenBearer) {
+        throw new ApiError("No accessToken", 401)
+      }
+
       const accessToken = accessTokenBearer.replace("Bearer ", "")
 
       if (!accessToken) {

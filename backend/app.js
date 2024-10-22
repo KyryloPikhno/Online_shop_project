@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const path = require("path")
 require("dotenv").config()
+const swaggerSetup = require("./swagger")
 
 const {
   userRouter,
@@ -44,12 +45,13 @@ const connection = async () => {
   }
 }
 
+swaggerSetup(app)
 app.use("/auth", authRouter)
 app.use("/devices", deviceRouter)
 app.use("/users", userRouter)
-app.use("/category", categoryRouter)
-app.use("/brand", brandRouter)
-app.use("/color", colorRouter)
+app.use("/categories", categoryRouter)
+app.use("/brands", brandRouter)
+app.use("/colors", colorRouter)
 app.use("/order", orderRouter)
 
 app.get("/", (req, res) => {

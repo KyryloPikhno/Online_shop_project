@@ -96,8 +96,8 @@ module.exports = {
     try {
       const device = await deviceService.findOneByParams({ _id: req.params.deviceId })
 
-      if (device && device.images.length !== 0) {
-        device.images.map((file) => {
+      if (device && device.images?.length !== 0) {
+        device.images?.map((file) => {
           fs.unlinkSync(`./uploads/${file}`)
         })
       }
