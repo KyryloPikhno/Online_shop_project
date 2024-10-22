@@ -46,7 +46,7 @@ const Banner = () => {
                         YOUR DAY
                     </h1>
                     <div className={css.inform}>
-                        Shop for electronic devices with us, guaranteed quality, fast delivery and arrived safely to
+                        Store for electronic devices with us, guaranteed quality, fast delivery and arrived safely to
                         the destination
                     </div>
                     <div className={css.info}>

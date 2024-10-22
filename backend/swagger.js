@@ -5,9 +5,9 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "Shop API",
+      title: "Store API",
       version: "1.0.0",
-      description: "API documentation for shop management",
+      description: "API documentation for store management",
     },
     servers: [
       {
