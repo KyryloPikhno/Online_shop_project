@@ -1,24 +1,23 @@
-const {Category} = require("../models");
-
+const { Category } = require("../models")
 
 module.exports = {
-    findByParams: (filter = {}) => {
-        return Category.find(filter).sort({ name: 1 }).exec();
-    },
+  findByParams: (filter = {}) => {
+    return Category.find(filter).sort({ name: 1 }).exec()
+  },
 
-    findOneByParams: (filter = {}) => {
-        return Category.findOne(filter);
-    },
+  findOneByParams: (filter = {}) => {
+    return Category.findOne(filter)
+  },
 
-    create: async (categoryInfo) => {
-        return Category.create(categoryInfo);
-    },
+  create: async (categoryInfo) => {
+    return Category.create(categoryInfo)
+  },
 
-    updateOne: (categoryId, newInfo) => {
-        return Category.findByIdAndUpdate(categoryId, newInfo, {new: true});
-    },
+  updateOne: (categoryId, newInfo) => {
+    return Category.findByIdAndUpdate(categoryId, newInfo, { new: true })
+  },
 
-    deleteOne: (categoryId) => {
-        return Category.deleteOne({_id: categoryId});
-    }
-};
+  deleteOne: (categoryId) => {
+    return Category.deleteOne({ _id: categoryId })
+  },
+}

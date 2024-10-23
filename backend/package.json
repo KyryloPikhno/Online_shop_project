@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon app.js",
     "seed": "node utils/seedData.js",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "bcrypt": "^5.1.0",

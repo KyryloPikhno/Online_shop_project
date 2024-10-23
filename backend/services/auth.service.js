@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
-
 const {
   ACCESS_SECRET,
   REFRESH_SECRET,

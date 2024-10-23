@@ -1,50 +1,49 @@
-const path = require('path');
+const path = require("path")
 
-const nodemailer = require('nodemailer');
-const hbs = require('nodemailer-express-handlebars');
+const nodemailer = require("nodemailer")
+const hbs = require("nodemailer-express-handlebars")
 
-const {NO_REPLY_EMAIL, NO_REPLY_EMAIL_PASSWORD, FRONTEND_URL} = require("../configs/config");
-const emailTemplates = require('../email-templates');
-const {ApiError} = require("../errors");
-
+const { NO_REPLY_EMAIL, NO_REPLY_EMAIL_PASSWORD, FRONTEND_URL } = require("../configs/config")
+const emailTemplates = require("../email-templates")
+const { ApiError } = require("../errors")
 
 const sendEmail = (receiverMail, emailAction, locals = {}) => {
-    const transporter = nodemailer.createTransport({
-        from: 'No reply',
-        service: 'gmail',
-        auth: {
-            user: NO_REPLY_EMAIL,
-            pass: NO_REPLY_EMAIL_PASSWORD
-        }
-    });
+  const transporter = nodemailer.createTransport({
+    from: "No reply",
+    service: "gmail",
+    auth: {
+      user: NO_REPLY_EMAIL,
+      pass: NO_REPLY_EMAIL_PASSWORD,
+    },
+  })
 
-    const templateInfo = emailTemplates[emailAction]
+  const templateInfo = emailTemplates[emailAction]
 
-    if (!templateInfo?.subject || !templateInfo.templateName) {
-        throw new ApiError('Wrong template', 500);
-    }
+  if (!templateInfo?.subject || !templateInfo.templateName) {
+    throw new ApiError("Wrong template", 500)
+  }
 
-    const options = {
-        viewEngine: {
-            defaultLayout: 'main',
-            layoutsDir: path.join(process.cwd(), 'email-templates', 'layouts'),
-            partialsDir: path.join(process.cwd(), 'email-templates', 'partials'),
-            extname: '.hbs'
-        },
-        extName: '.hbs',
-        viewPath: path.join(process.cwd(), 'email-templates', 'views'),
-    };
+  const options = {
+    viewEngine: {
+      defaultLayout: "main",
+      layoutsDir: path.join(process.cwd(), "email-templates", "layouts"),
+      partialsDir: path.join(process.cwd(), "email-templates", "partials"),
+      extname: ".hbs",
+    },
+    extName: ".hbs",
+    viewPath: path.join(process.cwd(), "email-templates", "views"),
+  }
 
-    transporter.use('compile', hbs(options));
+  transporter.use("compile", hbs(options))
 
-    locals.frontendURL = FRONTEND_URL;
+  locals.frontendURL = FRONTEND_URL
 
-    return transporter.sendMail({
-        to: receiverMail,
-        subject: templateInfo.subject,
-        template: templateInfo.templateName,
-        context: locals
-    })
-};
+  return transporter.sendMail({
+    to: receiverMail,
+    subject: templateInfo.subject,
+    template: templateInfo.templateName,
+    context: locals,
+  })
+}
 
-module.exports = {sendEmail};
+module.exports = { sendEmail }
