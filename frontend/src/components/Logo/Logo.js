@@ -1,11 +1,11 @@
-import {NavLink} from "react-router-dom";
-
+import { NavLink } from "react-router-dom"
 
 const Logo = () => {
+  return (
+    <NavLink to={"/devices"}>
+      <h1>DigiStore</h1>
+    </NavLink>
+  )
+}
 
-    return (
-        <NavLink to={'/devices'}><h1>DigiStore</h1></NavLink>
-    );
-};
-
-export {Logo};
+export { Logo }

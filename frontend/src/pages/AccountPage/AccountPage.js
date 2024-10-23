@@ -1,14 +1,11 @@
-import {Account} from "../../components";
-
+import { Account } from "../../components"
 
 const AccountPage = () => {
+  return (
+    <div>
+      <Account />
+    </div>
+  )
+}
 
-
-    return (
-        <div>
-            <Account/>
-        </div>
-    );
-};
-
-export {AccountPage};
+export { AccountPage }

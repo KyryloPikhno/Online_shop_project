@@ -1,14 +1,11 @@
-import {Devices} from '../../components'
-
+import { Devices } from "../../components"
 
 const DevicesPage = () => {
+  return (
+    <div>
+      <Devices />
+    </div>
+  )
+}
 
-
-    return (
-        <div>
-            <Devices/>
-        </div>
-    );
-};
-
-export {DevicesPage};
+export { DevicesPage }

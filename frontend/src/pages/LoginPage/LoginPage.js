@@ -1,13 +1,11 @@
-import {Login} from "../../components";
-
+import { Login } from "../../components"
 
 const LoginPage = () => {
+  return (
+    <div>
+      <Login />
+    </div>
+  )
+}
 
-    return (
-        <div>
-            <Login/>
-        </div>
-    );
-};
-
-export {LoginPage};
+export { LoginPage }

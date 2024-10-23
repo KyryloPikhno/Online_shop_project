@@ -1,13 +1,11 @@
-import {Payment} from "../../components";
+import { Payment } from "../../components"
 
 const PaymentPage = () => {
+  return (
+    <div>
+      <Payment />
+    </div>
+  )
+}
 
-
-    return (
-        <div>
-            <Payment/>
-        </div>
-    );
-};
-
-export {PaymentPage};
+export { PaymentPage }

@@ -1,18 +1,17 @@
-import Joi from "joi";
+import Joi from "joi"
 
-import {regexp} from "../configs";
-
+import { regexp } from "../configs"
 
 const registerValidator = Joi.object({
-    name :Joi.string().regex(regexp.NAME).required().messages({
-        'string.pattern.base': 'Invalid characters or less than one letter entered'
-    }),
-    email: Joi.string().regex(regexp.EMAIL).required().messages({
-        'string.pattern.base': 'Invalid email'
-    }),
-    password: Joi.string().regex(regexp.PASSWORD).required().messages({
-        'string.pattern.base': 'Only english letters. Min 1, max 20'
-    }),
-});
+  name: Joi.string().regex(regexp.NAME).required().messages({
+    "string.pattern.base": "Invalid characters or less than one letter entered",
+  }),
+  email: Joi.string().regex(regexp.EMAIL).required().messages({
+    "string.pattern.base": "Invalid email",
+  }),
+  password: Joi.string().regex(regexp.PASSWORD).required().messages({
+    "string.pattern.base": "Only english letters. Min 1, max 20",
+  }),
+})
 
-export {registerValidator};
+export { registerValidator }

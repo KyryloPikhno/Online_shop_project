@@ -1,14 +1,11 @@
-import {Order} from "../../components";
-
+import { Order } from "../../components"
 
 const OrderPage = () => {
+  return (
+    <div>
+      <Order />
+    </div>
+  )
+}
 
-
-    return (
-        <div>
-            <Order/>
-        </div>
-    );
-};
-
-export {OrderPage};
+export { OrderPage }

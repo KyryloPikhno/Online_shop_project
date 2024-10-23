@@ -1,13 +1,11 @@
-import {Home} from "../../components";
+import { Home } from "../../components"
 
 const HomePage = () => {
+  return (
+    <div>
+      <Home />
+    </div>
+  )
+}
 
-
-    return (
-        <div>
-            <Home/>
-        </div>
-    );
-};
-
-export {HomePage};
+export { HomePage }

@@ -1,13 +1,11 @@
-import {PasswordForgot} from "../../components";
+import { PasswordForgot } from "../../components"
 
 const PasswordForgotPage = () => {
+  return (
+    <div>
+      <PasswordForgot />
+    </div>
+  )
+}
 
-
-    return (
-        <div>
-            <PasswordForgot/>
-        </div>
-    );
-};
-
-export {PasswordForgotPage};
+export { PasswordForgotPage }

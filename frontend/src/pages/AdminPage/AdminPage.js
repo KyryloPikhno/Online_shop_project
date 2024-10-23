@@ -1,14 +1,11 @@
-import {Admin} from "../../components";
-
+import { Admin } from "../../components"
 
 const AdminPage = () => {
+  return (
+    <div>
+      <Admin />
+    </div>
+  )
+}
 
-
-    return (
-        <div>
-            <Admin/>
-        </div>
-    );
-};
-
-export {AdminPage};
+export { AdminPage }

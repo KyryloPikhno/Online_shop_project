@@ -1,13 +1,11 @@
-import {NewPasswordAfterForgot} from "../../components";
+import { NewPasswordAfterForgot } from "../../components"
 
 const NewPasswordAfterForgotPage = () => {
+  return (
+    <div>
+      <NewPasswordAfterForgot />
+    </div>
+  )
+}
 
-
-    return (
-        <div>
-            <NewPasswordAfterForgot/>
-        </div>
-    );
-};
-
-export {NewPasswordAfterForgotPage};
+export { NewPasswordAfterForgotPage }
