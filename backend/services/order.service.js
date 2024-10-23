@@ -1,5 +1,5 @@
-const { Order, DeviceList, Device } = require("../models")
 const { ApiError } = require("../errors")
+const { Order, DeviceList, Device } = require("../models")
 
 module.exports = {
   findByParams: (filter = {}) => {
@@ -73,7 +73,7 @@ module.exports = {
   },
 
   getCount: (filter = {}) => {
-    const orderCount = Order.countDocuments({})
+    const orderCount = Order.countDocuments(filter)
 
     if (!orderCount) {
       throw new ApiError("Unsuccessful", 500)

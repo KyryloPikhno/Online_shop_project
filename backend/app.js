@@ -1,9 +1,8 @@
+const path = require("path")
+
+const cors = require("cors")
 const express = require("express")
 const mongoose = require("mongoose")
-const cors = require("cors")
-const path = require("path")
-require("dotenv").config()
-const swaggerSetup = require("./swagger")
 
 const {
   userRouter,
@@ -14,6 +13,9 @@ const {
   brandRouter,
   colorRouter,
 } = require("./routes")
+const swaggerSetup = require("./swagger")
+
+require("dotenv").config()
 
 const app = express()
 
@@ -58,6 +60,7 @@ app.get("/", (req, res) => {
   res.json("WELCOME")
 })
 
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     message: err.message || "Unknown error",

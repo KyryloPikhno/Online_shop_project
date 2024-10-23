@@ -1,7 +1,7 @@
 const router = require("express").Router()
 
-const { authMiddleware, userMiddleware, brandMiddleware } = require("../middlewares")
 const { brandController } = require("../controllers")
+const { authMiddleware, userMiddleware, brandMiddleware } = require("../middlewares")
 
 router.get("/", brandMiddleware.checkIsBrandsExist, brandController.getAll)
 

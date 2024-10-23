@@ -1,5 +1,6 @@
 const swaggerJsDoc = require("swagger-jsdoc")
 const swaggerUi = require("swagger-ui-express")
+
 const { FRONTEND_URL } = require("./configs/config")
 
 const swaggerOptions = {

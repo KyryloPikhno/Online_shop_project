@@ -1,8 +1,8 @@
-const { authService, userService, emailService } = require("../services")
-const { Auth, ActionToken, User, OldPassword } = require("../models")
+const { FRONTEND_URL } = require("../configs/config")
 const { FORGOT_PASS } = require("../enum/email-action.enum")
 const { FORGOT_PASSWORD } = require("../enum/tokenActionEnum")
-const { FRONTEND_URL } = require("../configs/config")
+const { Auth, ActionToken, User, OldPassword } = require("../models")
+const { authService, userService, emailService } = require("../services")
 
 module.exports = {
   registration: async (req, res, next) => {

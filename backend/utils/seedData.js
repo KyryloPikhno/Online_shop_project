@@ -1,5 +1,6 @@
-const mongoose = require("mongoose")
 const { faker } = require("@faker-js/faker")
+const mongoose = require("mongoose")
+
 const { Brand, User, Color, Category, Device, Order } = require("../models")
 const { authService } = require("../services")
 require("dotenv").config()

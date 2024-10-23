@@ -1,7 +1,7 @@
-const { newUserValidator, editUserValidator } = require("../validators/user.validator")
-const { userService } = require("../services")
 const { ApiError } = require("../errors")
 const { User } = require("../models")
+const { userService } = require("../services")
+const { newUserValidator, editUserValidator } = require("../validators/user.validator")
 
 module.exports = {
   isNewUserValid: async (req, res, next) => {

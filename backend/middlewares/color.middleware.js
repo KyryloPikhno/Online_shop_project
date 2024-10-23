@@ -1,6 +1,6 @@
-const { commonValidator } = require("../validators/common.validator")
-const { colorService } = require("../services")
 const { ApiError } = require("../errors")
+const { colorService } = require("../services")
+const { commonValidator } = require("../validators/common.validator")
 
 module.exports = {
   checkIsColorsExist: async (req, res, next) => {

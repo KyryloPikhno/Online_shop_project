@@ -1,8 +1,8 @@
+const { tokenTypeEnum } = require("../enum")
 const { FORGOT_PASSWORD } = require("../enum/tokenActionEnum")
+const { ApiError } = require("../errors")
 const { Auth, ActionToken } = require("../models")
 const { authService } = require("../services")
-const { tokenTypeEnum } = require("../enum")
-const { ApiError } = require("../errors")
 
 module.exports = {
   checkAssessToken: async (req, res, next) => {

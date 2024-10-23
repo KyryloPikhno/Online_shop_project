@@ -1,6 +1,6 @@
-const { newOrderValidator } = require("../validators/order.validator")
-const { orderService } = require("../services")
 const { ApiError } = require("../errors")
+const { orderService } = require("../services")
+const { newOrderValidator } = require("../validators/order.validator")
 
 module.exports = {
   checkIsOrdersExist: async (req, res, next) => {
