@@ -71,8 +71,8 @@ app.use((err, req, res, next) => {
 const start = async () => {
   try {
     await connection()
-    await app.listen(3000, () => {
-      console.log(`Server listening on port 3000`)
+    await app.listen(process.env.PORT, () => {
+      console.log(`Server listening on port ${process.env.PORT}`)
     })
   } catch (e) {
     console.error("Failed to start the server:", e.message)

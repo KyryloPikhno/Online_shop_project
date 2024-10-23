@@ -1,14 +1,16 @@
-const baseURL = '/api';
+// const baseURL = '/api';
+const baseURL = 'http://localhost:4200';
+
 
 const urls = {
     similarDevices: '/similarDevices',
     uploadImage: '/uploadImage',
     removeImage: 'removeImage',
-    category: '/category',
+    category: '/categories',
     devices: '/devices',
     users: '/users',
-    brand: '/brand',
-    color: '/color',
+    brand: '/brands',
+    color: '/colors',
     order: '/order',
     auth: {
         passwordForgot: '/auth/password/forgot',
