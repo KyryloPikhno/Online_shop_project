@@ -1,19 +1,21 @@
-.visible,.noVisible{
-    position: fixed;
-    right: 150px;
-    bottom: 250px;
-    transition: .5s;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--light-alt);
+.visible,
+.noVisible {
+  position: fixed;
+  right: 150px;
+  bottom: 250px;
+  transition: 0.5s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--light-alt);
 }
 
-.visible svg, .noVisible svg{
-    font-size: 55px;
+.visible svg,
+.noVisible svg {
+  font-size: 55px;
 }
 
-.noVisible{
-    right: -100px;
-    transition: 1s;
+.noVisible {
+  right: -100px;
+  transition: 1s;
 }

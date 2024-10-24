@@ -1,24 +1,24 @@
-.container{
-    width: 975px;
-    display: flex;
-    justify-content: end;
+.container {
+  width: 975px;
+  display: flex;
+  justify-content: end;
 }
 
 .select {
-    background-color: #ffffff;
-    color: #333333;
-    font-size: 16px;
-    border: 1px solid var(--light-alt);
-    padding: 8px;
-    border-radius: 8px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
-    text-align: center;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 16px;
+  border: 1px solid var(--light-alt);
+  padding: 8px;
+  border-radius: 8px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  text-align: center;
 }
 
 select option {
-    background-color: #ffffff;
-    color: #333333;
+  background-color: #ffffff;
+  color: #333333;
 }

@@ -10,8 +10,8 @@
   position: relative;
 }
 
-.form span{
-  color: #D81E5B;
+.form span {
+  color: #d81e5b;
   font-size: 10px;
   position: absolute;
   bottom: -25px;
@@ -25,30 +25,31 @@
   text-align: center;
 }
 
-.form input:focus{
+.form input:focus {
   background: var(--light);
   border: none;
   outline: none;
 }
 
-.form select{
+.form select {
   border-radius: 7px;
   height: 25px;
   width: 100px;
-  border:none;
+  border: none;
 }
 
-.form select:focus{
+.form select:focus {
   background: var(--light);
   border: none;
   outline: none;
 }
 
-.validButton ,.noValidButton{
+.validButton,
+.noValidButton {
   font-size: 25px;
   color: var(--light-alt);
   background: none;
-  border:none;
+  border: none;
   width: 1.2rem;
   height: 100%;
   margin-right: 1rem;
@@ -59,8 +60,7 @@
   transition: 1s;
 }
 
-.noValidButton{
+.noValidButton {
   color: gray;
   transition: 1s;
 }
-

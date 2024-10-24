@@ -1,42 +1,41 @@
 .swiperSlide {
-    padding-top: 100%;
-    overflow: hidden;
-    position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
-.swiperSlideMini{
-    padding-top: 40%;
-    position: relative;
+.swiperSlideMini {
+  padding-top: 40%;
+  position: relative;
 }
 
-
-.swiperSlideMini img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    cursor: pointer;
-    overflow: hidden;
+.swiperSlideMini img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
 }
 
 .swiperSlide img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
-[class='swiper-button-prev']::after{
-    color: var(--light-alt);
+[class="swiper-button-prev"]::after {
+  color: var(--light-alt);
 }
 
-[class='swiper-button-next']::after{
-    color: var(--light-alt);
+[class="swiper-button-next"]::after {
+  color: var(--light-alt);
 }
 
 div.swiper-slide {
-    background: #131A26;
-    padding: 12%
+  background: #131a26;
+  padding: 12%;
 }
 
 /*[class='swiper-slide DeviceSlider_swiperSlideMini__KOEfR swiper-slide-visible swiper-slide-next swiper-slide-thumb-active'] img{*/

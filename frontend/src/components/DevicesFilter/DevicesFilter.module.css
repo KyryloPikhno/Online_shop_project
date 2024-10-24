@@ -1,221 +1,222 @@
-.filter,.closedFilter {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 4px;
-    width: 180px;
-    height: 100vh;
-    backdrop-filter: blur(2px);
-    font-size: 13px;
-    padding-left: 13px;
-    padding-right: 13px;
-    background-color: rgba(255, 255, 255, 0.8);
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    transition: 1s;
+.filter,
+.closedFilter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  width: 180px;
+  height: 100vh;
+  backdrop-filter: blur(2px);
+  font-size: 13px;
+  padding-left: 13px;
+  padding-right: 13px;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  transition: 1s;
 }
 
-.closedFilter{
-    left: -230px;
-    transition: 1s;
+.closedFilter {
+  left: -230px;
+  transition: 1s;
 }
 
-.loader{
-    width: 180px;
-    height: 100vh;
-    padding-left: 13px;
-    padding-right: 13px;
-    cursor: progress;
-    background:
-            linear-gradient(0.25turn, transparent, #fff, transparent),
-            linear-gradient(#eee, #eee),
-            radial-gradient(38px circle at 19px 19px, #eee, transparent 51%),
-            linear-gradient(#eee, #eee);
-    background-repeat: no-repeat;
-    background-position: -315px 0, 0 0, 0 190px, 50px 195px;
-    animation: loading 1.5s infinite;
+.loader {
+  width: 180px;
+  height: 100vh;
+  padding-left: 13px;
+  padding-right: 13px;
+  cursor: progress;
+  background: linear-gradient(0.25turn, transparent, #fff, transparent), linear-gradient(#eee, #eee),
+    radial-gradient(38px circle at 19px 19px, #eee, transparent 51%), linear-gradient(#eee, #eee);
+  background-repeat: no-repeat;
+  background-position:
+    -315px 0,
+    0 0,
+    0 190px,
+    50px 195px;
+  animation: loading 1.5s infinite;
 }
 
 @keyframes loading {
-    to {
-        background-position: 315px 0, 0 0, 0 190px, 50px 195px;
-    }
+  to {
+    background-position:
+      315px 0,
+      0 0,
+      0 190px,
+      50px 195px;
+  }
 }
 
-.form{
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 16px;
+.form {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 16px;
 }
 
-
-.form p{
-    color: var(--light-alt);
-    margin-top: 7px;
+.form p {
+  color: var(--light-alt);
+  margin-top: 7px;
 }
 
-.price{
-    display: flex;
-    gap: 5px;
-    flex-direction: column;
+.price {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
 }
 
-.priceGteLte{
-    display: flex;
-    width: 150px;
-    gap: 5px;
+.priceGteLte {
+  display: flex;
+  width: 150px;
+  gap: 5px;
 }
 
-.priceGteLte input{
-    width: 73px;
-    border-radius: 8px;
-    height: 25px;
-    text-align: center;
-    border: 1px solid var(--light-alt);
-    -moz-appearance: textfield;
-    -webkit-appearance: none;
-    appearance: none;
+.priceGteLte input {
+  width: 73px;
+  border-radius: 8px;
+  height: 25px;
+  text-align: center;
+  border: 1px solid var(--light-alt);
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .priceGteLte input::-webkit-outer-spin-button,
 .priceGteLte input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .priceGteLte input[type="number"] {
-    -moz-appearance: textfield;
-    appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
-.checkBox{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.checkBox {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.checkBox label{
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    gap: 5px;
+.checkBox label {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 5px;
 }
 
-
-.form button{
-    margin-left: 26px;
-    width: 100px;
-    background: var(--light);
-    border: none;
-    background: var(--light-alt);
-    height: 20px;
-    border-radius:4px ;
-    cursor: pointer;
-    color: white;
-    transition: 0.5s;
+.form button {
+  margin-left: 26px;
+  width: 100px;
+  background: var(--light);
+  border: none;
+  background: var(--light-alt);
+  height: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  transition: 0.5s;
 }
 
-.form button:hover{
-    background: var(--dark);
-    transition: 0.5s;
+.form button:hover {
+  background: var(--dark);
+  transition: 0.5s;
 }
 
-.logoBox{
-    height: 80px;
-    width: 130px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-
+.logoBox {
+  height: 80px;
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .logoBox img {
-    width: 55px;
+  width: 55px;
 }
 
-.closerButton{
-    position: absolute;
-    top: 13px;
-    right: 13px;
-    border-radius: 50px;
-    width: 10px;
-    height: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin-left: 12px;
+.closerButton {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  border-radius: 50px;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 12px;
 }
 
-.logoBox h1{
-    text-decoration: none;
-    color: var(--light-alt);
-    text-align: center;
+.logoBox h1 {
+  text-decoration: none;
+  color: var(--light-alt);
+  text-align: center;
 }
 
-.openFilter ,.closedFilter{
-    color: white;
-    position: fixed;
-    left: 13px;
-    top: 265px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
-    background-color: var(--light-alt);
-    box-shadow: .5px .4px 3.8px black;
-    transition: .5s;
+.openFilter,
+.closedFilter {
+  color: white;
+  position: fixed;
+  left: 13px;
+  top: 265px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: var(--light-alt);
+  box-shadow: 0.5px 0.4px 3.8px black;
+  transition: 0.5s;
 }
 
 .closedFilter {
-    left: -125px;
-    transition: .5s;
-    background-color: white;
-    box-shadow: none;
+  left: -125px;
+  transition: 0.5s;
+  background-color: white;
+  box-shadow: none;
 }
 
 label input {
-    display: none; /* <--скрываем дефолтный чекбокс */
+  display: none; /* <--скрываем дефолтный чекбокс */
 }
 
-label span { /* <-- стилизируем новый */
-    height: 12px;
-    width: 12px;
-    border: 1px solid gray;
-    display: inline-block;
-    position: relative;
-    background-color: #FFF;
-    border-radius: 2px;
-    padding: 3px;
+label span {
+  /* <-- стилизируем новый */
+  height: 12px;
+  width: 12px;
+  border: 1px solid gray;
+  display: inline-block;
+  position: relative;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 3px;
 }
 
-[type=checkbox]:checked + span:before { /* <-- ставим иконку, когда чекбокс включен  */
-    content: '\2714';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    color: black;
-    background: var(--light-alt);
+[type="checkbox"]:checked + span:before {
+  /* <-- ставим иконку, когда чекбокс включен  */
+  content: "\2714";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: black;
+  background: var(--light-alt);
 }
-
 
 .form span {
-    color: var(--light-alt);
+  color: var(--light-alt);
 }
-
-
-
-
